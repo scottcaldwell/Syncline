@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "drill_holes", ["site_id"], name: "index_drill_holes_on_site_id"
+  add_index "drill_holes", ["site_id"], name: "index_drill_holes_on_site_id", using: :btree
 
   create_table "field_tests", force: true do |t|
     t.float    "depth_from"
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "field_tests", ["layer_id"], name: "index_field_tests_on_layer_id"
+  add_index "field_tests", ["layer_id"], name: "index_field_tests_on_layer_id", using: :btree
 
   create_table "lab_tests", force: true do |t|
     t.string   "test_type"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "lab_tests", ["field_test_id"], name: "index_lab_tests_on_field_test_id"
+  add_index "lab_tests", ["field_test_id"], name: "index_lab_tests_on_field_test_id", using: :btree
 
   create_table "layers", force: true do |t|
     t.float    "depth_from"
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id"
-  add_index "layers", ["material_id"], name: "index_layers_on_material_id"
+  add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id", using: :btree
+  add_index "layers", ["material_id"], name: "index_layers_on_material_id", using: :btree
 
   create_table "material_types", force: true do |t|
     t.string   "name"
@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "photos", ["field_test_id"], name: "index_photos_on_field_test_id"
-  add_index "photos", ["lab_test_id"], name: "index_photos_on_lab_test_id"
+  add_index "photos", ["field_test_id"], name: "index_photos_on_field_test_id", using: :btree
+  add_index "photos", ["lab_test_id"], name: "index_photos_on_lab_test_id", using: :btree
 
   create_table "site_users", force: true do |t|
     t.integer  "site_id"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.datetime "updated_at"
   end
 
-  add_index "site_users", ["site_id"], name: "index_site_users_on_site_id"
-  add_index "site_users", ["user_id"], name: "index_site_users_on_user_id"
+  add_index "site_users", ["site_id"], name: "index_site_users_on_site_id", using: :btree
+  add_index "site_users", ["user_id"], name: "index_site_users_on_user_id", using: :btree
 
   create_table "sites", force: true do |t|
     t.float    "center_lat"
