@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  depth_from: 1.5
+  depth_to: 1.5
+  type: 
+  layer_id: 
+
+two:
+  depth_from: 1.5
+  depth_to: 1.5
+  type: 
+  layer_id: 

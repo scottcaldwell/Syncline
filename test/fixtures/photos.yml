@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  url: MyString
+  field_test_id: 
+  lab_test_id: 
+
+two:
+  url: MyString
+  field_test_id: 
+  lab_test_id: 

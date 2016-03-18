@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  center_lat: 1.5
+  center_lng: 1.5
+  site_name: MyString
+
+two:
+  center_lat: 1.5
+  center_lng: 1.5
+  site_name: MyString

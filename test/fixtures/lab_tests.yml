@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  test_type: MyString
+  depth_from: 1.5
+  depth_to: 1.5
+  field_test_id: 
+
+two:
+  test_type: MyString
+  depth_from: 1.5
+  depth_to: 1.5
+  field_test_id: 

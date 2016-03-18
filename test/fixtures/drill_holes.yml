@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  ground_elev: 1.5
+  depth: 1.5
+  logged_by: MyString
+  reviewed_by: MyString
+  water_level_start: 1.5
+  water_level_during: 1.5
+  water_level_end: 1.5
+  site_id: 
+  dh_lat: 1.5
+  dh_lng: 1.5
+  hole_size: 1.5
+  method: MyString
+
+two:
+  name: MyString
+  ground_elev: 1.5
+  depth: 1.5
+  logged_by: MyString
+  reviewed_by: MyString
+  water_level_start: 1.5
+  water_level_during: 1.5
+  water_level_end: 1.5
+  site_id: 
+  dh_lat: 1.5
+  dh_lng: 1.5
+  hole_size: 1.5
+  method: MyString
