@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20160321222016) do
 
   add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id"
   add_index "layers", ["material_type_id"], name: "index_layers_on_material_type_id"
-  
+
   create_table "material_types", force: true do |t|
     t.string   "name"
     t.string   "hatching"
