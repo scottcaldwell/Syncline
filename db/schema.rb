@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321034346) do
+ActiveRecord::Schema.define(version: 20160321190629) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20160321034346) do
   create_table "layers", force: true do |t|
     t.float    "depth_from"
     t.float    "depth_to"
-    t.integer  "material_id"
+    t.integer  "material_type_id"
     t.integer  "drill_hole_id"
     t.text     "description"
     t.datetime "created_at"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160321034346) do
   end
 
   add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id"
-  add_index "layers", ["material_id"], name: "index_layers_on_material_id"
+  add_index "layers", ["material_type_id"], name: "index_layers_on_material_type_id"
 
   create_table "material_types", force: true do |t|
     t.string   "name"
