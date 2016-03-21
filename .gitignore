@@ -17,3 +17,5 @@
 
 #ignore pg yml file
 /config/database.yml
+
+.DS_Store
