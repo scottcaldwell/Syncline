@@ -12,8 +12,6 @@ $(function () {
   };
 
   $('a#add-site-button').on('click', handlers.modalOpen);
-  
   $('button.modal-close').on('click', handlers.modalClose);
-
   $('a#submit-site').on('click', handlers.modalClose)
 });
