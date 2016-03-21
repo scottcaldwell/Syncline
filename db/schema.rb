@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321190629) do
+ActiveRecord::Schema.define(version: 20160321222016) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20160321190629) do
   add_index "lab_tests", ["field_test_id"], name: "index_lab_tests_on_field_test_id"
 
   create_table "layers", force: true do |t|
-    t.float    "depth_from"
-    t.float    "depth_to"
+    t.float    "thickness"
+    t.integer  "layer_order"
     t.integer  "material_type_id"
     t.integer  "drill_hole_id"
     t.text     "description"

@@ -65,20 +65,14 @@ Site.create(
   num_layers = rand(2..5)
   layer_thickness = (DrillHole.all[n].depth)/num_layers
   i = 0
-  depth_from = 0
-  depth_to = 0
   while i < num_layers
-    if i > 0
-      depth_from = depth_to
-    end
     Layer.create(
-    depth_from: depth_from,
-    depth_to: depth_from + layer_thickness,
+    thickness: layer_thickness,
+    layer_order: i,
     material_type_id: MaterialType.all[rand(0..3)].id,
     drill_hole_id: DrillHole.all[n].id,
     description: Faker::Lorem.paragraph
     )
-    depth_to += layer_thickness
     i += 1
   end
 end
