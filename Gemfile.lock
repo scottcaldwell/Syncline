@@ -26,6 +26,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -37,6 +38,8 @@ GEM
     dotenv (2.1.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.3)
+      i18n (~> 0.5)
     hike (1.2.3)
     i18n (0.7.0)
     jbuilder (1.5.3)
@@ -109,8 +112,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
   coffee-rails (~> 4.0.0)
   dotenv
+  faker
   jbuilder (~> 1.2)
   jquery-rails
   pg

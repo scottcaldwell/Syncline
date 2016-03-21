@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318011946) do
+ActiveRecord::Schema.define(version: 20160321222016) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20160318011946) do
   create_table "field_tests", force: true do |t|
     t.float    "depth_from"
     t.float    "depth_to"
-    t.string   "type"
+    t.string   "test_type"
     t.integer  "layer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(version: 20160318011946) do
   add_index "lab_tests", ["field_test_id"], name: "index_lab_tests_on_field_test_id"
 
   create_table "layers", force: true do |t|
-    t.float    "depth_from"
-    t.float    "depth_to"
-    t.integer  "material_id"
+    t.float    "thickness"
+    t.integer  "layer_order"
+    t.integer  "material_type_id"
     t.integer  "drill_hole_id"
     t.text     "description"
     t.datetime "created_at"
@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20160318011946) do
   end
 
   add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id"
-  add_index "layers", ["material_id"], name: "index_layers_on_material_id"
-
+  add_index "layers", ["material_type_id"], name: "index_layers_on_material_type_id"
+  
   create_table "material_types", force: true do |t|
     t.string   "name"
     t.string   "hatching"
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20160318011946) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
 end
