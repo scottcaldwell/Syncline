@@ -1,0 +1,69 @@
+<% @sites = [0, 1, 2, 3, 4, 5, 6]%>
+<article class='page-body content'>
+  
+  <div class="page-title">
+    <h1>My Sites</h1>
+  </div>
+
+  <section class='section'>
+    <div class="columns sites-columns">
+      <% @sites.each do |site| %>
+      <div class="column is-third-tablet is-quarter-desktop">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= image_tag("map.png", :alt => "rss feed") %>
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-32x32">
+                  <%= image_tag("mike.png", :alt => "rss feed") %>
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-5"><%= link_to "Lighthouse Labs", site_path(1) %></p>
+              </div>
+            </div>
+            <div class="content">
+              <p>Downtown, Vancouver</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      <% end %>
+
+      <div class="column is-third-tablet is-quarter-desktop new-site">
+        <div class="new-site-card">
+          <div class="add-site">
+            <a id="add-site-button"><%= image_tag("add-site.png", :alt => "rss feed") %></a>
+          </div>
+          <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <div class="content">
+                  <div>
+                    <h1>New Site</h1>
+                    <p class="control">
+                      <label for="new-site-name" class="label">Site Name: </label>
+                      <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
+                    </p>
+                    <div>
+                      <%= image_tag("new-site-map.png", :alt => "rss feed") %>
+                    </div>
+                    <a id="submit-site" class="button is-primary">Create</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="modal-close"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</article>

@@ -1,0 +1,63 @@
+<% @drill_holes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]%>
+<article class='page-body content'>
+  <div class="page-title">
+    <h1>Site Name</h1>
+  </div>
+  <section class='section site-overview'>
+  
+    <a class="button is-primary">Add new Drill Hole</a>
+    <%= image_tag("site-map.png", :alt => "rss feed") %>
+
+  </section>
+
+  <section class='section site-charts'>
+
+    <div class="columns">
+      <div class="column">
+        <%= image_tag("charts.png", :alt => "rss feed") %>
+      </div>
+      <div class="column">
+        <%= image_tag("charts.png", :alt => "rss feed") %>
+      </div>
+    </div>
+
+  </section>
+
+  <section class='section drill-holes-table'>
+    
+    <h1>Drill Holes</h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Depth</th>
+          <th>Location</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tfoot>
+        <tr>
+          <th>Name</th>
+          <th>Depth</th>
+          <th>Location</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <% @drill_holes.each do |drill_hole| %>
+          <tr>
+            <td>Lighthouse Labs</td>
+            <td>300 m</td>
+            <td>Downtown, Vancouver</td>
+            <td><%= link_to "Edit", edit_drill_hole_path, :class => "button is-primary" %></td>
+            <td><%= link_to "View", drill_hole_path(1), :class => "button is-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </section>
+
+</article>

@@ -1,0 +1,28 @@
+.new-site-card {
+  background: lightgray;
+  border-style: dashed;
+  border-width: 3px;
+  height: 280px;
+  position: absolute;
+  width: 93%;
+}
+
+@media screen and (max-width: 769px) {
+
+  .column.new-site {
+    height: 300px;
+    margin: 0 auto;
+    width: 80%;
+  }
+}
+@media screen and (min-width: 769px) {
+  .card {
+    max-width: 300px;
+    padding: 0;
+  }
+
+  .new-site-card {
+    height: 97%;
+    width: 93%;
+  }
+}

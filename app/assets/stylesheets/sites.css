@@ -1,0 +1,9 @@
+.sites-columns {
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.column.new-site {
+  position: relative;
+  height: auto;
+}

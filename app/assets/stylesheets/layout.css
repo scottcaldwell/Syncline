@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+}
+
+.page-content {
+  background-color: white;
+  height: auto;
+  min-height: 100%;
+}
+
+.new-site {
+  margin-bottom: 10px
+}
+
+.page-title h1, .drill-holes-table h1 {
+  font-size: 40px;
+  font-weight: 900;
+  padding: 10px;
+}
