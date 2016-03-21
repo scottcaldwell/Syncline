@@ -81,3 +81,27 @@
 #     i += 1
 #   end
 # end
+FieldTest.create(
+  depth_from: 1.5,
+  depth_to: 2.0,
+  test_type: "SPT",
+  layer_id: 1
+)
+FieldTest.create(
+  depth_from: 1.5,
+  depth_to: 2.0,
+  test_type: "SPT",
+  layer_id: 2
+)
+FieldTest.create(
+  depth_from: 1.5,
+  depth_to: 2.0,
+  test_type: "SPT",
+  layer_id: 3
+)
+FieldTest.create(
+  depth_from: 1.5,
+  depth_to: 2.0,
+  test_type: "SPT",
+  layer_id: 4
+)
