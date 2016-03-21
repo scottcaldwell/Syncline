@@ -21,7 +21,7 @@ end
   water_level_start: rand(0.00..5.00),
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),
-  site_id: 0,
+  site_id: 1,
   dh_lat: rand(49.2820000..49.2821000),
   dh_lng: -rand(123.1080000..123.1081000),
   hole_size: 7.5,
