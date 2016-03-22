@@ -17,13 +17,14 @@ $(function() {
   //TODO
   //On first click, add marker to click location
 
-  if($('#geo-search-map').length > 0) {
+  if ($('#geo-search-map').length > 0) {
     console.log("geo-search-map found");
     //Create map
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
 
     var button = document.getElementById('submit-site');
+    var siteName = $('#new-site-name');
     var marker;
     //addMarker(50, -123.1);
 
@@ -34,13 +35,12 @@ $(function() {
     });
     geocoderControl.addTo(geoSearchMap);
 
-    //When location is selected, add marker and show button
+    //When location is selected(via search or click), add marker and show button
     geocoderControl.on('select', function(res) {
       var coord = res.feature.geometry.coordinates;
       addMarker(coord[1], coord[0]);
     });
-
-    geoSearchMap.on('click', function(e){
+    geoSearchMap.on('click', function(e) {
       var lat = e.latlng.lat;
       var lng = e.latlng.lng;
       addMarker(lat, lng);
@@ -50,28 +50,48 @@ $(function() {
     button.addEventListener("click", function() {
       var center_lat = marker._latlng.lat;
       var center_lng = marker._latlng.lng;
-      alert('Site coordinates defined as: ' + center_lat + ',' + center_lng);
-      //Needs to acutally write to db
-      //Close modal/redirect
+
+      //FIXME: Needs to acutally write to db
+      alert('Site coordinates defined as: ' + center_lat + ',' + center_lng +
+        "\n Site Name: " + siteName.val());
+
+    });
+
+    //Fixes modal bug for map
+    $("#add-site-button").on('click', function() {
+      //hack solution, but without delay it won't work.
+      //I also tried to .invalidateSize() on other events like show, but they didn't work.
+      setTimeout(func, 10);
+
+      function func() {
+        geoSearchMap.invalidateSize();
+      }
+
     });
   }
 
-  function addMarker(lat, lng){
-    if (marker){
+  //Adds marker to map, shows 'Create' button, fill 'Site Name' field
+  function addMarker(lat, lng) {
+    if (marker) {
       geoSearchMap.removeLayer(marker);
     }
     marker = L.marker(new L.LatLng(lat, lng), {
       draggable: true
     });
     marker.addTo(geoSearchMap);
-    button.style.display = 'inline';
+    button.style.display = 'inline'; //Show create button
+
+    if (siteName.val().length === 0 || siteName.val().toString().substring(0, 5) == 'Site:') {
+      siteName.val("Site: " + lat + " , " + lng); //Fill site name field
+    }
   }
+
   //++++++++++++++++ markersMap +++++++++++++++++//
   //Overall drill site with multiple markers, centered around them
 
   //TODO
   //when you click markers, pop up information/link to site page
-  if($('#markers-map').length > 0) {
+  if ($('#markers-map').length > 0) {
     console.log("markers-map found");
 
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
@@ -111,14 +131,14 @@ $(function() {
 
     myLayer.eachLayer(function(layer) {
       var content = '<h2>Coordinates: <\/h2>' +
-          '<p>' + layer.feature.geometry.coordinates + '<\/p>' +
-          '<button class="trigger">Go to drill hole</button>';
+        '<p>' + layer.feature.geometry.coordinates + '<\/p>' +
+        '<button class="trigger">Go to drill hole</button>';
       //Add more stuff here bruh
       layer.bindPopup(content);
     });
 
     $('#markers-map').on('click', '.trigger', function() {
-        alert('This will actually link you');
+      alert('This will actually link you');
     });
 
     //Position map to show all markers THIS WORKS
@@ -135,18 +155,19 @@ $(function() {
   //add Mapbox/OpenMaps attribution somewhere on page
   //these will come from DB via JSON?
 
-  if($('.static-map').length > 0) {
-    console.log("static-map found");
 
-    for(var j = 0; j < markerCoords.length; j++){
+  //If static map div is in DOM
+  if ($('.static-map').length > 0) {
+
+    for (var j = 0; j < markerCoords.length; j++) {
       var latitude = markerCoords[j][0];
       var longitude = markerCoords[j][1];
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
-        longitude + "," + latitude + //Map location
-        ",14/800x400@2x.png?access_token=" + //Zoom level, res
-        privateToken; //api auth token
+        longitude + "," + latitude +                   //Map location
+        ",14/800x400@2x.png?access_token=" +           //Zoom level, res
+        privateToken;                                  //api auth token
 
       $(".static-map").append("<img src = " + staticImageString + " width='800' alt='Map of Site'>");
       //Could also do with pure javascript, using getElementById("static-map").src
