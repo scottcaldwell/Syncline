@@ -1,6 +1,5 @@
 Syncline::Application.routes.draw do
 
-
   resources :sites, only: [:index, :show], shallow: true do
     resources :drill_holes, shallow: true do
       resources :layers
