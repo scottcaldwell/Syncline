@@ -7,7 +7,7 @@ $(function() {
   //Geo-search map, allows user to initialize site location
 
   //TODO
-  //On first click, add marker to click location
+  //Increase modal size so map can be bigger
 
   if ($('#geo-search-map').length > 0) {
     console.log("geo-search-map found");
@@ -46,7 +46,6 @@ $(function() {
       //FIXME: Needs to acutally write to db
       alert('Site coordinates defined as: ' + center_lat + ',' + center_lng +
         "\n Site Name: " + siteName.val());
-
     });
 
     //Fixes modal bug for map
@@ -82,7 +81,7 @@ $(function() {
   //Overall drill site with multiple markers, centered around them
 
   //TODO
-  //Zoom level isn't quite right when markers are close together. 
+  //Zoom level isn't quite right when markers are close together.
 
   if ($('#markers-map').length > 0) {
     console.log("markers-map found");
@@ -96,14 +95,14 @@ $(function() {
     var markerUrl = [];
 
     $('.drill-row').each(function(i) {
-      var name =  $(this).children().eq(0).html();
-      var depth =  $(this).children().eq(1).html();
-      var location =  $(this).children().eq(2).html();
-      var lat =  $(this).children().eq(3).html();
-      var lng =  $(this).children().eq(4).html();
+      var name = $(this).children().eq(0).html();
+      var depth = $(this).children().eq(1).html();
+      var location = $(this).children().eq(2).html();
+      var lat = $(this).children().eq(3).html();
+      var lng = $(this).children().eq(4).html();
       latlng = [];
       latlng.push(L.latLng(lat, lng));
-      markerUrl[i] = '/drill_holes/'+ i;
+      markerUrl[i] = '/drill_holes/' + i;
 
       markerGeoJSON[i] = {
         type: 'Feature',
@@ -129,11 +128,11 @@ $(function() {
 
     myLayer.eachLayer(function(layer) {
       var content =
-      '<div>Name: ' + layer.feature.properties.name + '<div/>' +
-      '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
-      '<div>Location: ' + layer.feature.properties.location + '</div>' +
-      '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
-      '<a href="'+ layer.feature.properties.url+ '">Go to Drill Site</a></br>';
+        '<div>Name: ' + layer.feature.properties.name + '<div/>' +
+        '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
+        '<div>Location: ' + layer.feature.properties.location + '</div>' +
+        '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
+        '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
       layer.bindPopup(content);
     });
 
@@ -151,22 +150,22 @@ $(function() {
   //add Mapbox/OpenMaps attribution somewhere on page
   //these will come from DB via JSON?
 
-
   //If static map div is in DOM
   if ($('.static-map').length > 0) {
 
-    for (var j = 0; j < markerCoords.length; j++) {
-      var latitude = markerCoords[j][0];
-      var longitude = markerCoords[j][1];
+    $('.drill-card').each(function(j) {
+      var latitude = $(this).find('.drill-hole-lat').html().trim();
+      var longitude = $(this).find('.drill-hole-lng').html().trim();
+      console.log(latitude);
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
-        longitude + "," + latitude +                   //Map location
-        ",14/800x400@2x.png?access_token=" +           //Zoom level, res
-        privateToken;                                  //api auth token
+        longitude + "," + latitude + //Map location
+        ",17/400x300@2x.png?access_token=" + //Zoom level, res
+        privateToken; //api auth token
+        console.log(staticImageString);
 
-      $(".static-map").append("<img src = " + staticImageString + " width='800' alt='Map of Site'>");
-      //Could also do with pure javascript, using getElementById("static-map").src
-    }
+      $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
+    });
   }
 });
