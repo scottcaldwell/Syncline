@@ -17,11 +17,11 @@ class DrillHolesController < ApplicationController
   end
 
   def create
-   
+
   end
 
   def update
-  
+
   end
 
   protected
