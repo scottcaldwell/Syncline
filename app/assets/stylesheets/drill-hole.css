@@ -1,17 +1,18 @@
 .layers-log {
-
+  position: relative;
 }
 
 .layer-height {
-  background-image: repeating-linear-gradient(0deg, #aaa, #aaa 20px, #eee 20px, #eee 40px);
+  /*background-image: repeating-linear-gradient(0deg, #aaa, #aaa 25px, #eee 25px, #eee 50px);*/
+  /*border-left: thin solid #ddd;*/
 }
 
-.layer-height p, .gl p {
-	display: none;
+.gl p {
+  display: none;
 }
 
 .gl-sand {
-	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXxvZSoAAAAAElFTkSuQmCC);
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAG0lEQVQIW2NkYGD4z8DAwMgABXAGNgGwSgwVAFbmAgXxvZSoAAAAAElFTkSuQmCC);
 }
 
 .gl-gravel {
@@ -26,6 +27,50 @@
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2NkQAX/GZH4/xkYGBhhAmAOSBJEwDkgAQCCrgQEqRgDDwAAAABJRU5ErkJggg==);
 }
 
+.layers-log.columns .layer {
+  margin: 0;
+}
+
+.layers-log {
+  margin-top: 10px;
+}
+
+.layers-log .columns {
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .layer {
-	border-bottom: thin solid #333;
+  border-bottom: thin solid #333;
+}
+
+.layers-header {
+  border-bottom: thick solid #333;
+  padding-bottom: .5em;
+}
+
+#layer-rules {
+
+}
+
+#layer-rules ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 100%;
+  transform: translateX(-30px);  
+  list-style: none;
+  margin: 0;
+}
+
+#layer-rules li {
+  border-right: thin solid #ddd;
+  dislay: block;
+  font-size: .75em;
+  width: 30px;
+  height: 25px;
+  border-bottom: 1px solid #333;
+  margin: 0;
+  padding: 0;
 }
