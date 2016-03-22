@@ -1,7 +1,9 @@
 Syncline::Application.routes.draw do
   
   resources :sites, only: [:index, :show] do
-    resources :drill_holes, only: [:create, :edit, :new, :show, :update]
+    resources :drill_holes do
+      resources :layers
+    end
   end
   resource :session, only: [:create, :destroy, :new]
   root to: 'sites#index'
