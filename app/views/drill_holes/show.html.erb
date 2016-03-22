@@ -68,13 +68,13 @@
       </div>
     </form>
 
-    <button>Submit</button>
-    <button>Mark as Reviewed</button>
+    <button class='button is-primary'>Submit</button>
+    <button class='button is-success'>Mark as Reviewed</button>
   </section>
 
-  <section id='layers-log' class='section layers-log'>
-    <header class='log-header columns is-1'>
-      <div class="log-column-title column">
+  <section class='section layers-header'>
+    <header class='log-header columns'>
+      <div class="log-column-depth column">
         <p>Depth</p>
       </div>
 
@@ -93,162 +93,119 @@
       <div class="log-column-title column is-3">
         <p>Sample Data</p>
       </div>                        
-    </header>
+    </header>    
+  </section>
 
+  <section id='layers-log' class='layers-log'>
     <!-- LAYER -->
 
-    <div class="layer columns" data-height='1'>
-      <div class="log-column-title column is-1 layer-height">
-        <p>1</p>
+    <div id="layer-rules">
+      <ul></ul>
+    </div>
+
+    <div class="layer columns" data-height='1.43'>
+      <div class="log-column-depth column layer-height">
+        <p>1.43m</p>
       </div>
 
-      <div class="log-column-title column is-1 gl gl-sand">
+      <div class="log-column-glog column is-1 gl gl-sand">
         <p>Sand</p>
       </div>
 
-      <div class="log-column-title column is-5">
+      <div class="log-column-desc column is-5">
         <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
       </div>
 
-      <div class="log-column-title column is-2">
+      <div class="log-column-type column is-2">
         <p>Sample Type</p>
       </div>
 
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
+      <div class="log-column-data column is-3">
+        
       </div>                     
     </div>
 
-    <!-- LAYER -->
+    <!-- layer -->
 
-    <div class="layer columns" data-height='2'>
-      <div class="log-column-title column is-1 layer-height">
-        <p>2</p>
+    <div class="layer columns" data-height='1.87'>
+      <div class="log-column-depth column layer-height">
+        <p>1.87m</p>
       </div>
 
-      <div class="log-column-title column is-1 gl gl-gravel">
-        <p>Stone</p>
-      </div>
-
-      <div class="log-column-title column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-title column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
-      </div>                     
-    </div>
-
-    <!-- LAYER -->
-
-    <div class="layer columns" data-height='1.5'>
-      <div class="log-column-title column is-1 layer-height">
-        <p>1.5</p>
-      </div>
-
-      <div class="log-column-title column is-1 gl gl-clay">
+      <div class="log-column-glog column is-1 gl gl-silt">
         <p>Sand</p>
       </div>
 
-      <div class="log-column-title column is-5">
+      <div class="log-column-desc column is-5">
         <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
       </div>
 
-      <div class="log-column-title column is-2">
+      <div class="log-column-type column is-2">
         <p>Sample Type</p>
       </div>
 
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
+      <div class="log-column-data column is-3">
+        
       </div>                     
     </div>
 
-    <!-- LAYER -->
+    <!-- layer -->
 
-    <div class="layer columns" data-height='2.5'>
-      <div class="log-column-title column is-1 layer-height">
-        <p>2.5</p>
+    <div class="layer columns" data-height='2.27'>
+      <div class="log-column-depth column layer-height">
+        <p>2.27m</p>
       </div>
 
-      <div class="log-column-title column is-1 gl gl-silt">
+      <div class="log-column-glog column is-1 gl gl-gravel">
         <p>Sand</p>
       </div>
 
-      <div class="log-column-title column is-5">
+      <div class="log-column-desc column is-5">
         <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
       </div>
 
-      <div class="log-column-title column is-2">
+      <div class="log-column-type column is-2">
         <p>Sample Type</p>
       </div>
 
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
+      <div class="log-column-data column is-3">
+        
       </div>                     
     </div>
-
-    <!-- LAYER -->
-
-    <div class="layer columns" data-height='1'>
-      <div class="log-column-title column is-1 layer-height">
-        <p>1</p>
-      </div>
-
-      <div class="log-column-title column is-1 gl gl-gravel">
-        <p>Sand</p>
-      </div>
-
-      <div class="log-column-title column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-title column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
-      </div>                     
-    </div>            
   </section>
 
   <section class='section layer-new'>
     <h2>New Layer</h2>
-    <form class='columns'>
-      <div class="column is-4">
-        <p class="control">
+    <form>
+      <div class="columns">
+        <p class="control column is-1">
           <label class='label'>depth</label>
           <input class='input' type='number'></input>
         </p>
 
-        <p class="control">
-          <label class="label">Graphic Log</label>
+        <p class="control column is-1">
+          <label class="label">Graphic</label>
           <input class="input" type='select'></input>
         </p>
 
-        <p class="control">
+        <p class="control column is-5">
+          <label class="label">Description</label>
+          <textarea class='textarea'></textarea>  
+        </p>
+
+        <p class="control column is-2">
           <label class="label">Sample Type</label>
           <input class="input"></input>
         </p>
 
-        <p class="control">
-          <label class="label">Blow Count</label>
+        <p class="control column is-3">
+          <label class="label">Sample Data</label>
           <input class="input"></input>
         </p>
       </div>
 
-      <div class="column is-8">
-        <p class="control">
-          <label class="label">Description</label>
-          <textarea></textarea>
-        </p>
+      <button class='button is-primary'>Submit</button>
 
-        <button>Submit</button>
-      </div>
     </form>
   </section>
 </article>
