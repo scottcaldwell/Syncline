@@ -1,0 +1,13 @@
+.map {
+}
+
+
+#geo-search-map {
+  width:500px;
+  height:300px;
+}
+#markers-map {
+}
+.static-map {
+  top: 820px;
+}

@@ -1,6 +1,6 @@
 <% @sites = [0, 1, 2, 3, 4, 5, 6]%>
 <article class='page-body content'>
-  
+
   <div class="page-title">
     <h1>My Sites</h1>
   </div>
@@ -50,9 +50,7 @@
                       <label for="new-site-name" class="label">Site Name: </label>
                       <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
                     </p>
-                    <div>
-                      <%= image_tag("new-site-map.png", :alt => "rss feed") %>
-                    </div>
+                      <div id="geo-search-map" class='map'></div>
                     <a id="submit-site" class="button is-primary">Create</a>
                   </div>
                 </div>
