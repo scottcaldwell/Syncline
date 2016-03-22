@@ -159,3 +159,28 @@ Project.create(
   drill_by_date: Layer.last.date_drilled,
   site_id: 1
   )
+
+Spt.create(
+  blow_count: 15,
+  field_test_id: 1
+)
+Spt.create(
+  blow_count: 10,
+  field_test_id: 2
+)
+Spt.create(
+  blow_count: 9,
+  field_test_id: 3
+)
+GrainSize.create(
+  fines_content: 75,
+  lab_test_id: 1
+)
+GrainSize.create(
+  fines_content: 50,
+  lab_test_id: 2
+)
+GrainSize.create(
+  fines_content: 85,
+  lab_test_id: 3
+)
