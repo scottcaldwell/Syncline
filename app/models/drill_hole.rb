@@ -4,5 +4,4 @@ class DrillHole < ActiveRecord::Base
 
   validates :site_id,
     presence: true
-
 end
