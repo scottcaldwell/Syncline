@@ -11,5 +11,8 @@
 // about supported directives.
 //
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
+//= require dragula
+//= require new_card
+//= require layer_log
+//= require layer_chart
+//= material_type_histogram
