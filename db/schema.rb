@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321222016) do
+ActiveRecord::Schema.define(version: 20160322224147) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 20160321222016) do
 
   add_index "field_tests", ["layer_id"], name: "index_field_tests_on_layer_id"
 
+  create_table "grain_sizes", force: true do |t|
+    t.integer  "fines_content"
+    t.integer  "lab_test_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "grain_sizes", ["lab_test_id"], name: "index_grain_sizes_on_lab_test_id"
+
   create_table "lab_tests", force: true do |t|
     t.string   "test_type"
     t.float    "depth_from"
@@ -63,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160321222016) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date_drilled"
   end
 
   add_index "layers", ["drill_hole_id"], name: "index_layers_on_drill_hole_id"
@@ -86,6 +96,16 @@ ActiveRecord::Schema.define(version: 20160321222016) do
   add_index "photos", ["field_test_id"], name: "index_photos_on_field_test_id"
   add_index "photos", ["lab_test_id"], name: "index_photos_on_lab_test_id"
 
+  create_table "projects", force: true do |t|
+    t.float    "drill_to_depth"
+    t.date     "drill_by_date"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "projects", ["site_id"], name: "index_projects_on_site_id"
+
   create_table "site_users", force: true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
@@ -104,6 +124,15 @@ ActiveRecord::Schema.define(version: 20160321222016) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "spts", force: true do |t|
+    t.integer  "blow_count"
+    t.integer  "field_test_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "spts", ["field_test_id"], name: "index_spts_on_field_test_id"
 
   create_table "users", force: true do |t|
     t.string   "first_name"
