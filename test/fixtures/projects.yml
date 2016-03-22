@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  drill_to_depth: 1.5
+  drill_by_date: 2016-03-22
+  sites_id: 
+
+two:
+  drill_to_depth: 1.5
+  drill_by_date: 2016-03-22
+  sites_id: 

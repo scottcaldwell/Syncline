@@ -1,6 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
+
 5.times do
   User.create(
   email: Faker::Internet.email,
@@ -71,11 +71,13 @@ Site.create(
     layer_order: i,
     material_type_id: MaterialType.all[rand(0..3)].id,
     drill_hole_id: DrillHole.all[n].id,
-    description: Faker::Lorem.paragraph
+    description: Faker::Lorem.paragraph,
+    date_drilled: "2016-01-#{n}"
     )
     i += 1
   end
 end
+
 FieldTest.create(
   depth_from: DrillHole.all[0].depth/4,
   depth_to: (DrillHole.all[0].depth/4 + 0.5),
@@ -152,3 +154,8 @@ SiteUser.create(
   user_id: User.all[4].id,
   admin: false
 )
+Project.create(
+  drill_to_depth: DrillHole.sum(:depth),
+  drill_by_date: Layer.last.date_drilled,
+  site_id: 1
+  )
