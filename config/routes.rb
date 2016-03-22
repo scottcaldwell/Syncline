@@ -7,7 +7,6 @@ Syncline::Application.routes.draw do
     end
   end
 
-
   get "users/show"
   get "users/new"
   get "users/create"
