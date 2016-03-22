@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require highcharts
-//= require highcharts/modules/data
-//= require highcharts/modules/drilldown
-//= require highcharts/modules/exporting
+// require highcharts
+// require highcharts/modules/data
+// require highcharts/modules/drilldown
+// require highcharts/modules/exporting
 //= require_tree .
