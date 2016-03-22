@@ -5,7 +5,7 @@
   <section class='section site-overview'>
 
     <a class="button is-primary">Add new Drill Hole</a>
-    <%= image_tag("site-map.png", :alt => "rss feed") %>
+    <div id='markers-map' class='map'></div>
 
   </section>
 
@@ -48,7 +48,7 @@
       </tfoot>
       <tbody>
         <% @drill_holes.each do |drill_hole| %>
-          <tr>
+          <tr class="drill-row">
             <td><%= drill_hole.name %></td>
             <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
             <td><%= Site.find(drill_hole.site_id).site_name %></td>

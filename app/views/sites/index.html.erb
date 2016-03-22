@@ -1,5 +1,5 @@
 <article class='page-body content'>
-  
+
   <div class="page-title">
     <h1>My Sites</h1>
   </div>
@@ -7,11 +7,10 @@
   <section class='section'>
     <div class="columns sites-columns">
       <% @sites.each do |site| %>
-      <div class="column is-third-tablet is-quarter-desktop">
+      <div class="column is-third-tablet is-quarter-desktop drill-card">
         <div class="card">
           <div class="card-image">
-            <figure class="image is-4by3">
-              <%= image_tag("map.png", :alt => "rss feed") %>
+            <figure class="image is-4by3 static-map">
             </figure>
           </div>
           <div class="card-content">
@@ -21,8 +20,8 @@
               </div>
             </div>
             <div class="content notification is-info">
-              <p>Latitude: <%= number_with_precision(site.center_lat, precision: 3) %><br />
-              Longitude: <%= number_with_precision(site.center_lng, precision: 3) %></p>
+              <p>Latitude:</p><p class="drill-hole-lat"> <%= number_with_precision(site.center_lat, precision: 3) %></p>
+              <p>Longitude:</p><p class="drill-hole-lng"><%= number_with_precision(site.center_lng, precision: 3) %></p>
               <p>Drill Holes: <%= site.drill_holes.count %></p>
             </div>
           </div>
@@ -46,10 +45,8 @@
                       <label for="new-site-name" class="label">Site Name: </label>
                       <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
                     </p>
-                    <div>
-                      <%= image_tag("new-site-map.png", :alt => "rss feed") %>
-                    </div>
-                    <a id="submit-site" class="button is-primary">Create</a>
+                    <div id="geo-search-map" class='map'></div>
+                    <a id="submit-site" class="button is-primary" style="display: none">Create</a>
                   </div>
                 </div>
               </div>
