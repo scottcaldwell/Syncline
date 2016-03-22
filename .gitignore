@@ -18,4 +18,8 @@
 #ignore pg yml file
 /config/database.yml
 
+#ignore .DS_Store
 .DS_Store
+
+#ignore Environment variables file
+.env

@@ -3,6 +3,10 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
+# Use dotenv for storing environment variables
+gem 'dotenv'
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Use Faker for seeding the database
 gem 'faker'
 
@@ -37,8 +41,6 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-gem 'dotenv'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
