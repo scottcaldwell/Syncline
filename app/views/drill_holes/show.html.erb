@@ -1,7 +1,10 @@
 <article class='page-body content section'>
   <header class='page-header'>
-    <h1 class='title is-1'><%= @drill_hole.name %></h1>
-    <h2 class='subtitle is-3'><%= @drill_hole.site.site_name %></h2>
+    <h1 class='page-title'>
+      <p class='title'><%= @drill_hole.name %></p>
+      <p class='subtitle'>Site: <%= @drill_hole.site.site_name %></p>
+    </h1>
+    <!-- <h2 class='subtitle is-3'></h2> -->
   </header>
 
   <section class='section drill-log'>
@@ -48,7 +51,7 @@
         </p>                
 
         <p class="control">
-          <%= f.number_field :method, class: 'input' %>
+          <%= f.text_field :method, class: 'input' %>
         </p>                
       </div>
 
