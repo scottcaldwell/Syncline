@@ -90,12 +90,12 @@ ActiveRecord::Schema.define(version: 20160322185829) do
   create_table "projects", force: true do |t|
     t.float    "drill_to_depth"
     t.date     "drill_by_date"
-    t.integer  "sites_id"
+    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "projects", ["sites_id"], name: "index_projects_on_sites_id"
+  add_index "projects", ["site_id"], name: "index_projects_on_site_id"
 
   create_table "site_users", force: true do |t|
     t.integer  "site_id"

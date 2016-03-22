@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.float :drill_to_depth
       t.date :drill_by_date
-      t.belongs_to :sites, index: true
+      t.belongs_to :site, index: true
 
       t.timestamps
     end
