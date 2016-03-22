@@ -10,5 +10,4 @@ class DrillHole < ActiveRecord::Base
     def get_layers
       @layers = self.layers.all
     end
-
 end
