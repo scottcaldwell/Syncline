@@ -1,10 +1,73 @@
-<article class='page-body content'>
+<article class='page-body content section'>
   <header class='page-header'>
-    <h1 class='title'>Drill Hole Name</h1>
+    <h1 class='page-title'>
+      <p class='title'><%= @drill_hole.name %></p>
+      <p class='subtitle'>Site: <%= @drill_hole.site.site_name %></p>
+    </h1>
+    <!-- <h2 class='subtitle is-3'></h2> -->
   </header>
 
   <section class='section drill-log'>
-    <form class='columns'>
+
+    <%= form_for @drill_hole, url: { action: 'edit' }, html: { class: 'columns' } do |f| %>
+      <!-- TODO: Build a label helper as defined in the docs to generate labels with classes -->
+      <div class="column is-5">
+        <p class="control">
+          <%= f.text_field :logged_by, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :dh_lat, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :dh_lng, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :ground_elev, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :depth, class: 'input' %>
+        </p>
+      </div>
+
+      <div class="column is-5">
+        <p class="control">
+          <%= f.number_field :water_level_start, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :water_level_during, class: 'input' %>
+        </p>
+
+        <p class="control">
+          <%= f.number_field :water_level_end, class: 'input' %>
+        </p>                        
+
+        <p class="control">
+          <%= f.number_field :hole_size, class: 'input' %>
+        </p>                
+
+        <p class="control">
+          <%= f.text_field :method, class: 'input' %>
+        </p>                
+      </div>
+
+      <div class="column is-2">
+        <p class="control">
+          <%= f.submit "Edit", class: 'button button-full is-primary' %>
+        </p>
+
+        <p class="control">
+          <button class="button button-full is-success">Mark as Reviewed</button>  
+        </p>
+      </div>
+
+    <% end %>
+
+<!--     <form class='columns'>
       <div class="column">
         <p class="control">
           <label class='label' for='logged-by'>Logged By</label>  
@@ -71,6 +134,7 @@
     <button class='button is-primary'>Submit</button>
     <button class='button is-success'>Mark as Reviewed</button>
   </section>
+ -->
 
   <section class='section layers-header'>
     <header class='log-header columns'>
@@ -103,75 +167,32 @@
       <ul></ul>
     </div>
 
-    <div class="layer columns" data-height='1.43'>
-      <div class="log-column-depth column layer-height">
-        <p>1.43m</p>
+    <% for layer in @layers %>
+
+      <div class="layer columns" data-height='<%= layer.thickness %>'>
+        <div class="log-column-depth column layer-height">
+          <p><%= layer.round_thickness %> m</p>
+        </div>
+
+        <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
+          <p><%= layer.material_type.name %></p>
+        </div>
+
+        <div class="log-column-desc column is-5">
+          <p><%= layer.description %></p>
+        </div>
+
+        <div class="log-column-type column is-2">
+          <p></p>
+        </div>
+
+        <div class="log-column-data column is-3">
+          
+        </div>                     
       </div>
 
-      <div class="log-column-glog column is-1 gl gl-sand">
-        <p>Sand</p>
-      </div>
+    <% end %>
 
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
-
-    <!-- layer -->
-
-    <div class="layer columns" data-height='1.87'>
-      <div class="log-column-depth column layer-height">
-        <p>1.87m</p>
-      </div>
-
-      <div class="log-column-glog column is-1 gl gl-silt">
-        <p>Sand</p>
-      </div>
-
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
-
-    <!-- layer -->
-
-    <div class="layer columns" data-height='2.27'>
-      <div class="log-column-depth column layer-height">
-        <p>2.27m</p>
-      </div>
-
-      <div class="log-column-glog column is-1 gl gl-gravel">
-        <p>Sand</p>
-      </div>
-
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
   </section>
 
   <section class='section layer-new'>

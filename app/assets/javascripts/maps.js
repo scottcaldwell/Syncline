@@ -3,14 +3,6 @@ $(function() {
   privateToken = 'pk.eyJ1Ijoic2NvdHRjYWxkd2VsbCIsImEiOiJjaWxsNGw1Mno1bXhldmFtY3JmYnF6OTIxIn0.Ar9lh4fImWj6UvHwEe15jQ';
   L.mapbox.accessToken = privateToken;
 
-  var markerCoords = [
-    [50.02, -123.11],
-    [50.01, -123.134],
-    [50.05, -123.15],
-    [50.06, -123.1002],
-    [50.03, -123.156],
-    [49.98, -123.124]
-  ];
   //++++++++++++++++ geoSearchMap ++++++++++++//
   //Geo-search map, allows user to initialize site location
 
@@ -100,6 +92,10 @@ $(function() {
     //just using dummy array for now
     var latlng = [];
     var markerGeoJSON = [];
+    var markerCoords = [];
+    var childs = $('.columns').children();        
+    for (var i = 1; i < childs.length - 1; i++)
+    childs[i].foo();
 
     for (var i = 0; i < markerCoords.length; i++) {
       var lat = markerCoords[i][0];

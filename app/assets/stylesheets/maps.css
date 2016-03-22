@@ -8,6 +8,8 @@
   margin-bottom:10px;
 }
 #markers-map {
+  width:960px;
+  height:400px;
 }
 .static-map {
   top: 820px;

@@ -5,7 +5,8 @@ class DrillHolesController < ApplicationController
   end
 
   def show
-    
+    @drill_hole = DrillHole.find(params[:id]);
+    @layers = @drill_hole.layers
   end
 
   def new

@@ -19,4 +19,7 @@
     ruler.append(step);
   }
 
+  // initialize layer drag and drop
+  dragula([document.querySelector('#layers-log')]);
+
 })();
