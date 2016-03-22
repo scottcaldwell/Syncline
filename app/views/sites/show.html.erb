@@ -50,8 +50,8 @@
             <td><%= drill_hole.name %></td>
             <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
             <td><%= Site.find(id=drill_hole.site_id).site_name %></td>
-            <td><%= link_to "Edit", edit_drill_hole_path, :class => "button is-primary" %></td>
-            <td><%= link_to "View", drill_hole_path(1), :class => "button is-primary" %></td>
+            <!-- <td># link_to "Edit", edit_site_drill_hole_path, :class => "button is-primary" %></td>
+            <td># link_to "View", site_drill_hole_path(1), :class => "button is-primary" %></td> -->
           </tr>
         <% end %>
       </tbody>

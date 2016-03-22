@@ -103,75 +103,32 @@
       <ul></ul>
     </div>
 
-    <div class="layer columns" data-height='1.43'>
-      <div class="log-column-depth column layer-height">
-        <p>1.43m</p>
+    <% for layer in @layers %>
+
+      <div class="layer columns" data-height='<%= layer.thickness %>'>
+        <div class="log-column-depth column layer-height">
+          <p><%= layer.thickness %> m</p>
+        </div>
+
+        <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
+          <p><%= layer.material_type.name %></p>
+        </div>
+
+        <div class="log-column-desc column is-5">
+          <p><%= layer.description %></p>
+        </div>
+
+        <div class="log-column-type column is-2">
+          <p></p>
+        </div>
+
+        <div class="log-column-data column is-3">
+          
+        </div>                     
       </div>
 
-      <div class="log-column-glog column is-1 gl gl-sand">
-        <p>Sand</p>
-      </div>
+    <% end %>
 
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
-
-    <!-- layer -->
-
-    <div class="layer columns" data-height='1.87'>
-      <div class="log-column-depth column layer-height">
-        <p>1.87m</p>
-      </div>
-
-      <div class="log-column-glog column is-1 gl gl-silt">
-        <p>Sand</p>
-      </div>
-
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
-
-    <!-- layer -->
-
-    <div class="layer columns" data-height='2.27'>
-      <div class="log-column-depth column layer-height">
-        <p>2.27m</p>
-      </div>
-
-      <div class="log-column-glog column is-1 gl gl-gravel">
-        <p>Sand</p>
-      </div>
-
-      <div class="log-column-desc column is-5">
-        <p>Loose, gritty particles of eroded or weathered rock, varying in size from about mm to 2 mm in diameter, usually deposited along the shores of bodies of water, in riverbeds, or in deserts.</p>
-      </div>
-
-      <div class="log-column-type column is-2">
-        <p>Sample Type</p>
-      </div>
-
-      <div class="log-column-data column is-3">
-        
-      </div>                     
-    </div>
   </section>
 
   <section class='section layer-new'>
