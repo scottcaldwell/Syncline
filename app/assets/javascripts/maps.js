@@ -82,7 +82,8 @@ $(function() {
   //Overall drill site with multiple markers, centered around them
 
   //TODO
-  //when you click markers, pop up information/link to site page
+  //Zoom level isn't quite right when markers are close together. 
+
   if ($('#markers-map').length > 0) {
     console.log("markers-map found");
 
@@ -92,28 +93,32 @@ $(function() {
     //just using dummy array for now
     var latlng = [];
     var markerGeoJSON = [];
-    var markerCoords = [];
-    var childs = $('.columns').children();        
-    for (var i = 1; i < childs.length - 1; i++)
-    childs[i].foo();
+    var markerUrl = [];
 
-    for (var i = 0; i < markerCoords.length; i++) {
-      var lat = markerCoords[i][0];
-      var lng = markerCoords[i][1];
-      latlng[i] = L.latLng(lat, lng);
+    $('.drill-row').each(function(i) {
+      var name =  $(this).children().eq(0).html();
+      var depth =  $(this).children().eq(1).html();
+      var location =  $(this).children().eq(2).html();
+      var lat =  $(this).children().eq(3).html();
+      var lng =  $(this).children().eq(4).html();
+      latlng = [];
+      latlng.push(L.latLng(lat, lng));
+      markerUrl[i] = '/drill_holes/'+ i;
 
       markerGeoJSON[i] = {
         type: 'Feature',
         properties: {
-          title: 'Marker ' + i,
-          url: 'http://en.wikipedia.org/wiki/' + i
+          name: name,
+          depth: depth,
+          location: location,
+          url: markerUrl[i]
         },
         geometry: {
           type: 'Point',
           coordinates: [lng, lat]
         }
       };
-    } //end for loop
+    }); //end for loop
 
     var geojson = {
       type: 'FeatureCollection',
@@ -121,20 +126,15 @@ $(function() {
     };
 
     myLayer.setGeoJSON(geojson);
-    // myLayer.on('click', function(e) {
-    //   window.open(e.layer.feature.properties.url);
-    // });
 
     myLayer.eachLayer(function(layer) {
-      var content = '<h2>Coordinates: <\/h2>' +
-        '<p>' + layer.feature.geometry.coordinates + '<\/p>' +
-        '<button class="trigger">Go to drill hole</button>';
-      //Add more stuff here bruh
+      var content =
+      '<div>Name: ' + layer.feature.properties.name + '<div/>' +
+      '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
+      '<div>Location: ' + layer.feature.properties.location + '</div>' +
+      '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
+      '<a href="'+ layer.feature.properties.url+ '">Go to Drill Site</a></br>';
       layer.bindPopup(content);
-    });
-
-    $('#markers-map').on('click', '.trigger', function() {
-      alert('This will actually link you');
     });
 
     //Position map to show all markers THIS WORKS
