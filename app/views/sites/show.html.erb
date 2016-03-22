@@ -1,10 +1,9 @@
-<% @drill_holes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]%>
 <article class='page-body content'>
   <div class="page-title">
     <h1>Site Name</h1>
   </div>
   <section class='section site-overview'>
-  
+
     <a class="button is-primary">Add new Drill Hole</a>
     <%= image_tag("site-map.png", :alt => "rss feed") %>
 
@@ -24,7 +23,7 @@
   </section>
 
   <section class='section drill-holes-table'>
-    
+
     <h1>Drill Holes</h1>
     <table class="table">
       <thead>
@@ -48,9 +47,9 @@
       <tbody>
         <% @drill_holes.each do |drill_hole| %>
           <tr>
-            <td>Lighthouse Labs</td>
-            <td>300 m</td>
-            <td>Downtown, Vancouver</td>
+            <td><%= drill_hole.name %></td>
+            <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
+            <td><%= Site.find(id=drill_hole.site_id).site_name %></td>
             <td><%= link_to "Edit", edit_drill_hole_path, :class => "button is-primary" %></td>
             <td><%= link_to "View", drill_hole_path(1), :class => "button is-primary" %></td>
           </tr>
