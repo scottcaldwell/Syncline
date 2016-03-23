@@ -1,3 +1,7 @@
+.drill-log {
+  padding: 2em 0 4em;
+}
+
 .layers-log {
   position: relative;
 }
@@ -33,6 +37,7 @@
 
 .layers-log {
   margin-top: 10px;
+  padding-bottom: .5em;
 }
 
 .layers-log .columns {
@@ -44,9 +49,13 @@
   border-bottom: thin solid #333;
 }
 
-.layers-header {
-  border-bottom: thick solid #333;
+.page-content section.layers-header {
   padding-bottom: .5em;
+  background-color: #444;
+  color: white;
+  padding-bottom: .5em;
+  margin-bottom: .5em;
+  box-shadow: 0px 5px 15px rgba(150,150,150,.3);  
 }
 
 .layer-rules {
@@ -120,4 +129,11 @@
 
 .drill-log-controls.controls-edit .control-edit {
   display: none;
+}
+
+/* new layer */
+
+.layer-new {
+  border-top: thin solid #ddd;
+  padding: 1em 0 2em 0;
 }

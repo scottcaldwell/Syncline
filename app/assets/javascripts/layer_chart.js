@@ -60,37 +60,6 @@
     var lastPoint;
   
     data.forEach(function (point) {
-      var x = point[1]; // * 10;
-      var y = point[2]; // / 100 * chart.height;
-      
-      ctx.fillStyle = color;
-      ctx.fillRect(x - 5, y - 5, 10, 10);
-      
-      if (lastPoint) {
-        ctx.strokeStyle = color;
-        ctx.lineWidth = 0.2;
-        ctx.lineTo(point[1], point[2]);
-        ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.strokeStyle = '#bbb';
-        ctx.lineWidth = 0.5;
-        ctx.moveTo(0, i * 25);
-        ctx.lineTo(width, i * 25);
-        ctx.stroke();
-      }
-    });
-  }
-
-  function draw(data, color, clear) {
-    // create an update function that calls the redraw and each individual draw event
-    if (clear === true) {
-      ctx.clearRect(0, 0, chart.width, chart.height);  
-    }
-    
-    var lastPoint;
-  
-    data.forEach(function (point) {
       var x = point[1]; 
       var y = point[2]; 
       
@@ -99,7 +68,7 @@
       
       if (lastPoint) {
         ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = .3;
         ctx.lineTo(point[1], point[2]);
         ctx.stroke();
       } else {

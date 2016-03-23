@@ -1,16 +1,17 @@
-<article class='page-body content section'>
+<article class='page-body content'>
   <header class='page-header'>
-    <h1 class='page-title'>
-      <p class='title'><%= @drill_hole.name %></p>
-      <p class='subtitle'>Site: <%= @drill_hole.site.site_name %></p>
-    </h1>
-    <!-- <h2 class='subtitle is-3'></h2> -->
+    <div class="container">
+      <div class='heading'>
+        <h1 class='title is-3'><%= @drill_hole.name %></h1>
+        <h2 class='subtitle is-5'><%= @drill_hole.site.site_name %></h2>
+      </div>   
+    </div>
   </header>
 
-  <section class='section drill-log'>
-
+  <!-- log info -->
+  <section class='drill-log'>
+    <div class="container">
     <%= form_for @drill_hole, url: { action: 'edit' }, html: { class: 'columns' } do |f| %>
-      <!-- TODO: Build a label helper as defined in the docs to generate labels with classes -->
       <div class="column is-5">
         <p class="control columns">
           <label class="label column is-3">Logged by:</label>
@@ -84,109 +85,123 @@
         </p>
       </div>
     <% end %>
-
-  <section class='section layers-header'>
-    <header class='log-header columns'>
-      <div class="log-column-title column is-1">
-        <p>Depth</p>
-      </div>
-
-      <div class="log-column-title column is-1">
-        <p>Graphic Log</p>
-      </div>
-
-      <div class="log-column-title column is-5">
-        <p>Description</p>
-      </div>
-
-      <div class="log-column-title column is-1">
-        <p>Type</p>
-      </div>
-
-      <div class="log-column-title column is-3">
-        <p>Sample Data</p>
-      </div>                        
-    </header>    
-  </section>
-
-  <section id='layers-log' class='layers-log'>
-    <div class="layer-rules layer-rules-left">
-      <ul></ul>
     </div>
-
-    <% for layer in @layers %>
-      <div class="layer columns" data-height='<%= layer.thickness %>'>
-
-        <div class="log-column-depth column layer-height is-1">
-          <div class="depth-arrow arrow-up">&#8593;</div>
-          <div class="depth-indicator"></div>
-          <div class="depth-arrow arrow-down">&#8595;</div>        
-          <div class='col-centered'>
-            <span class='thickness-val'><%= layer.round_thickness %></span>m
-          </div>
-          <div class="abs-depth">
-            <div class='abs-depth-value'></div>
-            <!-- <div class="abs-depth-arrow"></div> -->
-          </div>
-        </div>
-
-        <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
-          <p><%= layer.material_type.name %></p>
-        </div>
-
-        <div class="log-column-desc column is-5">
-          <p><%= layer.description %></p>
-        </div>
-
-        <div class="log-column-type column is-1">
-          <p></p>
-        </div>
-
-        <div class="log-column-data column is-4">
-          <!-- hm... how to handle this data -->
-        </div>                     
-      </div>
-    <% end %>
-
-    <canvas id='layer-data' class='layer-data'></canvas>    
-
-    <div class="layer-rules layer-rules-right">
-      <ul></ul>
-    </div>    
   </section>
+  <!-- end log info -->
 
-  <section class='section layer-new'>
-    <h2>New Layer</h2>
-    <form>
-      <div class="columns">
-        <p class="control column is-1">
-          <label class='label'>depth</label>
-          <input class='input' type='number'></input>
-        </p>
+  <!-- layers header -->
+  <section class='layers-header'>
+    <div class="container">
+      <header class='log-header columns'>
+        <div class="log-column-title column is-1">
+          <p>Depth</p>
+        </div>
 
-        <p class="control column is-1">
-          <label class="label">Graphic</label>
-          <input class="input" type='select'></input>
-        </p>
+        <div class="log-column-title column is-1">
+          <p>Graphic Log</p>
+        </div>
 
-        <p class="control column is-5">
-          <label class="label">Description</label>
-          <textarea class='textarea'></textarea>  
-        </p>
+        <div class="log-column-title column is-5">
+          <p>Description</p>
+        </div>
 
-        <p class="control column is-2">
-          <label class="label">Sample Type</label>
-          <input class="input"></input>
-        </p>
+        <div class="log-column-title column is-1">
+          <p>Type</p>
+        </div>
 
-        <p class="control column is-3">
-          <label class="label">Sample Data</label>
-          <input class="input"></input>
-        </p>
+        <div class="log-column-title column is-3">
+          <p>Sample Data</p>
+        </div>                        
+      </header>    
+    </div>
+  </section>
+  <!-- end layers header -->
+
+  <!-- layers -->
+  <section id='layers-log' class='layers-log'>
+    <div class="container">
+      <div class="layer-rules layer-rules-left">
+        <ul></ul>
       </div>
 
-      <button class='button is-primary'>Submit</button>
+      <% for layer in @layers %>
+        <div class="layer columns" data-height='<%= layer.thickness %>'>
 
-    </form>
+          <div class="log-column-depth column layer-height is-1">
+            <div class="depth-arrow arrow-up">&#8593;</div>
+            <div class="depth-indicator"></div>
+            <div class="depth-arrow arrow-down">&#8595;</div>        
+            <div class='col-centered'>
+              <span class='thickness-val'><%= layer.round_thickness %></span>m
+            </div>
+            <div class="abs-depth">
+              <div class='abs-depth-value'></div>
+              <!-- <div class="abs-depth-arrow"></div> -->
+            </div>
+          </div>
+
+          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
+            <p><%= layer.material_type.name %></p>
+          </div>
+
+          <div class="log-column-desc column is-5">
+            <p><%= layer.description %></p>
+          </div>
+
+          <div class="log-column-type column is-1">
+            <p></p>
+          </div>
+
+          <div class="log-column-data column is-4">
+            <!-- hm... how to handle this data -->
+          </div>                     
+        </div>
+      <% end %>
+
+      <canvas id='layer-data' class='layer-data'></canvas>    
+
+      <div class="layer-rules layer-rules-right">
+        <ul></ul>
+      </div>    
+    </div>
   </section>
+  <!-- end layers -->
+
+  <!-- new layer -->
+  <section class='layer-new'>
+    <div class="container">
+      <h2>New Layer</h2>
+      <form>
+        <div class="columns">
+          <p class="control column is-1">
+            <label class='label'>depth</label>
+            <input class='input' type='number'></input>
+          </p>
+
+          <p class="control column is-1">
+            <label class="label">Graphic</label>
+            <input class="input" type='select'></input>
+          </p>
+
+          <p class="control column is-5">
+            <label class="label">Description</label>
+            <textarea class='textarea'></textarea>  
+          </p>
+
+          <p class="control column is-2">
+            <label class="label">Sample Type</label>
+            <input class="input"></input>
+          </p>
+
+          <p class="control column is-3">
+            <label class="label">Sample Data</label>
+            <input class="input"></input>
+          </p>
+        </div>
+
+        <button class='button is-primary'>Submit</button>
+      </form>
+    </div>
+  </section>
+  <!-- end new form -->
 </article>
