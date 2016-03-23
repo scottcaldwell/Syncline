@@ -7,5 +7,4 @@ class Layer < ActiveRecord::Base
   def round_thickness
     thickness.round(2)
   end  
-
 end

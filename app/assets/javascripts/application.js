@@ -12,12 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require highcharts
-//= require highcharts/modules/data
-//= require highcharts/modules/drilldown
-//= require highcharts/modules/exporting
+// require highcharts
+// require highcharts/modules/data
+// require highcharts/modules/drilldown
+// require highcharts/modules/exporting
 //= require dragula
 //= require new_card
 //= require layer_log
 //= require layer_chart
+//= require depth_values
 //= material_type_histogram

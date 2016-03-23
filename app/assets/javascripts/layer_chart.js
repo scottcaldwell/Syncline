@@ -10,21 +10,33 @@
 
   function resizeChart() {
     chart.width = $('.log-column-data').width();
-    chart.height = $('#layer-rules ul').height();
+    chart.height = $('#layers-log').height();
   }
 
   function setGrid() {
-    var height = $('#layer-rules ul').height();
+    var height = $('#layers-log').height();
     var width = $('.log-column-data').width();
-    var lines = height / 25;
+    console.log(height, width);
+    var linesH = height / 25;
+    var linesV = width / 25;
     var i = 0;
+    var j = 0;
 
-    for (i; i < lines; i++) {
+    for (i; i < linesH; i++) {
       ctx.beginPath();
       ctx.strokeStyle = '#bbb';
       ctx.lineWidth = .5;
       ctx.moveTo(0, i * 25);
       ctx.lineTo(width, i * 25);
+      ctx.stroke();
+    }
+
+    for (j; j < linesV; j++) {
+      ctx.beginPath();
+      ctx.strokeStyle = '#bbb';
+      ctx.lineWidth = .5;
+      ctx.moveTo(j * 25, 0);
+      ctx.lineTo(j * 25, height);
       ctx.stroke();
     }
   }
@@ -46,7 +58,7 @@
       
       if (lastPoint) {
         ctx.strokeStyle = color;
-        ctx.lineWidth = 2;
+        ctx.lineWidth = .2;
         ctx.lineTo(point[1], point[2]);
         ctx.stroke();
       } else {

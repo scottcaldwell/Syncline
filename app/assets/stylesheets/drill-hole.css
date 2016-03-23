@@ -49,23 +49,30 @@
   padding-bottom: .5em;
 }
 
-#layer-rules {
-
+.layer-rules {
+  position: absolute;
 }
 
-#layer-rules ul {
+.layer-rules-left {
+  transform: translateX(-30px);  
+}
+
+.layer-rules-right {
+  top: 0;
+  right: 0;
+}
+
+.layer-rules ul {
   position: absolute;
   top: 0;
   left: 0;
   width: 30px;
   height: 100%;
-  transform: translateX(-30px);  
   list-style: none;
   margin: 0;
 }
 
-#layer-rules li {
-  border-right: thin solid #ddd;
+.layer-rules li {
   dislay: block;
   font-size: .75em;
   width: 30px;
@@ -75,14 +82,42 @@
   padding: 0;
 }
 
-#layer-rules li p {
+.layer-rules-left li {
+  border-right: thin solid #ddd;
+}
+
+.layer-rules-right li {
+  border-left: thin solid #ddd;
+}
+
+.content .layer-rules li {
+  margin: 0;
+}
+
+.layer-rules li p {
   padding-left: 2px;
 }
 
-#layer-rules li:nth-child(2n) {
+.layer-rules li:nth-child(2n) {
   background-color: #f6f6f6;
 }
 
-#layer-rules li:nth-child(2n) p {
+.layer-rules li:nth-child(2n) p {
   opacity: 0;
+}
+
+/* log edit controls */
+
+.drill-log-controls .control-save, 
+.drill-log-controls .control-cancel {
+  display: none;
+}
+
+.drill-log-controls.controls-edit .control-save, 
+.drill-log-controls.controls-edit .control-cancel {
+  display: block;
+}
+
+.drill-log-controls.controls-edit .control-edit {
+  display: none;
 }
