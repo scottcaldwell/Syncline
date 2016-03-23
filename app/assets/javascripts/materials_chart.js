@@ -1,6 +1,7 @@
 $(function () {
 
-  var container = $('#histogram'),
+  var materialDetailsContainer = $('#material-details'),
+      projectDetailsContainer = $('#project-details'),
       totalGravelThickness = 0,
       totalSandThickness = 0,
       totalSiltThickness = 0,
@@ -8,7 +9,8 @@ $(function () {
       drillHolesGravelData = [],
       drillHolesSandData = [],
       drillHolesSiltData = [],
-      drillHolesClayData = [];
+      drillHolesClayData = [],
+      projectDetails;
 
   var ajaxRequests = {
     getLayerDetails: function (url, drillHoleName) {
@@ -35,12 +37,22 @@ $(function () {
           totalClayThickness += result.clay_thickness;
         }
       });
+    },
+    getProjectDetails: function () {
+      return $.ajax({
+        url: '/sites/' + materialDetailsContainer.data('site-id') + '/projects.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (result) {
+          projectDetails = result;
+        }
+      });
     }
   };
 
   var helpers = {
-    generateChart: function () {
-      container.highcharts({
+    generateMaterialChart: function () {
+      materialDetailsContainer.highcharts({
         chart: {
           type: 'column'
         },
@@ -130,20 +142,73 @@ $(function () {
           }]
         }
       });
+    },
+    generateProjectChart: function () {
+      container.highcharts({
+          chart: {
+            type: 'area'
+          },
+          title: {
+            text: 'Drilling Progress'
+          },
+          subtitle: {
+            text: 'Actual v/s Predicted'
+          },
+          xAxis: {
+            categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
+            tickmarkPlacement: 'on',
+            title: {
+                enabled: false
+            }
+          },
+          yAxis: {
+            title: {
+                text: 'Meters Drilled'
+            },
+            labels: {
+              formatter: function () {
+                return this.value / 1000;
+              }
+            }
+          },
+          tooltip: {
+            shared: true,
+            valueSuffix: ' millions'
+          },
+          plotOptions: {
+            area: {
+              stacking: 'normal',
+              lineColor: '#666666',
+              lineWidth: 1,
+              marker: {
+                  lineWidth: 1,
+                  lineColor: '#666666'
+              }
+            }
+          },
+          series: [{
+            name: 'Actual',
+            data: [502, 635, 809, 947, 1402, 3634, 5268]
+          }, {
+            name: 'Predicted',
+            data: [106, 107, 111, 133, 221, 767, 1766]
+          }]
+      });
     }
   };
 
-  if (container[0] !== undefined) {
-    var drillHoles = container.data('drill-holes'),
-        layerRequests = [],
+  if (materialDetailsContainer[0] !== undefined) {
+    var drillHoles = materialDetailsContainer.data('drill-holes'),
+        serverRequests = [],
         drillHoleName = '';
-    helpers.generateChart();
-    chart = container.highcharts();
+    helpers.generateMaterialChart();
+    chart = materialDetailsContainer.highcharts();
     chart.showLoading();
     drillHoles.forEach(function (drillHole){
       var url = '/drill_holes/' + drillHole.id + '/layers.json';
-      layerRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
+      serverRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
     });
-    $.when.apply(null, layerRequests).done(helpers.generateChart);
+    serverRequests.push(ajaxRequests.getProjectDetails());
+    $.when.apply(null, serverRequests).done(helpers.generateMaterialChart, helpers.generateProjectChart);
   }
 });

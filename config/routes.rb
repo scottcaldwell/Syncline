@@ -4,6 +4,7 @@ Syncline::Application.routes.draw do
     resources :drill_holes, shallow: true do
       resources :layers
     end
+    resources :projects, only: [:index]
   end
   resource :session, only: [:create, :destroy, :new]
   root to: 'sites#index'
