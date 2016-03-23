@@ -8,3 +8,78 @@
   top: 0; 
   right: 0;
 }
+
+.log-column-depth {
+  position: relative;
+  height: inherit;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.log-column-depth:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.col-centered {
+  background-color: #333;
+  border-radius: 4px;
+  color: #eee;
+  padding: 2px 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Layer depth indicator */
+
+.depth-indicator {
+  position: absolute;
+  top: 0px;
+  left: 40px;
+  height: inherit;
+}
+
+.depth-arrow {
+  font-size: 4em;
+  color: #bbb;
+  position: absolute;
+  left: 25px;
+}
+
+.arrow-up {
+  top: 50px;
+}
+
+.arrow-down {
+  bottom: 50px;
+}
+
+.abs-depth {
+  position: relative;
+}
+
+.abs-depth-value {
+  color: white;
+  position: absolute;
+  font-size: .8em;
+  padding: 2px 3px;
+  top: 0;
+  left: -10px;
+  padding-bottom: 1px;
+  line-height: 15px;
+  background-color: #888;
+}
+
+.abs-depth-arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #666;
+}
