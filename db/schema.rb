@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160322224147) do
+ActiveRecord::Schema.define(version: 20160323021541) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160322224147) do
     t.integer  "lab_test_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "pdf_url"
   end
 
   add_index "grain_sizes", ["lab_test_id"], name: "index_grain_sizes_on_lab_test_id"
