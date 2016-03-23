@@ -14,7 +14,7 @@ $(function() {
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
 
-    var button = $('#submit-site');
+    var button = $('input[type=submit]');
     var siteName = $('#site_site_name');
     var siteLat = $('#site_center_lat');
     var siteLng = $('#site_center_lng');
@@ -44,12 +44,8 @@ $(function() {
 
     //When button is clicked, add Lat/Lng to db and close modal
     button.on("click", function() {
-      var center_lat = marker._latlng.lat;
-      var center_lng = marker._latlng.lng;
-
-      //FIXME: Needs to acutally write to db
-      alert('Site coordinates defined as: ' + center_lat + ',' + center_lng +
-        "\n Site Name: " + siteName.val());
+      alert("Site added");
+      location.reload();
     });
 
     //Fixes modal bug for map
@@ -90,19 +86,6 @@ $(function() {
     });
   }
 
-  // function writeSiteToDB(lat, lng, name) {
-  //   $.ajax({
-  //       url: "/site",
-  //       type: "POST",
-  //       data:  {
-  //         latitude: lat,
-  //         longitude: lng,
-  //         siteName: name
-  //       },
-  //       success: function(resp){ }
-  //   });
-  //
-  // }
 
   //++++++++++++++++ markersMap +++++++++++++++++//
   //Overall drill site with multiple markers, centered around them
