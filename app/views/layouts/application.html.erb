@@ -9,24 +9,19 @@
 </head>
 <body>
 <%= render 'layouts/partials/nav_bar' %>
-<<<<<<< HEAD
 
 <!-- render hero if front page? -->
 
 <section class="section page-content">
+  <div class="container">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "notification") %>
+    <% end %>
+  </div>
+  <br />
   <%= yield %>
 </section>
 
-=======
-<div class="page-content">
-  <div class="container">
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value) %>
-    <% end %>
-    <%= yield %>
-  </div>
-</div>
->>>>>>> Header shows current user, login redirects to a form to login, connected with database so you can login as a specific user, sign out button works as well
 <%= render 'layouts/partials/footer' %>
 
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>

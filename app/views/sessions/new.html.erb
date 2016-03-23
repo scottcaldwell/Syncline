@@ -1,16 +1,18 @@
-<h1>Log in</h1>
-<%= form_tag sessions_path do %>
-  <p class="control has-icon">
-    <input class="input" name="email" type="email" placeholder="Email">
-    <i class="fa fa-envelope"></i>
-  </p>
-  <p class="control has-icon">
-    <input class="input" name="password" type="password" placeholder="Password">
-    <i class="fa fa-lock"></i>
-  </p>
-  <p class="control">
-    <button class="button is-success">
-      Login
-    </button>
-  </p>
-<% end %>
+<div class="container">
+  <h1 class="title">Log in</h1>
+  <%= form_tag sessions_path do %>
+    <p class="control has-icon">
+      <input class="input" name="email" type="email" placeholder="Email">
+      <i class="fa fa-envelope"></i>
+    </p>
+    <p class="control has-icon">
+      <input class="input" name="password" type="password" placeholder="Password">
+      <i class="fa fa-lock"></i>
+    </p>
+    <p class="control">
+      <button class="button is-success">
+        Login
+      </button>
+    </p>
+  <% end %>
+</div>

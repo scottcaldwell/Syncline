@@ -1,40 +1,43 @@
-<h1>Sign Up</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="notification">
-      <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
+<div class="container">
+  <h1 class="title">Sign Up</h1>
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="notification">
+        <%= pluralize(@user.errors.count, "error") %> prevented the account from being created:
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <br />
+    <% end %>
   <% end %>
-<% end %>
-<%= form_tag users_path do %>
-  <p class="control has-icon">
-    <input class="input" name="user[email]" type="email" placeholder="Email">
-    <i class="fa fa-envelope"></i>
-  </p>
-  <p class="control has-icon">
-    <input class="input" name="user[first_name]" type="text" placeholder="First Name">
-    <i class="fa fa-terminal"></i>
-  </p>
-  <p class="control has-icon">
-    <input class="input" name="user[last_name]" type="text" placeholder="Last Name">
-    <i class="fa fa-terminal"></i>
-  </p>
-  <p class="control has-icon">
-    <input class="input" name="user[password]" type="password" placeholder="Password">
-    <i class="fa fa-lock"></i>
-  </p>
-  <p class="control has-icon">
-    <input class="input" name="user[password_confirmation]" type="password" placeholder="Password Confirmation">
-    <i class="fa fa-lock"></i>
-  </p>
-  <p class="control">
-    <button class="button is-success">
-      Submit
-    </button>
-  </p>
-<% end %>
+  <%= form_tag users_path do %>
+    <p class="control has-icon">
+      <input class="input" name="user[email]" type="email" placeholder="Email">
+      <i class="fa fa-envelope"></i>
+    </p>
+    <p class="control has-icon">
+      <input class="input" name="user[first_name]" type="text" placeholder="First Name">
+      <i class="fa fa-terminal"></i>
+    </p>
+    <p class="control has-icon">
+      <input class="input" name="user[last_name]" type="text" placeholder="Last Name">
+      <i class="fa fa-terminal"></i>
+    </p>
+    <p class="control has-icon">
+      <input class="input" name="user[password]" type="password" placeholder="Password">
+      <i class="fa fa-lock"></i>
+    </p>
+    <p class="control has-icon">
+      <input class="input" name="user[password_confirmation]" type="password" placeholder="Password Confirmation">
+      <i class="fa fa-lock"></i>
+    </p>
+    <p class="control">
+      <button class="button is-success">
+        Submit
+      </button>
+    </p>
+  <% end %>
+</div>
