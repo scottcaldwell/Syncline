@@ -10,13 +10,16 @@ $(function() {
   //Increase modal size so map can be bigger
 
   if ($('#geo-search-map').length > 0) {
-    console.log("geo-search-map found");
     //Create map
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
 
-    var button = document.getElementById('submit-site');
-    var siteName = $('#new-site-name');
+    var button = $('input[type=submit]');
+    var siteName = $('#site_site_name');
+    var siteLat = $('#site_center_lat');
+    var siteLng = $('#site_center_lng');
+    var latlngHasBeenInput = false;
+    var nameHasBeenInput = false;
     var marker;
     //addMarker(50, -123.1);
 
@@ -32,6 +35,7 @@ $(function() {
       var coord = res.feature.geometry.coordinates;
       addMarker(coord[1], coord[0]);
     });
+
     geoSearchMap.on('click', function(e) {
       var lat = e.latlng.lat;
       var lng = e.latlng.lng;
@@ -39,13 +43,9 @@ $(function() {
     });
 
     //When button is clicked, add Lat/Lng to db and close modal
-    button.addEventListener("click", function() {
-      var center_lat = marker._latlng.lat;
-      var center_lng = marker._latlng.lng;
-
-      //FIXME: Needs to acutally write to db
-      alert('Site coordinates defined as: ' + center_lat + ',' + center_lng +
-        "\n Site Name: " + siteName.val());
+    button.on("click", function() {
+      alert("Site added");
+      location.reload();
     });
 
     //Fixes modal bug for map
@@ -59,6 +59,10 @@ $(function() {
       }
 
     });
+
+    siteName.on("input", function() {
+      nameHasBeenInput = true;
+    });
   }
 
   //Adds marker to map, shows 'Create' button, fill 'Site Name' field
@@ -66,16 +70,22 @@ $(function() {
     if (marker) {
       geoSearchMap.removeLayer(marker);
     }
-    marker = L.marker(new L.LatLng(lat, lng), {
-      draggable: true
-    });
+    marker = L.marker(new L.LatLng(lat, lng));
     marker.addTo(geoSearchMap);
-    button.style.display = 'inline'; //Show create button
-
-    if (siteName.val().length === 0 || siteName.val().toString().substring(0, 5) == 'Site:') {
-      siteName.val("Site: " + lat + " , " + lng); //Fill site name field
-    }
+    getLocation(lat, lng);
   }
+
+  function getLocation(lat, lng) {
+    var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
+    $.getJSON(url, function(json) {
+      if (!nameHasBeenInput) {
+        siteName.val(json.features[0].place_name); //Fill site name field
+      }
+      siteLat.val(lat);
+      siteLng.val(lng);
+    });
+  }
+
 
   //++++++++++++++++ markersMap +++++++++++++++++//
   //Overall drill site with multiple markers, centered around them
@@ -87,7 +97,6 @@ $(function() {
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
-    //just using dummy array for now
     var latlng = [];
     var markerGeoJSON = [];
     var markerUrl = [];
@@ -99,8 +108,7 @@ $(function() {
       var location = drillHoleDetails.site_name;
       var lat = drillHoleDetails.dh_lat;
       var lng = drillHoleDetails.dh_lng;
-      latlng = [];
-      latlng.push(L.latLng(lat, lng));
+      latlng[i] = L.latLng(lat, lng);
       markerUrl[i] = '/drill_holes/' + i;
 
       markerGeoJSON[i] = {
@@ -155,6 +163,7 @@ $(function() {
     $('.drill-card').each(function(j) {
       var latitude = $(this).find('.site-lat').data('site-lat');
       var longitude = $(this).find('.site-lng').data('site-lng');
+
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location

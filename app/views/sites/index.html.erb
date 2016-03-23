@@ -4,7 +4,7 @@
     <div class="container">
       <div class='heading'>
         <h1 class='title'>My Sites</h1>
-      </div>   
+      </div>
     </div>
   </header>
 
@@ -40,20 +40,33 @@
             <div class="add-site">
               <a id="add-site-button"><%= image_tag("add-site.png", :alt => "rss feed") %></a>
             </div>
-            <div class="modal">
-              <div class="modal-background"></div>
-              <div class="modal-content">
-                <div class="box">
-                  <div class="content">
-                    <div>
-                      <h1>New Site</h1>
-                      <p class="control">
-                        <label for="new-site-name" class="label">Site Name: </label>
-                        <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
-                      </p>
-                      <div id="geo-search-map" class='map'></div>
-                      <a id="submit-site" class="button is-primary" style="display: none">Create</a>
-                    </div>
+
+          <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+              <div class="box">
+                <div class="content">
+                  <div>
+                    <h1>Select site from map, or enter manually</h1>
+                    <p class="control">
+                      <%= form_for @site, remote: true do |f|   %>
+                        <p>
+                          <%= f.label 'Site Name:' %><br />
+                          <%= f.text_field :site_name%>
+                        </p>
+                        <p>
+                          <%= f.label 'Latitude: ' %><br />
+                          <%= f.text_field :center_lat %>
+                        </p>
+                        <p>
+                          <%= f.label 'Longitude: ' %><br />
+                          <%= f.text_field :center_lng %>
+                        </p>
+                        <p>
+                          <%= f.submit 'Create New Site' %>
+                      <% end %>
+                    </p>
+                    <div id="geo-search-map" class='map'></div>
                   </div>
                 </div>
               </div>
