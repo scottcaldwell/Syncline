@@ -15,7 +15,7 @@ Syncline::Application.routes.draw do
   resources :sites, only: [:index, :show]
   resources :drill_holes, only: [:create, :edit, :new, :show, :update]
 
-  resource :session, only: [:create, :destroy, :new]
+  resource :sessions, only: [:create, :destroy, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.

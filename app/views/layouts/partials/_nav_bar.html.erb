@@ -19,24 +19,11 @@
     <div class="navbar-right">
       <% if current_user %>
         <p class="navbar-item"><a href="#">Hey, <%= current_user.first_name %></a></p>
-        <p class="navbar-item"><%= link_to "Log out", session_path("current"), method: :delete %></p>
+        <p class="navbar-item"><%= link_to "Log out", sessions_path("current"), method: :delete %></p>
       <% else %>
-        <p class="navbar-item"><%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %></p>
+        <p class="navbar-item"><%= link_to "Log In", new_sessions_path %> | <%= link_to "Sign Up", new_user_path %></p>
       <% end %>
     </div>
   </nav>
 
 </header>
-
-<!-- <footer>
-  <small>
-    <% if current_user %>
-      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
-      <% if current_user.admin %>
-        See all <%= link_to "Users", admin_users_path %>
-        <% end %>
-    <% else %>
-      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
-    <% end %>
-  </small>
-</footer> -->

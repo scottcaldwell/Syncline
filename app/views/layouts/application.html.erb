@@ -10,6 +10,9 @@
 <%= render 'layouts/partials/nav_bar' %>
 <div class="page-content">
   <div class="container">
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value) %>
+    <% end %>
     <%= yield %>
   </div>
 </div>
