@@ -7,11 +7,6 @@ Syncline::Application.routes.draw do
     end
   end
 
-  get "users/show"
-  get "users/new"
-  get "users/create"
-  get "users/edit"
-  get "users/destroy"
   resources :sites, only: [:index, :show]
   resources :drill_holes, only: [:create, :edit, :new, :show, :update]
 
