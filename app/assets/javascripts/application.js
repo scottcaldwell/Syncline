@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 
+//= require maps
 // require highcharts
 // require highcharts/modules/data
 // require highcharts/modules/drilldown
@@ -22,4 +23,3 @@
 //= require layer_log
 //= require layer_chart
 //= material_type_histogram
-//= require maps

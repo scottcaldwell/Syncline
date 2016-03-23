@@ -69,7 +69,7 @@ Site.create(
     material_type_id: MaterialType.all[rand(0..3)].id,
     drill_hole_id: DrillHole.all[n].id,
     description: Faker::Lorem.paragraph,
-    date_drilled: "2016-01-#{n}"
+    date_drilled: "2016-01-#{n + 1}"
     )
     i += 1
   end
