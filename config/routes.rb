@@ -14,7 +14,10 @@ Syncline::Application.routes.draw do
   get "users/destroy"
   resources :sites, only: [:index, :show]
   resources :drill_holes, only: [:create, :edit, :new, :show, :update]
+<<<<<<< HEAD
 
+=======
+>>>>>>> d62fae13fb5f581d796dd88f55084eee64b605ed
   resource :session, only: [:create, :destroy, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   root to: 'sites#index'
