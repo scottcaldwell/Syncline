@@ -1,12 +1,14 @@
 $(function () {
 
-  $.ajax({
-    url: '/sites/' + siteId + '/drill_holes/' + drillHoleId + '/layers',
-    method: 'GET',
-    dataType: 'json'
-  });
+  // $.ajax({
+  //   url: '/sites/' + siteId + '/drill_holes/' + drillHoleId + '/layers',
+  //   method: 'GET',
+  //   dataType: 'json'
+  // });
   var container = $('#histogram');
+  debugger;
   if (container[0] !== undefined) {
+
     container.highcharts({
       chart: {
         type: 'column'
