@@ -22,13 +22,12 @@ end
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),
   site_id: 1,
-  dh_lat: rand(49.2820000..49.2821000),
-  dh_lng: -rand(123.1080000..123.1081000),
+  dh_lat: rand(49.411133..49.415450),
+  dh_lng: -1 * rand(123.084171..123.091066),
   hole_size: 7.5,
   method: "Auger"
   )
 end
-
 
 MaterialType.create(
   name: "Gravel"
@@ -44,17 +43,15 @@ MaterialType.create(
 )
 
 Site.create(
+  site_name: "Syncline Headquarters",
+  center_lat: 49.411133,
+  center_lng: -123.091066
+)
+Site.create(
   site_name: "Lighthouse Labs",
   center_lat: 49.282002,
   center_lng: -123.108176
 )
-
-Site.create(
-  site_name: "YVR",
-  center_lat: 49.193476,
-  center_lng: -123.176327
-)
-
 Site.create(
   site_name: "Science World",
   center_lat: 49.273415,
@@ -72,7 +69,7 @@ Site.create(
     material_type_id: MaterialType.all[rand(0..3)].id,
     drill_hole_id: DrillHole.all[n].id,
     description: Faker::Lorem.paragraph,
-    date_drilled: "2016-01-#{n}"
+    date_drilled: "2016-01-#{n + 1}"
     )
     i += 1
   end
@@ -159,3 +156,28 @@ Project.create(
   drill_by_date: Layer.last.date_drilled,
   site_id: 1
   )
+
+Spt.create(
+  blow_count: 15,
+  field_test_id: 1
+)
+Spt.create(
+  blow_count: 10,
+  field_test_id: 2
+)
+Spt.create(
+  blow_count: 9,
+  field_test_id: 3
+)
+GrainSize.create(
+  fines_content: 75,
+  lab_test_id: 1
+)
+GrainSize.create(
+  fines_content: 50,
+  lab_test_id: 2
+)
+GrainSize.create(
+  fines_content: 85,
+  lab_test_id: 3
+)

@@ -74,81 +74,11 @@
           <button class="button button-full is-success">Mark as Reviewed</button>  
         </p>
       </div>
-
     <% end %>
-
-<!--     <form class='columns'>
-      <div class="column">
-        <p class="control">
-          <label class='label' for='logged-by'>Logged By</label>  
-          <input class='input' type='text' name='logged-by' id='logged-by' ></input>
-        </p>
-
-        <p class="control">
-          <label class="label">Location</label>
-          <input class="input" type='text'></input>
-        </p>
-
-        <p class="control">
-          <label class="label">Latitude</label>
-          <input class='input' type='text'></input>
-        </p>
-
-        <p class='control'>
-          <label class='label'>Longitude</label>
-          <input class="input" type='text'></input>
-        </p>
-
-        <p class="control">
-          <label class="label">Ground Elevation</label>
-          <input class="input" type='number'></input>
-        </p>
-
-        <p class="control">
-          <label class="label">Final Depth</label>
-          <input class="input" type='number'></input>
-        </p>
-      </div>
-
-      <div class="column">
-        <h3>Water Levels</h3>
-        <p class="control">
-          <label class="label">At Start</label>
-          <input class='input' type='number'></input>
-        </p>
-
-        <p class="control">
-          <label class="label">At End</label>
-          <input class="input"></input>
-        </p>
-
-        <p class="control">
-          <label class="label">After</label>
-          <input class="input"></input>
-        </p>
-
-        <hr>
-
-        <p class="control">
-          <label class="label">Hole Size</label>
-          <input class="input"></input>
-        </p>  
-
-        <p class="control">
-          <label class="label">Method</label>
-          <input class='input'></input>
-        </p>
-      </div>
-    </form>
-
-    <button class='button is-primary'>Submit</button>
-    <button class='button is-success'>Mark as Reviewed</button>
-  </section>
- -->
 
   <section class='section layers-header'>
     <header class='log-header columns'>
-      <div class="log-column-depth column">
+      <div class="log-column-depth column is-1">
         <p>Depth</p>
       </div>
 
@@ -160,8 +90,8 @@
         <p>Description</p>
       </div>
 
-      <div class="log-column-title column is-2">
-        <p>Sample Type</p>
+      <div class="log-column-title column is-1">
+        <p>Type</p>
       </div>
 
       <div class="log-column-title column is-3">
@@ -171,16 +101,13 @@
   </section>
 
   <section id='layers-log' class='layers-log'>
-    <!-- LAYER -->
-
     <div id="layer-rules">
       <ul></ul>
     </div>
 
     <% for layer in @layers %>
-
       <div class="layer columns" data-height='<%= layer.thickness %>'>
-        <div class="log-column-depth column layer-height">
+        <div class="log-column-depth column layer-height is-1">
           <p><%= layer.round_thickness %> m</p>
         </div>
 
@@ -192,17 +119,17 @@
           <p><%= layer.description %></p>
         </div>
 
-        <div class="log-column-type column is-2">
-          <p></p>
+        <div class="log-column-type column is-1">
+          <p>?</p>
         </div>
 
-        <div class="log-column-data column is-3">
-          
+        <div class="log-column-data column is-4">
+          <!-- hm... how to handle this data -->
         </div>                     
       </div>
-
     <% end %>
 
+    <canvas id='layer-data' class='layer-data'></canvas>    
   </section>
 
   <section class='section layer-new'>

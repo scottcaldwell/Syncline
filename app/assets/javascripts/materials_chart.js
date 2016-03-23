@@ -11,6 +11,7 @@ $(function () {
 
   var container = $('#histogram');
   if (container[0] !== undefined) {
+
     container.highcharts({
       chart: {
         type: 'column'

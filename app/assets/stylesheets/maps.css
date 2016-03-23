@@ -1,0 +1,15 @@
+.map {
+}
+
+
+#geo-search-map {
+  width:600px;
+  height:400px;
+  margin-bottom:10px;
+}
+#markers-map {
+  width:960px;
+  height:400px;
+}
+.static-map {
+}

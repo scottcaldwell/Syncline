@@ -1,0 +1,10 @@
+.layers-log {
+  position: relative;
+}
+
+.layer-data {
+  border-left: 5px solid #444;
+  position: absolute;
+  top: 0; 
+  right: 0;
+}
