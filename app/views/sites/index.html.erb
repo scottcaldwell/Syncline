@@ -42,11 +42,27 @@
                   <div>
                     <h1>Select site from map, or enter manually</h1>
                     <p class="control">
-                      <label for="new-site-name" class="label">Site Name: </label>
+                      <%= form_for @site, remote: true do |f|   %>
+                        <p>
+                          <%= f.label 'Site Name:' %><br />
+                          <%= f.text_field :site_name%>
+                        </p>
+                        <p>
+                          <%= f.label 'Latitude: ' %><br />
+                          <%= f.text_field :center_lat %>
+                        </p>
+                        <p>
+                          <%= f.label 'Longitude: ' %><br />
+                          <%= f.text_field :center_lng %>
+                        </p>
+                        <p>
+                          <%= f.submit 'Create New Site' %>
+                      <% end %>
+                      <!-- <label for="new-site-name" class="label">Site Name: </label>
                       <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
                       <label for="new-site-latlng">Coordinates: </label>
                       <input type="text" placeholder="Enter site latitude, longitude(x,y)" id="new-site-latlng" class="input" />
-                    </br><a id="submit-site" class="button is-primary">Create New Site</a>
+                    </br><a id="submit-site" class="button is-primary">Create New Site</a> -->
                     </p>
                     <div id="geo-search-map" class='map'></div>
                   </div>

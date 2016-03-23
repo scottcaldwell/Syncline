@@ -1,6 +1,6 @@
 Syncline::Application.routes.draw do
   
-  resources :sites, only: [:index, :show] do
+  resources :sites, only: [:index, :show, :create] do
     resources :drill_holes do
       resources :layers
     end
@@ -47,7 +47,7 @@ Syncline::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

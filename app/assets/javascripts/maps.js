@@ -14,9 +14,10 @@ $(function() {
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
 
-    var button = document.getElementById('submit-site');
-    var siteName = $('#new-site-name');
-    var siteLatLng = $('#new-site-latlng');
+    var button = $('#submit-site');
+    var siteName = $('#site_site_name');
+    var siteLat = $('#site_center_lat');
+    var siteLng = $('#site_center_lng');
     var latlngHasBeenInput = false;
     var nameHasBeenInput = false;
     var marker;
@@ -42,7 +43,7 @@ $(function() {
     });
 
     //When button is clicked, add Lat/Lng to db and close modal
-    button.addEventListener("click", function() {
+    button.on("click", function() {
       var center_lat = marker._latlng.lat;
       var center_lng = marker._latlng.lng;
 
@@ -66,11 +67,6 @@ $(function() {
     siteName.on("input", function() {
       nameHasBeenInput = true;
     });
-    siteLatLng.on("input", function() {
-      latlngHasBeenInput = true;
-      var coords = siteLatLng.val().split(',');
-      addMarker(coords[0], coords[1]);
-    });
   }
 
   //Adds marker to map, shows 'Create' button, fill 'Site Name' field
@@ -89,7 +85,8 @@ $(function() {
       if (!nameHasBeenInput) {
         siteName.val(json.features[0].place_name); //Fill site name field
       }
-      siteLatLng.val(lat + ', ' + lng); //Fill site name field
+      siteLat.val(lat);
+      siteLng.val(lng);
     });
   }
 
