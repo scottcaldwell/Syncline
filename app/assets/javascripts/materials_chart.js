@@ -1,16 +1,16 @@
 $(function () {
 
-  $.ajax({
-    url: '/session/new',
-    method: 'GET',
-    dataType: 'json',
-    success: function(result) {
-      console.log(result);
-    }
-  });
-
   var container = $('#histogram');
   if (container[0] !== undefined) {
+    var drillHoleId = container.data('drill-hole-ids')[0];
+    $.ajax({
+      url: '/drill_holes/' + drillHoleId + '/layers.json',
+      method: 'GET',
+      dataType: 'json',
+      success: function (result) {
+        console.log(result);
+      }
+    });
 
     container.highcharts({
       chart: {

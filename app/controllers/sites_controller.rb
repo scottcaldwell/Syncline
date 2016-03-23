@@ -5,12 +5,10 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
-    @drill_holes = DrillHole.where(site_id: @site.id)
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @site }
-    end
+    @site_id = params[:id]
+    @site = Site.find(@site_id)
+    @drill_holes = DrillHole.where(site_id: @site_id)
+    @drill_hole_ids = @drill_holes.pluck(:id)
   end
 
   protected

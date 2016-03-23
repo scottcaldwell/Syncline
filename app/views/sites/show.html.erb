@@ -1,27 +1,22 @@
 <article class='page-body content'>
   <div class="page-title">
-    <h1 data-site="<%= @site_id %>"><%= @site.site_name %></h1>
+    <h1><%= @site.site_name %></h1>
   </div>
   <section class='section site-overview'>
-
     <a class="button is-primary">Add new Drill Hole</a>
     <div id='markers-map' class='map'></div>
-
   </section>
 
   <section class='section site-charts'>
-
     <div class="columns">
       <div class="column">
         <%= image_tag("charts.png", :alt => "rss feed") %>
       </div>
-      <div class="column" id="histogram" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <div class="column" data-drill-hole-ids="<%= @drill_hole_ids %>" id="histogram" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
-
   </section>
 
   <section class='section drill-holes-table'>
-
     <h1>Drill Holes</h1>
     <table class="table">
       <thead>
@@ -54,13 +49,12 @@
             <td><%= Site.find(drill_hole.site_id).site_name %></td>
             <td><%= number_with_precision(drill_hole.dh_lat, precision: 7) %></td>
             <td><%= number_with_precision(drill_hole.dh_lng, precision: 7) %></td>
-            <td><%= link_to "Edit", edit_site_drill_hole_path(drill_hole.site_id, drill_hole.id), :class => "button is-primary" %></td>
-            <td><%= link_to "View", site_drill_hole_path(drill_hole.site_id, drill_hole.id), :class => "button is-primary" %></td>
+            <td><%= link_to "Edit", edit_drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>
+            <td><%= link_to "View", drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
-
   </section>
 
 </article>
