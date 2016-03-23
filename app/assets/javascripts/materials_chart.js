@@ -50,6 +50,14 @@ $(function () {
         subtitle: {
           text: 'Click the columns to view details'
         },
+        loading: {
+          labelStyle: {
+            color: 'white'
+          },
+          style: {
+            backgroundColor: 'gray'
+          }
+        },
         xAxis: {
           type: 'category',
           labels: {
@@ -129,6 +137,9 @@ $(function () {
     var drillHoles = container.data('drill-holes'),
         layerRequests = [],
         drillHoleName = '';
+    helpers.generateChart();
+    chart = container.highcharts();
+    chart.showLoading();
     drillHoles.forEach(function (drillHole){
       var url = '/drill_holes/' + drillHole.id + '/layers.json';
       layerRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
