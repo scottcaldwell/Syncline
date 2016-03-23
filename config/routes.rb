@@ -5,7 +5,6 @@ Syncline::Application.routes.draw do
       resources :layers
     end
   end
-
   resource :session, only: [:create, :destroy, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   root to: 'sites#index'
