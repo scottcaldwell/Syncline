@@ -6,7 +6,6 @@ $(function () {
   //   dataType: 'json'
   // });
   var container = $('#histogram');
-  debugger;
   if (container[0] !== undefined) {
 
     container.highcharts({
