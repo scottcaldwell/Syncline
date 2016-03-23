@@ -1,10 +1,14 @@
 $(function () {
 
   $.ajax({
-    url: '/sites/' + siteId + '/drill_holes/' + drillHoleId + '/layers',
+    url: '/session/new',
     method: 'GET',
-    dataType: 'json'
+    dataType: 'json',
+    success: function(result) {
+      console.log(result);
+    }
   });
+
   var container = $('#histogram');
   if (container[0] !== undefined) {
     container.highcharts({
