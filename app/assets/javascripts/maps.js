@@ -95,11 +95,12 @@ $(function() {
     var markerUrl = [];
 
     $('.drill-row').each(function(i) {
-      var name = $(this).children().eq(0).html();
-      var depth = $(this).children().eq(1).html();
-      var location = $(this).children().eq(2).html();
-      var lat = $(this).children().eq(3).html();
-      var lng = $(this).children().eq(4).html();
+      var drillHoleDetails = $(this).data('dh-details');
+      var name = drillHoleDetails.name;
+      var depth = drillHoleDetails.depth;
+      var location = drillHoleDetails.site_name;
+      var lat = drillHoleDetails.dh_lat;
+      var lng = drillHoleDetails.dh_lng;
       latlng = [];
       latlng.push(L.latLng(lat, lng));
       markerUrl[i] = '/drill_holes/' + i;

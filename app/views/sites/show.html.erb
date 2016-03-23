@@ -42,7 +42,7 @@
       </tfoot>
       <tbody>
         <% @drill_holes.each do |drill_hole| %>
-          <tr class="drill-row">
+          <tr class="drill-row" data-dh-details="<%= drill_hole.to_json %>">
             <td><%= drill_hole.name %></td>
             <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
             <td><%= Site.find(drill_hole.site_id).site_name %></td>
