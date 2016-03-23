@@ -12,7 +12,7 @@
       <div class="column">
         <%= image_tag("charts.png", :alt => "rss feed") %>
       </div>
-      <div class="column" data-drill-hole-ids="<%= @drill_hole_ids %>" id="histogram" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <div class="column" data-drill-holes="<%= @drill_holes.to_json %>" id="histogram" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     </div>
   </section>
 

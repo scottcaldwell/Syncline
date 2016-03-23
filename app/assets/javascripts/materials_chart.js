@@ -2,15 +2,25 @@ $(function () {
 
   var container = $('#histogram');
   if (container[0] !== undefined) {
-    var drillHoleId = container.data('drill-hole-ids')[0];
-    $.ajax({
-      url: '/drill_holes/' + drillHoleId + '/layers.json',
-      method: 'GET',
-      dataType: 'json',
-      success: function (result) {
-        console.log(result);
-      }
+    var drillHoles = container.data('drill-holes'),
+        totalGravelThickness = 0,
+        totalSandThickness = 0,
+        totalSiltThickness = 0,
+        totalClayThickness = 0;
+    drillHoles.forEach(function (drillHole){
+      $.ajax({
+        url: '/drill_holes/' + drillHole.id + '/layers.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (result) {
+          totalGravelThickness += result.gravel_thickness,
+          totalSandThickness += result.sand_thickness,
+          totalSiltThickness += result.silt_thickness,
+          totalClayThickness += result.clay_thickness;
+        }
+      });
     });
+    
 
     container.highcharts({
       chart: {
