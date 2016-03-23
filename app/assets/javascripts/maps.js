@@ -10,7 +10,6 @@ $(function() {
   //Increase modal size so map can be bigger
 
   if ($('#geo-search-map').length > 0) {
-    console.log("geo-search-map found");
     //Create map
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
@@ -84,12 +83,9 @@ $(function() {
   //Zoom level isn't quite right when markers are close together.
 
   if ($('#markers-map').length > 0) {
-    console.log("markers-map found");
-
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
-    //just using dummy array for now
     var latlng = [];
     var markerGeoJSON = [];
     var markerUrl = [];
@@ -100,9 +96,8 @@ $(function() {
       var location = $(this).children().eq(2).html();
       var lat = $(this).children().eq(3).html();
       var lng = $(this).children().eq(4).html();
-      latlng = [];
-      latlng.push(L.latLng(lat, lng));
-      markerUrl[i] = '/drill_holes/' + i;
+      latlng [i] = L.latLng(lat, lng);
+      markerUrl[i] = document.URL + '/drill_holes/' + i;
 
       markerGeoJSON[i] = {
         type: 'Feature',
@@ -156,15 +151,12 @@ $(function() {
     $('.drill-card').each(function(j) {
       var latitude = $(this).find('.drill-hole-lat').html().trim();
       var longitude = $(this).find('.drill-hole-lng').html().trim();
-      console.log(latitude);
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
         ",17/400x300@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
-        console.log(staticImageString);
-
       $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
     });
   }

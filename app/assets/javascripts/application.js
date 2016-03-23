@@ -17,9 +17,9 @@
 // require highcharts/modules/data
 // require highcharts/modules/drilldown
 // require highcharts/modules/exporting
+//= require maps
 //= require dragula
 //= require new_card
 //= require layer_log
 //= require layer_chart
 //= material_type_histogram
-//= require maps
