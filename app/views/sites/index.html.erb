@@ -20,8 +20,8 @@
               </div>
             </div>
             <div class="content notification is-info">
-              <p>Latitude:</p><p class="drill-hole-lat"> <%= number_with_precision(site.center_lat, precision: 3) %></p>
-              <p>Longitude:</p><p class="drill-hole-lng"><%= number_with_precision(site.center_lng, precision: 3) %></p>
+              <label>Latitude:</label><span class="drill-hole-lat"> <%= number_with_precision(site.center_lat, precision: 3) %></span>
+              <label>Longitude:</label><span class="drill-hole-lng"><%= number_with_precision(site.center_lng, precision: 3) %></span>
               <p>Drill Holes: <%= site.drill_holes.count %></p>
             </div>
           </div>
@@ -40,13 +40,15 @@
               <div class="box">
                 <div class="content">
                   <div>
-                    <h1>New Site</h1>
+                    <h1>Select site from map, or enter manually</h1>
                     <p class="control">
                       <label for="new-site-name" class="label">Site Name: </label>
                       <input type="text" placeholder="Enter site name" id="new-site-name" class="input" />
+                      <label for="new-site-latlng">Coordinates: </label>
+                      <input type="text" placeholder="Enter site latitude, longitude(x,y)" id="new-site-latlng" class="input" />
+                    </br><a id="submit-site" class="button is-primary">Create New Site</a>
                     </p>
                     <div id="geo-search-map" class='map'></div>
-                    <a id="submit-site" class="button is-primary" style="display: none">Create</a>
                   </div>
                 </div>
               </div>

@@ -16,6 +16,9 @@ $(function() {
 
     var button = document.getElementById('submit-site');
     var siteName = $('#new-site-name');
+    var siteLatLng = $('#new-site-latlng');
+    var latlngHasBeenInput = false;
+    var nameHasBeenInput = false;
     var marker;
     //addMarker(50, -123.1);
 
@@ -31,6 +34,7 @@ $(function() {
       var coord = res.feature.geometry.coordinates;
       addMarker(coord[1], coord[0]);
     });
+
     geoSearchMap.on('click', function(e) {
       var lat = e.latlng.lat;
       var lng = e.latlng.lng;
@@ -58,6 +62,15 @@ $(function() {
       }
 
     });
+
+    siteName.on("input", function() {
+      nameHasBeenInput = true;
+    });
+    siteLatLng.on("input", function() {
+      latlngHasBeenInput = true;
+      var coords = siteLatLng.val().split(',');
+      addMarker(coords[0], coords[1]);
+    });
   }
 
   //Adds marker to map, shows 'Create' button, fill 'Site Name' field
@@ -65,16 +78,34 @@ $(function() {
     if (marker) {
       geoSearchMap.removeLayer(marker);
     }
-    marker = L.marker(new L.LatLng(lat, lng), {
-      draggable: true
-    });
+    marker = L.marker(new L.LatLng(lat, lng));
     marker.addTo(geoSearchMap);
-    button.style.display = 'inline'; //Show create button
-
-    if (siteName.val().length === 0 || siteName.val().toString().substring(0, 5) == 'Site:') {
-      siteName.val("Site: " + lat + " , " + lng); //Fill site name field
-    }
+    getLocation(lat, lng);
   }
+
+  function getLocation(lat, lng) {
+    var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
+    $.getJSON(url, function(json) {
+      if (!nameHasBeenInput) {
+        siteName.val(json.features[0].place_name); //Fill site name field
+      }
+      siteLatLng.val(lat + ', ' + lng); //Fill site name field
+    });
+  }
+
+  // function writeSiteToDB(lat, lng, name) {
+  //   $.ajax({
+  //       url: "/site",
+  //       type: "POST",
+  //       data:  {
+  //         latitude: lat,
+  //         longitude: lng,
+  //         siteName: name
+  //       },
+  //       success: function(resp){ }
+  //   });
+  //
+  // }
 
   //++++++++++++++++ markersMap +++++++++++++++++//
   //Overall drill site with multiple markers, centered around them
@@ -96,8 +127,8 @@ $(function() {
       var location = $(this).children().eq(2).html();
       var lat = $(this).children().eq(3).html();
       var lng = $(this).children().eq(4).html();
-      latlng [i] = L.latLng(lat, lng);
-      markerUrl[i] = document.URL + '/drill_holes/' + i;
+      latlng[i] = L.latLng(lat, lng);
+      markerUrl[i] = window.location.href + '/drill_holes/' + i;
 
       markerGeoJSON[i] = {
         type: 'Feature',
