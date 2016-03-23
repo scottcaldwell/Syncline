@@ -38,7 +38,6 @@
           <th>Latitude</th>
           <th>Longitude</th>
           <th></th>
-          <th></th>
         </tr>
       </tfoot>
       <tbody>
@@ -49,7 +48,6 @@
             <td><%= Site.find(drill_hole.site_id).site_name %></td>
             <td><%= number_with_precision(drill_hole.dh_lat, precision: 7) %></td>
             <td><%= number_with_precision(drill_hole.dh_lng, precision: 7) %></td>
-            <td><%= link_to "Edit", edit_drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>
             <td><%= link_to "View", drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>
           </tr>
         <% end %>
