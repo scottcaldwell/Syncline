@@ -104,7 +104,7 @@ end
   x = n + 1
   (0..num_layers).each do |i|
     Photo.create(
-      url: "app/assets/images/drill_hole_pics/image#{x}",
+      url: "app/assets/images/drill_hole_pics/image#{x}.png",
       field_test_id: FieldTest.all[i].id,
       lab_test_id: LabTest.all[i].id
     )
@@ -128,7 +128,8 @@ num_lab_tests = LabTest.all.count
 (1..num_lab_tests).each do |n|
   GrainSize.create(
     fines_content: 75,
-    lab_test_id: n
+    lab_test_id: n,
+    pdf_url: "app/assets/images/grain_size_pdf/grainsizepdf#{n}.pdf"
   )
 end
 
