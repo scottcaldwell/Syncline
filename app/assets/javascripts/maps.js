@@ -154,16 +154,14 @@ $(function() {
   if ($('.static-map').length > 0) {
 
     $('.drill-card').each(function(j) {
-      var latitude = $(this).find('.drill-hole-lat').html().trim();
-      var longitude = $(this).find('.drill-hole-lng').html().trim();
-      console.log(latitude);
+      var latitude = $(this).find('.site-lat').data('site-lat');
+      var longitude = $(this).find('.site-lng').data('site-lng');
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
         ",17/400x300@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
-        console.log(staticImageString);
 
       $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
     });
