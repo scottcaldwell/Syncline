@@ -2,10 +2,16 @@ html, body {
   height: 100%;
 }
 
+.page-header {
+  
+}
+
 .page-content {
+  background-color: #eee;
+}
+
+.page-content section {
   background-color: white;
-  height: auto;
-  min-height: 100%;
 }
 
 .new-site {
