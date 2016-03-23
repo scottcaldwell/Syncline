@@ -84,8 +84,6 @@ $(function() {
   //Zoom level isn't quite right when markers are close together.
 
   if ($('#markers-map').length > 0) {
-    console.log("markers-map found");
-
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
