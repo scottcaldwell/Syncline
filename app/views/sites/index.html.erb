@@ -20,8 +20,8 @@
               </div>
             </div>
             <div class="content notification is-info">
-              <p>Latitude:</p><p class="drill-hole-lat"> <%= number_with_precision(site.center_lat, precision: 3) %></p>
-              <p>Longitude:</p><p class="drill-hole-lng"><%= number_with_precision(site.center_lng, precision: 3) %></p>
+              <p class="site-lat" data-site-lat="<%= site.center_lat %>">Latitude: <%= number_with_precision(site.center_lat, precision: 3) %></p>
+              <p class="site-lng" data-site-lng="<%= site.center_lng %>">Longitude: <%= number_with_precision(site.center_lng, precision: 3) %></p>
               <p>Drill Holes: <%= site.drill_holes.count %></p>
             </div>
           </div>

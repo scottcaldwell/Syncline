@@ -5,8 +5,9 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find(params[:id])
-    @drill_holes = DrillHole.where(site_id: @site.id)
+    @site_id = params[:id]
+    @site = Site.find(@site_id)
+    @drill_holes = DrillHole.where(site_id: @site_id)
   end
 
   protected

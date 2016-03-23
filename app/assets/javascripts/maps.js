@@ -84,8 +84,6 @@ $(function() {
   //Zoom level isn't quite right when markers are close together.
 
   if ($('#markers-map').length > 0) {
-    console.log("markers-map found");
-
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
@@ -95,11 +93,12 @@ $(function() {
     var markerUrl = [];
 
     $('.drill-row').each(function(i) {
-      var name = $(this).children().eq(0).html();
-      var depth = $(this).children().eq(1).html();
-      var location = $(this).children().eq(2).html();
-      var lat = $(this).children().eq(3).html();
-      var lng = $(this).children().eq(4).html();
+      var drillHoleDetails = $(this).data('dh-details');
+      var name = drillHoleDetails.name;
+      var depth = drillHoleDetails.depth;
+      var location = drillHoleDetails.site_name;
+      var lat = drillHoleDetails.dh_lat;
+      var lng = drillHoleDetails.dh_lng;
       latlng = [];
       latlng.push(L.latLng(lat, lng));
       markerUrl[i] = '/drill_holes/' + i;
@@ -154,16 +153,14 @@ $(function() {
   if ($('.static-map').length > 0) {
 
     $('.drill-card').each(function(j) {
-      var latitude = $(this).find('.drill-hole-lat').html().trim();
-      var longitude = $(this).find('.drill-hole-lng').html().trim();
-      console.log(latitude);
+      var latitude = $(this).find('.site-lat').data('site-lat');
+      var longitude = $(this).find('.site-lng').data('site-lng');
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
         ",17/400x300@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
-        console.log(staticImageString);
 
       $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
     });
