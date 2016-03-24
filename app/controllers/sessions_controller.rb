@@ -1,9 +1,13 @@
 class SessionsController < ApplicationController
+  include ApplicationHelper
 
   def new
   end
 
   def index
+    if current_user
+      redirect_to sites_path
+    end
   end
 
   def create
@@ -20,7 +24,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to sites_path, notice: "Adios!"
+    redirect_to root_path, notice: "Adios!"
   end
 
 end
