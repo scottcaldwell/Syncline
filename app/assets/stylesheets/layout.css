@@ -23,3 +23,7 @@ html, body {
   font-weight: 900;
   padding: 10px;
 }
+
+.layers-log container {
+  position: relative;
+}
