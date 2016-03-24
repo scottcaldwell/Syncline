@@ -1,21 +1,49 @@
 class LayersController < ApplicationController
 
   def index
-    @gravel_thickness = Layer.layer_thickness(params[:drill_hole_id], 'Gravel')
-    @sand_thickness = Layer.layer_thickness(params[:drill_hole_id], 'Sand')
-    @silt_thickness = Layer.layer_thickness(params[:drill_hole_id], 'Silt')
-    @clay_thickness = Layer.layer_thickness(params[:drill_hole_id], 'Clay')
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: { gravel_thickness: @gravel_thickness, sand_thickness: @sand_thickness, silt_thickness: @silt_thickness, clay_thickness: @clay_thickness } }
-    end
   end
 
   def site_layers
     @depth_drilled_by_date = Layer.depth_drilled_by_date(params[:id])
+    @drill_holes = DrillHole.where(site_id: params[:id])
+    @drill_holes_gravel_data = []
+    @drill_holes_sand_data = []
+    @drill_holes_silt_data = []
+    @drill_holes_clay_data = []
+    @total_gravel_thickness = 0
+    @total_sand_thickness = 0
+    @total_silt_thickness = 0
+    @total_clay_thickness = 0
+    @drill_holes.each do |drill_hole|
+      @gravel_thickness = Layer.layer_thickness(drill_hole.id, 'Gravel')
+      @sand_thickness = Layer.layer_thickness(drill_hole.id, 'Sand')
+      @silt_thickness = Layer.layer_thickness(drill_hole.id, 'Silt')
+      @clay_thickness = Layer.layer_thickness(drill_hole.id, 'Clay')
+      @drill_holes_gravel_data.push([drill_hole.name, @gravel_thickness])
+      @drill_holes_sand_data.push([drill_hole.name, @sand_thickness])
+      @drill_holes_silt_data.push([drill_hole.name, @silt_thickness])
+      @drill_holes_clay_data.push([drill_hole.name, @clay_thickness])
+      @total_gravel_thickness += @gravel_thickness
+      @total_sand_thickness += @sand_thickness
+      @total_silt_thickness += @silt_thickness
+      @total_clay_thickness += @clay_thickness
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @depth_drilled_by_date }
+      format.json { 
+        render json: { 
+          depth_drilled_by_date: @depth_drilled_by_date,
+          total_gravel_thickness: @total_gravel_thickness, 
+          total_sand_thickness: @total_sand_thickness, 
+          total_silt_thickness: @total_silt_thickness, 
+          total_clay_thickness: @total_clay_thickness,
+          drill_holes_gravel_data: @drill_holes_gravel_data,
+          drill_holes_sand_data: @drill_holes_sand_data,
+          drill_holes_silt_data: @drill_holes_silt_data,
+          drill_holes_clay_data: @drill_holes_clay_data
+        }
+      }
     end
   end
 end
