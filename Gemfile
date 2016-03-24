@@ -28,6 +28,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use momentjs to parse dates
 gem 'momentjs-rails'
 
+# Use mailgun-ruby to send emails
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
