@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   include ApplicationHelper
   before_action :require_logged_in_user
-
+  
   respond_to :html, :js
 
   def index

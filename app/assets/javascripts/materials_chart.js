@@ -13,8 +13,8 @@ $(function () {
       projectDetails,
       depthDrilledByDate,
       datesDrilled = [],
-      actualDrilling = [],
-      predictedDrilling;
+      actualDrilling = [0],
+      predictedDrilling = [0];
 
   var ajaxRequests = {
     getProjectDetails: function (url) {
@@ -53,15 +53,20 @@ $(function () {
       depthDrilledByDate.forEach(function (dateAndDepth) {
         datesDrilled.push(dateAndDepth.date_drilled);
         depth += dateAndDepth.total_thickness;
-        actualDrilling.push(parseFloat(dateAndDepth.total_thickness.toFixed(2)));
+        actualDrilling.push(parseFloat(depth.toFixed(2)));
       });
-      var daysDrilled = datesDrilled.length; 
-      var predictedDepthPerDay = projectDetails[0].drill_to_depth / daysDrilled;
+      var daysDrilled = datesDrilled.length,
+          dateStarted = moment(datesDrilled[0]),
+          predictedEndDate = moment(projectDetails[0].drill_by_date),
+          predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
+          predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
+      datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));
       depth = 0;
-      predictedDrilling = Array.apply(null, {length: daysDrilled}).map(function () {
+
+      for (var i = 0; i < predictedDaysDrilled; i++) {
         depth += predictedDepthPerDay;
-        return parseFloat(predictedDepthPerDay.toFixed(2));
-      });
+        predictedDrilling.push(parseFloat(depth.toFixed(2)));
+      }
     },
     generateMaterialChart: function () {
       materialDetailsContainer.highcharts({
