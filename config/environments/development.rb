@@ -40,4 +40,5 @@ Syncline::Application.configure do
   }
 
   config.assets.debug = false #true
+
 end

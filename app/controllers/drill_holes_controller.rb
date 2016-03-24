@@ -7,6 +7,7 @@ class DrillHolesController < ApplicationController
   def show
     @drill_hole = DrillHole.find(params[:id]);
     @layers = @drill_hole.layers
+    @layer = Layer.new
   end
 
   def new
@@ -23,8 +24,6 @@ class DrillHolesController < ApplicationController
 
   def update
     @drill_hole = DrillHole.find(params[:id])
-    # hole_params = params[:drill_hole]
-    # @drill_hole.update_attributes(hole_params)
     @drill_hole.update_attributes(drill_hole_params)
 
     respond_to do |format|
