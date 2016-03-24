@@ -9,7 +9,7 @@ Syncline::Application.routes.draw do
   resource :session, only: [:create, :destroy, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   get '/sites/:id/layers', to: 'layers#site_layers'
-  root to: 'sites#index'
+  root to: 'sessions#new'
 
   
   # The priority is based upon order of creation: first created -> highest priority.

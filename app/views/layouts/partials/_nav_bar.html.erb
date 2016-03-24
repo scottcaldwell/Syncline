@@ -19,9 +19,9 @@
     <div class="navbar-right">
       <% if current_user %>
         <p class="navbar-item"><a href="#">Hey, <%= current_user.first_name %></a></p>
-        <p class="navbar-item"><%= link_to "Log out", sessions_path("current"), method: :delete %></p>
+        <p class="navbar-item"><%= link_to "Log out", session_path("current"), method: :delete %></p>
       <% else %>
-        <p class="navbar-item"><%= link_to "Log In", new_sessions_path %> | <%= link_to "Sign Up", new_user_path %></p>
+        <p class="navbar-item"><%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %></p>
       <% end %>
     </div>
   </nav>
