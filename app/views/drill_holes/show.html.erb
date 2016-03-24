@@ -3,7 +3,7 @@
     <div class="container">
       <div class='heading'>
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
-        <h2 class='subtitle is-5'><%= @drill_hole.site.site_name %></h2>
+        <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
       </div>   
     </div>
   </header>
