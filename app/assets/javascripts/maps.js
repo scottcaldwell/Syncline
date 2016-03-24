@@ -106,6 +106,12 @@ $(function() {
     var latlng = [];
     var markerGeoJSON = [];
     var markerUrl = [];
+    var myIcon = L.icon({
+    	iconUrl: '/assets/drill-hole-icon.png',
+    	// iconRetinaUrl: 'drill-hole-icon@2x.png',
+    	 iconSize: [80, 80]
+    	// popupAnchor: [-3, -76]
+    });
 
     //For each drill-hole, grab data from HTML
     $('.drill-row').each(function(i) {
@@ -127,7 +133,11 @@ $(function() {
           name: name,
           depth: depth,
           location: location,
-          url: markerUrl[i]
+          url: markerUrl[i],
+          icon: {
+            "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
+            "iconSize": [50, 50], // size of the icon
+          }
         },
         geometry: {
           type: 'Point',

@@ -27,13 +27,3 @@
   </nav>
 
 </header>
-
-<section class="section page-content">
-  <div class="container">
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "notification") %>
-    <% end %>
-  </div>
-  <br />
-  <%= yield %>
-</section>

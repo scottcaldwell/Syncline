@@ -1,48 +1,67 @@
 <section class="hero is-medium is-primary is-bold">
   <div class="hero-content">
     <div class="container">
+      <img class='site-logo' src="/assets/syncline-logo-alpha.png">
       <h1 class="title">
-        Syncline(use official logo/title text here)
+        Syncline
       </h1>
       <h2 class="subtitle">
-        A tool aimed at geotechnical engineers to streamline the process of collecting, reviewing and approving site investigation information.
+        A tool aimed at geotechnical engineers to streamline the process of collecting and reviewing site investigation information.
       </h2>
-      <a class="button">Sign up for beta</a>
+      <a class="button is-primary is-outlined is-inverted" href="/users/new">Join the revolution, brah</a>
       <!-- LOGIN -->
       <div id="login">
         <%= form_tag session_path do %>
+          <div class = "column is-half is-offset-quarter">
+          <hr color="white">
           <p class="control has-icon">
             <input class="input" name="email" type="email" placeholder="Email">
             <i class="fa fa-envelope"></i>
           </p>
-          <p class="control has-icon">
+          <p class="control has-icon ">
             <input class="input" name="password" type="password" placeholder="Password">
             <i class="fa fa-lock"></i>
           </p>
           <p class="control is-flex">
-            <button class="button is-success">
-              Login
+            <button class="button is-primary is-outlined is-inverted">
+              Log in
             </button>
           </p>
+
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </section>
-<section>
-  Features:
-  Simple site management for geological and mining engineering teams
-  Dynamic Data Input
-  Data analysis tools
+<section id="features">
+  <div class="container">
+    Features:
+    Simple site management for geological and mining engineering teams
+    Dynamic Data Input
+    Data analysis tools
+  </div>
 </section>
 <Footer>
   <div class="container">
-    <a class="button">
-      <i class="fa fa-github"></i>
-      Source Code
-    </a>
-
-    Created by: Links to our github accounts
+    <div class="container">
+      <a class="button" href="https://github.com/joelkbennett">
+        <i class="fa fa-github"></i>
+        joelkbennett
+      </a>
+      <a class="button" href="https://github.com/PrabhBrar">
+        <i class="fa fa-github"></i>
+        PrabhBrar
+      </a>
+      <a class="button" href="https://github.com/quicklikerabbit">
+        <i class="fa fa-github"></i>
+        quicklikerabbit
+      </a>
+      <a class="button" href= "https://github.com/scottcaldwell">
+        <i class="fa fa-github"></i>
+        scottcaldwell
+      </a>
+    </div>
              Created with: Rails, JS, HTML5, CSS3, JQuery, Mapbox etc. Use nice icons
              Code on github
   </div>
