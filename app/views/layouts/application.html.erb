@@ -8,21 +8,21 @@
 
 </head>
 <body>
-<%= render 'layouts/partials/nav_bar' %>
+<%= render 'layouts/partials/nav_bar' unless @disable_nav%>
 
 <!-- render hero if front page? -->
 
-<section class="section page-content">
-  <div class="container">
-    <% flash.each do |key, value| %>
-      <%= content_tag(:div, value, class: "notification") %>
-    <% end %>
-  </div>
-  <br />
+<section id = "section-container" class="section page-content">
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "notification") %>
+      <% end %>
+    </div>
+    <br />
   <%= yield %>
 </section>
 
-<%= render 'layouts/partials/footer' %>
+<%= render 'layouts/partials/footer' unless @disable_nav %>
 
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src='https://api.mapbox.com/mapbox.js/v2.3.0/mapbox.js'></script>

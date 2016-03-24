@@ -1,1 +1,49 @@
-<h1 class="title">Landing Page</h1>
+<section class="hero is-medium is-primary is-bold">
+  <div class="hero-content">
+    <div class="container">
+      <h1 class="title">
+        Syncline(use official logo/title text here)
+      </h1>
+      <h2 class="subtitle">
+        A tool aimed at geotechnical engineers to streamline the process of collecting, reviewing and approving site investigation information.
+      </h2>
+      <a class="button">Sign up for beta</a>
+      <!-- LOGIN -->
+      <div id="login">
+        <%= form_tag session_path do %>
+          <p class="control has-icon">
+            <input class="input" name="email" type="email" placeholder="Email">
+            <i class="fa fa-envelope"></i>
+          </p>
+          <p class="control has-icon">
+            <input class="input" name="password" type="password" placeholder="Password">
+            <i class="fa fa-lock"></i>
+          </p>
+          <p class="control is-flex">
+            <button class="button is-success">
+              Login
+            </button>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  Features:
+  Simple site management for geological and mining engineering teams
+  Dynamic Data Input
+  Data analysis tools
+</section>
+<Footer>
+  <div class="container">
+    <a class="button">
+      <i class="fa fa-github"></i>
+      Source Code
+    </a>
+
+    Created by: Links to our github accounts
+             Created with: Rails, JS, HTML5, CSS3, JQuery, Mapbox etc. Use nice icons
+             Code on github
+  </div>
+</Footer>

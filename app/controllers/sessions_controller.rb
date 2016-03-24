@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
   include ApplicationHelper
 
+  before_filter :disable_nav, only: [:index]
+
   def new
   end
 

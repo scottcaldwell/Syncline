@@ -7,7 +7,6 @@ $(function() {
   //Geo-search map, allows user to initialize site location
 
   //TODO
-  //Increase modal size so map can be bigger
 
   //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
@@ -42,11 +41,6 @@ $(function() {
       var lng = e.latlng.lng;
       addMarker(lat, lng);
     });
-
-    //When button is clicked, refresh page
-    // button.on("click", function() {
-    //   location.reload();
-    // });
 
     //Fixes modal bug for map. Without this, Map tiles don't load entirely
     $("#add-site-button").on('click', function() {
