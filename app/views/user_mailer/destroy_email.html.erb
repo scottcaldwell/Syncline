@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>You have been removed from example.com, <%= @user.first_name %></h1>
+    <p>
+      You have been successfully removed from example.com,
+      your username was: <%= @user.email %>.<br>
+    </p>
+    <p>
+      To sign-up again, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for being a part of this project and have a great day!</p>
+  </body>
+</html>
