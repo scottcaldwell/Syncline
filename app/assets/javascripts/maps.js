@@ -13,12 +13,12 @@ $(function() {
     //Create map
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
       .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
+    geoSearchMap.scrollWheelZoom.disable();
 
     var button = $('input[type=submit]');
     var siteName = $('#site_site_name');
     var siteLat = $('#site_center_lat');
     var siteLng = $('#site_center_lng');
-    var latlngHasBeenInput = false;
     var nameHasBeenInput = false;
     var marker;
     //addMarker(50, -123.1);
@@ -63,6 +63,13 @@ $(function() {
     siteName.on("input", function() {
       nameHasBeenInput = true;
     });
+
+    siteLat.on("input", function() {
+      addMarker(siteLat.val(), siteLng.val());
+    });
+    siteLng.on("input", function() {
+      addMarker(siteLat.val(), siteLng.val());
+    });
   }
 
   //Adds marker to map, shows 'Create' button, fill 'Site Name' field
@@ -92,8 +99,9 @@ $(function() {
 
   //TODO
   //Zoom level isn't quite right when markers are close together.
+  //What does it do if there are no drill sites?
 
-  if ($('#markers-map').length > 0) {
+  if ($('#markers-map').length > 0 && $('.drill-row').length > 0) {
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
@@ -110,7 +118,6 @@ $(function() {
       var lng = drillHoleDetails.dh_lng;
       latlng[i] = L.latLng(lat, lng);
       markerUrl[i] = '/drill_holes/' + i;
-
       markerGeoJSON[i] = {
         type: 'Feature',
         properties: {
@@ -158,7 +165,7 @@ $(function() {
   //these will come from DB via JSON?
 
   //If static map div is in DOM
-  if ($('.static-map').length > 0) {
+  if ($('.static-map').length > 0 && $('.drill-card').length > 0) {
 
     $('.drill-card').each(function(j) {
       var latitude = $(this).find('.site-lat').data('site-lat');
