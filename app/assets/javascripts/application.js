@@ -25,3 +25,4 @@
 //= require layer_chart
 //= require new_edit_layer
 //= require depth_values
+//= require review
