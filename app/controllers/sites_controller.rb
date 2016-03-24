@@ -1,7 +1,7 @@
 class SitesController < ApplicationController
   include ApplicationHelper
   before_action :require_logged_in_user
-  
+
   respond_to :html, :js
 
   def index
@@ -17,6 +17,7 @@ class SitesController < ApplicationController
 
   def create
     @site  = Site.create(site_params)
+    @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
     redirect_to :back
   end
 
