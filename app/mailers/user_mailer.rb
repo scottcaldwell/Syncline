@@ -8,10 +8,11 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to My Awesome Site')
   end
 
-  def destroy_email(user)
+  def review_email(user, drill_hole)
     @user = user
+    @drill_hole = drill_hole
     @url  = 'http://syncline.com/login'
-    mail(to: @user.email, subject: 'You have been removed from My Awesome Site')
+    mail(to: @user.email, subject: "#{@drill_hole.name} has been reviewed")
   end
 
 end
