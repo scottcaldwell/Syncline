@@ -3,6 +3,9 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def index
+  end
+
   def create
     user = User.find_by(email: params[:email])
 
@@ -19,5 +22,5 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     redirect_to sites_path, notice: "Adios!"
   end
-  
+
 end
