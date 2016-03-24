@@ -6,6 +6,10 @@ html, body {
   
 }
 
+.site-logo {
+  margin-right: 2.5em;
+}
+
 .page-content {
   background-color: #eee;
 }

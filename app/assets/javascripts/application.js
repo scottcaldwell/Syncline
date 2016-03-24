@@ -17,9 +17,11 @@
 //= require highcharts/modules/data
 //= require highcharts/modules/drilldown
 //= require highcharts/modules/exporting
+//= require moment
 //= require dragula
 //= require materials_chart
 //= require new_card
 //= require layer_log
 //= require layer_chart
+//= require new_edit_layer
 //= require depth_values

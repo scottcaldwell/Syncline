@@ -2,49 +2,24 @@ $(function () {
 
   var materialDetailsContainer = $('#material-details'),
       projectDetailsContainer = $('#project-details'),
-      totalGravelThickness = 0,
-      totalSandThickness = 0,
-      totalSiltThickness = 0,
-      totalClayThickness = 0,
-      drillHolesGravelData = [],
-      drillHolesSandData = [],
-      drillHolesSiltData = [],
-      drillHolesClayData = [],
+      totalGravelThickness,
+      totalSandThickness,
+      totalSiltThickness,
+      totalClayThickness,
+      drillHolesGravelData,
+      drillHolesSandData,
+      drillHolesSiltData,
+      drillHolesClayData,
       projectDetails,
       depthDrilledByDate,
       datesDrilled = [],
-      actualDrilling = [],
-      predictedDrilling;
+      actualDrilling = [0],
+      predictedDrilling = [0];
 
   var ajaxRequests = {
-    getLayerDetails: function (url, drillHoleName) {
+    getProjectDetails: function (url) {
       return $.ajax({
         url: url,
-        method: 'GET',
-        dataType: 'json',
-        success: function (result) {
-          drillHolesGravelData.push(
-            [drillHoleName, result.gravel_thickness]
-          );
-          drillHolesSandData.push(
-            [drillHoleName, result.sand_thickness]
-          );
-          drillHolesSiltData.push(
-            [drillHoleName, result.silt_thickness]
-          );
-          drillHolesClayData.push(
-            [drillHoleName, result.clay_thickness]
-          );
-          totalGravelThickness += result.gravel_thickness;
-          totalSandThickness += result.sand_thickness;
-          totalSiltThickness += result.silt_thickness;
-          totalClayThickness += result.clay_thickness;
-        }
-      });
-    },
-    getProjectDetails: function () {
-      return $.ajax({
-        url: '/sites/' + projectDetailsContainer.data('site-id') + '/projects.json',
         method: 'GET',
         dataType: 'json',
         success: function (result) {
@@ -52,13 +27,21 @@ $(function () {
         }
       });
     },
-    getSiteLayerDetails: function () {
+    getSiteLayerDetails: function (url) {
       return $.ajax({
-        url: '/sites/' + projectDetailsContainer.data('site-id') + '/layers.json',
+        url: url,
         method: 'GET',
         dataType: 'json',
         success: function (result) {
-          depthDrilledByDate = result;
+          depthDrilledByDate = result.depth_drilled_by_date;
+          totalGravelThickness = result.total_gravel_thickness;
+          totalSandThickness = result.total_sand_thickness;
+          totalSiltThickness = result.total_silt_thickness;
+          totalClayThickness = result.total_clay_thickness;
+          drillHolesGravelData = result.drill_holes_gravel_data;
+          drillHolesSandData = result.drill_holes_sand_data;
+          drillHolesSiltData = result.drill_holes_silt_data;
+          drillHolesClayData = result.drill_holes_clay_data;
         }
       });
     }
@@ -70,15 +53,20 @@ $(function () {
       depthDrilledByDate.forEach(function (dateAndDepth) {
         datesDrilled.push(dateAndDepth.date_drilled);
         depth += dateAndDepth.total_thickness;
-        actualDrilling.push(parseFloat(dateAndDepth.total_thickness.toFixed(2)));
+        actualDrilling.push(parseFloat(depth.toFixed(2)));
       });
-      var daysDrilled = datesDrilled.length; 
-      var predictedDepthPerDay = projectDetails[0].drill_to_depth / daysDrilled;
+      var daysDrilled = datesDrilled.length,
+          dateStarted = moment(datesDrilled[0]),
+          predictedEndDate = moment(projectDetails[0].drill_by_date),
+          predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
+          predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
+      datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));
       depth = 0;
-      predictedDrilling = Array.apply(null, {length: daysDrilled}).map(function () {
+
+      for (var i = 0; i < predictedDaysDrilled; i++) {
         depth += predictedDepthPerDay;
-        return parseFloat(predictedDepthPerDay.toFixed(2));
-      });
+        predictedDrilling.push(parseFloat(depth.toFixed(2)));
+      }
     },
     generateMaterialChart: function () {
       materialDetailsContainer.highcharts({
@@ -232,20 +220,18 @@ $(function () {
   };
 
   if (materialDetailsContainer[0] !== undefined) {
-    var drillHoles = materialDetailsContainer.data('drill-holes'),
+    var siteId = projectDetailsContainer.data('site-id'),
         serverRequests = [];
     helpers.generateMaterialChart();
     helpers.generateProjectChart();
-    materialChart = materialDetailsContainer.highcharts();
-    projectChart = projectDetailsContainer.highcharts();
+    var materialChart = materialDetailsContainer.highcharts();
+    var projectChart = projectDetailsContainer.highcharts();
     materialChart.showLoading();
     projectChart.showLoading();
-    drillHoles.forEach(function (drillHole){
-      var url = '/drill_holes/' + drillHole.id + '/layers.json';
-      serverRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
-    });
-    serverRequests.push(ajaxRequests.getProjectDetails());
-    serverRequests.push(ajaxRequests.getSiteLayerDetails());
+    var url1 = '/sites/' + siteId + '/projects.json';
+    var url2 = '/sites/' + siteId + '/layers.json';
+    serverRequests.push(ajaxRequests.getProjectDetails(url1));
+    serverRequests.push(ajaxRequests.getSiteLayerDetails(url2));
     $.when.apply(null, serverRequests).done(helpers.processProjectChartData, helpers.generateProjectChart, helpers.generateMaterialChart);
   }
 });

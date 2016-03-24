@@ -4,6 +4,7 @@
 }
 
 .column.new-site {
-  position: relative;
   height: auto;
+  min-height: 280px;
+  position: relative;
 }
