@@ -55,7 +55,7 @@
               <td><%= @site.site_name %></td>
               <td><%= number_with_precision(drill_hole.dh_lat, precision: 7) %></td>
               <td><%= number_with_precision(drill_hole.dh_lng, precision: 7) %></td>
-              <td><%= link_to "View", drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>
+              <td><%= link_to "View", site_drill_hole_path(@site.id, drill_hole.id), :class => "button is-primary" %></td>
             </tr>
           <% end %>
         </tbody>

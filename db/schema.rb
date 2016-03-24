@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324211440) do
+ActiveRecord::Schema.define(version: 20160324223701) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20160324211440) do
     t.string   "method"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "logged_by_id"
+    t.integer  "reviewed_by_id"
   end
 
   add_index "drill_holes", ["site_id"], name: "index_drill_holes_on_site_id"
