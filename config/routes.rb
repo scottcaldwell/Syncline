@@ -7,6 +7,7 @@ Syncline::Application.routes.draw do
     resources :projects, only: [:index]
   end
   resource :session, only: [:create, :destroy, :new]
+  get '/sites/:id/layers', to: 'layers#site_layers'
   root to: 'sites#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

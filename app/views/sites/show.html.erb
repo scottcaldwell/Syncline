@@ -49,10 +49,10 @@
         </tfoot>
         <tbody>
           <% @drill_holes.each do |drill_hole| %>
-            <tr class="drill-row" data-dh-details="<%= drill_hole.to_json %>">
+            <tr class="drill-row" data-dh-details="<%= {drill_hole: drill_hole, site: @site }.to_json %>">
               <td><%= drill_hole.name %></td>
               <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
-              <td><%= Site.find(drill_hole.site_id).site_name %></td>
+              <td><%= @site.site_name %></td>
               <td><%= number_with_precision(drill_hole.dh_lat, precision: 7) %></td>
               <td><%= number_with_precision(drill_hole.dh_lng, precision: 7) %></td>
               <td><%= link_to "View", drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>

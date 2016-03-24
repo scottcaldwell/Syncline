@@ -10,7 +10,8 @@ $(function () {
       drillHolesSandData = [],
       drillHolesSiltData = [],
       drillHolesClayData = [],
-      projectDetails;
+      projectDetails,
+      depthDrilledByDate;
 
   var ajaxRequests = {
     getLayerDetails: function (url, drillHoleName) {
@@ -40,17 +41,30 @@ $(function () {
     },
     getProjectDetails: function () {
       return $.ajax({
-        url: '/sites/' + materialDetailsContainer.data('site-id') + '/projects.json',
+        url: '/sites/' + projectDetailsContainer.data('site-id') + '/projects.json',
         method: 'GET',
         dataType: 'json',
         success: function (result) {
           projectDetails = result;
         }
       });
+    },
+    getSiteLayerDetails: function () {
+      return $.ajax({
+        url: '/sites/' + projectDetailsContainer.data('site-id') + '/layers.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (result) {
+          depthDrilledByDate = result;
+        }
+      });
     }
   };
 
   var helpers = {
+    processProjectChartData: function () {
+
+    },
     generateMaterialChart: function () {
       materialDetailsContainer.highcharts({
         chart: {
@@ -144,7 +158,7 @@ $(function () {
       });
     },
     generateProjectChart: function () {
-      container.highcharts({
+      projectDetailsContainer.highcharts({
           chart: {
             type: 'area'
           },
@@ -153,6 +167,14 @@ $(function () {
           },
           subtitle: {
             text: 'Actual v/s Predicted'
+          },
+          loading: {
+            labelStyle: {
+              color: 'white'
+            },
+            style: {
+              backgroundColor: 'gray'
+            }
           },
           xAxis: {
             categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
@@ -199,16 +221,19 @@ $(function () {
 
   if (materialDetailsContainer[0] !== undefined) {
     var drillHoles = materialDetailsContainer.data('drill-holes'),
-        serverRequests = [],
-        drillHoleName = '';
+        serverRequests = [];
     helpers.generateMaterialChart();
-    chart = materialDetailsContainer.highcharts();
-    chart.showLoading();
+    helpers.generateProjectChart();
+    materialChart = materialDetailsContainer.highcharts();
+    projectChart = projectDetailsContainer.highcharts();
+    materialChart.showLoading();
+    projectChart.showLoading();
     drillHoles.forEach(function (drillHole){
       var url = '/drill_holes/' + drillHole.id + '/layers.json';
       serverRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
     });
     serverRequests.push(ajaxRequests.getProjectDetails());
-    $.when.apply(null, serverRequests).done(helpers.generateMaterialChart, helpers.generateProjectChart);
+    serverRequests.push(ajaxRequests.getSiteLayerDetails());
+    $.when.apply(null, serverRequests).done(helpers.generateProjectChart, helpers.generateMaterialChart);
   }
 });

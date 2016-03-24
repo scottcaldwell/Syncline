@@ -93,10 +93,11 @@ $(function() {
     var markerUrl = [];
 
     $('.drill-row').each(function(i) {
-      var drillHoleDetails = $(this).data('dh-details');
+      var drillHoleDetails = $(this).data('dh-details').drill_hole;
+      var siteDetail = $(this).data('dh-details').site;
       var name = drillHoleDetails.name;
       var depth = drillHoleDetails.depth;
-      var location = drillHoleDetails.site_name;
+      var location = siteDetail.site_name;
       var lat = drillHoleDetails.dh_lat;
       var lng = drillHoleDetails.dh_lng;
       latlng = [];
