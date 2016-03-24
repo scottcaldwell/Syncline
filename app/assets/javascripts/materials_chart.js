@@ -57,12 +57,16 @@ $(function () {
       });
       var daysDrilled = datesDrilled.length,
           dateStarted = moment(datesDrilled[0]),
+          dateEnded = moment(datesDrilled[daysDrilled - 1]),
           predictedEndDate = moment(projectDetails[0].drill_by_date),
           predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
+          daysLeft = predictedEndDate.diff(dateEnded, 'days'),
           predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
       datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));
+      for (var i = 1; i <= daysLeft; i++) {
+        datesDrilled.push(dateEnded.add(1, 'days').utc().format('YYYY-MM-DD'));
+      }
       depth = 0;
-
       for (var i = 0; i < predictedDaysDrilled; i++) {
         depth += predictedDepthPerDay;
         predictedDrilling.push(parseFloat(depth.toFixed(2)));
@@ -228,7 +232,7 @@ $(function () {
     var projectChart = projectDetailsContainer.highcharts();
     materialChart.showLoading();
     projectChart.showLoading();
-    var url1 = '/sites/' + siteId + '/projects.json';
+    var url1 = '/sites/' + siteId + '/details.json';
     var url2 = '/sites/' + siteId + '/layers.json';
     serverRequests.push(ajaxRequests.getProjectDetails(url1));
     serverRequests.push(ajaxRequests.getSiteLayerDetails(url2));

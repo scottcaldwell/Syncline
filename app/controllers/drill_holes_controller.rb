@@ -25,9 +25,13 @@ class DrillHolesController < ApplicationController
   def update
     @drill_hole = DrillHole.find(params[:id])
     @drill_hole.update_attributes(drill_hole_params)
-
-    respond_to do |format|
-      format.json { render json: { save: true } }
+    if @drill_hole.save
+      if @drill_hole.reviewed_by
+        UserMailer.review_email(@user, @drill_hole).deliver
+      end
+      respond_to do |format|
+        format.json { render json: { save: true } }
+      end
     end
   end
 

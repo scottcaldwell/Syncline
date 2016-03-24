@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160323021541) do
+ActiveRecord::Schema.define(version: 20160324211440) do
 
   create_table "drill_holes", force: true do |t|
     t.string   "name"
@@ -97,16 +97,6 @@ ActiveRecord::Schema.define(version: 20160323021541) do
   add_index "photos", ["field_test_id"], name: "index_photos_on_field_test_id"
   add_index "photos", ["lab_test_id"], name: "index_photos_on_lab_test_id"
 
-  create_table "projects", force: true do |t|
-    t.float    "drill_to_depth"
-    t.date     "drill_by_date"
-    t.integer  "site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "projects", ["site_id"], name: "index_projects_on_site_id"
-
   create_table "site_users", force: true do |t|
     t.integer  "site_id"
     t.integer  "user_id"
@@ -124,6 +114,8 @@ ActiveRecord::Schema.define(version: 20160323021541) do
     t.string   "site_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "drill_to_depth"
+    t.date     "drill_by_date"
   end
 
   create_table "spts", force: true do |t|

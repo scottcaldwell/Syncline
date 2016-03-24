@@ -20,6 +20,14 @@ class SitesController < ApplicationController
     redirect_to :back
   end
 
+  def details
+    @siteDetails = Site.where(id: params[:id]).select("drill_by_date, drill_to_depth")
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @siteDetails }
+    end
+  end
+
   protected
 
   def require_logged_in_user

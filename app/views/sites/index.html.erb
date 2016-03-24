@@ -50,20 +50,35 @@
                     <h1>Select site from map, or enter manually</h1>
                     <p class="control">
                       <%= form_for @site do |f|%>
-                        <p>
-                          <%= f.label 'Site Name:' %><br />
-                          <%= f.text_field :site_name, required: true%>
-                        </p>
-                        <p>
-                          <%= f.label 'Latitude: ' %><br />
-                          <%= f.text_field :center_lat, required: true %>
-                        </p>
-                        <p>
-                          <%= f.label 'Longitude: ' %><br />
-                          <%= f.text_field :center_lng, required: true %>
-                        </p>
-                        <p>
-                          <%= f.submit 'Create New Site' %>
+                        <div class="columns">
+                          <div class="column is-third-tablet is-half-desktop">
+                            <p>
+                              <%= f.label 'Site Name:' %><br />
+                              <%= f.text_field :site_name, required: true%>
+                            </p>
+                            <p>
+                              <%= f.label 'Latitude: ' %><br />
+                              <%= f.text_field :center_lat, required: true %>
+                            </p>
+                            <p>
+                              <%= f.label 'Longitude: ' %><br />
+                              <%= f.text_field :center_lng, required: true %>
+                            </p>
+                          </div>
+                          <div class="column is-third-tablet is-half-desktop">
+                            <p>
+                              <%= f.label 'Expected completion date:' %><br />
+                              <%= f.text_field :drill_by_date%>
+                            </p>
+                            <p>
+                              <%= f.label 'Expected meters drilled:' %><br />
+                              <%= f.text_field :drill_to_depth%>
+                            </p>
+                            <p>
+                              <%= f.submit 'Create New Site', :class => 'button is-primary' %>
+                            </p>
+                          </div>
+                        </div>
                       <% end %>
                     </p>
                     <div id="geo-search-map" class='map'></div>

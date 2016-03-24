@@ -188,8 +188,5 @@ end
   )
 end
 
-Project.create(
-drill_to_depth: DrillHole.sum(:depth),
-drill_by_date: Layer.last.date_drilled + 3.days,
-site_id: 1
-)
+site = Site.find(1)
+site.update_attributes(drill_to_depth: DrillHole.sum(:depth), drill_by_date: Layer.last.date_drilled + 3.days)

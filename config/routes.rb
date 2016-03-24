@@ -9,6 +9,7 @@ Syncline::Application.routes.draw do
   resource :session, only: [:create, :destroy, :index, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   get '/sites/:id/layers', to: 'layers#site_layers'
+  get '/sites/:id/details', to: 'sites#details'
   root to: 'sessions#index'
 
   
