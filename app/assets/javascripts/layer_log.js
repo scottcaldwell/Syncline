@@ -60,4 +60,12 @@
       controls.removeClass('controls-edit');
     });
   });
+
+  controls.find('.control-save').on('click', function() {
+    siteForm.find('input').each(function() {
+      $(this).addClass('input-locked');
+      $(this).attr('readonly', true);
+      controls.removeClass('controls-edit');
+    });    
+  });
 })();

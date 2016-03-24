@@ -1,14 +1,17 @@
 Syncline::Application.routes.draw do
-  
-  resources :sites, only: [:index, :show], shallow: true do
+  resources :sites, only: [:index, :show, :create], shallow: true do
     resources :drill_holes, shallow: true do
       resources :layers
     end
     resources :projects, only: [:index]
   end
+
   resource :session, only: [:create, :destroy, :new]
+  resources :users, only: [:new, :show, :create, :edit, :destroy]
   get '/sites/:id/layers', to: 'layers#site_layers'
   root to: 'sites#index'
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -49,7 +52,7 @@ Syncline::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
