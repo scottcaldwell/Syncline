@@ -7,7 +7,6 @@ $(function() {
   //Geo-search map, allows user to initialize site location
 
   //TODO
-  //Increase modal size so map can be bigger
 
   //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
@@ -42,11 +41,6 @@ $(function() {
       var lng = e.latlng.lng;
       addMarker(lat, lng);
     });
-
-    //When button is clicked, refresh page
-    // button.on("click", function() {
-    //   location.reload();
-    // });
 
     //Fixes modal bug for map. Without this, Map tiles don't load entirely
     $("#add-site-button").on('click', function() {
@@ -112,6 +106,12 @@ $(function() {
     var latlng = [];
     var markerGeoJSON = [];
     var markerUrl = [];
+    var myIcon = L.icon({
+    	iconUrl: '/assets/drill-hole-icon.png',
+    	// iconRetinaUrl: 'drill-hole-icon@2x.png',
+    	 iconSize: [80, 80]
+    	// popupAnchor: [-3, -76]
+    });
 
     //For each drill-hole, grab data from HTML
     $('.drill-row').each(function(i) {
@@ -133,7 +133,11 @@ $(function() {
           name: name,
           depth: depth,
           location: location,
-          url: markerUrl[i]
+          url: markerUrl[i],
+          icon: {
+            "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
+            "iconSize": [50, 50], // size of the icon
+          }
         },
         geometry: {
           type: 'Point',

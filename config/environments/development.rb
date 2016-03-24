@@ -26,6 +26,7 @@ Syncline::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
 
+
   # Action Mailer to use gmail
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for gmail
