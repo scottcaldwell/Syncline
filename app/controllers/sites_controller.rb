@@ -14,6 +14,7 @@ class SitesController < ApplicationController
 
   def create
     @site  = Site.create(site_params)
+    redirect_to :back
   end
 
   protected

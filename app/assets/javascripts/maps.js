@@ -44,9 +44,9 @@ $(function() {
     });
 
     //When button is clicked, refresh page
-    button.on("click", function() {
-      location.reload();
-    });
+    // button.on("click", function() {
+    //   location.reload();
+    // });
 
     //Fixes modal bug for map. Without this, Map tiles don't load entirely
     $("#add-site-button").on('click', function() {
