@@ -1,6 +1,7 @@
 $(function () {
 
-  var container = $('#histogram'),
+  var materialDetailsContainer = $('#material-details'),
+      projectDetailsContainer = $('#project-details'),
       totalGravelThickness = 0,
       totalSandThickness = 0,
       totalSiltThickness = 0,
@@ -8,7 +9,12 @@ $(function () {
       drillHolesGravelData = [],
       drillHolesSandData = [],
       drillHolesSiltData = [],
-      drillHolesClayData = [];
+      drillHolesClayData = [],
+      projectDetails,
+      depthDrilledByDate,
+      datesDrilled = [],
+      actualDrilling = [],
+      predictedDrilling;
 
   var ajaxRequests = {
     getLayerDetails: function (url, drillHoleName) {
@@ -35,12 +41,47 @@ $(function () {
           totalClayThickness += result.clay_thickness;
         }
       });
+    },
+    getProjectDetails: function () {
+      return $.ajax({
+        url: '/sites/' + projectDetailsContainer.data('site-id') + '/projects.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (result) {
+          projectDetails = result;
+        }
+      });
+    },
+    getSiteLayerDetails: function () {
+      return $.ajax({
+        url: '/sites/' + projectDetailsContainer.data('site-id') + '/layers.json',
+        method: 'GET',
+        dataType: 'json',
+        success: function (result) {
+          depthDrilledByDate = result;
+        }
+      });
     }
   };
 
   var helpers = {
-    generateChart: function () {
-      container.highcharts({
+    processProjectChartData: function () {
+      var depth = 0;
+      depthDrilledByDate.forEach(function (dateAndDepth) {
+        datesDrilled.push(dateAndDepth.date_drilled);
+        depth += dateAndDepth.total_thickness;
+        actualDrilling.push(parseFloat(dateAndDepth.total_thickness.toFixed(2)));
+      });
+      var daysDrilled = datesDrilled.length; 
+      var predictedDepthPerDay = projectDetails[0].drill_to_depth / daysDrilled;
+      depth = 0;
+      predictedDrilling = Array.apply(null, {length: daysDrilled}).map(function () {
+        depth += predictedDepthPerDay;
+        return parseFloat(predictedDepthPerDay.toFixed(2));
+      });
+    },
+    generateMaterialChart: function () {
+      materialDetailsContainer.highcharts({
         chart: {
           type: 'column'
         },
@@ -50,14 +91,22 @@ $(function () {
         subtitle: {
           text: 'Click the columns to view details'
         },
+        loading: {
+          labelStyle: {
+            color: 'white'
+          },
+          style: {
+            backgroundColor: 'gray'
+          }
+        },
         xAxis: {
           type: 'category',
           labels: {
-              rotation: -45,
-              style: {
-                  fontSize: '14px',
-                  fontFamily: 'Verdana, sans-serif'
-              }
+            rotation: -45,
+            style: {
+                fontSize: '14px',
+                fontFamily: 'Verdana, sans-serif'
+            }
           }
         },
         yAxis: {
@@ -122,17 +171,81 @@ $(function () {
           }]
         }
       });
+    },
+    generateProjectChart: function () {
+      projectDetailsContainer.highcharts({
+          chart: {
+            type: 'area'
+          },
+          title: {
+            text: 'Drilling Progress'
+          },
+          subtitle: {
+            text: 'Actual v/s Predicted'
+          },
+          loading: {
+            labelStyle: {
+              color: 'white'
+            },
+            style: {
+              backgroundColor: 'gray'
+            }
+          },
+          xAxis: {
+            categories: datesDrilled,
+            labels: {
+              rotation: -45,
+              style: {
+                  fontSize: '14px',
+                  fontFamily: 'Verdana, sans-serif'
+              }
+            }
+          },
+          yAxis: {
+            title: {
+                text: 'Meters Drilled'
+            },
+          },
+          tooltip: {
+            shared: true,
+            valueSuffix: ' meters'
+          },
+          plotOptions: {
+            area: {
+              lineColor: '#666666',
+              lineWidth: 1,
+              marker: {
+                lineWidth: 1,
+                lineColor: '#666666'
+              }
+            }
+          },
+          series: [{
+            name: 'Predicted',
+            data: predictedDrilling
+          }, {
+            name: 'Actual',
+            data: actualDrilling
+          }]
+      });
     }
   };
 
-  if (container[0] !== undefined) {
-    var drillHoles = container.data('drill-holes'),
-        layerRequests = [],
-        drillHoleName = '';
+  if (materialDetailsContainer[0] !== undefined) {
+    var drillHoles = materialDetailsContainer.data('drill-holes'),
+        serverRequests = [];
+    helpers.generateMaterialChart();
+    helpers.generateProjectChart();
+    materialChart = materialDetailsContainer.highcharts();
+    projectChart = projectDetailsContainer.highcharts();
+    materialChart.showLoading();
+    projectChart.showLoading();
     drillHoles.forEach(function (drillHole){
       var url = '/drill_holes/' + drillHole.id + '/layers.json';
-      layerRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
+      serverRequests.push(ajaxRequests.getLayerDetails(url, drillHole.name));
     });
-    $.when.apply(null, layerRequests).done(helpers.generateChart);
+    serverRequests.push(ajaxRequests.getProjectDetails());
+    serverRequests.push(ajaxRequests.getSiteLayerDetails());
+    $.when.apply(null, serverRequests).done(helpers.processProjectChartData, helpers.generateProjectChart, helpers.generateMaterialChart);
   }
 });

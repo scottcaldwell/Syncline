@@ -17,10 +17,8 @@
   <section class='section site-charts'>
     <div class="container">
       <div class="columns">
-        <div class="column">
-          <%= image_tag("charts.png", :alt => "rss feed") %>
-        </div>
-        <div class="column" id="histogram" style="min-width: 310px; height: 400px; margin: 0 auto" data-drill-holes='<%= @drill_holes.to_json %>'></div>
+        <div class="column" id="project-details" style="min-width: 310px; height: 400px; margin: 0 auto" data-site-id="<%= @site.id %>"></div>
+        <div class="column" id="material-details" style="min-width: 310px; height: 400px; margin: 0 auto" data-drill-holes='<%= @drill_holes.to_json %>'></div>
       </div>
     </div>
   </section>
@@ -37,7 +35,6 @@
             <th>Latitude</th>
             <th>Longitude</th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tfoot>
@@ -52,10 +49,10 @@
         </tfoot>
         <tbody>
           <% @drill_holes.each do |drill_hole| %>
-            <tr class="drill-row" data-dh-details="<%= drill_hole.to_json %>">
+            <tr class="drill-row" data-dh-details="<%= {drill_hole: drill_hole, site: @site }.to_json %>">
               <td><%= drill_hole.name %></td>
               <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
-              <td><%= Site.find(drill_hole.site_id).site_name %></td>
+              <td><%= @site.site_name %></td>
               <td><%= number_with_precision(drill_hole.dh_lat, precision: 7) %></td>
               <td><%= number_with_precision(drill_hole.dh_lng, precision: 7) %></td>
               <td><%= link_to "View", drill_hole_path(drill_hole.id), :class => "button is-primary" %></td>

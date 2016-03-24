@@ -18,9 +18,8 @@
 //= require highcharts/modules/drilldown
 //= require highcharts/modules/exporting
 //= require dragula
+//= require materials_chart
 //= require new_card
 //= require layer_log
 //= require layer_chart
 //= require depth_values
-//= require materials_chart
-//= material_type_histogram
