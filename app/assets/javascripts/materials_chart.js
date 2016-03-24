@@ -11,7 +11,10 @@ $(function () {
       drillHolesSiltData = [],
       drillHolesClayData = [],
       projectDetails,
-      depthDrilledByDate;
+      depthDrilledByDate,
+      datesDrilled = [],
+      actualDrilling = [],
+      predictedDrilling;
 
   var ajaxRequests = {
     getLayerDetails: function (url, drillHoleName) {
@@ -63,7 +66,19 @@ $(function () {
 
   var helpers = {
     processProjectChartData: function () {
-
+      var depth = 0;
+      depthDrilledByDate.forEach(function (dateAndDepth) {
+        datesDrilled.push(dateAndDepth.date_drilled);
+        depth += dateAndDepth.total_thickness;
+        actualDrilling.push(parseFloat(dateAndDepth.total_thickness.toFixed(2)));
+      });
+      var daysDrilled = datesDrilled.length; 
+      var predictedDepthPerDay = projectDetails[0].drill_to_depth / daysDrilled;
+      depth = 0;
+      predictedDrilling = Array.apply(null, {length: daysDrilled}).map(function () {
+        depth += predictedDepthPerDay;
+        return parseFloat(predictedDepthPerDay.toFixed(2));
+      });
     },
     generateMaterialChart: function () {
       materialDetailsContainer.highcharts({
@@ -87,11 +102,11 @@ $(function () {
         xAxis: {
           type: 'category',
           labels: {
-              rotation: -45,
-              style: {
-                  fontSize: '14px',
-                  fontFamily: 'Verdana, sans-serif'
-              }
+            rotation: -45,
+            style: {
+                fontSize: '14px',
+                fontFamily: 'Verdana, sans-serif'
+            }
           }
         },
         yAxis: {
@@ -177,43 +192,40 @@ $(function () {
             }
           },
           xAxis: {
-            categories: ['1750', '1800', '1850', '1900', '1950', '1999', '2050'],
-            tickmarkPlacement: 'on',
-            title: {
-                enabled: false
+            categories: datesDrilled,
+            labels: {
+              rotation: -45,
+              style: {
+                  fontSize: '14px',
+                  fontFamily: 'Verdana, sans-serif'
+              }
             }
           },
           yAxis: {
             title: {
                 text: 'Meters Drilled'
             },
-            labels: {
-              formatter: function () {
-                return this.value / 1000;
-              }
-            }
           },
           tooltip: {
             shared: true,
-            valueSuffix: ' millions'
+            valueSuffix: ' meters'
           },
           plotOptions: {
             area: {
-              stacking: 'normal',
               lineColor: '#666666',
               lineWidth: 1,
               marker: {
-                  lineWidth: 1,
-                  lineColor: '#666666'
+                lineWidth: 1,
+                lineColor: '#666666'
               }
             }
           },
           series: [{
-            name: 'Actual',
-            data: [502, 635, 809, 947, 1402, 3634, 5268]
-          }, {
             name: 'Predicted',
-            data: [106, 107, 111, 133, 221, 767, 1766]
+            data: predictedDrilling
+          }, {
+            name: 'Actual',
+            data: actualDrilling
           }]
       });
     }
@@ -234,6 +246,6 @@ $(function () {
     });
     serverRequests.push(ajaxRequests.getProjectDetails());
     serverRequests.push(ajaxRequests.getSiteLayerDetails());
-    $.when.apply(null, serverRequests).done(helpers.generateProjectChart, helpers.generateMaterialChart);
+    $.when.apply(null, serverRequests).done(helpers.processProjectChartData, helpers.generateProjectChart, helpers.generateMaterialChart);
   }
 });
