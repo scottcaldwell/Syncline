@@ -22,4 +22,5 @@
 //= require new_card
 //= require layer_log
 //= require layer_chart
+//= require new_edit_layer
 //= require depth_values
