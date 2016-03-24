@@ -4,6 +4,8 @@
 
 .layers-log {
   position: relative;
+  margin: 0 auto;
+  width: 960px;
 }
 
 .layer-height {
