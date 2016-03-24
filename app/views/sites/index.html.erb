@@ -49,18 +49,18 @@
                   <div>
                     <h1>Select site from map, or enter manually</h1>
                     <p class="control">
-                      <%= form_for @site, remote: true do |f|   %>
+                      <%= form_for @site do |f|%>
                         <p>
                           <%= f.label 'Site Name:' %><br />
-                          <%= f.text_field :site_name%>
+                          <%= f.text_field :site_name, required: true%>
                         </p>
                         <p>
                           <%= f.label 'Latitude: ' %><br />
-                          <%= f.text_field :center_lat %>
+                          <%= f.text_field :center_lat, required: true %>
                         </p>
                         <p>
                           <%= f.label 'Longitude: ' %><br />
-                          <%= f.text_field :center_lng %>
+                          <%= f.text_field :center_lng, required: true %>
                         </p>
                         <p>
                           <%= f.submit 'Create New Site' %>
