@@ -9,6 +9,7 @@ $(function() {
   //TODO
   //Increase modal size so map can be bigger
 
+  //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
     //Create map
     var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
@@ -21,7 +22,6 @@ $(function() {
     var siteLng = $('#site_center_lng');
     var nameHasBeenInput = false;
     var marker;
-    //addMarker(50, -123.1);
 
     //Add search bar
     var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
@@ -36,19 +36,19 @@ $(function() {
       addMarker(coord[1], coord[0]);
     });
 
+    //When map is clicked, addMarker()
     geoSearchMap.on('click', function(e) {
       var lat = e.latlng.lat;
       var lng = e.latlng.lng;
       addMarker(lat, lng);
     });
 
-    //When button is clicked, add Lat/Lng to db and close modal
+    //When button is clicked, refresh page
     button.on("click", function() {
-      alert("Site added");
       location.reload();
     });
 
-    //Fixes modal bug for map
+    //Fixes modal bug for map. Without this, Map tiles don't load entirely
     $("#add-site-button").on('click', function() {
       //hack solution, but without delay it won't work.
       //I also tried to .invalidateSize() on other events like show, but they didn't work.
@@ -60,10 +60,11 @@ $(function() {
 
     });
 
+    //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
     siteName.on("input", function() {
       nameHasBeenInput = true;
     });
-
+    //When user changes lat/lng, move marker to this new location
     siteLat.on("input", function() {
       addMarker(siteLat.val(), siteLng.val());
     });
@@ -72,7 +73,7 @@ $(function() {
     });
   }
 
-  //Adds marker to map, shows 'Create' button, fill 'Site Name' field
+  //Adds marker to map, calls getLocation()
   function addMarker(lat, lng) {
     if (marker) {
       geoSearchMap.removeLayer(marker);
@@ -82,6 +83,8 @@ $(function() {
     getLocation(lat, lng);
   }
 
+  //Reverse geocoding, grabs JSON info about location based on Lat/Lng
+  //Fills in form fields when marker is moved(unless user has enetered custom site name)
   function getLocation(lat, lng) {
     var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
     $.getJSON(url, function(json) {
@@ -101,6 +104,7 @@ $(function() {
   //Zoom level isn't quite right when markers are close together.
   //What does it do if there are no drill sites?
 
+  //If markers-map is on page and there is at least one drill hole on site
   if ($('#markers-map').length > 0 && $('.drill-row').length > 0) {
     var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
@@ -109,6 +113,7 @@ $(function() {
     var markerGeoJSON = [];
     var markerUrl = [];
 
+    //For each drill-hole, grab data from HTML
     $('.drill-row').each(function(i) {
       var drillHoleDetails = $(this).data('dh-details');
       var name = drillHoleDetails.name;
@@ -116,8 +121,11 @@ $(function() {
       var location = drillHoleDetails.site_name;
       var lat = drillHoleDetails.dh_lat;
       var lng = drillHoleDetails.dh_lng;
+      //Generate array of Lat and Lng for each drill hole, used to center map
       latlng[i] = L.latLng(lat, lng);
+      //Generate array of URLs used to redirect from marker popup to drill pages
       markerUrl[i] = '/drill_holes/' + i;
+      //Generate markers in GeoJSON format
       markerGeoJSON[i] = {
         type: 'Feature',
         properties: {
@@ -138,8 +146,10 @@ $(function() {
       features: markerGeoJSON
     };
 
+    //Add markers to map
     myLayer.setGeoJSON(geojson);
 
+    //Add hole data to marker Popup
     myLayer.eachLayer(function(layer) {
       var content =
         '<div>Name: ' + layer.feature.properties.name + '<div/>' +
@@ -162,15 +172,15 @@ $(function() {
 
   //TODO:
   //add Mapbox/OpenMaps attribution somewhere on page
-  //these will come from DB via JSON?
 
-  //If static map div is in DOM
+  //If static map div is in DOM and there is at least one card
   if ($('.static-map').length > 0 && $('.drill-card').length > 0) {
 
     $('.drill-card').each(function(j) {
       var latitude = $(this).find('.site-lat').data('site-lat');
       var longitude = $(this).find('.site-lng').data('site-lng');
 
+      //Generate url to generate static map
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
@@ -178,6 +188,7 @@ $(function() {
         ",17/400x300@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
 
+      //Add map to card
       $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
     });
   }
