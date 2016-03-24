@@ -11,11 +11,32 @@ class LayersController < ApplicationController
     end
   end
 
+  def create
+    @layer = Layer.new(
+      drill_hole_id: params[:drill_hole_id],
+      thickness: params[:thickness],
+      description: params[:description],
+      material_type_id: params[:material_type_id]
+    )
+
+    if @layer.save
+      respond_to do |format|
+        format.json { render json: { data: @layer } }
+      end
+    end
+  end
+
   def site_layers
     @depth_drilled_by_date = Layer.depth_drilled_by_date(params[:id])
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @depth_drilled_by_date }
     end
+  end
+
+  protected
+
+  def layer_params
+    params.require(:layer).permit(:thickness, :description, :material_type_id)
   end
 end

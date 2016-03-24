@@ -94,23 +94,23 @@
     <div class="container">
       <header class='log-header columns'>
         <div class="log-column-title column is-1">
-          <p>Depth</p>
+          <p class='is-text-centered'>Depth</p>
         </div>
 
         <div class="log-column-title column is-1">
-          <p>Graphic Log</p>
+          <p class='is-text-centered'>Graphic Log</p>
         </div>
 
         <div class="log-column-title column is-5">
-          <p>Description</p>
+          <p class='is-text-centered'>Description</p>
         </div>
 
         <div class="log-column-title column is-1">
-          <p>Type</p>
+          <p class='is-text-centered'>Type</p>
         </div>
 
-        <div class="log-column-title column is-3">
-          <p>Sample Data</p>
+        <div class="log-column-title column is-4">
+          <p class='is-text-centered'>Sample Data</p>
         </div>                        
       </header>    
     </div>
@@ -173,16 +173,26 @@
 
       <h2>New Layer</h2>
 
-      <form id='new-edit-layer' class='form new-layer' data-layerId=''>
-        
-        <input type='text' class='input'></input>
+      <form id='new-edit-layer' class='form new-layer' data-hole-id='<%= @drill_hole.id %>'>
 
-        <input type='text' class='input'></input>
+        <p class="control">
+          <label class="label">Thickness</label>
+          <input id='new_thickness' type='number' class='input'></input>
+        </p>        
 
-        <textarea class='textarea'></textarea>
+        <p class="control">
+          <label class="label">Graphic Log</label>
+          <input id='new_glog' type='number' class='input'></input>
+        </p>
 
-        <button class='button is-success'>submit</button>
+        <p class="control">
+          <label class="label">Description</label>
+          <textarea id='new_desc' class='textarea'></textarea>
+        </p>
 
+        <p class="control">
+          <button class='button is-success button-save'>submit</button>
+        </p>
       </form>
 
     </div>
