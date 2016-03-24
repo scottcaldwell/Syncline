@@ -75,6 +75,7 @@ MaterialType.create(
   end
 end
 
+count = 0
 (0..9).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
@@ -82,11 +83,13 @@ end
       depth_from: DrillHole.all[n].depth/(10/(i+1)),
       depth_to: DrillHole.all[n].depth/(10/(i+1)) + 0.5,
       test_type: "SPT",
-      layer_id: Layer.all[i].id
+      layer_id: Layer.all[count].id
+      count += 1
     )
   end
 end
 
+count = 0
 (0..9).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
@@ -94,11 +97,13 @@ end
       test_type: "Grain Size",
       depth_from: FieldTest.all[i].depth_from,
       depth_to: FieldTest.all[i].depth_to,
-      field_test_id: FieldTest.all[i].id
+      field_test_id: FieldTest.all[count].id
+      count += 1
     )
   end
 end
 
+count = 0
 (0..9).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   x = n + 1
@@ -106,7 +111,8 @@ end
     Photo.create(
       url: "app/assets/images/drill_hole_pics/image#{x}.png",
       field_test_id: FieldTest.all[i].id,
-      lab_test_id: LabTest.all[i].id
+      lab_test_id: LabTest.all[0].id
+      count += 1
     )
     if x = 60
       x = 1
