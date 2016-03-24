@@ -3,7 +3,7 @@
     <div class="container">
       <div class='heading'>
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
-        <h2 class='subtitle is-5'><%= @drill_hole.site.site_name %></h2>
+        <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
       </div>   
     </div>
   </header>
@@ -94,23 +94,23 @@
     <div class="container">
       <header class='log-header columns'>
         <div class="log-column-title column is-1">
-          <p>Depth</p>
+          <p class='is-text-centered'>Depth</p>
         </div>
 
         <div class="log-column-title column is-1">
-          <p>Graphic Log</p>
+          <p class='is-text-centered'>Graphic Log</p>
         </div>
 
         <div class="log-column-title column is-5">
-          <p>Description</p>
+          <p class='is-text-centered'>Description</p>
         </div>
 
         <div class="log-column-title column is-1">
-          <p>Type</p>
+          <p class='is-text-centered'>Type</p>
         </div>
 
-        <div class="log-column-title column is-3">
-          <p>Sample Data</p>
+        <div class="log-column-title column is-4">
+          <p class='is-text-centered'>Sample Data</p>
         </div>                        
       </header>    
     </div>
@@ -174,37 +174,31 @@
   <!-- new layer -->
   <section class='layer-new'>
     <div class="container">
+
       <h2>New Layer</h2>
-      <form>
-        <div class="columns">
-          <p class="control column is-1">
-            <label class='label'>depth</label>
-            <input class='input' type='number'></input>
-          </p>
 
-          <p class="control column is-1">
-            <label class="label">Graphic</label>
-            <input class="input" type='select'></input>
-          </p>
+      <form id='new-edit-layer' class='form new-layer' data-hole-id='<%= @drill_hole.id %>'>
 
-          <p class="control column is-5">
-            <label class="label">Description</label>
-            <textarea class='textarea'></textarea>  
-          </p>
+        <p class="control">
+          <label class="label">Thickness</label>
+          <input id='new_thickness' type='number' class='input'></input>
+        </p>        
 
-          <p class="control column is-2">
-            <label class="label">Sample Type</label>
-            <input class="input"></input>
-          </p>
+        <p class="control">
+          <label class="label">Graphic Log</label>
+          <input id='new_glog' type='number' class='input'></input>
+        </p>
 
-          <p class="control column is-3">
-            <label class="label">Sample Data</label>
-            <input class="input"></input>
-          </p>
-        </div>
+        <p class="control">
+          <label class="label">Description</label>
+          <textarea id='new_desc' class='textarea'></textarea>
+        </p>
 
-        <button class='button is-primary'>Submit</button>
+        <p class="control">
+          <button class='button is-success button-save'>submit</button>
+        </p>
       </form>
+
     </div>
   </section>
   <!-- end new form -->
