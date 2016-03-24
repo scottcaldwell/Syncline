@@ -1,4 +1,7 @@
 class SitesController < ApplicationController
+  include ApplicationHelper
+  before_action :require_logged_in_user
+
   respond_to :html, :js
 
   def index
@@ -18,6 +21,13 @@ class SitesController < ApplicationController
   end
 
   protected
+
+  def require_logged_in_user
+    unless current_user
+      flash[:error] = "You must be logged in to see your sites"
+      redirect_to root_path
+    end
+  end
 
   def site_params
     # params.require(:site).permit()

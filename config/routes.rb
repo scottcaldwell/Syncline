@@ -6,7 +6,7 @@ Syncline::Application.routes.draw do
   end
   resource :sessions, only: [:create, :destroy, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
-  root to: 'sites#index'
+  root to: 'sessions#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
