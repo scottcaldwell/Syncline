@@ -1,12 +1,13 @@
 #section-container{
     padding-top:0px;
+    background-color:white;
 }
 #login{
   padding-top:40px;
 }
-/*.control > .input{
-  width:200px;
-}*/
+#landing{
+  margin-bottom:40px;
+}
 h1 .title{
   font-size:200px;
 }
@@ -35,7 +36,6 @@ h1 .title{
 
  .notification{
    margin-right:10px;
-   
  }
 
 /*
