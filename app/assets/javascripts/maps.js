@@ -213,10 +213,10 @@ $(function() {
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
         'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
-        ",17/1280x300@2x.png?access_token=" + //Zoom level, res
+        ",12/1280x250@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
 
       //Add map to header
-      $('.static-map').css("background", staticImageString + "no-repeat");
+      $('.static-map').css("background", "url('" +staticImageString + "') center");
   }
 });
