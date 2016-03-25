@@ -10,7 +10,7 @@ Syncline::Application.routes.draw do
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   get '/sites/:id/layers', to: 'layers#site_layers'
   get '/sites/:id/details', to: 'sites#details'
-  put '/drill_hole/:id', to: 'drill_holes#update_reviewer'
+  put '/drill_hole/:id/update_reviewer', to: 'drill_holes#update_reviewer'
   root to: 'sessions#index'
 
   

@@ -125,7 +125,7 @@ $(function() {
       //Generate array of Lat and Lng for each drill hole, used to center map
       latlng[i] = L.latLng(lat, lng);
       //Generate array of URLs used to redirect from marker popup to drill pages
-      markerUrl[i] = '/drill_holes/' + i;
+      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + i;
       //Generate markers in GeoJSON format
       markerGeoJSON[i] = {
         type: 'Feature',
