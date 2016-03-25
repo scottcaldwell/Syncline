@@ -20,9 +20,13 @@
   </div>
 <% end %>
 
-<section id = "section-container" class="section page-content">
+
+<section <% if @disable_nav %> id="section-container" <% end %> class="section page-content">
   <%= yield %>
 </section>
+
+
+
 
 <%= render 'layouts/partials/footer' %>
 
