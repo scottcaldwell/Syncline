@@ -126,7 +126,7 @@ $(function() {
       //Generate array of Lat and Lng for each drill hole, used to center map
       latlng[i] = L.latLng(lat, lng);
       //Generate array of URLs used to redirect from marker popup to drill pages
-      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + i + 1;
+      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + (i + 1);
       //Generate markers in GeoJSON format
       markerGeoJSON[i] = {
         type: 'Feature',
@@ -199,5 +199,24 @@ $(function() {
       //Add map to card
       $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
     });
+  }
+
+  //If static map div is in DOM and drill-hole header is on page, aka on Drill Hole page
+  if ($('.static-map').length > 0 && $('#drill-hole').length > 0) {
+    console.log("on drill page, should insert static map");
+
+      var latitude = $(this).find('#drill_hole_dh_lat').val();
+      var longitude = $(this).find('#drill_hole_dh_lng').val();
+      var pageWidth = $(window).width();
+      //Generate url to generate static map
+      var staticImageString =
+        'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
+        'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
+        longitude + "," + latitude + //Map location
+        ",17/1280x300@2x.png?access_token=" + //Zoom level, res
+        privateToken; //api auth token
+
+      //Add map to header
+      $('.static-map').css("background", staticImageString + "no-repeat");
   }
 });
