@@ -5,7 +5,8 @@ class SitesController < ApplicationController
   respond_to :html, :js
 
   def index
-    @sites = Site.all
+    @users_sites = SiteUser.where(user_id: current_user.id).pluck(:site_id)
+    @sites = Site.where(id: @users_sites)
     @site = Site.new
   end
 
