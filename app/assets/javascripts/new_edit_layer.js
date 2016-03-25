@@ -7,6 +7,7 @@
   var editBtn = $('.button-layer-edit');
   var newBtn = $();
   var saveBtn = $('.button-save');
+  var holeMeta = $('.page-body').data('site').split('-');
 
   saveBtn.on('click', function(e) {
     e.preventDefault();
@@ -41,7 +42,9 @@
 
   function newReq() {
     var formData = new FormData();
-    var url = '/drill_holes/' + holeId + '/layers';
+    var siteId = holeMeta[0];
+    var holeId = holeMeta[0];
+    var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/';
     
     formData.append('drill_hole_id', holeId);
     formData.append('thickness', $(newEditForm.find('#new_thickness')[0]).val());
@@ -62,7 +65,9 @@
 
   function editReq(layerId) {
     var formData = new FormData();
-    var url = '/layers/' + layerId;
+    var siteId = holeMeta[0];
+    var holeId = holeMeta[0];
+    var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/' + layerId;
 
     formData.append('drill_hole_id', holeId);
     formData.append('layer_id', layerId);
