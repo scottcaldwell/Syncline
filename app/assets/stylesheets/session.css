@@ -14,3 +14,109 @@ h1 .title{
 .control{
   justify-content: center;
 }
+
+
+.animation{
+  height:300px;
+  width:400px;
+  background:#DDD;
+}
+
+.column{
+  align-items: center;
+}
+
+ .flash{
+  position: fixed;
+  max-width:600px;
+  top:20px;
+  right:20px;
+ }
+
+ .notification{
+   margin-right:10px;
+   
+ }
+
+/*
+
+div .feature{
+  height:100px
+  background-color:blue;
+}
+
+#graph {
+  position: relative;
+  z-index: 1;
+  width: 125px;
+  height: 100px;
+  margin: 30px auto 0;
+}
+
+#graph div {
+  position: absolute;
+  bottom: 16px;
+  width: 9px;
+  height: 10px;
+  background: #000;
+}
+
+#graph div:nth-child(n+1) {
+  height:16px;
+  left: 24px;
+
+  animation: chartIt 2s 1 ease-in-out 0s;
+  -webkit-animation: chartIt 2s 1 ease-in-out 0s;
+}
+
+#graph div:nth-child(n+2) {
+  height:26px;
+  left: 37px;
+
+  animation: chartIt 2s 1 ease-in-out .25s;
+  -webkit-animation: chartIt 2s 1 ease-in-out .25s;
+}
+
+#graph div:nth-child(n+3) {
+  height:42px;
+  left: 50px;
+
+  animation: chartIt 2s 1 ease-in-out .5s;
+  -webkit-animation: chartIt 2s 1 ease-in-out .5s;
+}
+
+#graph div:nth-child(n+4) {
+  height:37px;
+  left: 63px;
+
+  animation: chartIt 2s 1 ease-in-out .75s;
+  -webkit-animation: chartIt 2s 1 ease-in-out .75s;
+}
+
+#graph div:nth-child(n+5) {
+  height:50px;
+  left: 76px;
+
+  animation: chartIt 2s 1 ease-in-out 1s;
+  -webkit-animation: chartIt 2s 1 ease-in-out 1s;
+}
+
+#graph div:nth-child(n+6) {
+  height:60px;
+  left: 89px;
+
+  animation: chartIt 2s 1 ease-in-out 1.25s;
+  -webkit-animation: chartIt 2s 1 ease-in-out 1.25s;
+}
+
+@keyframes chartIt {
+  0% { max-height:60px; }
+  50% { max-height:0px; }
+  100% { max-height:60px; }
+}
+
+@-webkit-keyframes chartIt {
+  0% { max-height:60px; }
+  50% { max-height:0px; }
+  100% { max-height:60px; }
+}*/
