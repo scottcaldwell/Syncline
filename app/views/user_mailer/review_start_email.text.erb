@@ -1,0 +1,6 @@
+<%= @user.first_name %>
+======================
+ 
+Review for <%= @drill_hole.name %> has been started by <%= User.find(@drill_hole.reviewed_by_id).first_name %>.
+
+Thanks for being a part of this project and have a great day!

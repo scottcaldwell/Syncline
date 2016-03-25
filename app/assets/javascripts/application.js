@@ -26,3 +26,5 @@
 //= require new_edit_layer
 //= require depth_values
 //= require notification
+//= require review
+//= require add_drill_hole

@@ -13,8 +13,8 @@ User.create(
 email: 'prabh182006@gmail.com',
 password: 123456,
 password_confirmation: 123456,
-first_name: 'Prabh',
-last_name: 'Singh Brar'
+first_name: 'Prabhsharan',
+last_name: 'Brar'
 )
 
 User.create(
@@ -65,7 +65,8 @@ center_lng: -123.103695
   name: "DH-LHL16-#{n}",
   ground_elev: rand(50..100),
   depth: rand(10.00..15.00),
-  logged_by: "PB",
+  logged_by: 'PB',
+  logged_by_id: 2,
   water_level_start: rand(0.00..5.00),
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),

@@ -1,11 +1,12 @@
 class SitesController < ApplicationController
   include ApplicationHelper
   before_action :require_logged_in_user
-  
+
   respond_to :html, :js
 
   def index
-    @sites = Site.all
+    @users_sites = SiteUser.where(user_id: current_user.id).pluck(:site_id)
+    @sites = Site.where(id: @users_sites)
     @site = Site.new
   end
 
@@ -17,6 +18,7 @@ class SitesController < ApplicationController
 
   def create
     @site  = Site.create(site_params)
+    @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
     redirect_to :back
   end
 

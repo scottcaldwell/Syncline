@@ -1,6 +1,9 @@
 Syncline::Application.routes.draw do
-  resources :sites, only: [:index, :show, :create], shallow: true do
-    resources :drill_holes, shallow: true do
+
+  resources :field_tests, only: [:new, :create, :update, :destroy]
+  resources :lab_tests, only: [:new, :create, :update, :destroy]
+  resources :sites, only: [:index, :show, :create] do
+    resources :drill_holes do
       resources :layers
     end
     resources :projects, only: [:index]
@@ -10,9 +13,10 @@ Syncline::Application.routes.draw do
   resources :users, only: [:new, :show, :create, :edit, :destroy]
   get '/sites/:id/layers', to: 'layers#site_layers'
   get '/sites/:id/details', to: 'sites#details'
+  put '/drill_hole/:id/update_reviewer', to: 'drill_holes#update_reviewer'
   root to: 'sessions#index'
 
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
