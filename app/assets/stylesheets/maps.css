@@ -1,7 +1,7 @@
 .map {
 }
 
-#geo-search-map {
+#geo-search-map, #drill-hole-geo-search-map {
   width: 100%;
   height: 500px;
   margin-bottom: 10px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (min-width: 769px) {
-  #geo-search-map {
+  #geo-search-map, #drill-hole-geo-search-map {
     width: 900px;
   }
   #markers-map {

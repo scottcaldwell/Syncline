@@ -116,7 +116,7 @@ $(function() {
     //For each drill-hole, grab data from HTML
     $('.drill-row').each(function(i) {
       var drillHoleDetails = $(this).data('dh-details').drill_hole;
-      var siteDetail = $(this).data('dh-details').site;
+      var siteDetail = $('#project-details').data('site');
       var name = drillHoleDetails.name;
       var depth = drillHoleDetails.depth;
       var location = siteDetail.site_name;

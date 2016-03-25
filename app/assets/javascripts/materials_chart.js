@@ -224,7 +224,7 @@ $(function () {
   };
 
   if (materialDetailsContainer[0] !== undefined) {
-    var siteId = projectDetailsContainer.data('site-id'),
+    var siteId = projectDetailsContainer.data('site').id,
         serverRequests = [];
     helpers.generateMaterialChart();
     helpers.generateProjectChart();

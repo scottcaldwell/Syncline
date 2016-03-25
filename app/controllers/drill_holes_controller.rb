@@ -5,7 +5,7 @@ class DrillHolesController < ApplicationController
   end
 
   def show
-    @drill_hole = DrillHole.find(params[:id]);
+    @drill_hole = DrillHole.find(params[:id])
     @layers = @drill_hole.layers
     @layer = Layer.new
   end
@@ -19,7 +19,8 @@ class DrillHolesController < ApplicationController
   end
 
   def create
-
+    @drill_hole = DrillHole.create(drill_hole_params)
+    redirect_to :back
   end
 
   def update

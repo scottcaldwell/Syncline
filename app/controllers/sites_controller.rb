@@ -13,6 +13,7 @@ class SitesController < ApplicationController
     @site_id = params[:id]
     @site = Site.find(@site_id)
     @drill_holes = DrillHole.where(site_id: @site_id)
+    @drill_hole = DrillHole.new
   end
 
   def create
