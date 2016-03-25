@@ -1,4 +1,7 @@
 Syncline::Application.routes.draw do
+
+  resources :field_tests, only: [:new, :create, :update, :destroy]
+  resources :lab_tests, only: [:new, :create, :update, :destroy]
   resources :sites, only: [:index, :show, :create] do
     resources :drill_holes do
       resources :layers
@@ -13,7 +16,7 @@ Syncline::Application.routes.draw do
   put '/drill_hole/:id/update_reviewer', to: 'drill_holes#update_reviewer'
   root to: 'sessions#index'
 
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
