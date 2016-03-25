@@ -19,6 +19,20 @@
     ruler.append(step);
   }
 
+  function setRuler() {
+    layers = $('#layers-log');
+    var layersHeight = layers.height();
+    var ruler = $('.layer-rules ul');
+    ruler.empty();
+    var numLayers = layersHeight / 25;
+
+    for (var i = 0; i < numLayers; i++) {
+      var num = $('<p>').text((i * 25) /100);
+      var step = $('<li>').append(num);
+      ruler.append(step);
+    }
+  };
+
   // Depth calculation
   function setTotalDepth() {
     var depths = $('.log-column-depth');
@@ -37,6 +51,12 @@
     .on('drop', function() {
       setTotalDepth();        
     });
+
+  // Watch for updates to layers
+  $(document).on('layer-changed', function() {
+    setRuler();
+    setTotalDepth();
+  });
 
 
   // Make site info editable
