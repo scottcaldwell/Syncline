@@ -125,7 +125,7 @@
       </div>
 
       <% for layer in @layers %>
-        <div class="layer columns" data-height='<%= layer.thickness %>'>
+        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>'>
 
           <div class="log-column-depth column layer-height is-1">
             <div class="depth-arrow arrow-up">&#8593;</div>
@@ -154,7 +154,8 @@
 
           <div class="log-column-data column is-4">
             <div class='layer-controls'>
-              <button class='button is-warning button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
+              <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
+              <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
             </div>
           </div>                     
         </div>
@@ -172,33 +173,61 @@
   <!-- end layers -->
 
   <!-- new layer -->
+  <div class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-container">
+      <div class="modal-content">
+        <div class="box">
+          <h2>New Layer</h2>
+
+          <form id='new-edit-layer' class='form new-layer' data-edit='' data-hole-id='<%= @drill_hole.id %>'>
+            <div class="columns">
+              <div class="column is-2">
+                <p class="control">
+                  <label class="label">Thickness</label>
+                  <input id='new_thickness' type='number' class='input'></input>
+                </p>        
+              </div>
+
+              <div class="column is-2">
+                <p class="control">
+                  <label class="label" id='glog'>Graphic Log</label>
+                  <span class='select'>
+                    <select name='glog' id='new_glog'>
+                      <option value='1'>Gravel</option>
+                      <option value='1'>Sand</option>
+                      <option value='1'>Silt</option>
+                      <option value='1'>Clay</option>
+                    </select>
+                  </span>
+                </p>
+              </div>
+
+              <div class="column is-8">
+                <p class="control">
+                  <label class="label">Description</label>
+                  <textarea id='new_desc' class='textarea'></textarea>
+                </p>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column is-12">
+                <p class="control">
+                  <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <button class="modal-close"></button>
+  </div>
+
   <section class='layer-new'>
     <div class="container">
-
-      <h2>New Layer</h2>
-
-      <form id='new-edit-layer' class='form new-layer' data-hole-id='<%= @drill_hole.id %>'>
-
-        <p class="control">
-          <label class="label">Thickness</label>
-          <input id='new_thickness' type='number' class='input'></input>
-        </p>        
-
-        <p class="control">
-          <label class="label">Graphic Log</label>
-          <input id='new_glog' type='number' class='input'></input>
-        </p>
-
-        <p class="control">
-          <label class="label">Description</label>
-          <textarea id='new_desc' class='textarea'></textarea>
-        </p>
-
-        <p class="control">
-          <button class='button is-success button-save'>submit</button>
-        </p>
-      </form>
-
+      <button id='add-layer' class='button is-info is-large add-layer'>Add New Layer</button>
     </div>
   </section>
   <!-- end new form -->

@@ -1,3 +1,7 @@
 .button-full {
   width: 100%;
 }
+
+.button {
+  transition: all .5s linear;
+}

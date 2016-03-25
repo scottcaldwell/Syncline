@@ -92,7 +92,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 9999;
+  z-index: 5;
   opacity: .65;
   transition: all .5s linear;
 }
@@ -101,6 +101,23 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  z-index: 9999;
+  z-index: 5;
+  opacity: 1;
+}
+
+.button-data-edit {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  z-index: 5;
+  opacity: .65;
+  transition: all .5s linear;
+}
+
+.button-data-edit:hover {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  z-index: 5;
   opacity: 1;
 }

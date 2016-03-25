@@ -18,6 +18,12 @@ class LayersController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      format.json { render json: { data: 'hi'} }
+    end
+  end
+
   def site_layers
     @depth_drilled_by_date = Layer.depth_drilled_by_date(params[:id])
     @drill_holes = DrillHole.where(site_id: params[:id])
