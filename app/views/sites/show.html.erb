@@ -9,15 +9,92 @@
 
   <section class='section site-overview'>
     <div class="container">
-      <a class="button is-primary" id="add-drill-hole-button">Add new Drill Hole</a>
+      <a class="button is-primary" id="add-new-drill-hole-button">Add new Drill Hole</a>
       <div id='markers-map' class='map'></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="modal" id="add-new-drill-hole-modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <div class="content">
+            <div>
+              <h1>Select drill hole location from map, or enter manually</h1>
+              <p class="control">
+                <%= form_for [@site, @drill_hole], url: {action: "create"}, html: { class: 'columns' } do |f|%>
+                  <div class="column is-5">
+                    <p class="control columns">
+                      <label class="label column is-3">Logged by:</label>
+                      <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>
+
+                    <p class="control columns">
+                      <label class='label column is-3'>Latitude:</label>
+                      <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>
+
+                    <p class="control columns">
+                      <label class="label column is-3">Longitude:</label>
+                      <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>
+
+                    <p class="control columns">
+                      <label class="label column is-3">Ground Elevation:</label>
+                      <%= f.number_field :ground_elev, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>
+
+                    <p class="control columns">
+                      <label class="label column is-3">Depth:</label>
+                      <%= f.number_field :depth, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>
+                  </div>
+
+                  <div class="column is-5">
+                    Water Level
+                    <div class="water-level container">
+                      <p class="control columns">
+                        <label class="label column is-3">Start:</label>
+                        <%= f.number_field :water_level_start, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      </p>
+
+                      <p class="control columns">
+                        <label class="label column is-3">During:</label>
+                        <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      </p>
+
+                      <p class="control columns">
+                        <label class="label column is-3">End:</label>
+                        <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      </p> 
+                    </div>                       
+
+                    <p class="control columns">
+                      <label class="label column is-3">Hole Size:</label>
+                      <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>                
+
+                    <p class="control columns">
+                      <label class="label column is-3">Method:</label>
+                      <%= f.text_field :method, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                    </p>                
+                  </div>
+                <% end %>
+              </p>
+              <div id="drill-hole-geo-search-map" class='map'></div>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close"></button>
+      </div>
     </div>
   </section>
 
   <section class='section site-charts'>
     <div class="container">
       <div class="columns">
-        <div class="column" id="project-details" style="min-width: 310px; height: 400px; margin: 0 auto" data-site-id="<%= @site.id %>"></div>
+        <div class="column" id="project-details" style="min-width: 310px; height: 400px; margin: 0 auto" data-site="<%= @site.to_json %>"></div>
         <div class="column" id="material-details" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
       </div>
     </div>
@@ -49,7 +126,7 @@
         </tfoot>
         <tbody>
           <% @drill_holes.each do |drill_hole| %>
-            <tr class="drill-row" data-dh-details="<%= {drill_hole: drill_hole, site: @site }.to_json %>">
+            <tr class="drill-row" data-dh-details="<%= { drill_hole: drill_hole }.to_json %>">
               <td><%= drill_hole.name %></td>
               <td><%= number_with_precision(drill_hole.depth, precision: 2) %></td>
               <td><%= @site.site_name %></td>

@@ -9,7 +9,7 @@ class Layer < ActiveRecord::Base
   end
 
   scope :depth_drilled_by_date, -> (site_id) do
-    where(:drill_hole_id => DrillHole.where(site_id: site_id)).select("date_drilled, sum(thickness) as total_thickness").group(:date_drilled)
+    where(:drill_hole_id => DrillHole.where(site_id: site_id).select("id")).select("date_drilled, sum(thickness) as total_thickness").group(:date_drilled)
   end
 
   def round_thickness
