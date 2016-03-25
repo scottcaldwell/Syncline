@@ -99,8 +99,9 @@ $(function() {
   //What does it do if there are no drill sites?
 
   //If markers-map is on page and there is at least one drill hole on site
-  if ($('#markers-map').length > 0 && $('.drill-row').length > 0) {
-    var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors');
+  if ($('#markers-map').length > 0 ) {
+    //var siteCoords=grab data attr to get coordinates. The put them in setView to center map.
+    var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors').setView([50, -123.1], 5);
     var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
     var latlng = [];
@@ -125,7 +126,7 @@ $(function() {
       //Generate array of Lat and Lng for each drill hole, used to center map
       latlng[i] = L.latLng(lat, lng);
       //Generate array of URLs used to redirect from marker popup to drill pages
-      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + i;
+      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + i + 1;
       //Generate markers in GeoJSON format
       markerGeoJSON[i] = {
         type: 'Feature',
@@ -151,24 +152,26 @@ $(function() {
       features: markerGeoJSON
     };
 
-    //Add markers to map
-    myLayer.setGeoJSON(geojson);
 
-    //Add hole data to marker Popup
-    myLayer.eachLayer(function(layer) {
-      var content =
-        '<div>Name: ' + layer.feature.properties.name + '<div/>' +
-        '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
-        '<div>Location: ' + layer.feature.properties.location + '</div>' +
-        '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
-        '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
-      layer.bindPopup(content);
-    });
+    if($('.drill-row').length > 0){
+      //Add markers to map
+      myLayer.setGeoJSON(geojson);
 
-    //Position map to show all markers THIS WORKS
-    var bounds = L.latLngBounds(latlng).pad(0.2);
-    markersMap.fitBounds(bounds);
+      //Add hole data to marker Popup
+      myLayer.eachLayer(function(layer) {
+        var content =
+          '<div>Name: ' + layer.feature.properties.name + '<div/>' +
+          '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
+          '<div>Location: ' + layer.feature.properties.location + '</div>' +
+          '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
+          '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
+        layer.bindPopup(content);
+      });
 
+      //Position map to show all markers THIS WORKS
+      var bounds = L.latLngBounds(latlng).pad(0.2);
+      markersMap.fitBounds(bounds);
+    }
     markersMap.scrollWheelZoom.disable();
   }
 
