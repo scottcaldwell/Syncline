@@ -66,7 +66,7 @@ center_lng: -123.103695
   ground_elev: rand(50..100),
   depth: rand(10.00..15.00),
   logged_by: 'PB',
-  logged_by_id: 1,
+  logged_by_id: 2,
   water_level_start: rand(0.00..5.00),
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),

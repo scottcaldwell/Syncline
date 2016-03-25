@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3><%= @drill_hole.name %> logs have been successfully reviewed by <%= User.find(@drill_hole.reviewed_by_id).first_name %>.</h3>
+    <p>Thanks for being a part of this project and have a great day!</p>
+  </body>
+</html>

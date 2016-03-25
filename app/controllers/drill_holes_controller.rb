@@ -38,7 +38,14 @@ class DrillHolesController < ApplicationController
     @user_initials = @user.first_name[0] + @user.last_name[0]
     @drill_hole.update_attributes(reviewed_by_id: @user.id, reviewed_by: @user_initials)
     if @drill_hole.save
-      UserMailer.review_email(@drill_hole.logged_by_id, @drill_hole).deliver
+      if params[:data] == "Send review completed email"
+        UserMailer.review_complete_email(@drill_hole.logged_by_id, @drill_hole).deliver
+      else
+        UserMailer.review_start_email(@drill_hole.logged_by_id, @drill_hole).deliver
+      end
+      respond_to do |format|
+        format.json { render json: { save: true } }
+      end
     end
   end
 
