@@ -24,6 +24,7 @@
 //= require layer_log
 //= require layer_chart
 //= require new_edit_layer
+//= require layer_order
 //= require depth_values
 //= require notification
 //= require review

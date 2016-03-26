@@ -44,21 +44,55 @@
     });
   }
 
-  setTotalDepth();  
+  setTotalDepth();
+  setOrder();
 
   // initialize layer drag and drop
   dragula([document.querySelector('#layers-log')])
     .on('drop', function() {
       setTotalDepth();        
+      setOrder();
+      writeOrder();
     });
+
+  // set layer order
+  function setOrder() {
+    var allLayers = layers.find('.layer');
+    var count = allLayers.length;
+    var i = 0;
+    allLayers.each(function(index) {
+      $(allLayers[index]).attr('data-order', i);
+      i++;
+    });
+  }
+
+  // Write the new order to the db
+  function writeOrder() {
+    var data = new FormData();
+    var newOrder = []
+    $('.layer').each(function(i) {
+      newOrder.push({ id: $(this).data("id"), position: i })
+    });
+    data.append('order', newOrder);
+
+    $.ajax('/layers/sort', {
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      dataType: 'json',
+      data: { order: JSON.stringify(newOrder) },
+      // cache: false,
+      // contentType: ,
+      // processData: false,
+      type: 'put'
+    }).done(function(res) {
+      console.log(res);
+    });
+  }
 
   // Watch for updates to layers
   $(document).on('layer-changed', function() {
     setRuler();
     setTotalDepth();
-    console.log('huh?')
   });
-
 
   // Make site info editable
   var siteForm = $('.drill-log form');

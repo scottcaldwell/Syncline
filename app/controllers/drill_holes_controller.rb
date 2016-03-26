@@ -6,10 +6,10 @@ class DrillHolesController < ApplicationController
 
   def show
     @drill_hole = DrillHole.find(params[:id])
-    @layers = @drill_hole.layers
+    @layers = @drill_hole.layers.order("layer_order ASC")
     @layer = Layer.new
-
     @materials = MaterialType.all
+    @field_data = @layers.each { |layer| layer.field_tests }
   end
 
   def new

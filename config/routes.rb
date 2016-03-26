@@ -11,11 +11,13 @@ Syncline::Application.routes.draw do
 
   resource :session, only: [:create, :destroy, :index, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
+
   get '/sites/:id/layers', to: 'layers#site_layers'
   get '/sites/:id/details', to: 'sites#details'
   put '/drill_hole/:id/update_reviewer', to: 'drill_holes#update_reviewer'
+  put '/layers/sort', to: 'layers#sort'
+  
   root to: 'sessions#index'
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

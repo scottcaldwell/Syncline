@@ -125,7 +125,7 @@
       </div>
 
       <% for layer in @layers %>
-        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>'>
+        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>' data-order='<%= layer.layer_order %>'>
 
           <div class="log-column-depth column layer-height is-1">
             <div class="depth-arrow arrow-up">&#8593;</div>
