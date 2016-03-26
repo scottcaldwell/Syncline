@@ -14,7 +14,11 @@ $(function() {
       nameHasBeenInput = false,
       siteName = $('#site_site_name'),
       siteLat = $('#site_center_lat'),
-      siteLng = $('#site_center_lng');
+      siteLng = $('#site_center_lng'),
+      divId,
+      initialLat,
+      initialLng,
+      zoom;
 
   var helpers = {
     generateMap: function(divId, lat, lng, zoom) {
@@ -78,10 +82,10 @@ $(function() {
   //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
     
-    var divId = 'geo-search-map',
-        initialLat = 50,
-        initialLng = -123.1,
-        zoom = 5;
+    divId = 'geo-search-map';
+    initialLat = 50;
+    initialLng = -123.1;
+    zoom = 5;
 
     //Create map
     helpers.generateMap(divId, initialLat, initialLng, zoom);
@@ -93,10 +97,10 @@ $(function() {
   //If geo-search-map is in HTML, run js
   if ($('#drill-hole-geo-search-map').length > 0) {
     
-    var divId = 'drill-hole-geo-search-map',
-        initialLat = siteDetails.center_lat,
-        initialLng = siteDetails.center_lng,
-        zoom = 8;
+    divId = 'drill-hole-geo-search-map';
+    initialLat = siteDetails.center_lat;
+    initialLng = siteDetails.center_lng;
+    zoom = 8;
 
     //Create map
     helpers.generateMap(divId, initialLat, initialLng, zoom);
