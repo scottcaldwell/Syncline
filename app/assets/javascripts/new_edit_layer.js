@@ -59,7 +59,7 @@
       processData: false,
       type: 'post'
     }).done(function(res) {
-      console.log(res);
+      renderLog.newLayer(res);
     });
   };
 
@@ -67,7 +67,7 @@
     var split = holeMeta.split('-');
     var formData = new FormData();
     var siteId = split[0];
-  var holeId = split[0];
+    var holeId = split[0];
     var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/' + layerId;
 
     formData.append('drill_hole_id', holeId);
@@ -84,18 +84,19 @@
       processData: false,
       type: 'put'
     }).done(function(res) {
-      renderLog.updateLayer(layerId, res.data);
+      renderLog.updateLayer(layerId, res);
     });
   };
 
   var renderLog = {
     updateLayer: function(id, data) {
       var layer = $('div[data-id="' + id + '"]');
-      layer.attr('data-height', data.thickness);
-      layer.css('height', parseFloat(data.thickness) * 100 + 'px');
-      layer.find('.thickness-val').text(data.thickness);
-      layer.find('.log-column-glog').removeClass('gl-silt')
-                                    .addClass('gl-silt')
+      layer.attr('data-height', data.data.thickness);
+      layer.css('height', parseFloat(data.data.thickness) * 100 + 'px');
+      layer.find('.thickness-val').text(data.data.thickness);
+      layer.find('.log-column-glog').removeClass()
+                                    .addClass('log-column-glog column is-1 gl')
+                                    .addClass('gl-' + data.material )
                                     .find('p')
                                     .text('silt');
       layer.find('.log-column-desc p').text(data.description);
@@ -104,8 +105,14 @@
       layer.trigger('layer-changed');
     },
 
-    newLayer: function() {
-
+    newLayer: function(data) {
+      var source = $('#layer-template').html();
+      console.log(source);
+      var template = Handlebars.compile(source);
+      var context = { id: data.data.id, thickness: (data.data.thickness * 100), material: data.material, description: data.data.description }
+      var html = template(context);
+      $('.layer').last().after(html);
+      $(document).trigger('layer-changed');
     }
   };
 

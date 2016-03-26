@@ -26,9 +26,10 @@ class LayersController < ApplicationController
       description: params[:description],
       material_type_id: params[:material_type_id]
     )
+    material = MaterialType.find(params[:material_type_id])
 
     respond_to do |format|
-      format.json { render json: { data: @layer } }
+      format.json { render json: { data: @layer, material: material.name } }
     end
   end
 

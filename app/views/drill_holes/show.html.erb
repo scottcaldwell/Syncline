@@ -194,10 +194,9 @@
                   <label class="label" id='glog'>Graphic Log</label>
                   <span class='select'>
                     <select name='glog' id='new_glog'>
-                      <option value='1'>Gravel</option>
-                      <option value='1'>Sand</option>
-                      <option value='1'>Silt</option>
-                      <option value='1'>Clay</option>
+                      <% for material in @materials %>
+                        <option value='<%= material.id %>'><%= material.name %></option>
+                      <% end %>
                     </select>
                   </span>
                 </p>
@@ -231,3 +230,40 @@
   </section>
   <!-- end new form -->
 </article>
+
+<script id="layer-template" type="text/x-handlebars-template">
+  <div class="layer columns" data-height='{{ thickness }}' data-id='{{ id }}' style='height: {{ thickness }}px'>
+    <div class="log-column-depth column layer-height is-1">
+      <div class="depth-arrow arrow-up">&#8593;</div>
+      <div class="depth-indicator"></div>
+      <div class="depth-arrow arrow-down">&#8595;</div>
+      <div class='col-centered'>
+        <span class='thickness-val'>{{ thickness }}</span>m
+      </div>
+      <div class="abs-depth">
+        <div class='abs-depth-value'></div>
+        <!-- <div class="abs-depth-arrow"></div> -->
+      </div>
+    </div>
+
+    <div class="log-column-glog column is-1 gl gl-Gravel">
+      <p>Gravel</p>
+    </div>
+
+    <div class="log-column-desc column is-5">
+      <p>{{ description }}</p>
+    </div>
+
+    <div class="log-column-type column is-1">
+      <p></p>
+    </div>
+
+    <div class="log-column-data column is-4">
+
+      <div class='layer-controls'>
+        <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
+        <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
+      </div>
+    </div>
+  </div>
+</script>
