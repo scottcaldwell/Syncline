@@ -1,5 +1,9 @@
 Syncline::Application.routes.draw do
 
+  get "site_users/create"
+  get "site_users/new"
+  get "site_users/edit"
+  get "site_users/destroy"
   resources :field_tests, only: [:new, :create, :update, :destroy]
   resources :lab_tests, only: [:new, :create, :update, :destroy]
   resources :sites, only: [:index, :show, :create] do
@@ -9,6 +13,7 @@ Syncline::Application.routes.draw do
     resources :projects, only: [:index]
   end
 
+  resources :site_users, only: [:new, :create]
   resource :session, only: [:create, :destroy, :index, :new]
   resources :users, only: [:new, :show, :create, :edit, :destroy]
 
