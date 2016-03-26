@@ -3,11 +3,11 @@ $(function () {
   var handlers = {
     modalOpen: function (evt) {
       evt.preventDefault();
-      $('.modal').addClass('is-active');
+      $('#add-site-modal').addClass('is-active');
     },
     modalClose: function (evt) {
       evt.preventDefault();
-      $('.modal').removeClass('is-active');
+      $('#add-site-modal').removeClass('is-active');
     }
   };
 

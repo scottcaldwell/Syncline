@@ -6,11 +6,11 @@ $(function () {
   var handlers = {
     modalOpen: function (evt) {
       evt.preventDefault();
-      $('.modal').addClass('is-active');
+      $('#add-new-drill-hole-modal').addClass('is-active');
     },
     modalClose: function (evt) {
       evt.preventDefault();
-      $('.modal').removeClass('is-active');
+      $('#add-new-drill-hole-modal').removeClass('is-active');
     }
   };
 

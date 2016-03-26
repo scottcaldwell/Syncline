@@ -7,88 +7,115 @@ $(function() {
   //Geo-search map, allows user to initialize site location
 
   //TODO
+  var siteDetails = $('#project-details').data('site'),
+      geoSearchMap,
+      geocoderControl,
+      marker,
+      nameHasBeenInput = false,
+      siteName = $('#site_site_name'),
+      siteLat = $('#site_center_lat'),
+      siteLng = $('#site_center_lng');
 
-  //If geo-search-map is in HTML, run js
-  if ($('#geo-search-map').length > 0) {
-    //Create map
-    var geoSearchMap = L.mapbox.map('geo-search-map', 'mapbox.outdoors')
-      .setView([50, -123.1], 5); // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
-    geoSearchMap.scrollWheelZoom.disable();
-
-    var button = $('input[type=submit]');
-    var siteName = $('#site_site_name');
-    var siteLat = $('#site_center_lat');
-    var siteLng = $('#site_center_lng');
-    var nameHasBeenInput = false;
-    var marker;
-
-    //Add search bar
-    var geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
-      autocomplete: true,
-      keepOpen: true
-    });
-    geocoderControl.addTo(geoSearchMap);
-
-    //When location is selected(via search or click), add marker and show button
-    geocoderControl.on('select', function(res) {
-      var coord = res.feature.geometry.coordinates;
-      addMarker(coord[1], coord[0]);
-    });
-
-    //When map is clicked, addMarker()
-    geoSearchMap.on('click', function(e) {
-      var lat = e.latlng.lat;
-      var lng = e.latlng.lng;
-      addMarker(lat, lng);
-    });
-
-    //Fixes modal bug for map. Without this, Map tiles don't load entirely
-    $("#add-site-button").on('click', function() {
+  var helpers = {
+    generateMap: function(divId, lat, lng, zoom) {
+      // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
+      geoSearchMap = L.mapbox.map(divId, 'mapbox.outdoors').setView([lat, lng], zoom);
+      geoSearchMap.scrollWheelZoom.disable();
+    },
+    addSearchBar: function () {
+      geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
+        autocomplete: true,
+        keepOpen: true
+      });
+      geocoderControl.addTo(geoSearchMap);
+    },
+    setMarkerViaSearch: function () {
+      var coordinates = res.feature.geometry.coordinates;
+      helpers.addMarker(coordinates[1], coordinates[0]);
+    },
+    setMarkerOnClick: function (evt) {
+      var lat = evt.latlng.lat;
+      var lng = evt.latlng.lng;
+      helpers.addMarker(lat, lng);
+    },
+    nameHasBeenInputByUser: function () {
+      nameHasBeenInput = true;
+    },
+    siteLatOrLngHasBeenInputByUser: function () {
+      helpers.addMarker(siteLat.val(), siteLng.val());
+    },
+    //Adds marker to map, calls getLocation()
+    addMarker: function (lat, lng) {
+      if (marker) {
+        geoSearchMap.removeLayer(marker);
+      }
+      marker = L.marker(new L.LatLng(lat, lng));
+      marker.addTo(geoSearchMap);
+      helpers.getLocation(lat, lng);
+    },
+    //Reverse geocoding, grabs JSON info about location based on Lat/Lng
+    //Fills in form fields when marker is moved(unless user has enetered custom site name)
+    getLocation: function (lat, lng) {
+      var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
+      $.getJSON(url, function(result) {
+        if (!nameHasBeenInput) {
+          siteName.val(result.features[0].place_name); //Fill site name field
+        }
+        siteLat.val(lat);
+        siteLng.val(lng);
+      });
+    },
+    timeoutModal: function() {
       //hack solution, but without delay it won't work.
       //I also tried to .invalidateSize() on other events like show, but they didn't work.
       setTimeout(func, 10);
-
       function func() {
         geoSearchMap.invalidateSize();
       }
-
-    });
-
-    //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
-    siteName.on("input", function() {
-      nameHasBeenInput = true;
-    });
-    //When user changes lat/lng, move marker to this new location
-    siteLat.on("input", function() {
-      addMarker(siteLat.val(), siteLng.val());
-    });
-    siteLng.on("input", function() {
-      addMarker(siteLat.val(), siteLng.val());
-    });
-  }
-
-  //Adds marker to map, calls getLocation()
-  function addMarker(lat, lng) {
-    if (marker) {
-      geoSearchMap.removeLayer(marker);
     }
-    marker = L.marker(new L.LatLng(lat, lng));
-    marker.addTo(geoSearchMap);
-    getLocation(lat, lng);
+  };
+
+  //If geo-search-map is in HTML, run js
+  if ($('#geo-search-map').length > 0) {
+    
+    var divId = 'geo-search-map',
+        initialLat = 50,
+        initialLng = -123.1,
+        zoom = 5;
+
+    //Create map
+    helpers.generateMap(divId, initialLat, initialLng, zoom);
+    //Add search bar
+    helpers.addSearchBar();
+    
   }
 
-  //Reverse geocoding, grabs JSON info about location based on Lat/Lng
-  //Fills in form fields when marker is moved(unless user has enetered custom site name)
-  function getLocation(lat, lng) {
-    var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
-    $.getJSON(url, function(json) {
-      if (!nameHasBeenInput) {
-        siteName.val(json.features[0].place_name); //Fill site name field
-      }
-      siteLat.val(lat);
-      siteLng.val(lng);
-    });
+  //If geo-search-map is in HTML, run js
+  if ($('#drill-hole-geo-search-map').length > 0) {
+    
+    var divId = 'drill-hole-geo-search-map',
+        initialLat = siteDetails.center_lat,
+        initialLng = siteDetails.center_lng,
+        zoom = 8;
+
+    //Create map
+    helpers.generateMap(divId, initialLat, initialLng, zoom);
+    //Add search bar
+    helpers.addSearchBar();  
   }
+
+  //When location is selected(via search or click), add marker and show button
+  geocoderControl.on('select', helpers.setMarkerViaSearch);
+  //When map is clicked, addMarker()
+  geoSearchMap.on('click', helpers.setMarkerOnClick);
+  //Fixes modal bug for map. Without this, Map tiles don't load entirely
+  $("#add-site-button").on('click', helpers.timeoutModal);
+  $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
+  //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
+  siteName.on("input", helpers.nameHasBeenInputByUser);
+  //When user changes lat/lng, move marker to this new location
+  siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+  siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
 
 
   //++++++++++++++++ markersMap +++++++++++++++++//
