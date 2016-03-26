@@ -15,6 +15,8 @@ class SitesController < ApplicationController
     @site = Site.find(@site_id)
     @drill_holes = DrillHole.where(site_id: @site_id)
     @drill_hole = DrillHole.new
+    session[:site_id] = @site_id
+    is_a_site_user
   end
 
   def create
@@ -38,6 +40,13 @@ class SitesController < ApplicationController
       flash[:error] = "You must be logged in to see your sites"
       redirect_to root_path
     end
+  end
+
+  def is_a_site_user
+    if SiteUser.where("user_id = ? AND site_id = ?", current_user.id, current_site).count < 1
+      flash[:error] = "You must be authorized to see this site"
+      redirect_to root_path
+    end  
   end
 
   def site_params

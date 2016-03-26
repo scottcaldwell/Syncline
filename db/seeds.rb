@@ -62,7 +62,7 @@ center_lng: -123.103695
 
 (1..10).each do |n|
   DrillHole.create(
-  name: "DH-LHL16-#{n}",
+  name: "DH-SYN16-#{n}",
   ground_elev: rand(50..100),
   depth: rand(10.00..15.00),
   logged_by: 'PB',
@@ -71,6 +71,24 @@ center_lng: -123.103695
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),
   site_id: 1,
+  dh_lat: rand(49.411133..49.415450),
+  dh_lng: -1 * rand(123.084171..123.091066),
+  hole_size: 7.5,
+  method: "Auger"
+  )
+end
+
+(1..10).each do |n|
+  DrillHole.create(
+  name: "DH-LHL16-#{n}",
+  ground_elev: rand(50..100),
+  depth: rand(10.00..15.00),
+  logged_by: 'JB',
+  logged_by_id: 1,
+  water_level_start: rand(0.00..5.00),
+  water_level_during: rand(0.00..5.00),
+  water_level_end: rand(0.00..5.00),
+  site_id: 2,
   dh_lat: rand(49.411133..49.415450),
   dh_lng: -1 * rand(123.084171..123.091066),
   hole_size: 7.5,

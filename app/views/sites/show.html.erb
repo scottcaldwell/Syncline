@@ -27,28 +27,29 @@
                   <div class="column is-5">
                     <p class="control columns">
                       <label class="label column is-3">Logged by:</label>
-                      <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
 
                     <p class="control columns">
                       <label class='label column is-3'>Latitude:</label>
-                      <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
 
                     <p class="control columns">
                       <label class="label column is-3">Longitude:</label>
-                      <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
 
                     <p class="control columns">
                       <label class="label column is-3">Ground Elevation:</label>
-                      <%= f.number_field :ground_elev, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.number_field :ground_elev, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
 
                     <p class="control columns">
                       <label class="label column is-3">Depth:</label>
-                      <%= f.number_field :depth, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.number_field :depth, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
+
                   </div>
 
                   <div class="column is-5">
@@ -56,29 +57,33 @@
                     <div class="water-level container">
                       <p class="control columns">
                         <label class="label column is-3">Start:</label>
-                        <%= f.number_field :water_level_start, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                        <%= f.number_field :water_level_start, class: 'input column is-8 is-medium input-locked' %>
                       </p>
 
                       <p class="control columns">
                         <label class="label column is-3">During:</label>
-                        <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                        <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked' %>
                       </p>
 
                       <p class="control columns">
                         <label class="label column is-3">End:</label>
-                        <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                        <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked' %>
                       </p> 
                     </div>                       
 
                     <p class="control columns">
                       <label class="label column is-3">Hole Size:</label>
-                      <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked', readonly: true %>
+                      <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked' %>
                     </p>                
 
                     <p class="control columns">
                       <label class="label column is-3">Method:</label>
-                      <%= f.text_field :method, class: 'input column is-8 is-medium input-locked', readonly: true %>
-                    </p>                
+                      <%= f.text_field :method, class: 'input column is-8 is-medium input-locked' %>
+                    </p>
+
+                    <p class="control">
+                      <%= f.submit "Add Drill Hole", class: 'button is-primary site-submit-button' %>
+                    </p>               
                   </div>
                 <% end %>
               </p>
