@@ -13,6 +13,7 @@ class SitesController < ApplicationController
   def show
     @site_id = params[:id]
     @site = Site.find(@site_id)
+    @site_user = SiteUser.new
     @drill_holes = DrillHole.where(site_id: @site_id)
     @drill_hole = DrillHole.new
     session[:site_id] = @site_id
