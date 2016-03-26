@@ -12,7 +12,7 @@
   saveBtn.on('click', function(e) {
     e.preventDefault();
     if (newEditForm.hasClass('form-edit')) {
-      editReq(newEditForm.data('lid'));
+      editReq(newEditForm.attr('data-lid'));
     } else {
       newReq();
     }
@@ -99,7 +99,7 @@
                                     .addClass('gl-' + data.material )
                                     .find('p')
                                     .text('silt');
-      layer.find('.log-column-desc p').text(data.description);
+      layer.find('.log-column-desc p').text(data.data.description);
 
       // trigger events
       layer.trigger('layer-changed');
