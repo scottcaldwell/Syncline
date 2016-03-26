@@ -8,6 +8,8 @@ class DrillHolesController < ApplicationController
     @drill_hole = DrillHole.find(params[:id])
     @layers = @drill_hole.layers
     @layer = Layer.new
+
+    @materials = MaterialType.all
   end
 
   def new

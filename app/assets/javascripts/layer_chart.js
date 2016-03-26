@@ -79,5 +79,13 @@
       lastPoint = point;
     });
   }
+
+  $(document).on('layer-changed', function() {
+    resizeChart();
+    draw(data1, 'blue', true);
+    draw(data2, 'green', false);
+    draw(data3, 'red', false);
+    setGrid();
+  })
  
 })();

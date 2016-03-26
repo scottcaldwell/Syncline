@@ -56,6 +56,7 @@
   $(document).on('layer-changed', function() {
     setRuler();
     setTotalDepth();
+    console.log('huh?')
   });
 
 
