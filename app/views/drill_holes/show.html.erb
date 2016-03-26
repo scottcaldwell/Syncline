@@ -4,7 +4,7 @@
       <div class='heading'>
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
         <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
-      </div>   
+      </div>
     </div>
   </header>
 
@@ -53,17 +53,17 @@
         <p class="control columns">
           <label class="label column is-3">End:</label>
           <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked', readonly: true %>
-        </p>                        
+        </p>
 
         <p class="control columns">
           <label class="label column is-3">Hole Size:</label>
           <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked', readonly: true %>
-        </p>                
+        </p>
 
         <p class="control columns">
           <label class="label column is-3">Method:</label>
           <%= f.text_field :method, class: 'input column is-8 is-medium input-locked', readonly: true %>
-        </p>                
+        </p>
       </div>
 
       <div class="column is-2 drill-log-controls">
@@ -81,7 +81,7 @@
         </p>
 
         <p class="control">
-          <button class="control-review button button-full is-info">Mark as Reviewed</button>  
+          <button class="control-review button button-full is-info">Mark as Reviewed</button>
         </p>
       </div>
     <% end %>
@@ -111,8 +111,8 @@
 
         <div class="log-column-title column is-4">
           <p class='is-text-centered'>Sample Data</p>
-        </div>                        
-      </header>    
+        </div>
+      </header>
     </div>
   </section>
   <!-- end layers header -->
@@ -130,7 +130,7 @@
           <div class="log-column-depth column layer-height is-1">
             <div class="depth-arrow arrow-up">&#8593;</div>
             <div class="depth-indicator"></div>
-            <div class="depth-arrow arrow-down">&#8595;</div>        
+            <div class="depth-arrow arrow-down">&#8595;</div>
             <div class='col-centered'>
               <span class='thickness-val'><%= layer.round_thickness %></span>m
             </div>
@@ -157,16 +157,17 @@
               <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
               <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
             </div>
-          </div>                     
+          </div>
+
         </div>
 
       <% end %>
 
-      <canvas id='layer-data' class='layer-data'></canvas>    
+      <canvas id='layer-data' class='layer-data'></canvas>
 
       <div class="layer-rules layer-rules-right">
         <ul></ul>
-      </div>    
+      </div>
 
     <!-- </div> -->
   </section>
@@ -186,7 +187,7 @@
                 <p class="control">
                   <label class="label">Thickness</label>
                   <input id='new_thickness' type='number' class='input'></input>
-                </p>        
+                </p>
               </div>
 
               <div class="column is-2">
