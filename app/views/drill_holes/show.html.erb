@@ -1,7 +1,7 @@
 <article class='page-body content' data-site='<%= @drill_hole.id %>-<%= @drill_hole.site.id %>'>
-  <header class='page-header'>
+  <header class='page-header static-map'>
     <div class="container">
-      <div class='heading'>
+      <div class='heading' id="drill-hole" data-drill-hole-id="<%= @drill_hole.id %>">
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
         <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
       </div>
@@ -153,12 +153,12 @@
           </div>
 
           <div class="log-column-data column is-4">
+
             <div class='layer-controls'>
               <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
               <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
             </div>
           </div>
-
         </div>
 
       <% end %>
@@ -168,7 +168,6 @@
       <div class="layer-rules layer-rules-right">
         <ul></ul>
       </div>
-
     <!-- </div> -->
   </section>
   <!-- end layers -->
@@ -211,7 +210,6 @@
                 </p>
               </div>
             </div>
-
             <div class="columns">
               <div class="column is-12">
                 <p class="control">
