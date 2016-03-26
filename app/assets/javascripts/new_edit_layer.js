@@ -109,7 +109,13 @@
       var source = $('#layer-template').html();
       console.log(source);
       var template = Handlebars.compile(source);
-      var context = { id: data.data.id, thickness: (data.data.thickness * 100), material: data.material, description: data.data.description }
+      var context = { 
+        id: data.data.id, 
+        thickness: data.data.thickness,
+        layer_height: (data.data.thickness * 100),
+        material: data.material, 
+        description: data.data.description 
+      }
       var html = template(context);
       $('.layer').last().after(html);
       $(document).trigger('layer-changed');
