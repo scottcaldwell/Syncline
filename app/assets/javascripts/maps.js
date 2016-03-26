@@ -103,19 +103,20 @@ $(function() {
     //Add search bar
     helpers.addSearchBar();  
   }
-
-  //When location is selected(via search or click), add marker and show button
-  geocoderControl.on('select', helpers.setMarkerViaSearch);
-  //When map is clicked, addMarker()
-  geoSearchMap.on('click', helpers.setMarkerOnClick);
-  //Fixes modal bug for map. Without this, Map tiles don't load entirely
-  $("#add-site-button").on('click', helpers.timeoutModal);
-  $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
-  //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
-  siteName.on("input", helpers.nameHasBeenInputByUser);
-  //When user changes lat/lng, move marker to this new location
-  siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
-  siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+  if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
+    //When location is selected(via search or click), add marker and show button
+    geocoderControl.on('select', helpers.setMarkerViaSearch);
+    //When map is clicked, addMarker()
+    geoSearchMap.on('click', helpers.setMarkerOnClick);
+    //Fixes modal bug for map. Without this, Map tiles don't load entirely
+    $("#add-site-button").on('click', helpers.timeoutModal);
+    $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
+    //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
+    siteName.on("input", helpers.nameHasBeenInputByUser);
+    //When user changes lat/lng, move marker to this new location
+    siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+    siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+  }
 
 
   //++++++++++++++++ markersMap +++++++++++++++++//
