@@ -57,11 +57,11 @@
 }
 
 .arrow-up {
-  top: 50px;
+  top: -10px;
 }
 
 .arrow-down {
-  bottom: 50px;
+  bottom: 0px;
 }
 
 .abs-depth {
