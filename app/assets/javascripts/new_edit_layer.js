@@ -1,13 +1,13 @@
 (function() {
 
-  var formModal = $('.modal')
+  var formModal = $('.modal');
   var newEditForm = formModal.find('#new-edit-layer');
   var openNew = $('#add-layer');
   var holeId = newEditForm.data('hole-id');
   var editBtn = $('.button-layer-edit');
   var newBtn = $();
   var saveBtn = $('.button-save');
-  var holeMeta = $('.page-body').data('site').split('-');
+  var holeMeta = $('.page-body').data('site');
 
   saveBtn.on('click', function(e) {
     e.preventDefault();
@@ -22,7 +22,7 @@
 
   openNew.on('click', function() {
     formModal.addClass('is-active');
-    newEditForm.removeClass('form-edit')
+    newEditForm.removeClass('form-edit');
   });
 
   editBtn.on('click', function() {
@@ -45,7 +45,7 @@
     var siteId = holeMeta[0];
     var holeId = holeMeta[0];
     var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/';
-    
+
     formData.append('drill_hole_id', holeId);
     formData.append('thickness', $(newEditForm.find('#new_thickness')[0]).val());
     formData.append('description', $(newEditForm.find('#new_desc')[0]).val());
@@ -57,16 +57,17 @@
       cache: false,
       contentType: false,
       processData: false,
-      type: 'post'      
+      type: 'post'
     }).done(function(res) {
       console.log(res);
     });
   };
 
   function editReq(layerId) {
+    var split = holeMeta.split('-');
     var formData = new FormData();
-    var siteId = holeMeta[0];
-    var holeId = holeMeta[0];
+    var siteId = split[0];
+  var holeId = split[0];
     var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/' + layerId;
 
     formData.append('drill_hole_id', holeId);
@@ -83,7 +84,7 @@
       processData: false,
       type: 'put'
     }).done(function(res) {
-      renderLog.updateLayer(layerId, res.data)
+      renderLog.updateLayer(layerId, res.data);
     });
   };
 
@@ -106,6 +107,6 @@
     newLayer: function() {
 
     }
-  }
+  };
 
 })();
