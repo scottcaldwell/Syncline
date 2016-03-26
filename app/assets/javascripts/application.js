@@ -17,6 +17,7 @@
 //= require highcharts/modules/data
 //= require highcharts/modules/drilldown
 //= require highcharts/modules/exporting
+//= require modal
 //= require moment
 //= require dragula
 //= require materials_chart
