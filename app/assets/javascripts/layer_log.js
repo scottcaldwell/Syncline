@@ -44,7 +44,8 @@
     });
   }
 
-  setTotalDepth();  
+  setTotalDepth();
+  setOrder();
 
   // initialize layer drag and drop
   dragula([document.querySelector('#layers-log')])
@@ -67,16 +68,31 @@
 
   // Write the new order to the db
   function writeOrder() {
-    console.log('ORDER');
+    var data = new FormData();
+    var newOrder = []
+    $('.layer').each(function(i) {
+      newOrder.push({ id: $(this).data("id"), position: i })
+    });
+    data.append('order', newOrder);
+
+    $.ajax('/layers/sort', {
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      dataType: 'json',
+      data: { order: JSON.stringify(newOrder) },
+      // cache: false,
+      // contentType: ,
+      // processData: false,
+      type: 'put'
+    }).done(function(res) {
+      console.log(res);
+    });
   }
 
   // Watch for updates to layers
   $(document).on('layer-changed', function() {
     setRuler();
     setTotalDepth();
-    console.log('huh?')
   });
-
 
   // Make site info editable
   var siteForm = $('.drill-log form');
