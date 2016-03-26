@@ -50,7 +50,25 @@
   dragula([document.querySelector('#layers-log')])
     .on('drop', function() {
       setTotalDepth();        
+      setOrder();
+      writeOrder();
     });
+
+  // set layer order
+  function setOrder() {
+    var allLayers = layers.find('.layer');
+    var count = allLayers.length;
+    var i = 0;
+    allLayers.each(function(index) {
+      $(allLayers[index]).attr('data-order', i);
+      i++;
+    });
+  }
+
+  // Write the new order to the db
+  function writeOrder() {
+    console.log('ORDER');
+  }
 
   // Watch for updates to layers
   $(document).on('layer-changed', function() {
