@@ -104,15 +104,17 @@
           <div>
             <h1>Add a someone to this site by their email address</h1>
             <p class="control">
-              <%= form_for @site_user do |f|%>
+              <%= form_tag site_users_path do %>
                 <div class="columns">
                   <div class="column is-third-tablet is-half-desktop">
-                    <p>
-                      <%= f.label "User's Email:" %><br />
-                      <%= f.text_field :user_id, required: true%>
+                    <p class="control has-icon">
+                      <input class="input" name="user[email]" type="email" placeholder="Email">
+                      <i class="fa fa-envelope"></i>
                     </p>
-                    <p>
-                      <%= f.submit 'Add User', :class => 'button is-primary' %>
+                    <p class="control">
+                      <button class="button is-success">
+                        Submit
+                      </button>
                     </p>
                   </div>
                 </div>

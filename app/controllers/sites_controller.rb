@@ -23,7 +23,6 @@ class SitesController < ApplicationController
   def create
     @site  = Site.create(site_params)
     @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
-    redirect_to :back
   end
 
   def details
@@ -47,7 +46,7 @@ class SitesController < ApplicationController
     if SiteUser.where("user_id = ? AND site_id = ?", current_user.id, current_site).count < 1
       flash[:error] = "You must be authorized to see this site"
       redirect_to root_path
-    end  
+    end
   end
 
   def site_params
