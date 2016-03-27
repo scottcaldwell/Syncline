@@ -12,21 +12,18 @@
     var lData = [];
 
     fieldTests.find('.field-test').each(function(el) {
-      fData.push([ $(this).data('to') * 20, $(this).data('from') * 100 ])
+      fData.push([ $(this).data('to') * 40, $(this).data('from') * 100 ])
     });
 
     labTests.find('.lab-test').each(function(el) {
-      lData.push([ $(this).data('to') * 20, $(this).data('from') * 100 ])
+      lData.push([ $(this).data('to') * 80, $(this).data('from') * 100 ])
     });
 
     resizeChart();
     draw(fData, 'blue', true);
     draw(lData, 'green', false);
-    // draw(data2, 'green', false);
-    // draw(data3, 'red', false);
     setGrid();
   }
-
 
   function resizeChart() {
     chart.width = $('.log-column-data').width();
