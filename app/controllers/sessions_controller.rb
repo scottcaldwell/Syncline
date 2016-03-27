@@ -27,6 +27,9 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:site_id] = nil
+    session[:layer_id] = nil
+    session[:field_test_id] = nil
+    session[:lab_test_id] = nil
     redirect_to root_path, notice: "You've successfully signed out."
   end
 

@@ -8,4 +8,16 @@ module ApplicationHelper
     session[:site_id]
   end
 
+  def current_layer
+    session[:layer_id]
+  end
+
+  def current_field_test
+    session[:field_test_id]
+  end
+
+  def current_lab_test
+    session[:lab_test_id]
+  end
+
 end
