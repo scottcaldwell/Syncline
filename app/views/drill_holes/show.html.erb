@@ -154,8 +154,7 @@
 
           <div class="log-column-data column is-4">
             <div class='layer-controls'>
-              <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
-              <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
+              <button class='button is-primary button-layer-edit'><i class="fa fa-gear"></i></button>
             </div>
           </div>
         </div>
@@ -177,6 +176,24 @@
     <div class="modal-container">
       <div class="modal-content">
         <div class="box">
+
+            <div class="tabs is-toggle is-fullwidth">
+              <ul id='layer-tabs'>
+                <li id='edit-layer-tab' class="is-active">
+                  <a><i class="fa fa-edit"></i> Edit Layer</a>
+                </li>
+                <li id='add-ft-tab'>
+                  <a><i class="fa fa-plus"></i> Add Field Test</a>
+                </li>
+                <li id='add-lt-tab'>
+                  <a><i class="fa fa-plus"></i> Add Lab Test</a>
+                </li>
+                <li id='new-layer-tab'>
+                  <a><i class="fa fa-file-text-o"></i> New Layer</a>
+                </li>
+              </ul>
+            </div>
+
           <h2>New Layer</h2>
 
           <form id='new-edit-layer' class='form new-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
@@ -243,6 +260,7 @@
 </article>
 
 <script id="layer-template" type="text/x-handlebars-template">
+
   <div class="layer columns" data-height='{{ thickness }}' data-id='{{ id }}' style='height: {{ layer_height }}px'>
     <div class="log-column-depth column layer-height is-1">
       <div class="depth-arrow arrow-up">&#8593;</div>
