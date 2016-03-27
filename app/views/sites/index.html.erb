@@ -50,18 +50,20 @@
                     <h1>Select site from map, or enter manually</h1>
                     <p class="control">
                       <%= form_for @site, html: { class: 'columns' } do |f|%>
-                        <div class="column is-third-tablet is-half-desktop">
+                        <div class="column is-third-tablet is-half-desktop ">
                           <p class="columns">
                             <%= f.label 'Site Name:', :class => "label column is-3" %><br />
                             <%= f.text_field :site_name, :class => 'input column is-8 is-medium input-locked', required: true%>
                           </p>
-                          <p class="columns">
+                          <p class="columns latitude-input">
                             <%= f.label 'Latitude: ', :class => "label column is-3" %><br />
                             <%= f.text_field :center_lat, :class => 'input column is-8 is-medium input-locked', required: true %>
+                            <span id="latitude-helper">Enter Valid Latitude</span>
                           </p>
-                          <p class="columns">
+                          <p class="columns longitude-input">
                             <%= f.label 'Longitude: ', :class => "label column is-3" %><br />
                             <%= f.text_field :center_lng, :class => 'input column is-8 is-medium input-locked', required: true %>
+                            <span id="longitude-helper">Enter Valid Longitude</span>
                           </p>
                         </div>
                         <div class="column is-third-tablet is-half-desktop">

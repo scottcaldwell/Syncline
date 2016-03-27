@@ -51,11 +51,26 @@ $(function() {
       nameHasBeenInput = true;
     },
     siteLatOrLngHasBeenInputByUser: function () {
-      latitude = siteLat.val();
-      longitude = siteLng.val();
-      if (latitude !== "" && longitude !== "") {
-        helpers.addMarker(siteLat.val(), siteLng.val());
-        geoSearchMap.panTo({ lat: siteLat.val(), lon: siteLng.val() });
+      var latitude = parseFloat(siteLat.val());
+      var longitude = parseFloat(siteLng.val());
+      var latitudeHelper = $('#latitude-helper');
+      var longitudeHelper = $('#longitude-helper');
+
+      if (siteLat.val() !== "" && (isNaN(latitude) || latitude > 90 || latitude < -90)) {
+        latitudeHelper.addClass('show');
+      } else {
+        latitudeHelper.removeClass('show');
+      }
+      if (siteLng.val() !== "" && (isNaN(longitude) || longitude > 180 || longitude < -180)) {
+        longitudeHelper.addClass('show');
+      } else {
+        longitudeHelper.removeClass('show');
+      }
+      if ((siteLat.val() !== "" && siteLng.val() !== "") && (!isNaN(latitude) && !isNaN(longitude))) {
+        if ((latitude >= -90 && latitude <= 90) && (longitude >= -180 && longitude <= 180)) {
+          helpers.addMarker(siteLat.val(), siteLng.val());
+          geoSearchMap.panTo({ lat: siteLat.val(), lon: siteLng.val() });
+        }
       }
     },
     //Adds marker to map, calls getLocation()
@@ -73,7 +88,9 @@ $(function() {
       var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
       $.getJSON(url, function(result) {
         if (!nameHasBeenInput) {
-          siteName.val(result.features[0].place_name); //Fill site name field
+          if (result.features.length > 0) {
+            siteName.val(result.features[0].place_name); //Fill site name field
+          }
         }
         siteLat.val(lat);
         siteLng.val(lng);
