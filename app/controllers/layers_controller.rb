@@ -80,7 +80,6 @@ class LayersController < ApplicationController
   def sort
     data = JSON.parse(params[:order])
     data.each do |value|
-      puts(value['id'])
       Layer.find(value['id'].to_i).update_attribute(:layer_order, value['position'].to_i)
     end
     render json: { data: 'it worked?' }

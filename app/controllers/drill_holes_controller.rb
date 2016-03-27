@@ -6,7 +6,7 @@ class DrillHolesController < ApplicationController
 
   def show
     @drill_hole = DrillHole.find(params[:id])
-    @layers = @drill_hole.layers.order("layer_order ASC")
+    @layers = @drill_hole.layers.order(layer_order: :asc)
     @layer = Layer.new
     @materials = MaterialType.all
 
