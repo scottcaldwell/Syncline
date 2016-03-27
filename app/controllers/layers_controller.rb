@@ -18,6 +18,21 @@ class LayersController < ApplicationController
     end
   end
 
+  def update
+    @layer = Layer.find(params[:id])
+    @layer.update_attributes(
+      drill_hole_id: params[:drill_hole_id],
+      thickness: params[:thickness],
+      description: params[:description],
+      material_type_id: params[:material_type_id]
+    )
+    material = MaterialType.find(params[:material_type_id])
+
+    respond_to do |format|
+      format.json { render json: { data: @layer, material: material.name } }
+    end
+  end
+
   def site_layers
     @depth_drilled_by_date = Layer.depth_drilled_by_date(params[:id])
     @drill_holes = DrillHole.where(site_id: params[:id])
@@ -62,9 +77,17 @@ class LayersController < ApplicationController
     end
   end
 
+  def sort
+    data = JSON.parse(params[:order])
+    data.each do |value|
+      Layer.find(value['id'].to_i).update_attribute(:layer_order, value['position'].to_i)
+    end
+    render json: { data: 'it worked?' }
+  end
+
   protected
 
   def layer_params
-    params.require(:layer).permit(:thickness, :description, :material_type_id)
+    params.require(:layer).permit(:thickness, :description, :material_type_id, :drill_hole_id)
   end
 end

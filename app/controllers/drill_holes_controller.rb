@@ -6,8 +6,20 @@ class DrillHolesController < ApplicationController
 
   def show
     @drill_hole = DrillHole.find(params[:id])
-    @layers = @drill_hole.layers
+    @layers = @drill_hole.layers.order(layer_order: :asc)
     @layer = Layer.new
+    @materials = MaterialType.all
+
+    @field_tests = []
+    @lab_tests = []
+
+    @layers.each do |l| 
+      f_test = FieldTest.where(id: l.id).select('test_type, depth_from, depth_to').first
+      l_test = LabTest.where(id: l.id).select('test_type, depth_from, depth_to').first
+      @field_tests.push(f_test) 
+      @lab_tests.push(l_test)
+    end
+
   end
 
   def new

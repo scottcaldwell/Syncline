@@ -64,7 +64,7 @@ center_lng: -123.103695
   DrillHole.create(
   name: "DH-SYN16-#{n}",
   ground_elev: rand(50..100),
-  depth: rand(10.00..15.00),
+  depth: rand(5.00..20.00),
   logged_by: 'PB',
   logged_by_id: 2,
   water_level_start: rand(0.00..5.00),
@@ -72,7 +72,7 @@ center_lng: -123.103695
   water_level_end: rand(0.00..5.00),
   site_id: 1,
   dh_lat: rand(49.411133..49.415450),
-  dh_lng: -1 * rand(123.084171..123.091066),
+  dh_lng: -1 * rand(123.080000..123.090000),
   hole_size: 7.5,
   method: "Auger"
   )
@@ -82,15 +82,15 @@ end
   DrillHole.create(
   name: "DH-LHL16-#{n}",
   ground_elev: rand(50..100),
-  depth: rand(10.00..15.00),
+  depth: rand(5.00..20.00),
   logged_by: 'JB',
   logged_by_id: 1,
   water_level_start: rand(0.00..5.00),
   water_level_during: rand(0.00..5.00),
   water_level_end: rand(0.00..5.00),
   site_id: 2,
-  dh_lat: rand(49.411133..49.415450),
-  dh_lng: -1 * rand(123.084171..123.091066),
+  dh_lat: rand(49.28100000..49.28200000),
+  dh_lng: -1 * rand(123.1070000..123.1080000),
   hole_size: 7.5,
   method: "Auger"
   )
@@ -207,4 +207,4 @@ end
 end
 
 site = Site.find(1)
-site.update_attributes(drill_to_depth: DrillHole.sum(:depth), drill_by_date: Layer.last.date_drilled + 3.days)
+site.update_attributes(drill_to_depth: DrillHole.where(site_id: site.id).sum(:depth), drill_by_date: Layer.last.date_drilled + 3.days)

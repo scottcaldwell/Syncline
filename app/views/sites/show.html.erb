@@ -9,11 +9,11 @@
 
   <section class='section site-overview'>
     <div class="container">
-      <a class="button is-primary" id="add-new-drill-hole-button">Add new Drill Hole</a>
+      <a class="button is-primary" id="add-new-drill-hole-button" style="margin-left: 2px">Add new Drill Hole</a>
+      <a class="button is-primary" id="add-user-button">Add User to Site</a>
       <div id='markers-map' class='map'></div>
     </div>
   </section>
-
   <section>
     <div class="modal" id="add-new-drill-hole-modal">
       <div class="modal-background"></div>
@@ -68,13 +68,13 @@
                       <p class="control columns">
                         <label class="label column is-3">End:</label>
                         <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked' %>
-                      </p> 
-                    </div>                       
+                      </p>
+                    </div>
 
                     <p class="control columns">
                       <label class="label column is-3">Hole Size:</label>
                       <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked' %>
-                    </p>                
+                    </p>
 
                     <p class="control columns">
                       <label class="label column is-3">Method:</label>
@@ -83,7 +83,7 @@
 
                     <p class="control">
                       <%= f.submit "Add Drill Hole", class: 'button is-primary site-submit-button' %>
-                    </p>               
+                    </p>
                   </div>
                 <% end %>
               </p>
@@ -95,6 +95,38 @@
       </div>
     </div>
   </section>
+<section>
+  <div class="modal" id="add-user-to-site-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <div class="content">
+          <div>
+            <h1>Add a someone to this site by their email address</h1>
+            <p class="control">
+              <%= form_tag site_users_path do %>
+                <div class="columns">
+                  <div class="column is-third-tablet is-half-desktop">
+                    <p class="control has-icon">
+                      <input class="input" name="user[email]" type="email" placeholder="Email">
+                      <i class="fa fa-envelope"></i>
+                    </p>
+                    <p class="control">
+                      <button class="button is-success">
+                        Submit
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close"></button>
+    </div>
+  </div>
+</section>
 
   <section class='section site-charts'>
     <div class="container">

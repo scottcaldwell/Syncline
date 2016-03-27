@@ -6,18 +6,24 @@
 
   if (chart !== null) {
     var ctx = chart.getContext('2d');
-    var data1 = [[1, 0, 0], [1, 255, 350], [1, 33, 550], [1, 190, 1080]];
-    var data2 = [[2, 0, 0], [2, 130, 38], [2, 86, 545], [2, 15, 890]];
-    var data3 = [[3, 0, 0], [3, 80, 465], [3, 186, 725], [3, 25, 1180]];
-    // var toolTips = [];
+    var fieldTests = $('#field-test-data');
+    var labTests = $('#lab-test-data');
+    var fData = [];
+    var lData = [];
+
+    fieldTests.find('.field-test').each(function(el) {
+      fData.push([ $(this).data('to') * 40, $(this).data('from') * 100 ])
+    });
+
+    labTests.find('.lab-test').each(function(el) {
+      lData.push([ $(this).data('to') * 80, $(this).data('from') * 100 ])
+    });
 
     resizeChart();
-    draw(data1, 'blue', true);
-    draw(data2, 'green', false);
-    draw(data3, 'red', false);
+    draw(fData, 'blue', true);
+    draw(lData, 'green', false);
     setGrid();
   }
-
 
   function resizeChart() {
     chart.width = $('.log-column-data').width();
@@ -60,8 +66,8 @@
     var lastPoint;
   
     data.forEach(function (point) {
-      var x = point[1]; 
-      var y = point[2]; 
+      var x = point[0]; 
+      var y = point[1]; 
       
       ctx.fillStyle = color;
       ctx.fillRect(x - 5, y - 5, 10, 10);
@@ -69,7 +75,7 @@
       if (lastPoint) {
         ctx.strokeStyle = color;
         ctx.lineWidth = .3;
-        ctx.lineTo(point[1], point[2]);
+        ctx.lineTo(point[0], point[1]);
         ctx.stroke();
       } else {
         ctx.beginPath();
@@ -79,5 +85,13 @@
       lastPoint = point;
     });
   }
+
+  $(document).on('layer-changed', function() {
+    resizeChart();
+    draw(data1, 'blue', true);
+    draw(data2, 'green', false);
+    draw(data3, 'red', false);
+    setGrid();
+  })
  
 })();

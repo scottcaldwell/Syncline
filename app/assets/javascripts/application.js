@@ -17,6 +17,7 @@
 //= require highcharts/modules/data
 //= require highcharts/modules/drilldown
 //= require highcharts/modules/exporting
+//= require modal
 //= require moment
 //= require dragula
 //= require materials_chart
@@ -24,7 +25,9 @@
 //= require layer_log
 //= require layer_chart
 //= require new_edit_layer
+//= require layer_order
 //= require depth_values
 //= require notification
 //= require review
 //= require add_drill_hole
+//= require add_user_to_site
