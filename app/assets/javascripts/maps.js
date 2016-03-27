@@ -23,7 +23,8 @@ $(function() {
       myLayer,
       latlng = [],
       markerGeoJSON = [],
-      markerUrl = [];
+      markerUrl = [],
+      drillHoles = $('.drill-row');
 
   var helpers = {
     generateMap: function(divId, lat, lng, zoom) {
@@ -50,7 +51,12 @@ $(function() {
       nameHasBeenInput = true;
     },
     siteLatOrLngHasBeenInputByUser: function () {
-      helpers.addMarker(siteLat.val(), siteLng.val());
+      latitude = siteLat.val();
+      longitude = siteLng.val();
+      if (latitude !== "" && longitude !== "") {
+        helpers.addMarker(siteLat.val(), siteLng.val());
+        geoSearchMap.panTo({ lat: siteLat.val(), lon: siteLng.val() });
+      }
     },
     //Adds marker to map, calls getLocation()
     addMarker: function (lat, lng) {
@@ -80,84 +86,10 @@ $(function() {
       function func() {
         geoSearchMap.invalidateSize();
       }
-    }
-  };
-
-  //If geo-search-map is in HTML, run js
-  if ($('#geo-search-map').length > 0) {
-    
-    divId = 'geo-search-map';
-    initialLat = 50;
-    initialLng = -123.1;
-    zoom = 5;
-
-    //Create map
-    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
-    geoSearchMap.scrollWheelZoom.disable();
-    //Add search bar
-    helpers.addSearchBar();
-    
-  }
-
-  //If geo-search-map is in HTML, run js
-  if ($('#drill-hole-geo-search-map').length > 0) {
-    
-    divId = 'drill-hole-geo-search-map';
-    initialLat = siteDetails.center_lat;
-    initialLng = siteDetails.center_lng;
-    zoom = 10;
-
-    //Create map
-    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
-    geoSearchMap.scrollWheelZoom.disable();
-    //Add search bar
-    helpers.addSearchBar();  
-  }
-  if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
-    //When location is selected(via search or click), add marker and show button
-    geocoderControl.on('select', helpers.setMarkerViaSearch);
-    //When map is clicked, addMarker()
-    geoSearchMap.on('click', helpers.setMarkerOnClick);
-    //Fixes modal bug for map. Without this, Map tiles don't load entirely
-    $("#add-site-button").on('click', helpers.timeoutModal);
-    $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
-    //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
-    siteName.on("input", helpers.nameHasBeenInputByUser);
-    //When user changes lat/lng, move marker to this new location
-    siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
-    siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
-  }
-
-
-  //++++++++++++++++ markersMap +++++++++++++++++//
-  //Overall drill site with multiple markers, centered around them
-
-  //TODO
-  //Zoom level isn't quite right when markers are close together.
-  //What does it do if there are no drill sites?
-
-  //If markers-map is on page and there is at least one drill hole on site
-  if ($('#markers-map').length > 0 ) {
-    //var siteCoords=grab data attr to get coordinates. The put them in setView to center map.
-
-    divId = 'markers-map';
-    initialLat = siteDetails.center_lat;
-    initialLng = siteDetails.center_lng;
-    zoom = 5;
-    markersMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
-    myLayer = L.mapbox.featureLayer().addTo(markersMap);
-
-    var myIcon = L.icon({
-    	iconUrl: '/assets/drill-hole-icon.png',
-    	// iconRetinaUrl: 'drill-hole-icon@2x.png',
-    	 iconSize: [80, 80]
-    	// popupAnchor: [-3, -76]
-    });
-
-    if($('.drill-row').length > 0){
-
+    },
+    addMarkersForAllDrillHoles: function () {
       //For each drill-hole, grab data from HTML
-      $('.drill-row').each(function(i) {
+      drillHoles.each(function(i) {
         var drillHoleDetails = $(this).data('dh-details').drill_hole,
             siteDetail = $('#project-details').data('site'),
             name = drillHoleDetails.name,
@@ -207,12 +139,93 @@ $(function() {
           '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
         layer.bindPopup(content);
       });
+    }
+  };
+
+  //If geo-search-map is in HTML, run js
+  if ($('#geo-search-map').length > 0) {
+    
+    divId = 'geo-search-map';
+    initialLat = 50;
+    initialLng = -123.1;
+    zoom = 5;
+
+    //Create map
+    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap.scrollWheelZoom.disable();
+    //Add search bar
+    helpers.addSearchBar();
+    
+  }
+
+  //If geo-search-map is in HTML, run js
+  if ($('#drill-hole-geo-search-map').length > 0) {
+    
+    divId = 'drill-hole-geo-search-map';
+    initialLat = siteDetails.center_lat;
+    initialLng = siteDetails.center_lng;
+    zoom = 15;
+
+    //Create map
+    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap.scrollWheelZoom.disable();
+    //Add search bar
+    helpers.addSearchBar();
+
+    if(drillHoles.length > 0){
+      myLayer = L.mapbox.featureLayer().addTo(geoSearchMap);
+      helpers.addMarkersForAllDrillHoles();
+    }
+  }
+  if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
+    //When location is selected(via search or click), add marker and show button
+    geocoderControl.on('select', helpers.setMarkerViaSearch);
+    //When map is clicked, addMarker()
+    geoSearchMap.on('click', helpers.setMarkerOnClick);
+    //Fixes modal bug for map. Without this, Map tiles don't load entirely
+    $("#add-site-button").on('click', helpers.timeoutModal);
+    $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
+    //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
+    siteName.on("input", helpers.nameHasBeenInputByUser);
+    //When user changes lat/lng, move marker to this new location
+    siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+    siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+  }
+
+
+  //++++++++++++++++ markersMap +++++++++++++++++//
+  //Overall drill site with multiple markers, centered around them
+
+  //TODO
+  //Zoom level isn't quite right when markers are close together.
+  //What does it do if there are no drill sites?
+
+  //If markers-map is on page and there is at least one drill hole on site
+  if ($('#markers-map').length > 0 ) {
+    //var siteCoords=grab data attr to get coordinates. The put them in setView to center map.
+
+    divId = 'markers-map';
+    initialLat = siteDetails.center_lat;
+    initialLng = siteDetails.center_lng;
+    zoom = 5;
+    markersMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    markersMap.scrollWheelZoom.disable();
+    myLayer = L.mapbox.featureLayer().addTo(markersMap);
+
+    var myIcon = L.icon({
+    	iconUrl: '/assets/drill-hole-icon.png',
+    	// iconRetinaUrl: 'drill-hole-icon@2x.png',
+    	 iconSize: [80, 80]
+    	// popupAnchor: [-3, -76]
+    });
+
+    if(drillHoles.length > 0){
+      helpers.addMarkersForAllDrillHoles();
 
       //Position map to show all markers THIS WORKS
       var bounds = L.latLngBounds(latlng).pad(0.2);
       markersMap.fitBounds(bounds);
-    }
-    markersMap.scrollWheelZoom.disable();
+    } 
   }
 
   //++++++++++++++++ staticMap +++++++++++++++++++//
