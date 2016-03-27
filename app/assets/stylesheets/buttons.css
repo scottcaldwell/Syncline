@@ -13,3 +13,13 @@
     bottom: 20px;
   }
 }
+
+/* Tab Buttons */
+
+.tabs li + li {
+  margin-top: 0;
+}
+
+ul#layer-tabs {
+  margin: 0;
+}
