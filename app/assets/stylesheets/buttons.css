@@ -5,3 +5,11 @@
 .site-submit-button {
   margin-left: 150px;
 }
+
+@media (min-width: 960px) {
+  .add-layer {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+  }
+}
