@@ -21,11 +21,15 @@
   });
 
   openNew.on('click', function() {
+    console.log('new clicked');
+    document.getElementById('new-edit-layer').reset();
     formModal.addClass('is-active');
     newEditForm.removeClass('form-edit');
   });
 
   editBtn.on('click', function() {
+    console.log('edit clicked');
+    document.getElementById('new-edit-layer').reset();
     var parent = $(this).parents('.layer')[0];
     var thickness = ($(parent).find('.thickness-val').text());
     var description = ($(parent).find('.log-column-desc p').text());
