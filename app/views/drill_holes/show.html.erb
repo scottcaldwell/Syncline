@@ -154,7 +154,7 @@
 
           <div class="log-column-data column is-4">
             <div class='layer-controls'>
-              <button class='button is-primary button-layer-edit'><i class="fa fa-gear"></i></button>
+              <button class='button is-primary button-layer-options'><i class="fa fa-gear"></i></button>
             </div>
           </div>
         </div>
@@ -177,7 +177,26 @@
       <div class="modal-content">
         <div class="box">
 
-          <!-- this is where the form will be displayer with handlebars -->
+          <div class="tabs is-toggle is-fullwidth">
+            <ul id='layer-tabs'>
+              <li id='edit-layer-tab'>
+                <a><i class="fa fa-edit"></i> Edit Layer</a>
+              </li>
+              <li id='add-ft-tab'>
+                <a><i class="fa fa-plus"></i> Add Field Test</a>
+              </li>
+              <li id='add-lt-tab'>
+                <a><i class="fa fa-plus"></i> Add Lab Test</a>
+              </li>
+              <li id='new-layer-tab'>
+                <a><i class="fa fa-file-text-o"></i> New Layer</a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="form-wrap">
+            
+          </div>
 
         </div>
       </div>
@@ -243,25 +262,138 @@
 </script>
 
 
-<script id="form-template" type="text/x-handlebars-template">
-  <div class="tabs is-toggle is-fullwidth">
-    <ul id='layer-tabs'>
-      <li id='edit-layer-tab' class="is-active">
-        <a><i class="fa fa-edit"></i> Edit Layer</a>
-      </li>
-      <li id='add-ft-tab'>
-        <a><i class="fa fa-plus"></i> Add Field Test</a>
-      </li>
-      <li id='add-lt-tab'>
-        <a><i class="fa fa-plus"></i> Add Lab Test</a>
-      </li>
-      <li id='new-layer-tab'>
-        <a><i class="fa fa-file-text-o"></i> New Layer</a>
-      </li>
-    </ul>
-  </div>
+<script id="edit-layer-template" type="text/x-handlebars-template">
+  <h2>Edit Layer</h2>
+  <form id='edit-layer' class='form edit-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+    <div class="columns">
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Thickness</label>
+          <input id='new_thickness' type='number' class='input' val='{{ thickness }}'></input>
+        </p>
+      </div>
 
-  <form id='new-edit-layer' class='form new-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+      <div class="column is-2">
+        <p class="control">
+          <label class="label" id='glog'>Graphic Log</label>
+          <span class='select'>
+            <select name='glog' id='new_glog'>
+              <% for material in @materials %>
+                <option value='<%= material.id %>'><%= material.name %></option>
+              <% end %>
+            </select>
+          </span>
+        </p>
+      </div>
+
+      <div class="column is-8">
+        <p class="control">
+          <label class="label">Description</label>
+          <textarea id='new_desc' class='textarea'>{{ description }}</textarea>
+        </p>
+      </div>
+    </div>
+    
+    <div class="columns">
+      <div class="column is-12">
+        <p class="control">
+          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+        </p>
+      </div>
+    </div>
+  </form>
+</script>
+
+
+<script id="new-layer-template" type="text/x-handlebars-template">
+  <h2>Add Layer</h2>
+  <form id='new-layer' class='form new-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+    <div class="columns">
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Thickness</label>
+          <input id='new_thickness' type='number' class='input'></input>
+        </p>
+      </div>
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label" id='glog'>Graphic Log</label>
+          <span class='select'>
+            <select name='glog' id='new_glog'>
+              <% for material in @materials %>
+                <option value='<%= material.id %>'><%= material.name %></option>
+              <% end %>
+            </select>
+          </span>
+        </p>
+      </div>
+
+      <div class="column is-8">
+        <p class="control">
+          <label class="label">Description</label>
+          <textarea id='new_desc' class='textarea'></textarea>
+        </p>
+      </div>
+    </div>
+    
+    <div class="columns">
+      <div class="column is-12">
+        <p class="control">
+          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+        </p>
+      </div>
+    </div>
+  </form>
+</script>
+
+
+<script id="new-ft-template" type="text/x-handlebars-template">
+  <h2>Add Field Test</h2>
+  <form id='new-ft' class='form new-ft' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+    <div class="columns">
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Thickness</label>
+          <input id='new_thickness' type='number' class='input'></input>
+        </p>
+      </div>
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label" id='glog'>Graphic Log</label>
+          <span class='select'>
+            <select name='glog' id='new_glog'>
+              <% for material in @materials %>
+                <option value='<%= material.id %>'><%= material.name %></option>
+              <% end %>
+            </select>
+          </span>
+        </p>
+      </div>
+
+      <div class="column is-8">
+        <p class="control">
+          <label class="label">Description</label>
+          <textarea id='new_desc' class='textarea'></textarea>
+        </p>
+      </div>
+    </div>
+    
+    <div class="columns">
+      <div class="column is-12">
+        <p class="control">
+          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+        </p>
+      </div>
+    </div>
+  </form>
+</script>
+
+
+<script id="new-lt-template" type="text/x-handlebars-template">
+  <h2>Add Lab Test</h2>
+  <form id='new-lt' class='form new-lt' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">

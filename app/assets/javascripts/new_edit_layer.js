@@ -1,12 +1,30 @@
 (function() {
 
   var formModal = $('.modal');
-  var newEditForm = formModal.find('#new-edit-layer');
-  var holeId = newEditForm.data('hole-id');
-  var holeMeta = $('.page-body').data('site');
-  var editBtn = $('.button-layer-edit');
+  var formWrap = formModal.find('#form-wrap');
+  var layerOptions = $('')
+  
+  // forms
+  var editForm = $('#edit-layer-template');
+  var newForm = $('#new-layer-template');
+  var ftForm = $('#new-ft-template');
+  var ltForm = $('#new-lt-template');
+
+  // tabs
+  var tabs = $('#layer-tabs');
+  var editTab = tabs.find('#edit-layer-tab');
+  var newTab = tabs.find('#new-layer-tab');
+  var newFT = tabs.find('#add-ft-tab');
+  var newLT = tabs.find('#add-lt-tab');
+
+  // buttons
   var newBtn = $('#add-layer');
-  var saveBtn = $('.button-save');        
+  var saveBtn = $('.button-save'); 
+  var layerOptions = $('.button-layer-options');
+
+  // data
+  // var holeId = newEditForm.data('hole-id');
+  // var holeMeta = $('.page-body').data('site');
 
   var listeners = {
     init: function() {
@@ -14,6 +32,80 @@
     },
 
     bind: function() {
+      layerOptions.on('click', function() {
+        var parent = $(this).parents('.layer')[0];
+        var data = {
+          thickness: ($(parent).find('.thickness-val').text()),
+          description: ($(parent).find('.log-column-desc p').text()),
+          glog: ($(parent).find('.log-column-glog p').text())
+        }
+
+        editForm.attr('data-lid', $(parent).data('id'));
+        helpers.removeActiveTab();
+        formModal.addClass('is-active');
+        editTab.addClass('is-active');
+        
+        render.editLayerForm(data);
+      });
+
+      newBtn.on('click', function() {
+        helpers.removeActiveTab();
+        formModal.addClass('is-active');
+        newTab.addClass('is-active');
+        tabs.find('li').each(function() {
+          $(this).addClass('hidden');
+        });
+        newTab.removeClass('hidden');
+        render.newLayerForm();
+        // newEditForm.removeClass('form-edit');
+      });
+
+      newFT.on('click', function() {
+        helpers.removeActiveTab();
+        newFT.addClass('is-active');
+        render.newFieldTest();
+      });
+
+      newLT.on('click', function() {
+        helpers.removeActiveTab();
+        newLT.addClass('is-active');
+        render.newLabTest();
+      });
+
+      newTab.on('click', function() {
+        helpers.removeActiveTab();
+        newTab.addClass('is-active');
+        render.newLayerForm();
+      });
+
+      editTab.on('click', function() {
+        // // more this stuff to a render function
+        // // this is for the tab, but it needs to happen by defaut as well
+
+        // newEditForm.find('#new_thickness').val(thickness);
+        // newEditForm.find('#new_desc').text(description);
+        // // newEditForm.find('#new_glog').text(glog);
+
+
+        // formModal.removeClass('is-active');
+        // formModal.addClass('is-active');
+        // newEditForm.addClass('form-edit');
+
+        var parent = $(this).parents('.layer')[0];
+        var data = {
+          thickness: ($(parent).find('.thickness-val').text()),
+          description: ($(parent).find('.log-column-desc p').text()),
+          glog: ($(parent).find('.log-column-glog p').text())
+        }
+
+        editForm.attr('data-lid', $(parent).data('id'));
+        helpers.removeActiveTab();
+        formModal.addClass('is-active');
+        editTab.addClass('is-active');
+        
+        render.editLayerForm(data);        
+      });  
+
       saveBtn.on('click', function(e) {
         e.preventDefault();
         if (newEditForm.hasClass('form-edit')) {
@@ -22,29 +114,7 @@
           reqHandlers.newReq();
         }
         formModal.removeClass('is-active');
-      });
-
-      newBtn.on('click', function() {
-        document.getElementById('new-edit-layer').reset();
-        formModal.addClass('is-active');
-        newEditForm.removeClass('form-edit');
-      });
-
-      editBtn.on('click', function() {
-        document.getElementById('new-edit-layer').reset();
-        var parent = $(this).parents('.layer')[0];
-        var thickness = ($(parent).find('.thickness-val').text());
-        var description = ($(parent).find('.log-column-desc p').text());
-        var glog = ($(parent).find('.log-column-glog p').text());
-        newEditForm.find('#new_thickness').val(thickness);
-        newEditForm.find('#new_desc').text(description);
-        // newEditForm.find('#new_glog').text(glog);
-
-        newEditForm.attr('data-lid', $(parent).data('id'));
-        formModal.removeClass('is-active');
-        formModal.addClass('is-active');
-        newEditForm.addClass('form-edit');
-      });      
+      });          
     }
   }
 
@@ -68,7 +138,7 @@
         processData: false,
         type: 'post'
       }).done(function(res) {
-        renderLog.newLayer(res);
+        render.newLayer(res);
       });
     },
 
@@ -93,12 +163,12 @@
         processData: false,
         type: 'put'
       }).done(function(res) {
-        renderLog.updateLayer(layerId, res);
+        render.updateLayer(layerId, res);
       });
     }
   }
 
-  var renderLog = {
+  var render = {
     updateLayer: function(id, data) {
       var layer = $('div[data-id="' + id + '"]');
       layer.attr('data-height', data.data.thickness);
@@ -117,7 +187,6 @@
 
     newLayer: function(data) {
       var source = $('#layer-template').html();
-      console.log(source);
       var template = Handlebars.compile(source);
       var context = { 
         id: data.data.id, 
@@ -129,8 +198,55 @@
       var html = template(context);
       $('.layer').last().after(html);
       $(document).trigger('layer-changed');
+    },
+
+    editLayerForm: function(data) {
+      var source = editForm.html();
+      var template = Handlebars.compile(source);
+      var context = {
+        thickness: data.thickness,
+        description: data.description
+      }
+      var html = template(context);
+      formWrap.empty();
+      formWrap.append(html);
+    },
+
+    newLayerForm: function() {
+      var source = newForm.html();
+      var template = Handlebars.compile(source);
+      var context = {};
+      var html = template(context);
+      formWrap.empty();
+      formWrap.append(html);
+    },
+
+    newFieldTest: function() {
+      var source = ftForm.html();
+      var template = Handlebars.compile(source);
+      var context = {};
+      var html = template(context);
+      formWrap.empty();
+      formWrap.append(html);
+    },
+
+    newLabTest: function() {
+      var source = ltForm.html();
+      var template = Handlebars.compile(source);
+      var context = {};
+      var html = template(context);
+      formWrap.empty();
+      formWrap.append(html);
     }
   };
+
+  var helpers = {
+    removeActiveTab: function() {
+      tabs.find('li').each(function() {
+        $(this).removeClass('hidden is-active');
+      });
+    }
+  }
 
   listeners.init();
 
