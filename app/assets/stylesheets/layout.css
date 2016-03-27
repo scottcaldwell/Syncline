@@ -31,3 +31,7 @@ html, body {
 .layers-log container {
   position: relative;
 }
+
+.hidden {
+  display: none;
+}

@@ -153,7 +153,6 @@
           </div>
 
           <div class="log-column-data column is-4">
-
             <div class='layer-controls'>
               <button class='button is-primary button-layer-edit'><i class="fa fa-pencil-square-o"></i> Edit</button>
               <button class='button is-info button-data-edit'><i class="fa fa-plus"></i> Add</button>
@@ -226,6 +225,18 @@
   <section class='layer-new'>
     <div class="container">
       <button id='add-layer' class='button is-info is-large add-layer'>Add New Layer</button>
+    </div>
+
+    <div id='field-test-data' class='hidden'>
+      <% for test in @field_tests %>
+        <span class='test-data field-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+      <% end %>
+    </div>
+
+    <div id='lab-test-data' class='hidden'>
+      <% for test in @lab_tests %>
+        <span class='test-data lab-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+      <% end %>
     </div>
   </section>
   <!-- end new form -->
