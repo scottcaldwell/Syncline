@@ -19,7 +19,6 @@ class DrillHolesController < ApplicationController
       @field_tests.push(f_test) 
       @lab_tests.push(l_test)
     end
-
   end
 
   def new

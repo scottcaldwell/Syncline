@@ -12,6 +12,7 @@ class LayersController < ApplicationController
     )
 
     if @layer.save
+      flash.now[:alert] = "Layer Saved"
       respond_to do |format|
         format.json { render json: { data: @layer } }
       end
