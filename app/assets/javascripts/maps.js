@@ -18,13 +18,17 @@ $(function() {
       divId,
       initialLat,
       initialLng,
-      zoom;
+      zoom,
+      markersMap,
+      myLayer,
+      latlng = [],
+      markerGeoJSON = [],
+      markerUrl = [];
 
   var helpers = {
     generateMap: function(divId, lat, lng, zoom) {
       // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
-      geoSearchMap = L.mapbox.map(divId, 'mapbox.outdoors').setView([lat, lng], zoom);
-      geoSearchMap.scrollWheelZoom.disable();
+      return L.mapbox.map(divId, 'mapbox.outdoors').setView([lat, lng], zoom);
     },
     addSearchBar: function () {
       geocoderControl = L.mapbox.geocoderControl('mapbox.places', {
@@ -88,7 +92,8 @@ $(function() {
     zoom = 5;
 
     //Create map
-    helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap.scrollWheelZoom.disable();
     //Add search bar
     helpers.addSearchBar();
     
@@ -100,10 +105,11 @@ $(function() {
     divId = 'drill-hole-geo-search-map';
     initialLat = siteDetails.center_lat;
     initialLng = siteDetails.center_lng;
-    zoom = 8;
+    zoom = 10;
 
     //Create map
-    helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    geoSearchMap.scrollWheelZoom.disable();
     //Add search bar
     helpers.addSearchBar();  
   }
@@ -133,12 +139,14 @@ $(function() {
   //If markers-map is on page and there is at least one drill hole on site
   if ($('#markers-map').length > 0 ) {
     //var siteCoords=grab data attr to get coordinates. The put them in setView to center map.
-    var markersMap = L.mapbox.map('markers-map', 'mapbox.outdoors').setView([50, -123.1], 5);
-    var myLayer = L.mapbox.featureLayer().addTo(markersMap);
 
-    var latlng = [];
-    var markerGeoJSON = [];
-    var markerUrl = [];
+    divId = 'markers-map';
+    initialLat = siteDetails.center_lat;
+    initialLng = siteDetails.center_lng;
+    zoom = 5;
+    markersMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
+    myLayer = L.mapbox.featureLayer().addTo(markersMap);
+
     var myIcon = L.icon({
     	iconUrl: '/assets/drill-hole-icon.png',
     	// iconRetinaUrl: 'drill-hole-icon@2x.png',
@@ -146,53 +154,53 @@ $(function() {
     	// popupAnchor: [-3, -76]
     });
 
-    //For each drill-hole, grab data from HTML
-    $('.drill-row').each(function(i) {
-      var drillHoleDetails = $(this).data('dh-details').drill_hole;
-      var siteDetail = $('#project-details').data('site');
-      var name = drillHoleDetails.name;
-      var depth = drillHoleDetails.depth;
-      var location = siteDetail.site_name;
-      var lat = drillHoleDetails.dh_lat;
-      var lng = drillHoleDetails.dh_lng;
-      //Generate array of Lat and Lng for each drill hole, used to center map
-      latlng[i] = L.latLng(lat, lng);
-      //Generate array of URLs used to redirect from marker popup to drill pages
-      markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + (i + 1);
-      //Generate markers in GeoJSON format
-      markerGeoJSON[i] = {
-        type: 'Feature',
-        properties: {
-          name: name,
-          depth: depth,
-          location: location,
-          url: markerUrl[i],
-          icon: {
-            "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
-            "iconSize": [50, 50], // size of the icon
-          }
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [lng, lat]
-        }
-      };
-    }); //end for loop
-
-    var geojson = {
-      type: 'FeatureCollection',
-      features: markerGeoJSON
-    };
-
-
     if($('.drill-row').length > 0){
+
+      //For each drill-hole, grab data from HTML
+      $('.drill-row').each(function(i) {
+        var drillHoleDetails = $(this).data('dh-details').drill_hole,
+            siteDetail = $('#project-details').data('site'),
+            name = drillHoleDetails.name,
+            depth = drillHoleDetails.depth,
+            location = siteDetail.site_name,
+            lat = drillHoleDetails.dh_lat,
+            lng = drillHoleDetails.dh_lng;
+        //Generate array of Lat and Lng for each drill hole, used to center map
+        latlng[i] = L.latLng(lat, lng);
+        //Generate array of URLs used to redirect from marker popup to drill pages
+        markerUrl[i] = '/sites/'+ siteDetail.id + '/drill_holes/' + (i + 1);
+        //Generate markers in GeoJSON format
+        markerGeoJSON[i] = {
+          type: 'Feature',
+          properties: {
+            name: name,
+            depth: depth,
+            location: location,
+            url: markerUrl[i],
+            icon: {
+              "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
+              "iconSize": [50, 50], // size of the icon
+            }
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [lng, lat]
+          }
+        };
+      }); //end for loop
+
+      var geojson = {
+        type: 'FeatureCollection',
+        features: markerGeoJSON
+      };
+
       //Add markers to map
       myLayer.setGeoJSON(geojson);
 
       //Add hole data to marker Popup
       myLayer.eachLayer(function(layer) {
         var content =
-          '<div>Name: ' + layer.feature.properties.name + '<div/>' +
+          '<div>Name: ' + layer.feature.properties.name + '</div>' +
           '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
           '<div>Location: ' + layer.feature.properties.location + '</div>' +
           '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +

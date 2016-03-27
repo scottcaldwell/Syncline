@@ -144,3 +144,12 @@
 .page-header.static-map {
   height:250px;
 }
+
+#drill-hole h1, #drill-hole h2 {
+  background-color: #EEEEEE;
+  clear: both;
+  float: left;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  padding: 3px;
+}
