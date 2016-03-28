@@ -6,7 +6,7 @@ class LayersController < ApplicationController
       drill_hole_id: params[:drill_hole_id],
       thickness: params[:thickness],
       description: params[:description],
-      material_type_id: params[:material_type_id]
+      material_type_id: params[:material_type_id],
       date_drilled: params[:date_drilled]
     )
     session[:layer_id] = @layer.id
