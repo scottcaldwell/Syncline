@@ -23,21 +23,27 @@
             <div>
               <h1>Select drill hole location from map, or enter manually</h1>
               <p class="control">
-                <%= form_for [@site, @drill_hole], url: {action: "create"}, html: { class: 'columns' } do |f|%>
-                  <div class="column is-5">
+                <%= form_for @drill_hole, url: { action: "create" }, html: { class: 'columns' } do |f|%>
+                  <div class="column is-half-tablet is-half-desktop">
+                    <p class="control columns">
+                      <label class="label column is-3">Name:</label>
+                      <%= f.text_field :name, class: 'input column is-8 is-medium input-locked', required: true %>
+                    </p>
                     <p class="control columns">
                       <label class="label column is-3">Logged by:</label>
-                      <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <%= f.text_field :logged_by, value: @user_credentials, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
 
-                    <p class="control columns">
+                    <p class="control columns latitude-input">
                       <label class='label column is-3'>Latitude:</label>
-                      <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <%= f.text_field :dh_lat, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <span id="latitude-helper">Enter Valid Latitude</span>
                     </p>
 
-                    <p class="control columns">
+                    <p class="control columns longitude-input">
                       <label class="label column is-3">Longitude:</label>
-                      <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <%= f.text_field :dh_lng, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <span id="longitude-helper">Enter Valid Longitude</span>
                     </p>
 
                     <p class="control columns">
@@ -52,7 +58,7 @@
 
                   </div>
 
-                  <div class="column is-5">
+                  <div class="column is-half-tablet is-half-desktop">
                     Water Level
                     <div class="water-level container">
                       <p class="control columns">
@@ -81,8 +87,8 @@
                       <%= f.text_field :method, class: 'input column is-8 is-medium input-locked' %>
                     </p>
 
-                    <p class="control">
-                      <%= f.submit "Add Drill Hole", class: 'button is-primary site-submit-button' %>
+                    <p class="control dh-submit-button" id="dh-submit-button">
+                      <%= f.submit "Add Drill Hole", class: 'button is-primary' %>
                     </p>
                   </div>
                 <% end %>

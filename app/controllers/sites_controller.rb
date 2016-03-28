@@ -16,13 +16,16 @@ class SitesController < ApplicationController
     @site_user = SiteUser.new
     @drill_holes = DrillHole.where(site_id: @site_id)
     @drill_hole = DrillHole.new
+    @user_credentials = current_user.first_name[0] + current_user.last_name[0]
     session[:site_id] = @site_id
     is_a_site_user
   end
 
   def create
-    @site  = Site.create(site_params)
-    @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
+    @site  = Site.new(site_params)
+    if @site.save
+      @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
+    end
   end
 
   def details
@@ -51,7 +54,7 @@ class SitesController < ApplicationController
 
   def site_params
     # params.require(:site).permit()
-    params.require(:site).permit(:site_name, :center_lat, :center_lng)
+    params.require(:site).permit(:site_name, :center_lat, :center_lng, :drill_to_depth, :drill_by_date)
   end
 
 end

@@ -31,3 +31,5 @@
 //= require review
 //= require add_drill_hole
 //= require add_user_to_site
+//= require new_site
+//= require new_drill_hole

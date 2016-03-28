@@ -32,7 +32,7 @@ class DrillHolesController < ApplicationController
 
   def create
     @drill_hole = DrillHole.new(drill_hole_params)
-    if drill_hole.save
+    if @drill_hole.save
       respond_to do |format|
         format.json { render json: { data: @drill_hole } }
       end

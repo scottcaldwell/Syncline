@@ -50,7 +50,7 @@
                     <h1>Select site from map, or enter manually</h1>
                     <p class="control">
                       <%= form_for @site, html: { class: 'columns' } do |f|%>
-                        <div class="column is-third-tablet is-half-desktop ">
+                        <div class="column is-half-tablet is-half-desktop">
                           <p class="columns">
                             <%= f.label 'Site Name:', :class => "label column is-3" %><br />
                             <%= f.text_field :site_name, :class => 'input column is-8 is-medium input-locked', required: true%>
@@ -66,7 +66,7 @@
                             <span id="longitude-helper">Enter Valid Longitude</span>
                           </p>
                         </div>
-                        <div class="column is-third-tablet is-half-desktop">
+                        <div class="column is-half-tablet is-half-desktop">
                           <p class="columns">
                             <%= f.label 'Expected completion date:', :class => "label column is-5" %><br />
                             <%= f.date_field :drill_by_date, :class => 'input column is-6 is-medium input-locked' %>
@@ -75,7 +75,7 @@
                             <%= f.label 'Expected meters drilled:', :class => "label column is-5" %><br />
                             <%= f.text_field :drill_to_depth, :class => 'input column is-6 is-medium input-locked' %>
                           </p>
-                          <p class="site-submit-button">
+                          <p class="dh-submit-button" id="site-submit-button">
                             <%= f.submit 'Create New Site', :class => 'button is-primary' %>
                           </p>
                         </div>

@@ -2,7 +2,7 @@
   width: 100%;
 }
 
-.site-submit-button {
+.site-submit-button, .dh-submit-button {
   margin-left: 150px;
 }
 
