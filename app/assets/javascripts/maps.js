@@ -164,11 +164,7 @@ $(function() {
             name: name,
             depth: depth,
             location: location,
-            url: markerUrl[i],
-            icon: {
-              "iconUrl": "/assets/images/drill_hole_logo.png",
-              "iconSize": [50, 50], // size of the icon
-            }
+            url: markerUrl[i]
           },
           geometry: {
             type: 'Point',
