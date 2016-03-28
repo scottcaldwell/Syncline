@@ -46,7 +46,7 @@
         </p>
 
         <p class="control columns">
-          <label class="label column is-3">Durning:</label>
+          <label class="label column is-3">During:</label>
           <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked', readonly: true %>
         </p>
 
@@ -145,7 +145,8 @@
           </div>
 
           <div class="log-column-desc column is-5">
-            <p><%= layer.description %></p>
+            <p class="layer-description"><%= layer.description %></p>
+            <p class="layer-date"><%= layer.date_drilled %></p>
           </div>
 
           <div class="log-column-type column is-1">
@@ -195,7 +196,7 @@
           </div>
 
           <div id="form-wrap">
-            
+
           </div>
 
         </div>
@@ -249,7 +250,8 @@
     </div>
 
     <div class="log-column-desc column is-5">
-      <p>{{ description }}</p>
+      <p class="layer-description">{{ description }}</p>
+      <p class="date_drilled">{{ date_drilled }}</p>
     </div>
 
     <div class="log-column-type column is-1">
@@ -297,7 +299,16 @@
         </p>
       </div>
     </div>
-    
+
+    <div class="columns">
+      <div class="column is-12">
+        <p class="control">
+          <label class="label">Date Drilled</label>
+          <input id='new_date_drilled' type='date' value='{{ date_drilled }}'</input>
+        </p>
+      </div>
+    </div>
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">
@@ -340,9 +351,18 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
+        <p class="control">
+          <label class="label">Date Drilled</label>
+          <input id='new_date_drilled' type='date' value='{{ lastDate }}'></input>
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-4">
         <p class="control">
           <button class='button is-success button-new-save'><i class="fa fa-check"></i> Save</button>
         </p>
@@ -377,7 +397,7 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">
@@ -414,7 +434,7 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">
