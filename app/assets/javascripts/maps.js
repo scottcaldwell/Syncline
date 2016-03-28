@@ -200,7 +200,7 @@ $(function() {
 
   //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
-    
+
     divId = 'geo-search-map';
     initialLat = 50;
     initialLng = -123.1;
@@ -211,12 +211,12 @@ $(function() {
     geoSearchMap.scrollWheelZoom.disable();
     //Add search bar
     helpers.addSearchBar();
-    
+
   }
 
   //If geo-search-map is in HTML, run js
   if ($('#drill-hole-geo-search-map').length > 0) {
-    
+
     divId = 'drill-hole-geo-search-map';
     initialLat = siteDetails.center_lat;
     initialLng = siteDetails.center_lng;
@@ -284,7 +284,7 @@ $(function() {
       //Position map to show all markers THIS WORKS
       var bounds = L.latLngBounds(latlng).pad(0.2);
       markersMap.fitBounds(bounds);
-    } 
+    }
   }
 
   //++++++++++++++++ staticMap +++++++++++++++++++//
