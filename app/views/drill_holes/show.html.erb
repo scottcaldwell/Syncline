@@ -211,13 +211,17 @@
 
     <div id='field-test-data' class='hidden'>
       <% for test in @field_tests %>
-        <span class='test-data field-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% if test %>
+          <span class='test-data field-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% end %>
       <% end %>
     </div>
 
     <div id='lab-test-data' class='hidden'>
       <% for test in @lab_tests %>
-        <span class='test-data lab-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% if test %>
+          <span class='test-data lab-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% end %>
       <% end %>
     </div>
   </section>

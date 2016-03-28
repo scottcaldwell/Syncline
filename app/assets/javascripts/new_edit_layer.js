@@ -54,7 +54,8 @@
         });
         newTab.removeClass('hidden');
         render.newLayerForm();
-        // newEditForm.removeClass('form-edit');
+        saveNewBtn = $('.button-new-save');
+        listeners.bind();
       });
 
       newFT.on('click', function() {
@@ -73,13 +74,11 @@
         helpers.removeActiveTab();
         newTab.addClass('is-active');
         render.newLayerForm();
+        saveNewBtn = $('.button-new-save');
+        listeners.bind();        
       });
 
       editTab.on('click', function() {
-        // newEditForm.find('#new_thickness').val(thickness);
-        // newEditForm.find('#new_desc').text(description);
-        // // newEditForm.find('#new_glog').text(glog);
-
         var parent = $(this).parents('.layer')[0];
         var data = {
           thickness: ($(parent).find('.thickness-val').text()),
@@ -101,6 +100,7 @@
       });          
 
       saveNewBtn.on('click', function(e) {
+        console.log('hi new layer');
         e.preventDefault();
         reqHandlers.newReq();
         formModal.removeClass('is-active');
@@ -115,11 +115,12 @@
       var siteId = split[1];
       var holeId = split[0];
       var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/';
+      var form = $('#new-layer');
 
       formData.append('drill_hole_id', holeId);
-      formData.append('thickness', $(newForm.find('#new_thickness')).val());
-      formData.append('description', $(newForm.find('#new_desc')).val());
-      formData.append('material_type_id', $(newForm.find('#new_glog')).val());
+      formData.append('thickness', form.find('#new_thickness').val());
+      formData.append('description', form.find('#new_desc').val());
+      formData.append('material_type_id', 1);
 
       $.ajax(url, {
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -172,8 +173,6 @@
                                     .find('p')
                                     .text('silt');
       layer.find('.log-column-desc p').text(data.data.description);
-
-      // trigger events
       layer.trigger('layer-changed');
     },
 
@@ -214,6 +213,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
+      listeners.bind();
     },
 
     newFieldTest: function() {
@@ -223,6 +223,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
+      listeners.bind();
     },
 
     newLabTest: function() {
@@ -232,6 +233,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
+      listeners.bind();
     }
   };
 

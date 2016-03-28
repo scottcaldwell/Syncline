@@ -90,6 +90,7 @@
   $(document).on('layer-changed', function() {
     setRuler();
     setTotalDepth();
+    setOrder();
   });
 
   // Make site info editable
