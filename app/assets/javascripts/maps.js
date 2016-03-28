@@ -166,7 +166,7 @@ $(function() {
             location: location,
             url: markerUrl[i],
             icon: {
-              "iconUrl": "/mapbox.js/assets/images/astronaut1.png",
+              "iconUrl": "/assets/images/drill_hole_logo.png",
               "iconSize": [50, 50], // size of the icon
             }
           },
@@ -189,10 +189,10 @@ $(function() {
       myLayer.eachLayer(function(layer) {
         var content =
           '<div>Name: ' + layer.feature.properties.name + '</div>' +
-          '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
+          '<div>Depth: ' + layer.feature.properties.depth.toFixed(5) + '</div>' +
           '<div>Location: ' + layer.feature.properties.location + '</div>' +
-          '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
-          '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
+          '<div>Coordinates: ' + layer.feature.geometry.coordinates[1].toFixed(4) + ',' + layer.feature.geometry.coordinates[0].toFixed(5) + '</div>' +
+          '<a id="drill-site-link" href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
         layer.bindPopup(content);
       });
     }
@@ -315,17 +315,15 @@ $(function() {
 
   //If static map div is in DOM and drill-hole header is on page, aka on Drill Hole page
   if ($('.static-map').length > 0 && $('#drill-hole').length > 0) {
-    console.log("on drill page, should insert static map");
-
       var latitude = $(this).find('#drill_hole_dh_lat').val();
       var longitude = $(this).find('#drill_hole_dh_lng').val();
       var pageWidth = $(window).width();
       //Generate url to generate static map
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
-        'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
+        'pin-s(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
-        ",12/1280x250@2x.png?access_token=" + //Zoom level, res
+        ",15/1280x250@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
 
       //Add map to header
