@@ -6,6 +6,14 @@ class DrillHole < ActiveRecord::Base
     presence: true
   validates :logged_by,
     presence: true
+  validates :logged_by_id,
+    presence: true
+  validates :name,
+    presence: true
+  validates :depth,
+    presence: true
+  validates :ground_elev,
+    presence: true
 
   validate :check_logged_by_and_reviewed_by
 

@@ -31,6 +31,8 @@ class SitesController < ApplicationController
     @site  = Site.new(site_params)
     if @site.save
       @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
+    else
+      flash[:error] = "Site not saved, verify your data."
     end
     redirect_to :back
   end
