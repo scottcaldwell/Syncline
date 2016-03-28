@@ -24,7 +24,12 @@ $(function() {
       latlng = [],
       markerGeoJSON = [],
       markerUrl = [],
-      drillHoles = $('.drill-row');
+      drillHoles = $('.drill-row'),
+      pattern = /^\-?\.?\d+\.?\d*$/,
+      latitudeHelper = $('#latitude-helper'),
+      longitudeHelper = $('#longitude-helper'),
+      dhLat = $('#drill_hole_dh_lat'),
+      dhLng = $('#drill_hole_dh_lng');
 
   var helpers = {
     generateMap: function(divId, lat, lng, zoom) {
@@ -43,6 +48,8 @@ $(function() {
       helpers.addMarker(coordinates[1], coordinates[0]);
     },
     setMarkerOnClick: function (evt) {
+      latitudeHelper.removeClass('show');
+      longitudeHelper.removeClass('show');
       var lat = evt.latlng.lat;
       var lng = evt.latlng.lng;
       helpers.addMarker(lat, lng);
@@ -51,12 +58,52 @@ $(function() {
       nameHasBeenInput = true;
     },
     siteLatOrLngHasBeenInputByUser: function () {
-      latitude = siteLat.val();
-      longitude = siteLng.val();
-      if (latitude !== "" && longitude !== "") {
-        helpers.addMarker(siteLat.val(), siteLng.val());
-        geoSearchMap.panTo({ lat: siteLat.val(), lon: siteLng.val() });
+      var lat = siteLat.val();
+      var lng = siteLng.val();
+      helpers.validateUserInput(lat, lng);
+    },
+    dhLatOrLngHasBeenInputByUser: function () {
+      var lat = dhLat.val();
+      var lng = dhLng.val();
+      helpers.validateUserInput(lat, lng);
+    },
+    validateUserInput: function (lat, lng) {
+      if (lat !== '') {
+        if (helpers.verifyUserLat(lat)) {
+          latitudeHelper.removeClass('show');
+        } else {
+          latitudeHelper.addClass('show');
+        }
+      } else {
+        latitudeHelper.removeClass('show');
       }
+      if (lng !== '') {
+        if (helpers.verifyUserLng(lng)) {
+          longitudeHelper.removeClass('show');
+        } else {
+          longitudeHelper.addClass('show');
+        }
+      } else {
+        longitudeHelper.removeClass('show');
+      }
+      if (helpers.verifyUserLat(lat) && lng !== '' && lat !== '') {
+        if (helpers.verifyUserLng(lng)) {
+          helpers.addMarker(lat, lng);
+          geoSearchMap.panTo({ lat: lat, lon: lng });
+        }
+      }
+    },
+    verifyUserLat: function (lat) {
+      if (pattern.test(lat) && (lat >= -90 && lat <= 90)) {
+        return true;
+      }
+      return false;
+    },
+    verifyUserLng: function (lng) {
+      if (pattern.test(lng) && (lng >= -180 && lng <= 180)) {
+        return true;
+      }
+      return false;
     },
     //Adds marker to map, calls getLocation()
     addMarker: function (lat, lng) {
@@ -72,11 +119,20 @@ $(function() {
     getLocation: function (lat, lng) {
       var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + lng + "," + lat + ".json?access_token=" + privateToken;
       $.getJSON(url, function(result) {
-        if (!nameHasBeenInput) {
-          siteName.val(result.features[0].place_name); //Fill site name field
+        if (siteName.length > 0) {
+          if (!nameHasBeenInput) {
+            if (result.features.length > 0) {
+              siteName.val(result.features[0].place_name); //Fill site name field
+            } else {
+              siteName.val('');
+            }
+          }
+          siteLat.val(lat);
+          siteLng.val(lng);
+        } else {
+          dhLat.val(lat);
+          dhLng.val(lng);
         }
-        siteLat.val(lat);
-        siteLng.val(lng);
       });
     },
     timeoutModal: function() {
@@ -190,6 +246,9 @@ $(function() {
     //When user changes lat/lng, move marker to this new location
     siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
     siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+
+    dhLat.on("input", helpers.dhLatOrLngHasBeenInputByUser);
+    dhLng.on("input", helpers.dhLatOrLngHasBeenInputByUser);
   }
 
 

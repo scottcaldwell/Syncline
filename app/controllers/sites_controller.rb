@@ -1,5 +1,6 @@
 class SitesController < ApplicationController
   include ApplicationHelper
+  
   before_action :require_logged_in_user
 
   respond_to :html, :js
@@ -13,16 +14,25 @@ class SitesController < ApplicationController
   def show
     @site_id = params[:id]
     @site = Site.find(@site_id)
-    @site_user = SiteUser.new
     @drill_holes = DrillHole.where(site_id: @site_id)
     @drill_hole = DrillHole.new
+    @user_credentials = current_user.first_name[0] + current_user.last_name[0]
+    if @drill_holes.length > 0
+      @latest_dh_name = @drill_holes.last.name
+      @new_dh_name = (@latest_dh_name.scan(/(\D+)/).flatten + (@latest_dh_name.scan(/(\d+$)/).flatten.map{ |ele| ele.to_i + 1})).join("")
+    else
+      @new_dh_name = ''
+    end
     session[:site_id] = @site_id
     is_a_site_user
   end
 
   def create
-    @site  = Site.create(site_params)
-    @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
+    @site  = Site.new(site_params)
+    if @site.save
+      @site_user = SiteUser.create(site_id: @site.id, user_id: current_user.id, admin: true)
+    end
+    redirect_to :back
   end
 
   def details
@@ -35,23 +45,9 @@ class SitesController < ApplicationController
 
   protected
 
-  def require_logged_in_user
-    unless current_user
-      flash[:error] = "You must be logged in to see your sites"
-      redirect_to root_path
-    end
-  end
-
-  def is_a_site_user
-    if SiteUser.where("user_id = ? AND site_id = ?", current_user.id, current_site).count < 1
-      flash[:error] = "You must be authorized to see this site"
-      redirect_to root_path
-    end
-  end
-
   def site_params
     # params.require(:site).permit()
-    params.require(:site).permit(:site_name, :center_lat, :center_lng)
+    params.require(:site).permit(:site_name, :center_lat, :center_lng, :drill_to_depth, :drill_by_date)
   end
 
 end
