@@ -230,6 +230,7 @@
       var context = {
         id: data.id,
         thickness: data.thickness,
+        selected_material: data.material,
         description: data.description,
         date_drilled: data.date_drilled
       }

@@ -285,7 +285,7 @@
           <span class='select'>
             <select name='glog' id='new_glog'>
               <% for material in @materials %>
-                <option value='<%= material.id %>'><%= material.name %></option>
+                <option value='<%= material.id %>' selected="{{ selected_material }}"><%= material.name %></option>
               <% end %>
             </select>
           </span>
