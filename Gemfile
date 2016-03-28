@@ -31,6 +31,10 @@ gem 'momentjs-rails'
 # Use mailgun-ruby to send emails
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
+# Use wicked_pdf to generate pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

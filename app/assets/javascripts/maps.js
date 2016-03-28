@@ -239,7 +239,7 @@ $(function() {
     //When map is clicked, addMarker()
     geoSearchMap.on('click', helpers.setMarkerOnClick);
     //Fixes modal bug for map. Without this, Map tiles don't load entirely
-    $("#add-site-button").on('click', helpers.timeoutModal);
+    $("#new-site-card").on('click', helpers.timeoutModal);
     $("#add-new-drill-hole-button").on('click', helpers.timeoutModal);
     //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
     siteName.on("input", helpers.nameHasBeenInputByUser);
