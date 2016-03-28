@@ -51,11 +51,11 @@
   dragula([document.querySelector('#layers-log')])
     .on('drop', function() {
       setTotalDepth();        
-      setOrder();
+      setOrder(true);
     });
 
   // set layer order
-  function setOrder() {
+  function setOrder(pop) {
     var allLayers = layers.find('.layer');
     console.log(allLayers);
     var count = allLayers.length;
@@ -64,25 +64,25 @@
       $(allLayers[index]).attr('data-order', i);
       i++;
     });
-    writeOrder();
+    writeOrder(pop);
   }
 
   // Write the new order to the db
-  function writeOrder() {
+  function writeOrder(pop) {
     var newOrder = []
     $('.layer').each(function(i) {
       newOrder.push({ id: $(this).attr("data-id"), position: $(this).attr('data-order') })
     });
 
-    newOrder.pop();
-    console.log(newOrder);
+    if (pop) newOrder.pop();
+
     $.ajax('/layers/sort', {
       beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       dataType: 'json',
       data: { order: JSON.stringify(newOrder) },
       type: 'put'
     }).done(function(res) {
-      console.log(res);
+      // console.log(res);
     });
   }
 
