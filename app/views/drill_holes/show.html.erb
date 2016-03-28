@@ -264,12 +264,12 @@
 
 <script id="edit-layer-template" type="text/x-handlebars-template">
   <h2>Edit Layer</h2>
-  <form id='edit-layer' class='form edit-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+  <form id='edit-layer' class='form edit-layer' data-lid='{{ id }}' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
           <label class="label">Thickness</label>
-          <input id='new_thickness' type='number' class='input' val='{{ thickness }}'></input>
+          <input id='new_thickness' type='number' class='input' value='{{ thickness }}'></input>
         </p>
       </div>
 
@@ -297,7 +297,7 @@
     <div class="columns">
       <div class="column is-12">
         <p class="control">
-          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+          <button class='button is-success button-edit-save'><i class="fa fa-check"></i> Save</button>
         </p>
       </div>
     </div>
@@ -307,7 +307,7 @@
 
 <script id="new-layer-template" type="text/x-handlebars-template">
   <h2>Add Layer</h2>
-  <form id='new-layer' class='form new-layer' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+  <form id='new-layer' class='form new-layer' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
@@ -340,7 +340,7 @@
     <div class="columns">
       <div class="column is-12">
         <p class="control">
-          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+          <button class='button is-success button-new-save'><i class="fa fa-check"></i> Save</button>
         </p>
       </div>
     </div>
@@ -383,7 +383,7 @@
     <div class="columns">
       <div class="column is-12">
         <p class="control">
-          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+          <button class='button is-success button-ft-save'><i class="fa fa-check"></i> Save</button>
         </p>
       </div>
     </div>
@@ -426,7 +426,7 @@
     <div class="columns">
       <div class="column is-12">
         <p class="control">
-          <button class='button is-success button-save'><i class="fa fa-check"></i> Save</button>
+          <button class='button is-success button-lt-save'><i class="fa fa-check"></i> Save</button>
         </p>
       </div>
     </div>

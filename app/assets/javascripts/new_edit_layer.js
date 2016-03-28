@@ -19,32 +19,29 @@
 
   // buttons
   var newBtn = $('#add-layer');
-  var saveBtn = $('.button-save'); 
+  var saveEditBtn = $('.button-edit-save'); 
+  var saveNewBtn = $('.button-new-save');
   var layerOptions = $('.button-layer-options');
 
   // data
-  // var holeId = newEditForm.data('hole-id');
-  // var holeMeta = $('.page-body').data('site');
+  var holeId = editForm.data('hole-id');
+  var holeMeta = $('.page-body').data('site');
 
   var listeners = {
-    init: function() {
-      this.bind();
-    },
-
     bind: function() {
       layerOptions.on('click', function() {
         var parent = $(this).parents('.layer')[0];
+        console.log(parent);
         var data = {
+          id: $(parent).data('id'),
           thickness: ($(parent).find('.thickness-val').text()),
           description: ($(parent).find('.log-column-desc p').text()),
           glog: ($(parent).find('.log-column-glog p').text())
         }
 
-        editForm.attr('data-lid', $(parent).data('id'));
         helpers.removeActiveTab();
         formModal.addClass('is-active');
         editTab.addClass('is-active');
-        
         render.editLayerForm(data);
       });
 
@@ -79,17 +76,9 @@
       });
 
       editTab.on('click', function() {
-        // // more this stuff to a render function
-        // // this is for the tab, but it needs to happen by defaut as well
-
         // newEditForm.find('#new_thickness').val(thickness);
         // newEditForm.find('#new_desc').text(description);
         // // newEditForm.find('#new_glog').text(glog);
-
-
-        // formModal.removeClass('is-active');
-        // formModal.addClass('is-active');
-        // newEditForm.addClass('form-edit');
 
         var parent = $(this).parents('.layer')[0];
         var data = {
@@ -102,33 +91,35 @@
         helpers.removeActiveTab();
         formModal.addClass('is-active');
         editTab.addClass('is-active');
-        
         render.editLayerForm(data);        
       });  
 
-      saveBtn.on('click', function(e) {
+      saveEditBtn.on('click', function(e) {
         e.preventDefault();
-        if (newEditForm.hasClass('form-edit')) {
-          reqHandlers.editReq(newEditForm.attr('data-lid'));
-        } else {
-          reqHandlers.newReq();
-        }
+        reqHandlers.editReq($('#edit-layer').attr('data-lid'));
         formModal.removeClass('is-active');
       });          
+
+      saveNewBtn.on('click', function(e) {
+        e.preventDefault();
+        reqHandlers.newReq();
+        formModal.removeClass('is-active');
+      });        
     }
   }
 
   var reqHandlers = {
     newReq: function() {
+      var split = holeMeta.split('-');
       var formData = new FormData();
-      var siteId = holeMeta[0];
-      var holeId = holeMeta[0];
+      var siteId = split[1];
+      var holeId = split[0];
       var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/';
 
       formData.append('drill_hole_id', holeId);
-      formData.append('thickness', $(newEditForm.find('#new_thickness')[0]).val());
-      formData.append('description', $(newEditForm.find('#new_desc')[0]).val());
-      formData.append('material_type_id', $(newEditForm.find('#new_glog')[0]).val());
+      formData.append('thickness', $(newForm.find('#new_thickness')).val());
+      formData.append('description', $(newForm.find('#new_desc')).val());
+      formData.append('material_type_id', $(newForm.find('#new_glog')).val());
 
       $.ajax(url, {
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -145,15 +136,16 @@
     editReq: function(layerId) {
       var split = holeMeta.split('-');
       var formData = new FormData();
-      var siteId = split[0];
+      var siteId = split[1];
       var holeId = split[0];
       var url = '/sites/' + siteId + '/drill_holes/' + holeId + '/layers/' + layerId;
+      var form = $('#edit-layer');
 
       formData.append('drill_hole_id', holeId);
       formData.append('layer_id', layerId);
-      formData.append('thickness', $(newEditForm.find('#new_thickness')[0]).val());
-      formData.append('description', $(newEditForm.find('#new_desc')[0]).val());
-      formData.append('material_type_id', $(newEditForm.find('#new_glog')[0]).val());
+      formData.append('thickness', form.find('#new_thickness').val());
+      formData.append('description', form.find('#new_desc').val());
+      formData.append('material_type_id', form.find('#new_glog').val());
 
       $.ajax(url, {
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -204,12 +196,15 @@
       var source = editForm.html();
       var template = Handlebars.compile(source);
       var context = {
+        id: data.id,
         thickness: data.thickness,
         description: data.description
       }
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
+      saveEditBtn = $('.button-edit-save');       
+      listeners.bind();
     },
 
     newLayerForm: function() {
@@ -248,6 +243,6 @@
     }
   }
 
-  listeners.init();
+  listeners.bind();
 
 })();
