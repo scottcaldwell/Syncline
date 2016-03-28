@@ -26,9 +26,12 @@ class DrillHolesController < ApplicationController
     @drill_hole = DrillHole.new(drill_hole_params)
     @drill_hole.site_id = current_site
     @drill_hole.logged_by_id = current_user.id
-    p @drill_hole
-    @drill_hole.save
-    redirect_to :back
+    if @drill_hole.save
+      redirect_to sites_drill_hole_path(current_site, @drill_hole.id)
+    else
+      flash[:error] = "Drill Hole not saved, verify your data."
+      redirect_to :back
+    end
   end
 
   def update
