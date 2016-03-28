@@ -21,7 +21,6 @@
 //= require moment
 //= require dragula
 //= require materials_chart
-//= require new_card
 //= require layer_log
 //= require layer_chart
 //= require new_edit_layer
@@ -29,7 +28,4 @@
 //= require depth_values
 //= require notification
 //= require review
-//= require add_drill_hole
-//= require add_user_to_site
-//= require new_site
-//= require new_drill_hole
+//= require add_new_site_or_drill_hole_or_user

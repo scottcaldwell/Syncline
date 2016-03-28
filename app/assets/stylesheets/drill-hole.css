@@ -146,10 +146,11 @@
 }
 
 #drill-hole h1, #drill-hole h2 {
-  background-color: #EEEEEE;
+  background-color: #795548;
   clear: both;
   float: left;
   margin-top: 3px;
   margin-bottom: 3px;
   padding: 3px;
+  font-weight: 400;
 }

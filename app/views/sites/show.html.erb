@@ -23,11 +23,11 @@
             <div>
               <h1>Select drill hole location from map, or enter manually</h1>
               <p class="control">
-                <%= form_for @drill_hole, url: { action: "create" }, html: { class: 'columns' } do |f|%>
+                <%= form_for @drill_hole, url: site_drill_holes_path(@site.id), method: :post, html: { class: 'columns' } do |f|%>
                   <div class="column is-half-tablet is-half-desktop">
                     <p class="control columns">
                       <label class="label column is-3">Name:</label>
-                      <%= f.text_field :name, class: 'input column is-8 is-medium input-locked', required: true %>
+                      <%= f.text_field :name, value: @new_dh_name, class: 'input column is-8 is-medium input-locked', required: true %>
                     </p>
                     <p class="control columns">
                       <label class="label column is-3">Logged by:</label>
@@ -97,7 +97,7 @@
             </div>
           </div>
         </div>
-        <button class="modal-close"></button>
+        <button class="modal-close" id="site-modal"></button>
       </div>
     </div>
   </section>
@@ -129,7 +129,7 @@
           </div>
         </div>
       </div>
-      <button class="modal-close"></button>
+      <button class="modal-close" id="add-user-modal"></button>
     </div>
   </div>
 </section>

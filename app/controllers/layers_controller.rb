@@ -1,8 +1,5 @@
 class LayersController < ApplicationController
 
-  def index
-  end
-
   def create
     @layer = Layer.new(
       drill_hole_id: params[:drill_hole_id],
