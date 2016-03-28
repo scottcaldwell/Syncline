@@ -11,6 +11,7 @@ class LayersController < ApplicationController
     session[:layer_id] = @layer.id
 
     if @layer.save
+      # flash.now[:alert] = "Layer Saved"
       respond_to do |format|
         format.json { render json: { data: @layer } }
       end
@@ -82,7 +83,7 @@ class LayersController < ApplicationController
     data.each do |value|
       Layer.find(value['id'].to_i).update_attribute(:layer_order, value['position'].to_i)
     end
-    render json: { data: 'it worked?' }
+    render json: { data: 'sorted' }
   end
 
   protected
