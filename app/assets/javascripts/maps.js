@@ -85,7 +85,7 @@ $(function() {
 
   //If geo-search-map is in HTML, run js
   if ($('#geo-search-map').length > 0) {
-    
+
     divId = 'geo-search-map';
     initialLat = 50;
     initialLng = -123.1;
@@ -96,12 +96,12 @@ $(function() {
     geoSearchMap.scrollWheelZoom.disable();
     //Add search bar
     helpers.addSearchBar();
-    
+
   }
 
   //If geo-search-map is in HTML, run js
   if ($('#drill-hole-geo-search-map').length > 0) {
-    
+
     divId = 'drill-hole-geo-search-map';
     initialLat = siteDetails.center_lat;
     initialLng = siteDetails.center_lng;
@@ -111,7 +111,7 @@ $(function() {
     geoSearchMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
     geoSearchMap.scrollWheelZoom.disable();
     //Add search bar
-    helpers.addSearchBar();  
+    helpers.addSearchBar();
   }
   if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
     //When location is selected(via search or click), add marker and show button
@@ -203,8 +203,8 @@ $(function() {
           '<div>Name: ' + layer.feature.properties.name + '</div>' +
           '<div>Depth: ' + layer.feature.properties.depth + '</div>' +
           '<div>Location: ' + layer.feature.properties.location + '</div>' +
-          '<div>Coordinates: ' + layer.feature.geometry.coordinates[1] + ',' + layer.feature.geometry.coordinates[0] + '</div>' +
-          '<a href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
+          '<div>Coordinates: ' + layer.feature.geometry.coordinates[1].toFixed(4) + ',' + layer.feature.geometry.coordinates[0].toFixed(4) + '</div>' +
+          '<a id="drill-site-link" href="' + layer.feature.properties.url + '">Go to Drill Site</a></br>';
         layer.bindPopup(content);
       });
 
