@@ -354,32 +354,26 @@
 
 <script id="new-ft-template" type="text/x-handlebars-template">
   <h2>Add Field Test</h2>
-  <form id='new-ft' class='form new-ft' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+  <form id='new-ft' class='form new-ft' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
-          <label class="label">Thickness</label>
-          <input id='new_thickness' type='number' class='input'></input>
+          <label class="label">Depth From</label>
+          <input id='ft_depth_from' type='number' class='input'></input>
         </p>
       </div>
 
       <div class="column is-2">
         <p class="control">
-          <label class="label" id='glog'>Graphic Log</label>
-          <span class='select'>
-            <select name='glog' id='new_glog'>
-              <% for material in @materials %>
-                <option value='<%= material.id %>'><%= material.name %></option>
-              <% end %>
-            </select>
-          </span>
+          <label class="label">Depth To</label>
+          <input id='ft_depth_to' type='number' class='input'></input>
         </p>
       </div>
 
-      <div class="column is-8">
+      <div class="column is-4">
         <p class="control">
-          <label class="label">Description</label>
-          <textarea id='new_desc' class='textarea'></textarea>
+          <label class="label">Test Type</label>
+          <input type='text' id='ft_type' class='input'></input>
         </p>
       </div>
     </div>
@@ -397,32 +391,26 @@
 
 <script id="new-lt-template" type="text/x-handlebars-template">
   <h2>Add Lab Test</h2>
-  <form id='new-lt' class='form new-lt' data-edit='' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+  <form id='new-lt' class='form new-lt' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
-          <label class="label">Thickness</label>
-          <input id='new_thickness' type='number' class='input'></input>
+          <label class="label">Depth From</label>
+          <input id='lt_depth_to' type='number' class='input'></input>
         </p>
       </div>
 
       <div class="column is-2">
         <p class="control">
-          <label class="label" id='glog'>Graphic Log</label>
-          <span class='select'>
-            <select name='glog' id='new_glog'>
-              <% for material in @materials %>
-                <option value='<%= material.id %>'><%= material.name %></option>
-              <% end %>
-            </select>
-          </span>
+          <label class="label">Depth To</label>
+          <input id='lt_depth_from' type='number' class='input'></input>
         </p>
       </div>
 
-      <div class="column is-8">
+      <div class="column is-4">
         <p class="control">
-          <label class="label">Description</label>
-          <textarea id='new_desc' class='textarea'></textarea>
+          <label class="label">Test Type</label>
+          <input type='text' class='input' id='lt_type'></input>
         </p>
       </div>
     </div>

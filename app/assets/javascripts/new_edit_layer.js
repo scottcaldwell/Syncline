@@ -21,6 +21,8 @@
   var newBtn = $('#add-layer');
   var saveEditBtn = $('.button-edit-save'); 
   var saveNewBtn = $('.button-new-save');
+  var saveFT = $('.button-ft-save');
+  var saveLT = $('.button-lt-save');
   var layerOptions = $('.button-layer-options');
 
   // data
@@ -62,12 +64,16 @@
         helpers.removeActiveTab();
         newFT.addClass('is-active');
         render.newFieldTest();
+        saveFT = $('.button-ft-save');
+        listeners.bind();        
       });
 
       newLT.on('click', function() {
         helpers.removeActiveTab();
         newLT.addClass('is-active');
         render.newLabTest();
+        saveLT = $('.button-lt-save');        
+        listeners.bind();                
       });
 
       newTab.on('click', function() {
@@ -100,11 +106,22 @@
       });          
 
       saveNewBtn.on('click', function(e) {
-        console.log('hi new layer');
         e.preventDefault();
         reqHandlers.newReq();
         formModal.removeClass('is-active');
       });        
+
+      saveFT.on('click', function(e) {
+        e.preventDefault();
+        reqHandlers.newFT();
+        formModal.removeActiveTab('is-active');
+      });
+
+      saveLT.on('click', function(e) {
+        e.preventDefault();
+        reqHandlers.newLT();
+        formModal.removeActiveTab('is-active');
+      });      
     }
   }
 
@@ -158,6 +175,14 @@
       }).done(function(res) {
         render.updateLayer(layerId, res);
       });
+    },
+
+    newFT: function() {
+      console.log('yeah ft');
+    },
+
+    newLT: function() {
+      console.log('yeah LT');
     }
   }
 
