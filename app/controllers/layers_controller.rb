@@ -1,4 +1,5 @@
 class LayersController < ApplicationController
+  include ApplicationHelper 
 
   def create
     @layer = Layer.new(
@@ -7,6 +8,7 @@ class LayersController < ApplicationController
       description: params[:description],
       material_type_id: params[:material_type_id]
     )
+    session[:layer_id] = @layer.id
 
     if @layer.save
       respond_to do |format|
@@ -17,6 +19,7 @@ class LayersController < ApplicationController
 
   def update
     @layer = Layer.find(params[:id])
+    session[:layer_id] = @layer.id
     @layer.update_attributes(
       drill_hole_id: params[:drill_hole_id],
       thickness: params[:thickness],
@@ -55,15 +58,15 @@ class LayersController < ApplicationController
       @total_silt_thickness += @silt_thickness
       @total_clay_thickness += @clay_thickness
     end
-    
+
     respond_to do |format|
       format.html # new.html.erb
-      format.json { 
-        render json: { 
+      format.json {
+        render json: {
           depth_drilled_by_date: @depth_drilled_by_date,
-          total_gravel_thickness: @total_gravel_thickness, 
-          total_sand_thickness: @total_sand_thickness, 
-          total_silt_thickness: @total_silt_thickness, 
+          total_gravel_thickness: @total_gravel_thickness,
+          total_sand_thickness: @total_sand_thickness,
+          total_silt_thickness: @total_silt_thickness,
           total_clay_thickness: @total_clay_thickness,
           drill_holes_gravel_data: @drill_holes_gravel_data,
           drill_holes_sand_data: @drill_holes_sand_data,

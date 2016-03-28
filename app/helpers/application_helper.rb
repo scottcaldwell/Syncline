@@ -1,13 +1,5 @@
 module ApplicationHelper
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
-
-  def current_site
-    session[:site_id]
-  end
-
   def require_logged_in_user
     unless current_user
       flash[:error] = "You must be logged in to see your sites"
@@ -21,6 +13,26 @@ module ApplicationHelper
       flash[:error] = "You must be authorized to see this site"
       redirect_to root_path
     end
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def current_site
+    session[:site_id]
+  end
+
+  def current_layer
+    session[:layer_id]
+  end
+
+  def current_field_test
+    session[:field_test_id]
+  end
+
+  def current_lab_test
+    session[:lab_test_id]
   end
 
 end
