@@ -50,26 +50,42 @@ $(function () {
   var helpers = {
     processProjectChartData: function () {
       var depth = 0;
-      depthDrilledByDate.forEach(function (dateAndDepth) {
-        datesDrilled.push(dateAndDepth.date_drilled);
-        depth += dateAndDepth.total_thickness;
-        actualDrilling.push(parseFloat(depth.toFixed(2)));
-      });
-      var daysDrilled = datesDrilled.length,
-          dateStarted = moment(datesDrilled[0]),
-          dateEnded = moment(datesDrilled[daysDrilled - 1]),
-          predictedEndDate = moment(projectDetails[0].drill_by_date),
-          predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
-          daysLeft = predictedEndDate.diff(dateEnded, 'days'),
-          predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
-      datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));
-      for (var i = 1; i <= daysLeft; i++) {
-        datesDrilled.push(dateEnded.add(1, 'days').utc().format('YYYY-MM-DD'));
-      }
-      depth = 0;
-      for (var i = 0; i < predictedDaysDrilled; i++) {
-        depth += predictedDepthPerDay;
-        predictedDrilling.push(parseFloat(depth.toFixed(2)));
+      if (depthDrilledByDate.length > 0) {
+        depthDrilledByDate.forEach(function (dateAndDepth) {
+          datesDrilled.push(dateAndDepth.date_drilled);
+          depth += dateAndDepth.total_thickness;
+          actualDrilling.push(parseFloat(depth.toFixed(2)));
+        });
+        var daysDrilled = datesDrilled.length,
+            dateStarted = moment(datesDrilled[0]),
+            dateEnded = moment(datesDrilled[daysDrilled - 1]),
+            predictedEndDate = moment(projectDetails[0].drill_by_date),
+            predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
+            daysLeft = predictedEndDate.diff(dateEnded, 'days'),
+            predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
+        datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));
+        for (var i = 1; i <= daysLeft; i++) {
+          datesDrilled.push(dateEnded.add(1, 'days').utc().format('YYYY-MM-DD'));
+        }
+        depth = 0;
+        for (var i = 0; i < predictedDaysDrilled; i++) {
+          depth += predictedDepthPerDay;
+          predictedDrilling.push(parseFloat(depth.toFixed(2)));
+        }
+      } else {
+        var dateStarted = moment(),
+            predictedEndDate = moment(projectDetails[0].drill_by_date),
+            daysLeft = predictedEndDate.diff(dateStarted, 'days') + 1,
+            predictedDepthPerDay = projectDetails[0].drill_to_depth / daysLeft;
+        datesDrilled.push(dateStarted.utc().format('YYYY-MM-DD'));
+        for (var i = 1; i <= daysLeft; i++) {
+          datesDrilled.push(dateStarted.add(1, 'days').utc().format('YYYY-MM-DD'));
+        }
+        for (var i = 0; i < daysLeft; i++) {
+          depth += predictedDepthPerDay;
+          predictedDrilling.push(parseFloat(depth.toFixed(2)));
+          actualDrilling.push(0);
+        }
       }
     },
     generateMaterialChart: function () {

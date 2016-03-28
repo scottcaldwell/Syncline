@@ -1,8 +1,8 @@
 class DrillHolesController < ApplicationController
 
-  def index
+  include ApplicationHelper
 
-  end
+  before_action :require_logged_in_user
 
   def show
     @drill_hole = DrillHole.find(params[:id])
@@ -19,24 +19,16 @@ class DrillHolesController < ApplicationController
       @field_tests.push(f_test) 
       @lab_tests.push(l_test)
     end
-
-  end
-
-  def new
-
-  end
-
-  def edit
-
+    is_a_site_user
   end
 
   def create
     @drill_hole = DrillHole.new(drill_hole_params)
-    if drill_hole.save
-      respond_to do |format|
-        format.json { render json: { data: @drill_hole } }
-      end
-    end
+    @drill_hole.site_id = current_site
+    @drill_hole.logged_by_id = current_user.id
+    p @drill_hole
+    @drill_hole.save
+    redirect_to :back
   end
 
   def update
