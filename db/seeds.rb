@@ -130,9 +130,10 @@ loop_num = 0
 (0..9).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
+    layer_depth = (Layer.all[loop_num].thickness / 2) + (Layer.all[loop_num].thickness * i)
     FieldTest.create(
-    depth_from: DrillHole.all[n].depth/(10/(i+1)),
-    depth_to: DrillHole.all[n].depth/(10/(i+1)) + 0.5,
+    depth_from: layer_depth,
+    depth_to: layer_depth + 0.5,
     test_type: "SPT",
     layer_id: Layer.all[loop_num].id
     )
@@ -170,7 +171,7 @@ end
 num_field_tests = FieldTest.all.count
 (1..num_field_tests).each do |n|
   Spt.create(
-  blow_count: rand(5..20),
+  blow_count: rand(5..50),
   field_test_id: n
   )
 end
