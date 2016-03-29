@@ -12,9 +12,6 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # Use Faker for seeding the database
 gem 'faker'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use postgres as the database for production
 gem 'pg'
 
