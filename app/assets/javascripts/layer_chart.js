@@ -16,7 +16,7 @@
       var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var spts = parseFloat(_this.data('spts'));
       var sptAdj = 300 * (spts / 120);
-      fData.push([ sptAdj, point * 100, spts])
+      fData.push([ sptAdj, point * 100, spts ])
     });
 
     labTests.find('.lab-test').each(function(el) {
@@ -24,7 +24,7 @@
       var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var size = parseFloat(_this.data('size')); 
       var sizeAdj = 300 * (size / 120);
-      lData.push([ sizeAdj, point * 100, size])
+      lData.push([ sizeAdj, point * 100, size ])
     });
 
     resizeChart();
@@ -116,10 +116,10 @@
       } else {
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = 0.3;        
-        ctx.moveTo(0, 0);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        // ctx.lineWidth = 0.3;        
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(x, y);
+        // ctx.stroke();
       }
 
       lastPoint = point;
