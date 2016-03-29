@@ -40,6 +40,6 @@ Syncline::Application.configure do
     :enable_starttls_auto => true
   }
 
-  config.assets.debug = false #true
+  config.assets.debug = true #true
 
 end
