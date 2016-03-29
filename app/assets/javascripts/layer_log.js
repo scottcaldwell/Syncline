@@ -33,6 +33,10 @@
     }
   };
 
+  function setXAxis() {
+
+  };
+
   // Depth calculation
   function setTotalDepth() {
     var depths = $('.log-column-depth');
