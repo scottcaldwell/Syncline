@@ -15,14 +15,16 @@
       var _this = $(this);
       var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
       var spts = parseFloat(_this.data('spts'));
-      fData.push([ spts * 5, point * 100])
+      var sptAdj = 300 * (spts / 120);
+      fData.push([ sptAdj, point * 100, spts])
     });
 
     labTests.find('.lab-test').each(function(el) {
       var _this = $(this);
       var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
       var size = parseFloat(_this.data('size')); 
-      lData.push([ size * 2, point * 100])
+      var sizeAdj = 300 * (size / 120);
+      lData.push([ sizeAdj, point * 100, size])
     });
 
     resizeChart();
@@ -95,9 +97,9 @@
         ctx.font = "12px sans-serif";
         ctx.fillStyle = '#333';
         if (color === 'blue') {
-          ctx.fillText('SPT: ' + x, x + 8, y - 12);
+          ctx.fillText('SPT: ' + point[2], x + 8, y - 12);
         } else {
-          ctx.fillText('Fines: ' + y, x + 8, y - 12);
+          ctx.fillText('Fines: ' + point[2], x + 8, y - 12);
         }
 
       } else {
