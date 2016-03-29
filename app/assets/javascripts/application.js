@@ -23,6 +23,7 @@
 //= require materials_chart
 //= require layer_log
 //= require layer_chart
+//= require layer_header
 //= require new_edit_layer
 //= require layer_order
 //= require depth_values

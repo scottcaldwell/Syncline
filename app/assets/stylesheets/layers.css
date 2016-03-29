@@ -1,3 +1,18 @@
+#fixedHeaderSpacer{
+  display: none;
+  height:50px;
+}
+.layers-header{
+  height:60px;
+}
+.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 999;
+}
 .layers-log {
   position: relative;
 }
@@ -5,7 +20,7 @@
 .layer-data {
   border-left: 5px solid #444;
   position: absolute;
-  top: 0; 
+  top: 0;
   right: 0;
 }
 

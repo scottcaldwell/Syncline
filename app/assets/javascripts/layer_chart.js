@@ -12,11 +12,11 @@
     var lData = [];
 
     fieldTests.find('.field-test').each(function(el) {
-      fData.push([ $(this).data('to') * 40, $(this).data('from') * 100 ])
+      fData.push([ $(this).data('to') * 40, $(this).data('from') * 100 ]);
     });
 
     labTests.find('.lab-test').each(function(el) {
-      lData.push([ $(this).data('to') * 80, $(this).data('from') * 100 ])
+      lData.push([ $(this).data('to') * 80, $(this).data('from') * 100 ]);
     });
 
     resizeChart();
@@ -60,21 +60,21 @@
   function draw(data, color, clear) {
     // create an update function that calls the redraw and each individual draw event
     if (clear === true) {
-      ctx.clearRect(0, 0, chart.width, chart.height);  
+      ctx.clearRect(0, 0, chart.width, chart.height);
     }
-    
+
     var lastPoint;
-  
+
     data.forEach(function (point) {
-      var x = point[0]; 
-      var y = point[1]; 
-      
+      var x = point[0];
+      var y = point[1];
+
       ctx.fillStyle = color;
       ctx.fillRect(x - 5, y - 5, 10, 10);
-      
+
       if (lastPoint) {
         ctx.strokeStyle = color;
-        ctx.lineWidth = .3;
+        ctx.lineWidth = 0.3;
         ctx.lineTo(point[0], point[1]);
         ctx.stroke();
       } else {
@@ -92,6 +92,6 @@
     draw(lData, 'green', false);
     // draw(data3, 'red', false);
     setGrid();
-  })
- 
+  });
+
 })();
