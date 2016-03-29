@@ -2,13 +2,14 @@
 <html>
 <head>
   <title>PDF</title>
-  <%= wicked_pdf_stylesheet_link_tag 'application', media: 'all' %>
-  <%= wicked_pdf_javascript_include_tag "application" %>
+  <%= wicked_pdf_stylesheet_link_tag "application", media: 'all' %>
 </head>
 <body>
-  <div class='container'>
+  <div class='container pdf'>
     <%= yield %>
   </div>
-
+  <%= wicked_pdf_javascript_include_tag "http://code.jquery.com/jquery-1.10.0.min.js" %>
+  <%= wicked_pdf_javascript_include_tag "http://code.jquery.com/ui/1.10.3/jquery-ui.min.js" %>
+  <%= wicked_pdf_javascript_include_tag "layers_pdf" %>
 </body>
 </html>
