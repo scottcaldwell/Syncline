@@ -3,12 +3,22 @@
     background-color:white;
 }
 
+
 #login{
   padding-top:40px;
 }
 
 #landing{
-  margin-bottom:40px;
+  margin-bottom:100px;
+}
+
+#features{
+  margin-bottom:130px;
+}
+
+.message-body{
+  font-size:1.15em;
+  text-align: center;
 }
 
 h1 .title{
@@ -79,6 +89,7 @@ h1 .title{
    animation-delay: 0.25s;
    visibility: visible !important;
  }
+
  .pin3{
    left:200px;
    animation-name: pinDrop3;
@@ -102,6 +113,7 @@ h1 .title{
    animation-fill-mode: forwards;
    visibility:hidden;
  }
+
  .pin:after {
    background-color: #AAA;
    background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));
@@ -129,3 +141,59 @@ h1 .title{
    transform-origin: 50% 100%;
    width: .1em;
  }
+/*BAR GRAPH*/
+
+#graph{
+  justify-content:center;
+  color:#444;
+  height:300px;
+  padding:50px;
+}
+
+#xAxis{
+  width: 3px;
+  height: 200px;
+  background:white;
+}
+#yAxis{
+  height: 3px;
+  width: 200px;
+  background:white;
+  z-index:999;
+}
+.bar{
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  background: lightgrey;
+  top:0;
+  margin:0 0px 0 15px;
+  transition: all 0.75s linear;
+  box-shadow: 5px 5px 1px #222;
+}
+#bar1{
+  height:45px;
+}
+#bar2{
+  height:85px;
+}
+#bar3{
+  height:115px;
+}
+#bar4{
+height:175px;
+}
+
+#barContainer{
+  margin-left:15px;
+}
+#mask{
+  z-index:999;
+  background:#FFF;
+  height:200px;
+  width:200px;
+  position:absolute;
+}
+.animate-bar{
+  transform: translateY(-185px);
+}
