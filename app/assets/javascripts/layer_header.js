@@ -34,6 +34,8 @@
   };
 
   $(window).on('resize', function() {
-    setAxisPostion();
+    if ($('.x-axis').hasClass('axis-fixed')) {
+      setAxisPostion();
+    }
   });
 })();
