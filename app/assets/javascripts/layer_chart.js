@@ -12,11 +12,17 @@
     var lData = [];
 
     fieldTests.find('.field-test').each(function(el) {
-      fData.push([ $(this).data('to') * 40, $(this).data('from') * 100 ]);
+      var _this = $(this);
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var spts = parseFloat(_this.data('spts'));
+      fData.push([ spts * 5, point * 100])
     });
 
     labTests.find('.lab-test').each(function(el) {
-      lData.push([ $(this).data('to') * 80, $(this).data('from') * 100 ]);
+      var _this = $(this);
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var size = parseFloat(_this.data('size')); 
+      lData.push([ size * 2, point * 100])
     });
 
     resizeChart();
@@ -90,7 +96,6 @@
     resizeChart();
     draw(fData, 'blue', true);
     draw(lData, 'green', false);
-    // draw(data3, 'red', false);
     setGrid();
   });
 

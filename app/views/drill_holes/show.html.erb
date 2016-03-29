@@ -215,7 +215,11 @@
     <div id='field-test-data' class='hidden'>
       <% for test in @field_tests %>
         <% if test %>
-          <span class='test-data field-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+          <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
+            data-from='<%= test[0].depth_from %>' 
+            data-to='<%= test[0].depth_to %>'
+            data-spts='<%= test[1].blow_count %>'>
+          </span>
         <% end %>
       <% end %>
     </div>
@@ -223,7 +227,13 @@
     <div id='lab-test-data' class='hidden'>
       <% for test in @lab_tests %>
         <% if test %>
-          <span class='test-data lab-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+          <span class='test-data lab-test' 
+            data-type='<%= test[0].test_type %>' 
+            data-from='<%= test[0].depth_from %>' 
+            data-to='<%= test[0].depth_to %>'
+            data-size='<%= test[1].fines_content %>'
+            data-pdf='<%= test[1].pdf_url %>'>
+          </span>
         <% end %>
       <% end %>
     </div>
