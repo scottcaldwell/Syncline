@@ -1,0 +1,23 @@
+<section class='drill-log'>
+  <h3><%= @drill_hole.name %></h3>
+  <div class="container columns">
+    <div class="column is-5">
+      <p class="control">Logged by: <%= @drill_hole.logged_by %></p>
+      <p class="control">Latitude: <%= @drill_hole.dh_lat %></p>
+      <p class="control">Longitude: <%= @drill_hole.dh_lng %></p>
+      <p class="control">Ground Elevation: <%= @drill_hole.ground_elev %></p>
+      <p class="control">Depth: <%= @drill_hole.depth %></p>
+    </div>
+    <div class="column is-5">
+      
+      <p class="control">Start: <%= @drill_hole.water_level_start %></p>
+      <p class="control">During: <%= @drill_hole.water_level_during %></p>
+      <p class="control">End: <%= @drill_hole.water_level_end %></p>
+      <p class="control">Hole Size: <%= @drill_hole.hole_size %></p>
+      <p class="control">Method: <%= @drill_hole.method %></p>
+    </div>
+
+
+  <% end %>
+  </div>
+</section>
