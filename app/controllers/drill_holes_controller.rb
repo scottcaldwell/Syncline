@@ -33,15 +33,15 @@ class DrillHolesController < ApplicationController
       @field_tests.push([f_test, spts, photo]) 
       @lab_tests.push([l_test, size, photo])
     end
-
     is_a_site_user
 
     respond_to do |format|
       format.html
       format.pdf do
         render :pdf => 'drill_hole',
+        :javascript_delay => 5000,
         :save_to_file => Rails.root.join('public', "drill_hole.pdf"),
-        :template => 'drill_holes/show.pdf.erb',
+        :template => 'drill_holes/drill_hole_logs.pdf.erb',
         :layout => 'pdf.html.erb',
         :show_as_html => params[:debug].present?
       end

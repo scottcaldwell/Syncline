@@ -21,7 +21,7 @@ Syncline::Application.routes.draw do
   get '/sites/:id/details', to: 'sites#details'
   put '/drill_hole/:id/update_reviewer', to: 'drill_holes#update_reviewer'
   put '/layers/sort', to: 'layers#sort'
-  
+  get '/sites/:id/drill_holes/:id/generate_pdf', to: 'drill_holes#generate_pdf'
   root to: 'sessions#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
