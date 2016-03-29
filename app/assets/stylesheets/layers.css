@@ -39,6 +39,10 @@
   margin-right: -0.25em; /* Adjusts for spacing */
 }
 
+.log-column-desc {
+  overflow: hidden;
+}
+
 .log-column-data {
   position: relative;
 }

@@ -150,6 +150,8 @@
             <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
             <p class="layer-description"><%= layer.description %></p>
             <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
+            <a class="button"><i class="fa fa-camera"></i>&nbsp; Photos</a>
+            <a href='' class="button"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
           </div>
 
           <div class="log-column-data column is-4">
@@ -215,7 +217,8 @@
           <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
-            data-spts='<%= test[1].blow_count %>'>
+            data-spts='<%= test[1].blow_count %>'
+            data-photo='<%= test[2].url %>'>
           </span>
         <% end %>
       <% end %>
@@ -229,7 +232,8 @@
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
             data-size='<%= test[1].fines_content %>'
-            data-pdf='<%= test[1].pdf_url %>'>
+            data-pdf='<%= test[1].pdf_url %>'
+            data-photo='<%= test[2].url %>'>
           </span>
         <% end %>
       <% end %>
