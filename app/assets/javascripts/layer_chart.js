@@ -139,7 +139,7 @@
     ctx.beginPath();
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 0.5;
-    ctx.moveTo(0, y);
+    ctx.moveTo(x, y);
     ctx.lineTo(300, y);
     ctx.stroke();    
   }
