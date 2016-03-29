@@ -1,177 +1,176 @@
 <article class='page-body content' data-site='<%= @drill_hole.id %>-<%= @drill_hole.site.id %>'>
   <header class='page-header static-map'>
     <div class="container">
-      <div class='heading' id="drill-hole" data-drill-hole-id="<%= @drill_hole.id %>" data-site-id='<%= @drill_hole.site.id %>'>
+      <div class='heading' id="drill-hole" data-drill-hole-id="<%= @drill_hole.id %>">
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
         <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
       </div>
     </div>
   </header>
 
-  <div id="dh-log-pdf">
-    <button id="generate-pdf"><i class="fa fa-file-pdf-o"></i></button>
-    <!-- log info -->
-    <section class='drill-log'>
-      <div class="container">
-      <%= form_for @drill_hole, url: { action: 'update' }, html: { class: 'columns' }, remote: true do |f| %>
-        <div class="column is-5">
-          <p class="control columns">
-            <label class="label column is-3">Logged by:</label>
-            <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+  <!-- log info -->
+  <section class='drill-log'>
+    <div class="container">
+    <%= form_for @drill_hole, url: { action: 'update' }, html: { class: 'columns' }, remote: true do |f| %>
+      <div class="column is-5">
+        <p class="control columns">
+          <label class="label column is-3">Logged by:</label>
+          <%= f.text_field :logged_by, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
 
-          <p class="control columns">
-            <label class='label column is-3'>Latitude:</label>
-            <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+        <p class="control columns">
+          <label class='label column is-3'>Latitude:</label>
+          <%= f.number_field :dh_lat, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
 
-          <p class="control columns">
-            <label class="label column is-3">Longitude:</label>
-            <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+        <p class="control columns">
+          <label class="label column is-3">Longitude:</label>
+          <%= f.number_field :dh_lng, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
 
-          <p class="control columns">
-            <label class="label column is-3">Ground Elevation:</label>
-            <%= f.number_field :ground_elev, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+        <p class="control columns">
+          <label class="label column is-3">Elevation:</label>
+          <%= f.number_field :ground_elev, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
 
-          <p class="control columns">
-            <label class="label column is-3">Depth:</label>
-            <%= f.number_field :depth, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+        <p class="control columns">
+          <label class="label column is-3">Depth:</label>
+          <%= f.number_field :depth, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+      </div>
+
+      <div class="column is-5">
+        <p class="control columns">
+          <label class="label column is-3">Start:</label>
+          <%= f.number_field :water_level_start, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+
+        <p class="control columns">
+          <label class="label column is-3">During:</label>
+          <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+
+        <p class="control columns">
+          <label class="label column is-3">End:</label>
+          <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+
+        <p class="control columns">
+          <label class="label column is-3">Hole Size:</label>
+          <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+
+        <p class="control columns">
+          <label class="label column is-3">Method:</label>
+          <%= f.text_field :method, class: 'input column is-8 is-medium input-locked', readonly: true %>
+        </p>
+      </div>
+
+      <div class="column is-2 drill-log-controls">
+
+        <p class="control">
+          <a href='#' class='control-edit button button-full is-primary'>Edit</a>
+        </p>
+
+        <p class="control">
+          <%= f.submit "Save Changes", class: 'control-save button button-full is-success' %>
+        </p>
+
+        <p class="control">
+          <button class='control-cancel button button-full is-danger'>Cancel</button>
+        </p>
+
+        <p class="control">
+          <button class="control-review button button-full is-info">Mark as Reviewed</button>
+        </p>
+      </div>
+    <% end %>
+    </div>
+  </section>
+  <!-- end log info -->
+
+  <!-- layers header -->
+  <section class='layers-header'>
+    <div class="container">
+      <header class='log-header columns'>
+        <div class="log-column-title column is-1">
+          <p class='is-text-centered'>Depth</p>
         </div>
 
-        <div class="column is-5">
-          <p class="control columns">
-            <label class="label column is-3">Start:</label>
-            <%= f.number_field :water_level_start, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
-
-          <p class="control columns">
-            <label class="label column is-3">During:</label>
-            <%= f.number_field :water_level_during, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
-
-          <p class="control columns">
-            <label class="label column is-3">End:</label>
-            <%= f.number_field :water_level_end, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
-
-          <p class="control columns">
-            <label class="label column is-3">Hole Size:</label>
-            <%= f.number_field :hole_size, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
-
-          <p class="control columns">
-            <label class="label column is-3">Method:</label>
-            <%= f.text_field :method, class: 'input column is-8 is-medium input-locked', readonly: true %>
-          </p>
+        <div class="log-column-title column is-1">
+          <p class='is-text-centered'>Graphic Log</p>
         </div>
 
-        <div class="column is-2 drill-log-controls">
-
-          <p class="control">
-            <a href='#' class='control-edit button button-full is-primary'>Edit</a>
-          </p>
-
-          <p class="control">
-            <%= f.submit "Save Changes", class: 'control-save button button-full is-success' %>
-          </p>
-
-          <p class="control">
-            <button class='control-cancel button button-full is-danger'>Cancel</button>
-          </p>
-
-          <p class="control">
-            <button class="control-review button button-full is-info">Mark as Reviewed</button>
-          </p>
+        <div class="log-column-title column is-6">
+          <p class='is-text-centered'>Description</p>
         </div>
+
+        <div class="log-column-title column is-4">
+          <p class='is-text-centered'>Sample Data</p>
+        </div>
+      </header>
+    </div>
+  </section>
+
+  <div id="fixedHeaderSpacer"></div>
+  <!-- end layers header -->
+
+  <!-- layers -->
+  <section id='layers-log' class='layers-log'>
+    <!-- <div class="container"> -->
+      <div class="layer-rules layer-rules-left">
+        <ul></ul>
+      </div>
+
+      <div class="x-axis">
+        <ul></ul>
+      </div>
+
+      <% for layer in @layers %>
+        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>' data-order='<%= layer.layer_order %>'>
+
+          <div class="log-column-depth column layer-height is-1">
+            <div class="depth-arrow arrow-up">&#8593;</div>
+            <div class="depth-indicator"></div>
+            <div class="depth-arrow arrow-down">&#8595;</div>
+            <div class='col-centered'>
+              <span class='thickness-val'><%= layer.round_thickness %></span>m
+            </div>
+            <div class="abs-depth">
+              <div class='abs-depth-value'></div>
+              <!-- <div class="abs-depth-arrow"></div> -->
+            </div>
+          </div>
+
+          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
+            <p><%= layer.material_type.name %></p>
+          </div>
+
+          <div class="log-column-desc column is-6">
+            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
+            <p class="layer-description"><%= layer.description %></p>
+            <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
+            <a class="button"><i class="fa fa-camera"></i>&nbsp; Photos</a>
+            <a href='' class="button"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
+          </div>
+
+          <div class="log-column-data column is-4">
+            <div class='layer-controls'>
+              <button class='button is-primary button-layer-options'><i class="fa fa-gear"></i></button>
+            </div>
+          </div>
+        </div>
+
       <% end %>
+
+      <canvas id='layer-data' class='layer-data'></canvas>
+
+      <div class="layer-rules layer-rules-right">
+        <ul></ul>
       </div>
-    </section>
-    <!-- end log info -->
-
-    <!-- layers header -->
-    <section class='layers-header'>
-      <div class="container">
-        <header class='log-header columns'>
-          <div class="log-column-title column is-1">
-            <p class='is-text-centered'>Depth</p>
-          </div>
-
-          <div class="log-column-title column is-1">
-            <p class='is-text-centered'>Graphic Log</p>
-          </div>
-
-          <div class="log-column-title column is-5">
-            <p class='is-text-centered'>Description</p>
-          </div>
-
-          <div class="log-column-title column is-1">
-            <p class='is-text-centered'>Type</p>
-          </div>
-
-          <div class="log-column-title column is-4">
-            <p class='is-text-centered'>Sample Data</p>
-          </div>
-        </header>
-      </div>
-    </section>
-    <!-- end layers header -->
-
-    <!-- layers -->
-    <section id='layers-log' class='layers-log'>
-      <!-- <div class="container"> -->
-        <div class="layer-rules layer-rules-left">
-          <ul></ul>
-        </div>
-
-        <% for layer in @layers %>
-          <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>' data-order='<%= layer.layer_order %>'>
-
-            <div class="log-column-depth column layer-height is-1">
-              <div class="depth-arrow arrow-up">&#8593;</div>
-              <div class="depth-indicator"></div>
-              <div class="depth-arrow arrow-down">&#8595;</div>
-              <div class='col-centered'>
-                <span class='thickness-val'><%= layer.round_thickness %></span>m
-              </div>
-              <div class="abs-depth">
-                <div class='abs-depth-value'></div>
-                <!-- <div class="abs-depth-arrow"></div> -->
-              </div>
-            </div>
-
-            <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
-              <p><%= layer.material_type.name %></p>
-            </div>
-
-            <div class="log-column-desc column is-5">
-              <p><%= layer.description %></p>
-            </div>
-
-            <div class="log-column-type column is-1">
-              <p></p>
-            </div>
-
-            <div class="log-column-data column is-4">
-              <div class='layer-controls'>
-                <button class='button is-primary button-layer-options'><i class="fa fa-gear"></i></button>
-              </div>
-            </div>
-          </div>
-
-        <% end %>
-
-        <canvas id='layer-data' class='layer-data'></canvas>
-
-        <div class="layer-rules layer-rules-right">
-          <ul></ul>
-        </div>
-      <!-- </div> -->
-    </section>
-    <!-- end layers -->
-  </div>
+    <!-- </div> -->
+  </section>
+  <!-- end layers -->
 
   <!-- new layer -->
   <div class="modal">
@@ -198,7 +197,7 @@
           </div>
 
           <div id="form-wrap">
-            
+
           </div>
 
         </div>
@@ -214,16 +213,28 @@
 
     <div id='field-test-data' class='hidden'>
       <% for test in @field_tests %>
-        <% if test %>
-          <span class='test-data field-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% if test[0] %>
+          <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
+            data-from='<%= test[0].depth_from %>' 
+            data-to='<%= test[0].depth_to %>'
+            data-spts='<%= test[1].blow_count %>'
+            data-photo='<%= test[2].url %>'>
+          </span>
         <% end %>
       <% end %>
     </div>
 
     <div id='lab-test-data' class='hidden'>
       <% for test in @lab_tests %>
-        <% if test %>
-          <span class='test-data lab-test' data-type='<%= test.test_type %>' data-from='<%= test.depth_from %>' data-to='<%= test.depth_to %>'></span>
+        <% if test[0] %>
+          <span class='test-data lab-test' 
+            data-type='<%= test[0].test_type %>' 
+            data-from='<%= test[0].depth_from %>' 
+            data-to='<%= test[0].depth_to %>'
+            data-size='<%= test[1].fines_content %>'
+            data-pdf='<%= test[1].pdf_url %>'
+            data-photo='<%= test[2].url %>'>
+          </span>
         <% end %>
       <% end %>
     </div>
@@ -252,7 +263,8 @@
     </div>
 
     <div class="log-column-desc column is-5">
-      <p>{{ description }}</p>
+      <p class="layer-description">{{ description }}</p>
+      <p class="date_drilled">{{ date_drilled }}</p>
     </div>
 
     <div class="log-column-type column is-1">
@@ -300,7 +312,16 @@
         </p>
       </div>
     </div>
-    
+
+    <div class="columns">
+      <div class="column is-12">
+        <p class="control">
+          <label class="label">Date Drilled</label>
+          <input id='new_date_drilled' type='date' value='{{ date_drilled }}'</input>
+        </p>
+      </div>
+    </div>
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">
@@ -343,9 +364,18 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
+        <p class="control">
+          <label class="label">Date Drilled</label>
+          <input id='new_date_drilled' type='date' value='{{ lastDate }}'></input>
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column is-4">
         <p class="control">
           <button class='button is-success button-new-save'><i class="fa fa-check"></i> Save</button>
         </p>
@@ -380,7 +410,7 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">
@@ -417,7 +447,7 @@
         </p>
       </div>
     </div>
-    
+
     <div class="columns">
       <div class="column is-12">
         <p class="control">

@@ -1,12 +1,13 @@
 class LayersController < ApplicationController
-  include ApplicationHelper 
+  include ApplicationHelper
 
   def create
     @layer = Layer.new(
       drill_hole_id: params[:drill_hole_id],
       thickness: params[:thickness],
       description: params[:description],
-      material_type_id: params[:material_type_id]
+      material_type_id: params[:material_type_id],
+      date_drilled: params[:date_drilled]
     )
     session[:layer_id] = @layer.id
 
@@ -25,7 +26,8 @@ class LayersController < ApplicationController
       drill_hole_id: params[:drill_hole_id],
       thickness: params[:thickness],
       description: params[:description],
-      material_type_id: params[:material_type_id]
+      material_type_id: params[:material_type_id],
+      date_drilled: params[:date_drilled]
     )
     material = MaterialType.find(params[:material_type_id])
 
@@ -89,6 +91,6 @@ class LayersController < ApplicationController
   protected
 
   def layer_params
-    params.require(:layer).permit(:thickness, :description, :material_type_id, :drill_hole_id)
+    params.require(:layer).permit(:thickness, :description, :material_type_id, :drill_hole_id, :date_drilled)
   end
 end

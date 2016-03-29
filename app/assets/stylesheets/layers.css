@@ -1,3 +1,18 @@
+#fixedHeaderSpacer{
+  display: none;
+  height:50px;
+}
+.layers-header{
+  height:60px;
+}
+.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  z-index: 999;
+}
 .layers-log {
   position: relative;
 }
@@ -5,7 +20,7 @@
 .layer-data {
   border-left: 5px solid #444;
   position: absolute;
-  top: 0; 
+  top: 0;
   right: 0;
 }
 
@@ -22,6 +37,10 @@
   height: 100%;
   vertical-align: middle;
   margin-right: -0.25em; /* Adjusts for spacing */
+}
+
+.log-column-desc {
+  overflow: hidden;
 }
 
 .log-column-data {
@@ -93,7 +112,7 @@
 
 .button-layer-options {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
   z-index: 5;
   opacity: .65;
@@ -101,9 +120,31 @@
 }
 
 .button-layer-options:hover {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 5;
   opacity: 1;
+}
+
+.x-axis {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.x-axis ul {
+  margin: 0;
+  font-size: .75em;
+  margin-top: -3px;
+}
+
+.x-axis li {
+  display: inline-block;
+  width: 25px;
+  border-right: 1px solid black;
+  padding-left: 3px;
+  height: 22px;
+}
+
+.axis-fixed {
+  position: fixed;
+  top: 60px;
+  right: 0;
 }

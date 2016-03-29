@@ -3,7 +3,7 @@ html, body {
 }
 
 .page-header {
-
+  /*margin:20px;*/
 }
 
 .site-logo {
@@ -38,4 +38,8 @@ html, body {
 
 .tabs li.hidden {
   display: none;
+}
+
+.underline {
+  border-bottom: thin solid #333;
 }
