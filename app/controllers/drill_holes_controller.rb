@@ -13,15 +13,15 @@ class DrillHolesController < ApplicationController
     @field_tests = []
     @lab_tests = []
 
-    @layers.each do |l| 
+    @layers.each do |l|
       f_test = FieldTest.where(id: l.id).select('test_type, depth_from, depth_to').first
       l_test = LabTest.where(id: l.id).select('test_type, depth_from, depth_to').first
-      @field_tests.push(f_test) 
+      @field_tests.push(f_test)
       @lab_tests.push(l_test)
     end
-    
+
     is_a_site_user
-    
+
     respond_to do |format|
       format.html
       format.pdf do
