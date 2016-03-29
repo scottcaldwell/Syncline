@@ -122,3 +122,12 @@
   z-index: 5;
   opacity: 1;
 }
+
+.x-axis {
+  display: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 25px;
+  background-color: black;
+}
