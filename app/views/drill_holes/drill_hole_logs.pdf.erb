@@ -9,15 +9,40 @@
       <p class="control">Depth: <%= @drill_hole.depth %></p>
     </div>
     <div class="column is-5">
-      
-      <p class="control">Start: <%= @drill_hole.water_level_start %></p>
-      <p class="control">During: <%= @drill_hole.water_level_during %></p>
-      <p class="control">End: <%= @drill_hole.water_level_end %></p>
+      <fieldset>
+        <legend>Water</legend>
+        <p class="control">Start: <%= @drill_hole.water_level_start %></p>
+        <p class="control">During: <%= @drill_hole.water_level_during %></p>
+        <p class="control">End: <%= @drill_hole.water_level_end %></p>
+      </fieldset>
       <p class="control">Hole Size: <%= @drill_hole.hole_size %></p>
       <p class="control">Method: <%= @drill_hole.method %></p>
     </div>
 
+    <section class='layers-header'>
+      <div class="container">
+        <header class='log-header columns'>
+          <div class="log-column-title column is-1">
+            <p class='is-text-centered'>Depth</p>
+          </div>
 
-  <% end %>
+          <div class="log-column-title column is-1">
+            <p class='is-text-centered'>Graphic Log</p>
+          </div>
+
+          <div class="log-column-title column is-5">
+            <p class='is-text-centered'>Description</p>
+          </div>
+
+          <div class="log-column-title column is-1">
+            <p class='is-text-centered'>Type</p>
+          </div>
+
+          <div class="log-column-title column is-4">
+            <p class='is-text-centered'>Sample Data</p>
+          </div>
+        </header>
+      </div>
+    </section>
   </div>
 </section>
