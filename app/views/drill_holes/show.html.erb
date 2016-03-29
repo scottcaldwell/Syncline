@@ -101,12 +101,8 @@
           <p class='is-text-centered'>Graphic Log</p>
         </div>
 
-        <div class="log-column-title column is-5">
+        <div class="log-column-title column is-6">
           <p class='is-text-centered'>Description</p>
-        </div>
-
-        <div class="log-column-title column is-1">
-          <p class='is-text-centered'>Type</p>
         </div>
 
         <div class="log-column-title column is-4">
@@ -150,13 +146,10 @@
             <p><%= layer.material_type.name %></p>
           </div>
 
-          <div class="log-column-desc column is-5">
+          <div class="log-column-desc column is-6">
+            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
             <p class="layer-description"><%= layer.description %></p>
-            <p class="layer-date"><%= layer.date_drilled %></p>
-          </div>
-
-          <div class="log-column-type column is-1">
-            <p></p>
+            <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
           </div>
 
           <div class="log-column-data column is-4">

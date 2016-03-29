@@ -39,3 +39,7 @@ html, body {
 .tabs li.hidden {
   display: none;
 }
+
+.underline {
+  border-bottom: thin solid #333;
+}
