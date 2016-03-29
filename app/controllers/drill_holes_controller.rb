@@ -14,10 +14,19 @@ class DrillHolesController < ApplicationController
     @lab_tests = []
 
     @layers.each do |l| 
-      f_test = FieldTest.where(id: l.id).select('test_type, depth_from, depth_to').first
-      l_test = LabTest.where(id: l.id).select('test_type, depth_from, depth_to').first
-      @field_tests.push(f_test) 
-      @lab_tests.push(l_test)
+      f_test = FieldTest.where(id: l.id).select('id, test_type, depth_from, depth_to').first
+      l_test = LabTest.where(id: l.id).select('id, test_type, depth_from, depth_to').first
+
+      if f_test
+        spts = Spt.where(field_test_id: f_test.id).select('blow_count').first
+      end
+
+      if l_test
+        size = GrainSize.where(lab_test_id: f_test.id).select('fines_content, pdf_url').first
+      end
+
+      @field_tests.push([f_test, spts]) 
+      @lab_tests.push([l_test, size])
     end
     is_a_site_user
   end
