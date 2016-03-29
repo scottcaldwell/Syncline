@@ -29,3 +29,4 @@
 //= require notification
 //= require review
 //= require add_new_site_or_drill_hole_or_user
+//= require generate_pdf

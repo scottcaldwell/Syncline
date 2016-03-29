@@ -19,19 +19,7 @@ class DrillHolesController < ApplicationController
       @field_tests.push(f_test) 
       @lab_tests.push(l_test)
     end
-    
     is_a_site_user
-    
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render :pdf => 'drill_hole',
-        :save_to_file => Rails.root.join('public', "drill_hole.pdf"),
-        :template => 'drill_holes/show.pdf.erb',
-        :layout => 'pdf.html.erb',
-        :show_as_html => params[:debug].present?
-      end
-    end
   end
 
   def create
@@ -55,6 +43,19 @@ class DrillHolesController < ApplicationController
       end
     end
   end
+
+  # def generate_pdf
+  #   respond_to do |format|
+  #     format.pdf do
+  #       @content = params[:content]
+  #       render :pdf => 'drill_hole',
+  #       :save_to_file => Rails.root.join('public', "drill_hole.pdf"),
+  #       :template => 'drill_holes/show.pdf.erb',
+  #       :layout => 'pdf.html.erb',
+  #       :show_as_html => params[:debug].present?
+  #     end
+  #   end
+  # end
 
   def update_reviewer
     @drill_hole = DrillHole.find(params[:id])
