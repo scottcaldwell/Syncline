@@ -39,10 +39,10 @@ class DrillHolesController < ApplicationController
       format.html
       format.pdf do
         render :pdf => 'drill_hole',
-        :javascript_delay => 5000,
-        :save_to_file => Rails.root.join('public', "drill_hole.pdf"),
-        :template => 'drill_holes/drill_hole_logs.pdf.erb',
+        :save_to_file => Rails.root.join('pdfs', "drill_hole.pdf"),
+        :template => 'drill_holes/show.pdf.erb',
         :layout => 'pdf.html.erb',
+        :viewport_size => '1280x1024',
         :show_as_html => params[:debug].present?
       end
     end

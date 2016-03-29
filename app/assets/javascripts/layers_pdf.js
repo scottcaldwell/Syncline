@@ -1,4 +1,5 @@
 $(function () {
+  
   var layers = $('#layers-log');
 
   layers.find('.layer').each(function() {

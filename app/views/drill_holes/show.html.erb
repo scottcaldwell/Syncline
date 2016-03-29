@@ -1,7 +1,7 @@
 <article class='page-body content' data-site='<%= @drill_hole.id %>-<%= @drill_hole.site.id %>'>
   <header class='page-header static-map'>
     <div class="container">
-      <div class='heading' id="drill-hole" data-drill-hole-id="<%= @drill_hole.id %>">
+      <div class='heading' id="drill-hole" data-drill-hole-id="<%= @drill_hole.id %>" data-site-id="<%= @drill_hole.site.id %>">
         <h1 class='title is-3'><%= @drill_hole.name %></h1>
         <h2 class='subtitle is-5'><%= link_to @drill_hole.site.site_name, site_path(@drill_hole.site_id) %></h2>
       </div>
@@ -82,6 +82,10 @@
 
         <p class="control">
           <button class="control-review button button-full is-info">Mark as Reviewed</button>
+        </p>
+
+        <p class="control">
+          <button class="control-review button button-full is-info" id="generate-pdf">Generate PDF</button>
         </p>
       </div>
     <% end %>
