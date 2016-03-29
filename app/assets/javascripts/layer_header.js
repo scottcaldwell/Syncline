@@ -1,6 +1,8 @@
 (function() {
-  var tableHeader = $('.layers-header').offset().top;
-  var addLayerButton = $('#add-layer').offset().top;
+  if ($('.layers-header').length > 0) {
+    var tableHeader = $('.layers-header').offset().top;
+  }
+  //var addLayerButton = $('#add-layer').offset().top;
 
   $(window).scroll(function() {
 

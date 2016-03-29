@@ -35,11 +35,28 @@
     </div>
   </div>
 </section>
+<section class="hero">
+  <div class="hero-content">
+  <div class="container">
+    <h1 class="title">
+      I'm just here
+    </h1>
+    <h2 class="subtitle">
+      to test the scrolling animations
+    </h2>
+  </div>
+</div>
+</section>
 <section id="features">
   <div class="container">
-      <div id="data-management" class="columns is-multiline">
-        <div class="column is-4 animation">
-          Map with animated pins dropping down
+      <div class="columns is-multiline">
+        <div class="column is-4 animation" id="mapAnimation" >
+          <i class="pin" class="pin1"></i>
+          <i class="pin" class="pin2"></i>
+          <i class="pin" class="pin3"></i>
+          <div id="map">
+
+          </div>
         </div>
         <div class="is-flex column is-8">
           <p class="message">
@@ -51,10 +68,10 @@
             Entering drill hole data has never been simpler. Drill hole reports can be created and edited with ease.
           </p>
         </div>
-        <div class="column is-4 animation">
+        <div id="inputAnimation" class="column is-4 animation">
           Graph of form with text entering, shuffling rows
         </div>
-        <div class="column is-4 animation">
+        <div id="graphAnimation" class="column is-4 animation">
           Animated bar/line graph
           <!-- <div id="graph"> Animation, might add later.
             <div></div>
