@@ -31,6 +31,7 @@
 
   var listeners = {
     bind: function() {
+      layerOptions = $('.button-layer-options');
       layerOptions.on('click', function() {
         var parent = $(this).parents('.layer')[0];
         console.log(parent);
@@ -222,6 +223,7 @@
       var html = template(context);
       $('.layer').last().after(html);
       $(document).trigger('layer-changed');
+      listeners.bind();
     },
 
     editLayerForm: function(data) {
@@ -241,6 +243,7 @@
     },
 
     newLayerForm: function(lastDate) {
+    // TODO: these three need to be dried up
       var source = newForm.html();
       var template = Handlebars.compile(source);
       var context = {lastDate: lastDate};
