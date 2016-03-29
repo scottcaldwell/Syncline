@@ -100,7 +100,7 @@ h1 .title{
 
  .pin {
    background-color: #000;
-   background-image: #000; linear-gradient(left, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));
+   /*background-image: #000; linear-gradient(left, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));*/
    display: block;
    height: 2em;
    margin: -1em -.05em;
