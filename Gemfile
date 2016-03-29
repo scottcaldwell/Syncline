@@ -12,8 +12,10 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # Use Faker for seeding the database
 gem 'faker'
 
+gem 'sqlite3', :groups => [:development, :test]
+
 # Use postgres as the database for production
-gem 'pg'
+gem 'pg', group: :production
 
 gem 'rails_12factor', group: :production
 
