@@ -108,7 +108,7 @@
 
 .button-layer-options {
   position: absolute;
-  top: 10px;
+  bottom: 10px;
   right: 10px;
   z-index: 5;
   opacity: .65;
@@ -124,10 +124,27 @@
 }
 
 .x-axis {
-  display: absolute;
-  top: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.x-axis ul {
+  margin: 0;
+  font-size: .75em;
+  margin-top: -3px;
+}
+
+.x-axis li {
+  display: inline-block;
+  width: 25px;
+  border-right: 1px solid black;
+  padding-left: 3px;
+  height: 22px;
+}
+
+.axis-fixed {
+  position: fixed;
+  top: 60px;
   right: 0;
-  width: 200px;
-  height: 25px;
-  background-color: black;
 }
