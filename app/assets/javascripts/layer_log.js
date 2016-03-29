@@ -33,6 +33,16 @@
     }
   };
 
+  function setXAxis() {
+    var axis = $('.x-axis ul');
+    var steps = 300 / 25;
+    for (var i = 0; i < steps; i++) {
+      var num = $('<p>').text((i * 25));
+      var step = $('<li>').append(num);
+      axis.append(step);
+    }
+  };
+
   // Depth calculation
   function setTotalDepth() {
     var depths = $('.log-column-depth');
@@ -44,6 +54,7 @@
     });
   }
 
+  setXAxis();
   setTotalDepth();
   setOrder();
 
