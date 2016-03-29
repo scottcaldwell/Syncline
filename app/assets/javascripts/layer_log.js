@@ -37,7 +37,7 @@
     var axis = $('.x-axis ul');
     var steps = 300 / 25;
     for (var i = 0; i < steps; i++) {
-      var num = $('<p>').text((i * 25));
+      var num = $('<p>').text((i * 10));
       var step = $('<li>').append(num);
       axis.append(step);
     }
