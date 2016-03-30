@@ -223,6 +223,12 @@
 
   <section class='layer-new'>
     <div class="container">
+      <% if @layers.empty? %>
+        <div id='no-layer-message' class="is-centered">
+          <h2>No layer data exists for this drill hole</h2>
+          <button id='add-layer' class='button is-large'><i class="fa fa-plus-circle"></i> Add New Layer</button>
+        </div>
+      <% end %>
       <button id='add-layer' class='button is-info is-large add-layer'><i class="fa fa-plus-circle"></i> Add New Layer</button>
     </div>
 

@@ -38,7 +38,7 @@
           id: $(parent).data('id'),
           thickness: ($(parent).find('.thickness-val').text()),
           description: ($(parent).find('.layer-description').text()),
-          date_drilled: ($(parent).find('.layer-date').text()),
+          date_drilled: ($(parent).find('.layer-date span').text()),
           glog: ($(parent).find('.log-column-glog p').text())
         }
 
@@ -49,7 +49,7 @@
       });
 
       newBtn.on('click', function() {
-        var lastDate = $(".layer").last().find('.layer-date').text();
+        var lastDate = $(".layer").last().find('.layer-date span').text();
         helpers.removeActiveTab();
         formModal.addClass('is-active');
         newTab.addClass('is-active');
@@ -91,7 +91,7 @@
         var data = {
           thickness: ($(parent).find('.thickness-val').text()),
           description: ($(parent).find('.layer-description').text()),
-          date_drilled: ($(parent).find('.layer-date').text()),
+          date_drilled: ($(parent).find('.layer-date span').text()),
           glog: ($(parent).find('.log-column-glog').text())
 
         }
@@ -220,7 +220,13 @@
         date_drilled: data.data.date_drilled
       }
       var html = template(context);
-      $('.layer').last().after(html);
+      var lastLayer = $('.layer').last();
+      if ( lastLayer[0] ) {
+        lastLayer.after(html);
+      } else {
+        $('.x-axis').after(html);
+        $('#no-layer-message').empty();
+      }
       $(document).trigger('layer-changed');
       listeners.bind();
     },
@@ -238,7 +244,7 @@
       formWrap.empty();
       formWrap.append(html);
       saveEditBtn = $('.button-edit-save');
-      listeners.bind();
+      // listeners.bind();
     },
 
     newLayerForm: function(lastDate) {
@@ -249,7 +255,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      listeners.bind();
+      // listeners.bind();
     },
 
     newFieldTest: function() {
@@ -259,7 +265,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      listeners.bind();
+      // listeners.bind();
     },
 
     newLabTest: function() {
@@ -269,7 +275,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      listeners.bind();
+      // listeners.bind();
     }
   };
 

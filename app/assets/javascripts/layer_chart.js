@@ -87,6 +87,7 @@
       var x = parseInt(point[0]);
       var y = parseInt(point[1]);
       var hovered = false;
+      var lineWidth = 1;
 
       if (evt && pos.x - 5 <= (x + 20) && pos.x >= (x - 20) && pos.y <= (y + 20) && pos.y - 5 >= (y - 20)) {
         hovered = true;
@@ -97,6 +98,7 @@
       ctx.fillStyle = color;
 
       if (hovered) {
+        lineWidth = 2;
         ctx.fillRect(x - 7, y - 7, 14, 14);
         highlightAxis(x,y);
 
@@ -116,7 +118,7 @@
         ctx.beginPath();
         ctx.moveTo(lastPoint[0], lastPoint[1]);
         ctx.strokeStyle = color;
-        ctx.lineWidth = 0.3;
+        ctx.lineWidth = lineWidth;
         ctx.lineTo(point[0], point[1]);
         ctx.stroke();
       } else {
