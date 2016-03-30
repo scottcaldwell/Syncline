@@ -188,10 +188,10 @@
                 <a><i class="fa fa-edit"></i> Edit Layer</a>
               </li>
               <li id='add-ft-tab'>
-                <a><i class="fa fa-plus"></i> Add Field Test</a>
+                <a><i class="fa fa-file"></i> Field Test</a>
               </li>
               <li id='add-lt-tab'>
-                <a><i class="fa fa-plus"></i> Add Lab Test</a>
+                <a><i class="fa fa-file-o"></i> Lab Test</a>
               </li>
               <li id='new-layer-tab'>
                 <a><i class="fa fa-file-text-o"></i> New Layer</a>
@@ -230,7 +230,7 @@
       <% for test in @field_tests %>
         <% if test[0] %>
           <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
-            data-lid='<%= test[3] %>'
+            data-flid='<%= test[3] %>'
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
             data-spts='<%= test[1].blow_count %>'
@@ -244,7 +244,7 @@
       <% for test in @lab_tests %>
         <% if test[0] %>
           <span class='test-data lab-test'  
-            data-lid='<%= test[3] %>' 
+            data-llid='<%= test[3] %>' 
             data-type='<%= test[0].test_type %>' 
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
@@ -403,29 +403,44 @@
 
 
 <script id="new-ft-template" type="text/x-handlebars-template">
-  <h2>Add Field Test</h2>
+  <h2>Field Test</h2>
   <form id='new-ft' class='form new-ft' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth From</label>
-          <input id='ft_depth_from' type='number' class='input'></input>
+          <input id='ft_depth_from' type='number' class='input' value="{{ to }}"></input>
         </p>
       </div>
 
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth To</label>
-          <input id='ft_depth_to' type='number' class='input'></input>
+          <input id='ft_depth_to' type='number' class='input' value='{{ from }}'></input>
         </p>
       </div>
 
-      <div class="column is-4">
+      <div class="column is-2">
         <p class="control">
           <label class="label">Test Type</label>
-          <input type='text' id='ft_type' class='input'></input>
+          <input type='text' id='ft_type' class='input input-locked' value='SPT' readonly></input>
         </p>
       </div>
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Blow Count</label>
+          <input type='text' id='ft_blow_count' class='input' value='{{ blow_count }}' ></input>
+        </p>
+      </div>      
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Image</label>
+          <input type='file' id='ft_image'></input>
+        </p>
+      </div>            
+
     </div>
 
     <div class="columns">
@@ -440,7 +455,7 @@
 
 
 <script id="new-lt-template" type="text/x-handlebars-template">
-  <h2>Add Lab Test</h2>
+  <h2>Lab Test</h2>
   <form id='new-lt' class='form new-lt' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
@@ -457,12 +472,28 @@
         </p>
       </div>
 
-      <div class="column is-4">
+      <div class="column is-2">
         <p class="control">
           <label class="label">Test Type</label>
-          <input type='text' class='input' id='lt_type'></input>
+          <input type='text' class='input input-locked' id='lt_type' value='Grain Size' readonly></input>
         </p>
       </div>
+
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Test Type</label>
+          <input type='text' class='input' id='lt_fines_content' value='{{ fines_content }}'></input>
+        </p>
+      </div>      
+
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Lab Results</label>
+          <input type='file' id='lt_pdf'></input>
+        </p>
+      </div>            
     </div>
 
     <div class="columns">
