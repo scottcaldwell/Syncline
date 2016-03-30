@@ -1,13 +1,13 @@
 class SitesController < ApplicationController
   include ApplicationHelper
-  
+
   before_action :require_logged_in_user
 
   respond_to :html, :js
 
   def index
     @users_sites = SiteUser.where(user_id: current_user.id).pluck(:site_id)
-    @sites = Site.where(id: @users_sites)
+    @sites = Site.where(id: @users_sites).order(created_at: :desc)
     @site = Site.new
   end
 
