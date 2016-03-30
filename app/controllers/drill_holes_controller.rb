@@ -85,12 +85,19 @@ class DrillHolesController < ApplicationController
     @drill_hole.update_attributes(reviewed_by_id: @user.id, reviewed_by: @user_initials)
     if @drill_hole.save
       if params[:data] == "Send review completed email"
+        flash[:success] = "Review completed."
         UserMailer.review_complete_email(@drill_hole.logged_by_id, @drill_hole).deliver
       else
+        flash[:success] = "Review started."
         UserMailer.review_start_email(@drill_hole.logged_by_id, @drill_hole).deliver
       end
       respond_to do |format|
-        format.json { render json: { save: true } }
+        format.json { render json: { success: flash[:success] } }
+      end
+    else
+      respond_to do |format|
+        flash[:error] = "You can not review your own Log."
+        format.json { render json: { error: flash[:error] } }
       end
     end
   end

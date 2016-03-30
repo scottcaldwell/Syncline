@@ -12,13 +12,11 @@
 <%= render 'layouts/partials/nav_bar' unless @disable_nav%>
 
 <!-- render hero if front page? -->
-<% flash.each do |key, value| %>
-  <div class="flash">
-    <div class="notification">
-      <%= content_tag(:div, value, class: "notification") %>
-    </div>
-  </div>
-<% end %>
+<div class="flash">
+  <% flash.each do |key, value| %>
+    <%= content_tag(:div, value, class: "notification") %>
+  <% end %>
+</div>
 
 
 <section id="section-container" class="section page-content">
