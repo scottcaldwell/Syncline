@@ -8,7 +8,10 @@
     </div>
   </header>
   <section class='section'>
+
       <div class="container">
+      <a class="button is-large" id="add-site-button" style="margin-left: 2px"><i class="fa fa-plus"></i>&nbsp; Add new Site</a>
+
       <div class="columns sites-columns">
         <% @sites.each do |site| %>
 
@@ -31,61 +34,60 @@
           </div>
         <% end %>
 
-        <div class="column is-third-tablet is-third-desktop new-site">
+        <!-- <div class="column is-third-tablet is-third-desktop new-site">
           <div class="new-site-card" id="new-site-card">
-            <div class="add-site">
-              <a id="add-site-button"><%= image_tag("add-site.png", :alt => "rss feed") %></a>
-            </div>
+            <div class="add-site"> -->
+            <!-- </div>
+          </div>
+        </div> -->
 
-          <div class="modal" id="add-site-modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-              <div class="box">
-                <div class="content">
-                  <div>
-                    <h1>Select site from map, or enter manually</h1>
-                    <p class="control">
-                      <%= form_for @site, html: { class: 'columns' } do |f|%>
-                        <div class="column is-half-tablet is-half-desktop">
-                          <p class="columns">
-                            <%= f.label 'Site Name:', :class => "label column is-3" %><br />
-                            <%= f.text_field :site_name, :class => 'input column is-8 is-medium input-locked', required: true%>
-                          </p>
-                          <p class="columns latitude-input">
-                            <%= f.label 'Latitude: ', :class => "label column is-3" %><br />
-                            <%= f.text_field :center_lat, :class => 'input column is-8 is-medium input-locked', required: true %>
-                            <span id="latitude-helper">Enter Valid Latitude</span>
-                          </p>
-                          <p class="columns longitude-input">
-                            <%= f.label 'Longitude: ', :class => "label column is-3" %><br />
-                            <%= f.text_field :center_lng, :class => 'input column is-8 is-medium input-locked', required: true %>
-                            <span id="longitude-helper">Enter Valid Longitude</span>
-                          </p>
-                        </div>
-                        <div class="column is-half-tablet is-half-desktop">
-                          <p class="columns">
-                            <%= f.label 'Expected completion date:', :class => "label column is-5" %><br />
-                            <%= f.date_field :drill_by_date, :class => 'input column is-6 is-medium input-locked' %>
-                          </p>
-                          <p class="columns">
-                            <%= f.label 'Expected meters drilled:', :class => "label column is-5" %><br />
-                            <%= f.text_field :drill_to_depth, :class => 'input column is-6 is-medium input-locked' %>
-                          </p>
-                          <p class="site-submit-button" id="site-submit-button">
-                            <%= f.submit 'Create New Site', :class => 'button is-primary' %>
-                          </p>
-                        </div>
-                      <% end %>
-                    </p>
-                    <div id="geo-search-map" class='map'></div>
-                  </div>
+        <div class="modal" id="add-site-modal">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <div class="content">
+                <div>
+                  <h1>Select site from map, or enter manually</h1>
+                  <p class="control">
+                    <%= form_for @site, html: { class: 'columns' } do |f|%>
+                      <div class="column is-half-tablet is-half-desktop">
+                        <p class="columns">
+                          <%= f.label 'Site Name:', :class => "label column is-3" %><br />
+                          <%= f.text_field :site_name, :class => 'input column is-8 is-medium input-locked', required: true%>
+                        </p>
+                        <p class="columns latitude-input">
+                          <%= f.label 'Latitude: ', :class => "label column is-3" %><br />
+                          <%= f.text_field :center_lat, :class => 'input column is-8 is-medium input-locked', required: true %>
+                          <span id="latitude-helper">Enter Valid Latitude</span>
+                        </p>
+                        <p class="columns longitude-input">
+                          <%= f.label 'Longitude: ', :class => "label column is-3" %><br />
+                          <%= f.text_field :center_lng, :class => 'input column is-8 is-medium input-locked', required: true %>
+                          <span id="longitude-helper">Enter Valid Longitude</span>
+                        </p>
+                      </div>
+                      <div class="column is-half-tablet is-half-desktop">
+                        <p class="columns">
+                          <%= f.label 'Expected completion date:', :class => "label column is-5" %><br />
+                          <%= f.date_field :drill_by_date, :class => 'input column is-6 is-medium input-locked' %>
+                        </p>
+                        <p class="columns">
+                          <%= f.label 'Expected meters drilled:', :class => "label column is-5" %><br />
+                          <%= f.text_field :drill_to_depth, :class => 'input column is-6 is-medium input-locked' %>
+                        </p>
+                        <p class="site-submit-button" id="site-submit-button">
+                          <%= f.submit 'Create New Site', :class => 'button is-primary' %>
+                        </p>
+                      </div>
+                    <% end %>
+                  </p>
+                  <div id="geo-search-map" class='map'></div>
                 </div>
               </div>
-              <button class="modal-close" id="site-modal"></button>
             </div>
+            <button class="modal-close" id="site-modal"></button>
           </div>
         </div>
-      </div>
     </div>
   </section>
 
