@@ -231,7 +231,11 @@ $(function() {
   }
   if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
     //When location is selected(via search or click), add marker and show button
-    geocoderControl.on('select', helpers.setMarkerViaSearch);
+    //Not using helper function. 
+    geocoderControl.on('select', function (res) {
+      var coordinates = res.feature.geometry.coordinates;
+      helpers.addMarker(coordinates[1], coordinates[0]);
+    });
     //When map is clicked, addMarker()
     geoSearchMap.on('click', helpers.setMarkerOnClick);
     //Fixes modal bug for map. Without this, Map tiles don't load entirely

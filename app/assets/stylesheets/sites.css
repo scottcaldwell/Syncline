@@ -12,13 +12,13 @@
 .card-content{
   height:400px;
 }
-.site-info{
-  background-color: #EEEEEE;
 
+.site-info{
+  background-color: rgba(255, 255, 255, 0.85);
   margin-top: 5px;
   padding: 10px;
   font-weight: 400;
-  width:80%;
+  width:100%;
   position:absolute;
   bottom:0;
   left:0;

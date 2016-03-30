@@ -13,7 +13,7 @@ $(function() {
       var scrollBottom = $(window).scrollTop() + $(window).height();
 
       ///////////Map Animation/////////////////////
-      if ((mapPos) < scrollBottom) {
+      if ((mapPos+250) < scrollBottom) {
         map.children('.pin').each(function(i, b) {
           $(b).addClass('pin' + (i + 1));
         });
@@ -24,7 +24,7 @@ $(function() {
       }
       ////////////Input Animation/////////////////
 
-      if ((inputPos + 300) < scrollBottom) {
+      if ((inputPos + 250) < scrollBottom) {
         $('#two').fadeIn();
         setTimeout(function() {
           $('#two').addClass('up');
@@ -39,7 +39,7 @@ $(function() {
       }
 
       ////////////Bar Graph Animation//////////////
-      if ((barsPos + 150) < scrollBottom) {
+      if ((barsPos + 250) < scrollBottom) {
         var allbars = bars.children('bar');
         bars.children('.barContainer').each(function(i, b) {
           $(b).find('.bar').addClass('bar' + (i + 1));
