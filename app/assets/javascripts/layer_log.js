@@ -50,7 +50,7 @@
     depths.each(function(i) {
       var layer_thickness = parseFloat($(depths[i]).find('.thickness-val').text());
       total_depth += layer_thickness;
-      $(this).find('.abs-depth-value').text(total_depth);
+      $(this).find('.abs-depth-value').text(Math.round(total_depth * 100) / 100);
     });
   }
 
