@@ -65,7 +65,7 @@
       newFT.on('click', function() {
         helpers.removeActiveTab();
         newFT.addClass('is-active');
-        render.newFieldTest();
+        render.newFieldTest(4);
         saveFT = $('.button-ft-save');
         listeners.bind();
       });
@@ -252,20 +252,30 @@
       listeners.bind();
     },
 
-    newFieldTest: function() {
+    newFieldTest: function(id) {
       var source = ftForm.html();
       var template = Handlebars.compile(source);
       var context = {};
+      if (id) {
+        var data = $('span[data-lid=' + id +']');
+        context = {
+          from: data.data('to'),
+          to: data.data('from')
+        };
+      }
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
       listeners.bind();
     },
 
-    newLabTest: function() {
+    newLabTest: function(id) {
       var source = ltForm.html();
       var template = Handlebars.compile(source);
       var context = {};
+      if (id) {
+        context = {};
+      }
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);

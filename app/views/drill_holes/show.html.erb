@@ -188,10 +188,10 @@
                 <a><i class="fa fa-edit"></i> Edit Layer</a>
               </li>
               <li id='add-ft-tab'>
-                <a><i class="fa fa-plus"></i> Add Field Test</a>
+                <a><i class="fa fa-file"></i> Field Test</a>
               </li>
               <li id='add-lt-tab'>
-                <a><i class="fa fa-plus"></i> Add Lab Test</a>
+                <a><i class="fa fa-file-o"></i> Lab Test</a>
               </li>
               <li id='new-layer-tab'>
                 <a><i class="fa fa-file-text-o"></i> New Layer</a>
@@ -403,20 +403,20 @@
 
 
 <script id="new-ft-template" type="text/x-handlebars-template">
-  <h2>Add Field Test</h2>
+  <h2>Field Test</h2>
   <form id='new-ft' class='form new-ft' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth From</label>
-          <input id='ft_depth_from' type='number' class='input'></input>
+          <input id='ft_depth_from' type='number' class='input' value="{{ to }}"></input>
         </p>
       </div>
 
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth To</label>
-          <input id='ft_depth_to' type='number' class='input'></input>
+          <input id='ft_depth_to' type='number' class='input' value='{{ from }}'></input>
         </p>
       </div>
 
@@ -440,7 +440,7 @@
 
 
 <script id="new-lt-template" type="text/x-handlebars-template">
-  <h2>Add Lab Test</h2>
+  <h2>Lab Test</h2>
   <form id='new-lt' class='form new-lt' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
