@@ -4,7 +4,9 @@ class Layer < ActiveRecord::Base
   has_many :field_tests
   has_many :lab_tests
 
-  scope :layer_thickness, -> (drill_hole_id, material_type_name) do 
+  default_scope { order('date_drilled') }
+
+  scope :layer_thickness, -> (drill_hole_id, material_type_name) do
     where(drill_hole_id: drill_hole_id, material_type_id: MaterialType.where(name: material_type_name).pluck(:id)).sum(:thickness)
   end
 
@@ -14,5 +16,5 @@ class Layer < ActiveRecord::Base
 
   def round_thickness
     thickness.round(2)
-  end  
+  end
 end
