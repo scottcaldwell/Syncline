@@ -33,13 +33,13 @@ Syncline::Application.configure do
   config.action_mailer.smtp_settings = {
     :port           => 587,
     :address        => "smtp.mailgun.org",
-    :domain         => ENV['domain'],
-    :user_name      => ENV['username'],
-    :password       => ENV['password'],
+    :domain         => ENV['DOMAIN'],
+    :user_name      => ENV['USERNAME'],
+    :password       => ENV['PASSWORD'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }
 
-  config.assets.debug = true #true
+  config.assets.debug = false #true
 
 end
