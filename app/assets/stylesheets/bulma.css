@@ -1761,6 +1761,7 @@ table th {
   color: #222324;
   font-size: 28px;
   line-height: 1;
+  padding-top: 10px;
 }
 
 .title strong {

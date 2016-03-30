@@ -22,7 +22,7 @@ $(function () {
       setTimeout(function () {
         $('#latitude-helper').removeClass('shake');
         $('#longitude-helper').removeClass('shake');
-      }, 520);  
+      }, 520);
       if (count > 0) {
         return false;
       }

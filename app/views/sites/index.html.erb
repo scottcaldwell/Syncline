@@ -14,11 +14,13 @@
       <div class="columns sites-columns">
         <% @sites.each do |site| %>
         <div class="column is-third-tablet is-third-desktop drill-card">
+          <a href= <%= site_path(site.id) %> >
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3 static-map">
               </figure>
             </div>
+            </a>
             <div class="card-content">
               <div class="media">
                 <div class="media-content">
@@ -38,9 +40,9 @@
         <div class="column is-third-tablet is-third-desktop new-site">
           <div class="new-site-card" id="new-site-card">
             <div class="add-site">
-              <a id="add-site-button"><%= image_tag("add-site.png", :alt => "rss feed") %></a>
+              <a id="add-site-button"><%= image_tag("add-site.png", :alt => "rss feed") %>
             </div>
-
+            </a>
           <div class="modal" id="add-site-modal">
             <div class="modal-background"></div>
             <div class="modal-content">
