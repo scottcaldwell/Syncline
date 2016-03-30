@@ -25,9 +25,15 @@ $(function () {
     var ruler = $('.layer-rules ul');
     ruler.empty();
     var numLayers = layersHeight / 25;
+    var maxHeight = 10.0;
 
     for (var i = 0; i < numLayers; i++) {
-      var num = $('<p>').text((i * 25) /100);
+      var scale = (i * 25) /100;
+      var num = $('<p>').text(scale);
+      if (scale === maxHeight){
+        ruler.append($('<p>').css('page-break-after', 'always'));
+        maxHeight += 10.0;
+      }
       var step = $('<li>').append(num);
       ruler.append(step);
     }
