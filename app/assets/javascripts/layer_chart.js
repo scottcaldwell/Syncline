@@ -65,7 +65,16 @@
     }
   }
 
-  function draw(data, color, clear, evt) {
+  function draw(tests, color, clear, evt) {
+    var data = tests.sort(function(a,b) {
+      console.log(a[1]);
+      if ( a[1] < b[1] ) return -1;
+      if ( a[1] > b[1] ) return 1;
+      return 0;
+    });
+
+    console.log(data); 
+
     // create an update function that calls the redraw and each individual draw event
     if (clear === true) {
       ctx.clearRect(0, 0, chart.width, chart.height);
