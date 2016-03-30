@@ -1,6 +1,6 @@
 (function() {
 
-  var formModal = $('.modal');
+  var formModal = $('.input-modal');
   var formWrap = formModal.find('#form-wrap');
   var layerOptions = $('')
 

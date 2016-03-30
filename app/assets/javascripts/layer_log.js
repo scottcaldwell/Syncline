@@ -68,7 +68,6 @@
   // set layer order
   function setOrder(pop) {
     var allLayers = layers.find('.layer');
-    console.log(allLayers);
     var count = allLayers.length;
     var i = 1;
     allLayers.each(function(index) {
