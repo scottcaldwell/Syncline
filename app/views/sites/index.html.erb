@@ -11,20 +11,23 @@
       <div class="container">
       <div class="columns sites-columns">
         <% @sites.each do |site| %>
-        <div class="column is-third-tablet is-third-desktop drill-card">
-          <div class="card">
-            <div class="card-image">
-            </div>
-            <div class="card-content static-map is-flex" >
-              <div class="site-info is-info">
-                <p class="title is-4"><%= link_to site.site_name, site_path(site.id) %></p>
-                <small><strong>Date created: <%= site.created_at%></strong></small></br>
-                <small class="site-lat" data-site-lat="<%= site.center_lat %>"><strong>Lat: <%= number_with_precision(site.center_lat, precision: 3) %></strong></small>
-                <small class="site-lng" data-site-lng="<%= site.center_lng %>"><strong>Lng: <%= number_with_precision(site.center_lng, precision: 3) %></strong></small>
-                </br><small><strong>Drill Holes: <%= site.drill_holes.count %></strong></small>
+
+          <div class="column is-third-tablet is-third-desktop drill-card">
+            <a id="site-link" href='<%= site_path(site.id)%>'>
+              <div class="card">
+                <div class="card-image">
+                </div>
+                <div class="card-content static-map is-flex" >
+                  <div class="site-info is-info">
+                    <p id="site-title"><%= site.site_name %></p>
+                    <small="info"><strong><%= site.created_at%></strong></small></br>
+                    <small class="site-lat info" data-site-lat="<%= site.center_lat %>"><strong>Lat: <%= number_with_precision(site.center_lat, precision: 3) %></strong></small>
+                    <small class="site-lng info" data-site-lng="<%= site.center_lng %>"><strong>Lng: <%= number_with_precision(site.center_lng, precision: 3) %></strong></small>
+                  </br><small class="info"><strong>Drill Holes: <%= site.drill_holes.count %></strong></small>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
+            </a>
           </div>
         <% end %>
 
