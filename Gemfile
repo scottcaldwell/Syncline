@@ -19,6 +19,8 @@ gem 'pg', group: :production
 
 gem 'rails_12factor', group: :production
 
+gem 'puma'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
