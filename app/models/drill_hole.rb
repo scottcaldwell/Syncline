@@ -1,4 +1,7 @@
 class DrillHole < ActiveRecord::Base
+
+  default_scope { order('id') }
+
   belongs_to :site
   has_many :layers
 
