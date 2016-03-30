@@ -6,3 +6,8 @@
 #drill-site-link{
   float:left;
 }
+
+section.site-overview {
+    padding: 0px;
+    margin: 0px;
+}
