@@ -46,7 +46,7 @@ $(function () {
           button.removeClass('is-loading');
         });
       }
-      flash.delay(4000).fadeOut('slow');
+      flash.delay(4000).fadeOut('slow').empty();
     });
   }
 });
