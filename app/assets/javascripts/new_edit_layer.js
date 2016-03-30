@@ -245,7 +245,7 @@
       formWrap.empty();
       formWrap.append(html);
       saveEditBtn = $('.button-edit-save');
-      // listeners.bind();
+      listeners.bind();
     },
 
     newLayerForm: function(lastDate) {
@@ -256,7 +256,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     },
 
     newFieldTest: function(id) {
@@ -274,7 +274,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     },
 
     newLabTest: function(id) {
@@ -292,7 +292,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     }
   };
 
