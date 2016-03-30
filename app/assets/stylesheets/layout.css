@@ -43,3 +43,19 @@ html, body {
 .underline {
   border-bottom: thin solid #333;
 }
+
+.table-wrap {
+  padding: 1em;
+  background-color: white;
+}
+
+.highcharts-container {
+
+}
+
+@media screen and (min-width: 980px) {
+  .section {
+      border-top: 0;
+      padding: 10px 0;
+  }
+}

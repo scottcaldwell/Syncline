@@ -28,8 +28,8 @@
     });
 
     resizeChart();
-    draw(fData, 'blue', true, null);
-    draw(lData, 'green', false, null);
+    draw(fData, '#32C5D2', true, null);
+    draw(lData, '#E7505A', false, null);
     setGrid();
   }
 
@@ -67,13 +67,10 @@
 
   function draw(tests, color, clear, evt) {
     var data = tests.sort(function(a,b) {
-      console.log(a[1]);
       if ( a[1] < b[1] ) return -1;
       if ( a[1] > b[1] ) return 1;
       return 0;
     });
-
-    console.log(data); 
 
     // create an update function that calls the redraw and each individual draw event
     if (clear === true) {
@@ -163,15 +160,15 @@
 
   $(document).on('layer-changed', function() {
     resizeChart();
-    draw(fData, 'blue', true, null);
-    draw(lData, 'green', false, null);
+    draw(fData, '#32C5D2', true, null);
+    draw(lData, '#E7505A', false, null);
     setGrid();
   });
 
   $(chart).on('mousemove', function(e) {
     resizeChart();
-    draw(fData, 'blue', true, e);
-    draw(lData, 'green', false, e);
+    draw(fData, '#32C5D2', true, e);
+    draw(lData, '#E7505A', false, e);
     setGrid();
   });
 
