@@ -53,6 +53,10 @@ html, body {
 
 }
 
+.section + .section {
+   border-top: none;
+}
+
 @media screen and (min-width: 980px) {
   .section {
       border-top: 0;

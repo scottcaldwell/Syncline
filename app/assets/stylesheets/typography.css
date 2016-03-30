@@ -7,3 +7,7 @@ h2 {
   padding-bottom: 0em;
   margin-bottom: 0em;
 }
+
+.is-centered {
+  text-align: center;
+}
