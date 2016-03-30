@@ -230,7 +230,7 @@
       <% for test in @field_tests %>
         <% if test[0] %>
           <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
-            data-lid='<%= test[3] %>'
+            data-flid='<%= test[3] %>'
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
             data-spts='<%= test[1].blow_count %>'
@@ -244,7 +244,7 @@
       <% for test in @lab_tests %>
         <% if test[0] %>
           <span class='test-data lab-test'  
-            data-lid='<%= test[3] %>' 
+            data-llid='<%= test[3] %>' 
             data-type='<%= test[0].test_type %>' 
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
@@ -420,12 +420,27 @@
         </p>
       </div>
 
-      <div class="column is-4">
+      <div class="column is-2">
         <p class="control">
           <label class="label">Test Type</label>
-          <input type='text' id='ft_type' class='input'></input>
+          <input type='text' id='ft_type' class='input input-locked' value='SPT' readonly></input>
         </p>
       </div>
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Blow Count</label>
+          <input type='text' id='ft_blow_count' class='input' value='{{ blow_count }}' ></input>
+        </p>
+      </div>      
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Image</label>
+          <input type='file' id='ft_image'></input>
+        </p>
+      </div>            
+
     </div>
 
     <div class="columns">
@@ -457,12 +472,28 @@
         </p>
       </div>
 
-      <div class="column is-4">
+      <div class="column is-2">
         <p class="control">
           <label class="label">Test Type</label>
-          <input type='text' class='input' id='lt_type'></input>
+          <input type='text' class='input input-locked' id='lt_type' value='Grain Size' readonly></input>
         </p>
       </div>
+
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Test Type</label>
+          <input type='text' class='input' id='lt_fines_content' value='{{ fines_content }}'></input>
+        </p>
+      </div>      
+
+
+      <div class="column is-2">
+        <p class="control">
+          <label class="label">Lab Results</label>
+          <input type='file' id='lt_pdf'></input>
+        </p>
+      </div>            
     </div>
 
     <div class="columns">

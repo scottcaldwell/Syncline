@@ -38,12 +38,13 @@
           id: $(parent).data('id'),
           thickness: ($(parent).find('.thickness-val').text()),
           description: ($(parent).find('.layer-description').text()),
-          date_drilled: ($(parent).find('.layer-date').text()),
+          date_drilled: ($(parent).find('.layer-date .span').text()),
           glog: ($(parent).find('.log-column-glog p').text())
         }
 
         helpers.removeActiveTab();
         formModal.addClass('is-active');
+        formModal.attr('data-pid', data.id);
         editTab.addClass('is-active');
         render.editLayerForm(data);
       });
@@ -65,7 +66,7 @@
       newFT.on('click', function() {
         helpers.removeActiveTab();
         newFT.addClass('is-active');
-        render.newFieldTest(4);
+        render.newFieldTest($('input-modal').attr('data-pid'));
         saveFT = $('.button-ft-save');
         listeners.bind();
       });
@@ -73,7 +74,7 @@
       newLT.on('click', function() {
         helpers.removeActiveTab();
         newLT.addClass('is-active');
-        render.newLabTest();
+        render.newLabTest($('.input-modal').attr('data-pid'));
         saveLT = $('.button-lt-save');
         listeners.bind();
       });
@@ -257,10 +258,11 @@
       var template = Handlebars.compile(source);
       var context = {};
       if (id) {
-        var data = $('span[data-lid=' + id +']');
+        var data = $('span[data-flid=' + id +']');
         context = {
           from: data.data('to'),
-          to: data.data('from')
+          to: data.data('from'),
+          blow_count: data.data('blow_count')
         };
       }
       var html = template(context);
@@ -274,7 +276,12 @@
       var template = Handlebars.compile(source);
       var context = {};
       if (id) {
-        context = {};
+        var data = $('span[data-llid=' + id + ']');
+        context = {
+          to: data.data['to'],
+          from: data.data['from'],
+          fines_content: data.data['size']
+        };
       }
       var html = template(context);
       formWrap.empty();
