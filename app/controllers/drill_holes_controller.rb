@@ -33,6 +33,7 @@ class DrillHolesController < ApplicationController
       @field_tests.push([f_test, spts, photo, l.id]) 
       @lab_tests.push([l_test, size, photo, l.id])
     end
+
     is_a_site_user
 
     respond_to do |format|
