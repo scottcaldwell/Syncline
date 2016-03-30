@@ -18,6 +18,6 @@
     width: 900px;
   }
   #markers-map {
-    width: 960px;
+    width: 100%;
   }
 }

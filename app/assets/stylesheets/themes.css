@@ -1,0 +1,98 @@
+/************
+ * Theme 1
+ * dark-brown #3f3c3a
+ * red #f31362
+ * light #f3edd4
+
+ * Theme 2
+ * red #a63246
+ * blue #7198be
+ * lightblue #bdcad9
+ * green #5d724e
+
+ * theme 3
+ * grey: #EEF1F5;
+ * darkblue: #1F2B3D;
+ * midblue: #26344B;
+ * brightblue: #32C5D2;
+ * linkblye: #3598DC;
+ * red: #E7505A;
+ * lightred: #FBC5C5;
+ * green: #3598DC;
+ * orange: #3598DC;
+ ************/
+
+.theme-1 .button i {
+  color: #E7505A;
+}
+
+.theme-1 .button.is-primary {
+
+}
+
+.theme-1 .button.is-primary i {
+ color: white; 
+}
+
+.theme-1 .button.is-primary:hover {
+  
+}
+
+
+.theme-1 .button.is-info {
+
+}
+
+.theme-1 .button.is-info i {
+  color: white; 
+}
+
+.theme-1 .button.is-info:hover {
+  
+}
+
+.theme-1 .button.is-success {
+
+}
+
+.theme-1 .button.is-success i {
+ color: white; 
+}
+
+.theme-1 .button.is-success:hover {
+  
+}
+
+
+.theme-1 a {
+
+}
+
+.theme-1 a:hover {
+  
+}
+
+.theme-1 .page-header {
+  background-color: white;
+}
+
+.theme-1 .navbar {
+  background-color: #1F2B3D;
+}
+
+.theme-1 .page-content section {
+ background-color: #F9FAFC; 
+}
+
+.theme-1 .page-content section.layers-header {
+  background-color: #26344B;
+}
+
+.theme-1 .drill-log {
+  background-color: white;
+}
+
+.theme-1 .site-footer {
+  background-color: #26344B;
+  color: #f6f6f6;
+}

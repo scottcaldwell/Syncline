@@ -6,6 +6,10 @@
   margin-left: 150px;
 }
 
+.site-footer .button {
+  margin-right: 1em;
+}
+
 @media (min-width: 960px) {
   .add-layer {
     position: fixed;
