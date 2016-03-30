@@ -18,11 +18,13 @@
             <div class="card-image">
             </div>
             <div class="card-content static-map is-flex" >
-              <div class="site-info">
+              <div class="site-info is-info">
                 <p class="title is-5"><%= link_to site.site_name, site_path(site.id) %></p>
-                <p class="site-lat" data-site-lat="<%= site.center_lat %>">Latitude: <%= number_with_precision(site.center_lat, precision: 3) %></p>
-                <p class="site-lng" data-site-lng="<%= site.center_lng %>">Longitude: <%= number_with_precision(site.center_lng, precision: 3) %></p>
-                <p>Drill Holes: <%= site.drill_holes.count %></p>
+                <small>Date created: <%= site.created_at%></small></br>
+                <small class="site-lat" data-site-lat="<%= site.center_lat %>">Lat: <%= number_with_precision(site.center_lat, precision: 3) %></small>
+                <small class="site-lng" data-site-lng="<%= site.center_lng %>">Lng: <%= number_with_precision(site.center_lng, precision: 3) %></small>
+                </br><small>Drill Holes: <%= site.drill_holes.count %></small>
+
               </div>
             </div>
           </div>

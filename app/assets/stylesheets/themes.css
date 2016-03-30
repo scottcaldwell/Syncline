@@ -31,11 +31,11 @@
 }
 
 .theme-1 .button.is-primary i {
- color: white; 
+ color: white;
 }
 
 .theme-1 .button.is-primary:hover {
-  
+
 }
 
 
@@ -44,11 +44,11 @@
 }
 
 .theme-1 .button.is-info i {
-  color: white; 
+  color: white;
 }
 
 .theme-1 .button.is-info:hover {
-  
+
 }
 
 .theme-1 .button.is-success {
@@ -56,11 +56,11 @@
 }
 
 .theme-1 .button.is-success i {
- color: white; 
+ color: white;
 }
 
 .theme-1 .button.is-success:hover {
-  
+
 }
 
 
@@ -69,7 +69,7 @@
 }
 
 .theme-1 a:hover {
-  
+
 }
 
 .theme-1 .page-header {
@@ -81,7 +81,7 @@
 }
 
 .theme-1 .page-content section {
-  
+
 }
 
 .theme-1 .page-content section.layers-header {
