@@ -45,7 +45,10 @@ class DrillHolesController < ApplicationController
         File.open(save_path, 'wb') do |file|
           file << pdf
         end
-        PdfMailer.email_pdf(pdf, @drill_hole, current_user).deliver
+        @user_ids = SiteUser.where(site_id: current_site).pluck(:user_id)
+        @user_ids.each do |user_id|
+          PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
+        end
         # render :pdf => 'drill_hole',
         # :save_to_file => Rails.root.join('pdfs', "drill_hole.pdf"),
         # :template => 'drill_holes/show.pdf.erb',
@@ -85,19 +88,19 @@ class DrillHolesController < ApplicationController
     @drill_hole.update_attributes(reviewed_by_id: @user.id, reviewed_by: @user_initials)
     if @drill_hole.save
       if params[:data] == "Send review completed email"
-        flash[:success] = "Review completed."
+        @success = "Review completed."
         UserMailer.review_complete_email(@drill_hole.logged_by_id, @drill_hole).deliver
       else
-        flash[:success] = "Review started."
+        @success = "Review started."
         UserMailer.review_start_email(@drill_hole.logged_by_id, @drill_hole).deliver
       end
       respond_to do |format|
-        format.json { render json: { success: flash[:success] } }
+        format.json { render json: { success: @success } }
       end
     else
+      @error = "You can not review your own Log."
       respond_to do |format|
-        flash[:error] = "You can not review your own Log."
-        format.json { render json: { error: flash[:error] } }
+        format.json { render json: { error: @error } }
       end
     end
   end

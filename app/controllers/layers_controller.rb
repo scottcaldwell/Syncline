@@ -13,6 +13,11 @@ class LayersController < ApplicationController
 
     if @layer.save
       # flash.now[:alert] = "Layer Saved"
+      @site = Site.find(current_site)
+      if @site.drill_by_date && @site.drill_by_date < @layer.date_drilled
+        @site.update_attributes(drill_by_date: @layer.date_drilled)
+        @site.save
+      end 
       respond_to do |format|
         format.json { render json: { data: @layer } }
       end

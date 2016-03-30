@@ -75,3 +75,13 @@ html, body {
       padding: 10px 0;
   }
 }
+
+.site-overview-header h1 {
+  position: absolute;
+  display: inline-block;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black;
+  top: 11px;
+  padding: 8px 18px;
+}

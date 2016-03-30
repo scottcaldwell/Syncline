@@ -17,6 +17,10 @@ class DrillHole < ActiveRecord::Base
     presence: true
   validates :ground_elev,
     presence: true
+  validates :dh_lat,
+      presence: true, numericality: { greater_than_or_equal_to: -90, less_than_or_equal_to: 90 }
+  validates :dh_lng,
+      presence: true, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
 
   validate :check_logged_by_and_reviewed_by
 
