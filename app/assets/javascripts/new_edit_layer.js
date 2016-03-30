@@ -66,7 +66,8 @@
       newFT.on('click', function() {
         helpers.removeActiveTab();
         newFT.addClass('is-active');
-        render.newFieldTest($('input-modal').attr('data-pid'));
+        var pid = $('.input-modal').attr('data-pid');
+        render.newFieldTest(pid);
         saveFT = $('.button-ft-save');
         listeners.bind();
       });
@@ -74,7 +75,8 @@
       newLT.on('click', function() {
         helpers.removeActiveTab();
         newLT.addClass('is-active');
-        render.newLabTest($('.input-modal').attr('data-pid'));
+        var pid = $('.input-modal').attr('data-pid');        
+        render.newLabTest(pid);
         saveLT = $('.button-lt-save');
         listeners.bind();
       });
@@ -245,7 +247,7 @@
       formWrap.empty();
       formWrap.append(html);
       saveEditBtn = $('.button-edit-save');
-      // listeners.bind();
+      listeners.bind();
     },
 
     newLayerForm: function(lastDate) {
@@ -256,7 +258,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     },
 
     newFieldTest: function(id) {
@@ -274,7 +276,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     },
 
     newLabTest: function(id) {
@@ -292,7 +294,7 @@
       var html = template(context);
       formWrap.empty();
       formWrap.append(html);
-      // listeners.bind();
+      listeners.bind();
     }
   };
 
