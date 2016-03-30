@@ -66,7 +66,8 @@
       newFT.on('click', function() {
         helpers.removeActiveTab();
         newFT.addClass('is-active');
-        render.newFieldTest($('input-modal').attr('data-pid'));
+        var pid = $('.input-modal').attr('data-pid');
+        render.newFieldTest(pid);
         saveFT = $('.button-ft-save');
         listeners.bind();
       });
@@ -74,7 +75,8 @@
       newLT.on('click', function() {
         helpers.removeActiveTab();
         newLT.addClass('is-active');
-        render.newLabTest($('.input-modal').attr('data-pid'));
+        var pid = $('.input-modal').attr('data-pid');        
+        render.newLabTest(pid);
         saveLT = $('.button-lt-save');
         listeners.bind();
       });
