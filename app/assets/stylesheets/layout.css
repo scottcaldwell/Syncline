@@ -79,9 +79,11 @@ html, body {
 .site-overview-header h1 {
   position: absolute;
   display: inline-block;
+  left: -60px;
   z-index: 999;
   background-color: rgba(255, 255, 255, 0.85);
   color: black;
   top: 11px;
   padding: 8px 18px;
+  font-weight: 700;
 }

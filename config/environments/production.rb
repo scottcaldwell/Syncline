@@ -30,7 +30,7 @@ Syncline::Application.configure do
   config.assets.compile = true
 
   # Asset precompile list, used for wicked_pdf
-  config.assets.precompile += ['application.css', 'http://code.jquery.com/jquery-1.10.0.min.js', 'http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', 'layers_pdf.js']
+  # config.assets.precompile += ['application.css', 'http://code.jquery.com/jquery-1.10.0.min.js', 'http://code.jquery.com/ui/1.10.3/jquery-ui.min.js', 'layers_pdf.js']
 
   # Generate digests for assets URLs.
   config.assets.digest = true
