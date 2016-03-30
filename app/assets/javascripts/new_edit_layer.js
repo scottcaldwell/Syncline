@@ -34,7 +34,6 @@
       layerOptions = $('.button-layer-options');
       layerOptions.on('click', function() {
         var parent = $(this).parents('.layer')[0];
-        console.log(parent);
         var data = {
           id: $(parent).data('id'),
           thickness: ($(parent).find('.thickness-val').text()),
