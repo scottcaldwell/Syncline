@@ -1,5 +1,5 @@
 $(function() {
-  // var closeButton = $('.delete'); //FIXME: button not working. 
+  // var closeButton = $('.delete'); //FIXME: button not working.
   var notification = $('.flash');
 
   // closeButton.on('click', function() {

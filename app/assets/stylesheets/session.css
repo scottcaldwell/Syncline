@@ -17,8 +17,7 @@
 }
 
 .message-body{
-  font-size:1.15em;
-  text-align: center;
+  font-size:1.5em;
 }
 
 h1 .title{
@@ -55,7 +54,8 @@ h1 .title{
  #map{
    width: 200px;
    height: 150px;
-   background: lightgrey;
+   background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
    transform: perspective(10px) rotateX(1deg);
    margin: 50px;
  }
@@ -116,7 +116,8 @@ h1 .title{
 
  .pin:after {
    background-color: #AAA;
-   background-image: radial-gradient(25% 25%, circle, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));
+   background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
    border-radius: 50%;
    box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
                inset .2em .2em .2em hsla(0,0%,100%,.2),
@@ -147,53 +148,68 @@ h1 .title{
   justify-content:center;
   color:#444;
   height:300px;
-  padding:50px;
+  padding:20px;
+  width:300px;
+  display:flex;
 }
-
-#xAxis{
-  width: 3px;
-  height: 200px;
-  background:white;
-}
-#yAxis{
-  height: 3px;
-  width: 200px;
-  background:white;
-  z-index:999;
+.barContainer{
+  justify-content: center;
+  position:relative;
+  display:inline-block;
+  height:100%;
+  width:50px;
 }
 .bar{
   display: inline-block;
-  position: relative;
-  width: 30px;
-  background: lightgrey;
-  top:0;
-  margin:0 0px 0 15px;
-  transition: all 0.75s linear;
-  box-shadow: 5px 5px 1px #222;
+  position: absolute;
+  width: 35px;
+  height:0px;
+  background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  bottom:30px;
+  margin:0 10px 0 10px;
+  transition: all 1s ease-out;
+  box-shadow: 5px 5px 1px #555;
 }
-#bar1{
-  height:45px;
+.bar1{
+  height:50px;
 }
-#bar2{
-  height:85px;
+.bar2{
+  height:100px;
 }
-#bar3{
-  height:115px;
+.bar3{
+  height:150px;
 }
-#bar4{
-height:175px;
+.bar4{
+  height:200px;
 }
 
-#barContainer{
-  margin-left:15px;
+/*INPUT PAGE ANIMATION*/
+#page{
+  height:100%;
+  margin:0 30px 0 30px;
+  padding:5px 30px 5px 30px;
+  border:1px solid black;
 }
-#mask{
-  z-index:999;
-  background:#FFF;
-  height:200px;
-  width:200px;
-  position:absolute;
+#two{
+  display:none;
 }
-.animate-bar{
-  transform: translateY(-185px);
+
+.up{
+  transform: translateY(-40px);
+}
+
+.down{
+    transform: translateY(40px);
+}
+
+.row{
+  top:0;
+  background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  height:30px;
+  margin-bottom:10px;
+  box-shadow: 3px 3px 1px #555;
+  position:relative;
+  transition: transform 0.5s linear;
 }
