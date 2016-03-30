@@ -98,7 +98,11 @@
 }
 
 .hero.is-primary.is-bold {
-  background: url('/assets/hero-bg.jpg') no-repeat;
+  background: url('/assets/hero-bg.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 @media screen and (min-width: 980px) {
