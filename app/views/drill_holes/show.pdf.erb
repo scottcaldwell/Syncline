@@ -59,9 +59,9 @@
           <% @max_depth += 10.0 %>
           <p style='page-break-after: always;'></p>
         <% end %>
-        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>' data-order='<%= layer.layer_order %>' style="width: 100%;">
+        <div class="layer columns" data-height='<%= layer.thickness %>' data-id='<%= layer.id %>' data-order='<%= layer.layer_order %>'>
 
-          <div class="log-column-depth column layer-height is-1" style="width: 10%;">
+          <div class="log-column-depth column layer-height is-1">
             <div class="depth-arrow arrow-up">&#8593;</div>
             <div class="depth-indicator"></div>
             <div class="depth-arrow arrow-down">&#8595;</div>
@@ -74,22 +74,23 @@
             </div>
           </div>
 
-          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>" style="width: 12%;">
+          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>">
             <p><%= layer.material_type.name %></p>
           </div>
 
-          <div class="log-column-desc column is-5" style="width: 42%;">
-            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
+          <div class="log-column-desc column is-6">
+            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span> | Material Type: <strong><%= layer.material_type.name %></strong></p>
             <p class="layer-description"><%= layer.description %></p>
-            <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
+            <a class='button show-field-photos'><i class="fa fa-camera"></i>&nbsp; Field Photo</a>
+            <a class="button show-lab-pdf"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
           </div>
 
-          <div class="log-column-data column is-4" style="width: 34%;">
+          <div class="log-column-data column is-4">
             <div class='layer-controls'>
+              <button class='button is-primary button-layer-options'><i class="fa fa-gear"></i></button>
             </div>
           </div>
         </div>
-
       <% end %>
       <canvas id='layer-data' class='layer-data'></canvas>
       <div class="layer-rules layer-rules-right">

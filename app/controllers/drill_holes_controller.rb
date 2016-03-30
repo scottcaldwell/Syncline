@@ -47,7 +47,7 @@ class DrillHolesController < ApplicationController
         end
         @user_ids = SiteUser.where(site_id: current_site).pluck(:user_id)
         @user_ids.each do |user_id|
-          PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
+          #PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
         end
         # render :pdf => 'drill_hole',
         # :save_to_file => Rails.root.join('pdfs', "drill_hole.pdf"),
