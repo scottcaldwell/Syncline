@@ -45,7 +45,7 @@ class DrillHolesController < ApplicationController
         File.open(save_path, 'wb') do |file|
           file << pdf
         end
-        # PdfMailer.email_pdf(pdf, @drill_hole, current_user).deliver
+        PdfMailer.email_pdf(pdf, @drill_hole, current_user).deliver
         # render :pdf => 'drill_hole',
         # :save_to_file => Rails.root.join('pdfs', "drill_hole.pdf"),
         # :template => 'drill_holes/show.pdf.erb',

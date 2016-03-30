@@ -16,6 +16,8 @@ $(function () {
   if (reviewButton !== undefined) {
     reviewButton.on('click', function (evt) {
       evt.preventDefault();
+      var button = $(this);
+      button.addClass('is-loading');
       var flash = $('.flash');
       if (reviewButton.text() === "Start Review") {
         var url = '/drill_hole/' + drillHoleId + '/update_reviewer.json';
@@ -29,7 +31,7 @@ $(function () {
           } else {
             flash.append($('<div>').addClass('notification').text(data.error));
           }
-          
+          button.removeClass('is-loading');
         });
       } else {
         var url = '/drill_hole/' + drillHoleId + '/update_reviewer.json';
@@ -41,6 +43,7 @@ $(function () {
           } else {
             flash.append($('<div>').addClass('notification').text(data.error));
           }
+          button.removeClass('is-loading');
         });
       }
       flash.delay(4000).fadeOut('slow');
