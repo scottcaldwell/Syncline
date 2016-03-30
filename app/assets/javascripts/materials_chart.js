@@ -60,7 +60,7 @@ $(function () {
             dateStarted = moment(datesDrilled[0]),
             dateEnded = moment(datesDrilled[daysDrilled - 1]),
             predictedEndDate = moment(projectDetails[0].drill_by_date),
-            predictedDaysDrilled = predictedEndDate.diff(dateStarted, 'days') + 1,
+            predictedDaysDrilled = predictedEndDate.diff(dateEnded, 'days') + daysDrilled,
             daysLeft = predictedEndDate.diff(dateEnded, 'days'),
             predictedDepthPerDay = projectDetails[0].drill_to_depth / predictedDaysDrilled;
         datesDrilled.unshift(dateStarted.subtract(1, 'days').utc().format('YYYY-MM-DD'));

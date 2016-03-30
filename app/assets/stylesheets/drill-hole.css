@@ -101,7 +101,7 @@
 
 .content .layer-rules li {
   margin: 0;
-  background-color: #ddd;  
+  background-color: #ddd;
 }
 
 .layer-rules li p {
@@ -145,13 +145,15 @@
 }
 
 #drill-hole h1, #drill-hole h2 {
-  background-color: #EEEEEE;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black;
   clear: both;
   float: left;
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 10px;
   font-weight: 400;
+
 }
 
 .heading#drill-hole{
