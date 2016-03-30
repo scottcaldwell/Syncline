@@ -3,3 +3,11 @@
   color: #eee;
   padding: 1em 2em;
 }
+
+.navbar a{
+  color: white;
+}
+
+.navbar a:hover{
+  color: #1fc8db;
+}
