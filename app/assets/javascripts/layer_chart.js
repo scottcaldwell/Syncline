@@ -3,6 +3,9 @@
   'use strict';
 
   var chart = document.getElementById('layer-data');
+  var blue = '#32C5D2';
+  var red = '#E7505A';
+
 
   if (chart !== null) {
     var ctx = chart.getContext('2d');
@@ -28,8 +31,8 @@
     });
 
     resizeChart();
-    draw(fData, '#32C5D2', true, null);
-    draw(lData, '#E7505A', false, null);
+    draw(fData, blue, true, null);
+    draw(lData, red, false, null);
     setGrid();
   }
 
@@ -104,7 +107,7 @@
 
         ctx.font = "12px sans-serif";
         ctx.fillStyle = '#333';
-        if (color === 'blue') {
+        if (color === blue) {
           ctx.fillText('SPT: ' + point[2], x + 8, y - 12);
         } else {
           ctx.fillText('Fines: ' + point[2], x + 8, y - 12);
@@ -162,15 +165,15 @@
 
   $(document).on('layer-changed', function() {
     resizeChart();
-    draw(fData, '#32C5D2', true, null);
-    draw(lData, '#E7505A', false, null);
+    draw(fData, blue, true, null);
+    draw(lData, red, false, null);
     setGrid();
   });
 
   $(chart).on('mousemove', function(e) {
     resizeChart();
-    draw(fData, '#32C5D2', true, e);
-    draw(lData, '#E7505A', false, e);
+    draw(fData, blue, true, e);
+    draw(lData, red, false, e);
     setGrid();
   });
 
