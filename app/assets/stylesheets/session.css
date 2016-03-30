@@ -2,12 +2,24 @@
     padding-top:0px;
     background-color:white;
 }
+
+
 #login{
   padding-top:40px;
 }
+
 #landing{
-  margin-bottom:40px;
+  margin-bottom:100px;
 }
+
+#features{
+  margin-bottom:130px;
+}
+
+.message-body{
+  font-size:1.5em;
+}
+
 h1 .title{
   font-size:200px;
 }
@@ -20,7 +32,7 @@ h1 .title{
 .animation{
   height:300px;
   width:400px;
-  background:#DDD;
+  background:#FFF;
 }
 
 .column{
@@ -38,85 +50,166 @@ h1 .title{
    margin-right:10px;
  }
 
-/*
+ /**********ANIMATIONS**************/
+ #map{
+   width: 200px;
+   height: 150px;
+   background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   transform: perspective(10px) rotateX(1deg);
+   margin: 50px;
+ }
 
-div .feature{
-  height:100px
-  background-color:blue;
+ @keyframes pinDrop1 {
+     from {top:0px; opacity: 0;}
+     to {top: 100px; opacity:1;}
+ }
+ @keyframes pinDrop2 {
+     from {top:0px; opacity: 0;}
+     to {top: 150px; opacity:1;}
+ }
+ @keyframes pinDrop3 {
+     from {top:0px; opacity: 0;}
+     to {top: 125px; opacity:1;}
+ }
+
+ /*Taken from http://codepen.io/joshnh/pen/shHbJ*/
+ .pin1{
+   left:100px;
+   -webkit-animation-delay: 0.25s; /* Chrome, Safari, Opera */
+   animation-delay: 0.25s;
+   animation-name: pinDrop1;
+   visibility: visible !important;
+ }
+
+ .pin2{
+   left:150px;
+   animation-name: pinDrop2;
+   -webkit-animation-delay: 0.25s; /* Chrome, Safari, Opera */
+   animation-delay: 0.25s;
+   visibility: visible !important;
+ }
+
+ .pin3{
+   left:200px;
+   animation-name: pinDrop3;
+   -webkit-animation-delay: 0.5s; /* Chrome, Safari, Opera */
+   animation-delay: 0.5s;
+   visibility: visible !important;
+ }
+
+ .pin {
+   background-color: #000;
+   /*background-image: #000; linear-gradient(left, hsla(0,0%,100%,.2), hsla(0,0%,0%,.2));*/
+   display: block;
+   height: 2em;
+   margin: -1em -.05em;
+   position: absolute;
+   top: 0;
+   width: .1em;
+   opacity:0;
+   z-index:10;
+   animation-duration: 1s;
+   animation-fill-mode: forwards;
+   visibility:hidden;
+ }
+
+ .pin:after {
+   background-color: #AAA;
+   background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+   border-radius: 50%;
+   box-shadow: inset 0 0 0 1px hsla(0,0%,0%,.1),
+               inset .2em .2em .2em hsla(0,0%,100%,.2),
+               inset -.2em -.2em .2em hsla(0,0%,0%,.2),
+               1.5em 1.25em .25em hsla(0,0%,0%,.15);
+   content: '';
+   height: .8em;
+   left: -.35em;
+   position: absolute;
+   top: -.65em;
+   width: .8em;
+ }
+ .pin:before {
+   background-color: hsla(0,0%,0%,.1);
+   box-shadow: 0 0 .25em hsla(0,0%,0%,.1);
+   content: '';
+   height: 1.5em;
+   left: 0;
+   position: absolute;
+   top: .5em;
+   transform: rotate(57.5deg);
+   transform-origin: 50% 100%;
+   width: .1em;
+ }
+/*BAR GRAPH*/
+
+#graph{
+  justify-content:center;
+  color:#444;
+  height:300px;
+  padding:20px;
+  width:300px;
+  display:flex;
 }
-
-#graph {
-  position: relative;
-  z-index: 1;
-  width: 125px;
-  height: 100px;
-  margin: 30px auto 0;
+.barContainer{
+  justify-content: center;
+  position:relative;
+  display:inline-block;
+  height:100%;
+  width:50px;
 }
-
-#graph div {
+.bar{
+  display: inline-block;
   position: absolute;
-  bottom: 16px;
-  width: 9px;
-  height: 10px;
-  background: #000;
+  width: 35px;
+  height:0px;
+  background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  bottom:30px;
+  margin:0 10px 0 10px;
+  transition: all 1s ease-out;
+  box-shadow: 5px 5px 1px #555;
 }
-
-#graph div:nth-child(n+1) {
-  height:16px;
-  left: 24px;
-
-  animation: chartIt 2s 1 ease-in-out 0s;
-  -webkit-animation: chartIt 2s 1 ease-in-out 0s;
-}
-
-#graph div:nth-child(n+2) {
-  height:26px;
-  left: 37px;
-
-  animation: chartIt 2s 1 ease-in-out .25s;
-  -webkit-animation: chartIt 2s 1 ease-in-out .25s;
-}
-
-#graph div:nth-child(n+3) {
-  height:42px;
-  left: 50px;
-
-  animation: chartIt 2s 1 ease-in-out .5s;
-  -webkit-animation: chartIt 2s 1 ease-in-out .5s;
-}
-
-#graph div:nth-child(n+4) {
-  height:37px;
-  left: 63px;
-
-  animation: chartIt 2s 1 ease-in-out .75s;
-  -webkit-animation: chartIt 2s 1 ease-in-out .75s;
-}
-
-#graph div:nth-child(n+5) {
+.bar1{
   height:50px;
-  left: 76px;
-
-  animation: chartIt 2s 1 ease-in-out 1s;
-  -webkit-animation: chartIt 2s 1 ease-in-out 1s;
+}
+.bar2{
+  height:100px;
+}
+.bar3{
+  height:150px;
+}
+.bar4{
+  height:200px;
 }
 
-#graph div:nth-child(n+6) {
-  height:60px;
-  left: 89px;
-
-  animation: chartIt 2s 1 ease-in-out 1.25s;
-  -webkit-animation: chartIt 2s 1 ease-in-out 1.25s;
+/*INPUT PAGE ANIMATION*/
+#page{
+  height:100%;
+  margin:0 30px 0 30px;
+  padding:5px 30px 5px 30px;
+  border:1px solid black;
+}
+#two{
+  display:none;
 }
 
-@keyframes chartIt {
-  0% { max-height:60px; }
-  50% { max-height:0px; }
-  100% { max-height:60px; }
+.up{
+  transform: translateY(-40px);
 }
 
-@-webkit-keyframes chartIt {
-  0% { max-height:60px; }
-  50% { max-height:0px; }
-  100% { max-height:60px; }
-}*/
+.down{
+    transform: translateY(40px);
+}
+
+.row{
+  top:0;
+  background-image: -webkit-linear-gradient(309deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
+  height:30px;
+  margin-bottom:10px;
+  box-shadow: 3px 3px 1px #555;
+  position:relative;
+  transition: transform 0.5s linear;
+}

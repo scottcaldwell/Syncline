@@ -13,18 +13,18 @@
 
     fieldTests.find('.field-test').each(function(el) {
       var _this = $(this);
-      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var spts = parseFloat(_this.data('spts'));
       var sptAdj = 300 * (spts / 120);
-      fData.push([ sptAdj, point * 100, spts])
+      fData.push([ sptAdj, point * 100, spts ])
     });
 
     labTests.find('.lab-test').each(function(el) {
       var _this = $(this);
-      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var size = parseFloat(_this.data('size')); 
       var sizeAdj = 300 * (size / 120);
-      lData.push([ sizeAdj, point * 100, size])
+      lData.push([ sizeAdj, point * 100, size ])
     });
 
     resizeChart();
@@ -65,7 +65,16 @@
     }
   }
 
-  function draw(data, color, clear, evt) {
+  function draw(tests, color, clear, evt) {
+    var data = tests.sort(function(a,b) {
+      console.log(a[1]);
+      if ( a[1] < b[1] ) return -1;
+      if ( a[1] > b[1] ) return 1;
+      return 0;
+    });
+
+    console.log(data); 
+
     // create an update function that calls the redraw and each individual draw event
     if (clear === true) {
       ctx.clearRect(0, 0, chart.width, chart.height);
@@ -116,10 +125,10 @@
       } else {
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = 0.3;        
-        ctx.moveTo(0, 0);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        // ctx.lineWidth = 0.3;        
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(x, y);
+        // ctx.stroke();
       }
 
       lastPoint = point;
@@ -139,7 +148,7 @@
     ctx.beginPath();
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 0.5;
-    ctx.moveTo(0, y);
+    ctx.moveTo(x, y);
     ctx.lineTo(300, y);
     ctx.stroke();    
   }

@@ -147,8 +147,8 @@ loop_num = 0
   (0..num_layers).each do |i|
     LabTest.create(
     test_type: "Grain Size",
-    depth_from: FieldTest.all[i].depth_from,
-    depth_to: FieldTest.all[i].depth_to,
+    depth_from: FieldTest.all[loop_num].depth_from,
+    depth_to: FieldTest.all[loop_num].depth_to,
     field_test_id: FieldTest.all[loop_num].id
     )
     loop_num += 1

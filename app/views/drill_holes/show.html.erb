@@ -154,8 +154,8 @@
             <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
             <p class="layer-description"><%= layer.description %></p>
             <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
-            <a class="button"><i class="fa fa-camera"></i>&nbsp; Photos</a>
-            <a href='' class="button"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
+            <a class='button show-field-photos'><i class="fa fa-camera"></i>&nbsp; Field Photo</a>
+            <a class="button show-lab-pdf"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
           </div>
 
           <div class="log-column-data column is-4">
@@ -177,7 +177,7 @@
   <!-- end layers -->
 
   <!-- new layer -->
-  <div class="modal">
+  <div class="modal input-modal">
     <div class="modal-background"></div>
     <div class="modal-container">
       <div class="modal-content">
@@ -210,6 +210,18 @@
     <button class="modal-close"></button>
   </div>
 
+  <!-- photo modal -->
+
+  <div class="modal photo-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <p class="image is-4by3">
+        <img src="">
+      </p>
+    </div>
+    <button class="modal-close"></button>
+  </div>
+
   <section class='layer-new'>
     <div class="container">
       <button id='add-layer' class='button is-info is-large add-layer'><i class="fa fa-plus-circle"></i> Add New Layer</button>
@@ -219,6 +231,7 @@
       <% for test in @field_tests %>
         <% if test[0] %>
           <span class='test-data field-test' data-type='<%= test[0].test_type %>' 
+            data-lid='<%= test[3] %>'
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'
             data-spts='<%= test[1].blow_count %>'
@@ -231,7 +244,8 @@
     <div id='lab-test-data' class='hidden'>
       <% for test in @lab_tests %>
         <% if test[0] %>
-          <span class='test-data lab-test' 
+          <span class='test-data lab-test'  
+            data-lid='<%= test[3] %>' 
             data-type='<%= test[0].test_type %>' 
             data-from='<%= test[0].depth_from %>' 
             data-to='<%= test[0].depth_to %>'

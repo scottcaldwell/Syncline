@@ -26,8 +26,10 @@
 //= require layer_header
 //= require new_edit_layer
 //= require layer_order
+//= require layer_assets
 //= require depth_values
 //= require notification
 //= require review
 //= require add_new_site_or_drill_hole_or_user
+//= require animations
 //= require generate_pdf

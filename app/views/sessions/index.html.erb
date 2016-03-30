@@ -1,7 +1,6 @@
 <section class="hero is-medium is-primary is-bold" id="landing">
   <div class="hero-content">
     <div class="container">
-      <!-- <img class='site-logo' src="/assets/syncline-logo-alpha.png"> -->
       <img class='site-logo' src="/assets/logo-grad.png">
       <h1 class="title">
         Syncline
@@ -13,7 +12,7 @@
       <!-- LOGIN -->
       <div id="login">
         <%= form_tag session_path do %>
-          <div class = "column is-half is-offset-quarter">
+        <div class="column is-half is-offset-quarter">
           <hr color="white">
           <p class="control has-icon">
             <input class="input" name="email" type="email" placeholder="Email">
@@ -29,7 +28,7 @@
             </button>
           </p>
 
-          </div>
+        </div>
         <% end %>
       </div>
     </div>
@@ -37,39 +36,54 @@
 </section>
 <section id="features">
   <div class="container">
-      <div id="data-management" class="columns is-multiline">
-        <div class="column is-4 animation">
-          Map with animated pins dropping down
-        </div>
-        <div class="is-flex column is-8">
-          <p class="message">
+    <div class="columns is-multiline">
+      <div class="column is-4 animation" id="mapAnimation">
+        <i class="pin" class="pin1"></i>
+        <i class="pin" class="pin2"></i>
+        <i class="pin" class="pin3"></i>
+        <div id="map"></div>
+      </div>
+      <div class="is-flex column is-8">
+        <div class="message is-info">
+          <div class="message-body">
             Syncline makes managing site data simple. Project managers can easily create projects and collaborate with contractors and engineers.
-          </p>
-        </div>
-        <div class="is-flex column is-8">
-          <p class="message">
-            Entering drill hole data has never been simpler. Drill hole reports can be created and edited with ease.
-          </p>
-        </div>
-        <div class="column is-4 animation">
-          Graph of form with text entering, shuffling rows
-        </div>
-        <div class="column is-4 animation">
-          Animated bar/line graph
-          <!-- <div id="graph"> Animation, might add later.
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-          </div>-->
-        </div>
-        <div class="is-flex column is-8">
-          <p class="message">
-            Instant analytics built from site data. Analyze and export graphical data and drill hole logs.
-          </p>
+          </div>
         </div>
       </div>
+      <div class="is-flex column is-8">
+        <div class="message is-info">
+          <div class="message-body">
+            Entering drill hole data has never been simpler. Drill hole reports can be created and edited with ease.
+          </div>
+        </div>
+      </div>
+    <div id="inputAnimation" class="column is-4 animation">
+      <div id="page">
+        <hr color="black">
+        <hr color="black">
+        <hr color="black">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row" id="one"></div>
+        <div class="row" id="two"></div>
+      </div>
+    </div>
+    <div id="graphAnimation" class="column is-4 animation is-flex">
+      <div id="graph">
+          <div class="barContainer"><div class="bar"></div></div>
+          <div class="barContainer"><div class="bar"></div></div>
+          <div class="barContainer"><div class="bar"></div></div>
+          <div class="barContainer"><div class="bar"></div></div>
+      </div>
+    </div>
+    <div class="is-flex column is-8">
+      <div class="message is-info">
+        <div class="message-body">
+          Instant analytics built from site data. Analyze and export graphical data and drill hole logs.
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
+</div>
 </section>

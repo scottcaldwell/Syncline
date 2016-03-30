@@ -30,9 +30,10 @@ class DrillHolesController < ApplicationController
         photo = Photo.where(lab_test_id: l_test.id).select('url').first
       end
 
-      @field_tests.push([f_test, spts, photo]) 
-      @lab_tests.push([l_test, size, photo])
+      @field_tests.push([f_test, spts, photo, l.id]) 
+      @lab_tests.push([l_test, size, photo, l.id])
     end
+
     is_a_site_user
 
     respond_to do |format|

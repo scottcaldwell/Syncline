@@ -32,7 +32,7 @@
       windowWidth = $(window).width();
       var rightOffset = (windowWidth - sectionWidth) / 2;
       $('.x-axis').css('right', rightOffset);
-    };
+    }
 
     $(window).on('resize', function() {
       if ($('.x-axis').hasClass('axis-fixed')) {
