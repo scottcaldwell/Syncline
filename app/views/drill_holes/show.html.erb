@@ -151,9 +151,8 @@
           </div>
 
           <div class="log-column-desc column is-6">
-            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
+            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span> | Material Type: <strong><%= layer.material_type.name %></strong></p>
             <p class="layer-description"><%= layer.description %></p>
-            <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
             <a class='button show-field-photos'><i class="fa fa-camera"></i>&nbsp; Field Photo</a>
             <a class="button show-lab-pdf"><i class="fa fa-file-pdf-o"></i>&nbsp; Lab Report</a>
           </div>
@@ -281,8 +280,8 @@
     </div>
 
     <div class="log-column-desc column is-5">
+      <p class="layer-date"><span class="underline"><strong>{{ date_drilled }}</strong></span> | Material Type: <strong>{{ material_type }}</strong></p>
       <p class="layer-description">{{ description }}</p>
-      <p class="date_drilled">{{ date_drilled }}</p>
     </div>
 
     <div class="log-column-type column is-1">
