@@ -13,8 +13,10 @@
   padding: 10px;
   z-index: 999;
 }
-.layers-log {
+
+#layers-log {
   position: relative;
+  background-color: white;
 }
 
 .layer-data {

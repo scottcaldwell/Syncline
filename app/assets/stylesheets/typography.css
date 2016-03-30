@@ -3,11 +3,32 @@ h2 {
 }
 
 .title {
-  padding-top: 1em;
+  padding-top: .5em;
   padding-bottom: 0em;
   margin-bottom: 0em;
 }
 
 .is-centered {
   text-align: center;
+}
+
+.page-header {
+  padding-bottom: 2em;
+  border-bottom: thin solid #eee;
+}
+
+.page-header h1.title {
+  margin-bottom: 0;
+}
+
+.heading {
+  margin-bottom: 0;
+}
+
+.site-footer strong {
+  color: white;
+}
+
+strong {
+  color: #333;
 }

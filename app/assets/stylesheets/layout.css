@@ -14,8 +14,12 @@ html, body {
   background-color: #eee;
 }
 
+.page-body {
+  background: url('/assets/bg-fade.jpg') no-repeat bottom left #F9FAFC;
+}
+
 .page-content section {
-  background-color: white;
+  background-color: transparent;
 }
 
 .new-site {
@@ -55,6 +59,14 @@ html, body {
 
 .section + .section {
    border-top: none;
+}
+
+.sites-columns, .drill-holes-table {
+  padding-bottom: 5em;
+}
+
+.footer-logo {
+  margin-bottom: 2em;
 }
 
 @media screen and (min-width: 980px) {

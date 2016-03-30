@@ -1,5 +1,5 @@
 .new-site-card {
-  background: lightgray;
+  background: rgba(200,200,200,.5);
   border-style: dashed;
   border-width: 3px;
   height: 280px;

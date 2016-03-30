@@ -81,7 +81,7 @@
 }
 
 .theme-1 .page-content section {
- background-color: #F9FAFC; 
+  
 }
 
 .theme-1 .page-content section.layers-header {
@@ -95,4 +95,14 @@
 .theme-1 .site-footer {
   background-color: #26344B;
   color: #f6f6f6;
+}
+
+.hero.is-primary.is-bold {
+  background: url('/assets/hero-bg.jpg') no-repeat;
+}
+
+@media screen and (min-width: 980px) {
+  .section {
+      padding-bottom: 0;
+  }
 }

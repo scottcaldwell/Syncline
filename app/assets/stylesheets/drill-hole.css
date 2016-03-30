@@ -101,6 +101,7 @@
 
 .content .layer-rules li {
   margin: 0;
+  background-color: #ddd;  
 }
 
 .layer-rules li p {
