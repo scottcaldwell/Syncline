@@ -16,16 +16,10 @@
         <div class="column is-third-tablet is-third-desktop drill-card">
           <div class="card">
             <div class="card-image">
-              <figure class="image is-4by3 static-map">
-              </figure>
             </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-5"><%= link_to site.site_name, site_path(site.id) %></p>
-                </div>
-              </div>
-              <div class="content notification is-info">
+            <div class="card-content static-map is-flex" >
+              <div class="site-info">
+                <p class="title is-5"><%= link_to site.site_name, site_path(site.id) %></p>
                 <p class="site-lat" data-site-lat="<%= site.center_lat %>">Latitude: <%= number_with_precision(site.center_lat, precision: 3) %></p>
                 <p class="site-lng" data-site-lng="<%= site.center_lng %>">Longitude: <%= number_with_precision(site.center_lng, precision: 3) %></p>
                 <p>Drill Holes: <%= site.drill_holes.count %></p>
