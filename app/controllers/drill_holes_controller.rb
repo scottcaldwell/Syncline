@@ -39,7 +39,7 @@ class DrillHolesController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = render_to_string pdf: "drill_hole", template: "drill_holes/show.pdf.erb", layout: 'pdf.html.erb', viewport_size: "#{params[:width]}x#{params[:height]}", show_as_html: params[:debug].present?, encoding: "UTF-8"
+        pdf = render_to_string pdf: "drill_hole", template: "drill_holes/show.pdf.erb", layout: 'pdf.html.erb', viewport_size: "1280x1024", show_as_html: params[:debug].present?, encoding: "UTF-8"
         # then save to a file
         save_path = Rails.root.join('pdfs',"#{@drill_hole.name}-logs.pdf")
         File.open(save_path, 'wb') do |file|
