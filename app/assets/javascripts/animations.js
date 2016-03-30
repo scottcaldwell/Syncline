@@ -1,47 +1,54 @@
-$(function(){
-  // FIXME: DRY up code
+$(function() {
 
-  $(window).scroll(function () {
+      $(window).scroll(function() {
           var map = $('#mapAnimation');
+          var bars = $('#graph');
+          var inputs = $('#inputAnimation');
           var mapPos = map.offset().top;
-          var bars = $('#barContainer');
           var barsPos = bars.offset().top;
+          var inputPos = inputs.offset().top;
 
           var topOfWindow = $(window).scrollTop();
           var scrollBottom = $(window).scrollTop() + $(window).height();
-          if ( ( mapPos + 50 ) < scrollBottom) {
-              map.children('.pin:nth-child(1)').addClass("pin1");
-              map.children('.pin:nth-child(2)').addClass("pin2");
-              map.children('.pin:nth-child(3)').addClass("pin3");
+
+///////////Map Animation/////////////////////
+          if ((mapPos) < scrollBottom) {
+            map.children('.pin').each(function(i, b) {
+              $(b).addClass('pin' + (i + 1));
+            });
           } else {
-            map.children('.pin:nth-child(1)').removeClass("pin1");
-            map.children('.pin:nth-child(2)').removeClass("pin2");
-            map.children('.pin:nth-child(3)').removeClass("pin3");
+            map.children('.pin').each(function(i, b) {
+              $(b).removeClass('pin' + (i + 1));
+            });
           }
-          if (( barsPos + 50 ) < scrollBottom) {
-            var bar1 = bars.children('#bar1');
-            setTimeout(function() {
-                bar1.addClass('animate-bar');
-            }, 250);
-            var bar2 = bars.children('#bar2');
-            setTimeout(function() {
-                bar2.addClass('animate-bar');
-            }, 500);
-            var bar3 = bars.children('#bar3');
-            setTimeout(function() {
-                bar3.addClass('animate-bar');
-            }, 750);
-            var bar4 = bars.children('#bar4');
-            setTimeout(function() {
-                bar4.addClass('animate-bar');
+////////////Input Animation/////////////////
+
+          if ((inputPos + 300) < scrollBottom) {
+            $('#two').fadeIn();
+            setTimeout(function(){
+              $('#two').addClass('up');
+              $('#one').addClass('down');
             }, 1000);
-          }else{
-            bars.children('#bar1').removeClass("animate-bar");
-            bars.children('#bar2').removeClass("animate-bar");
-            bars.children('#bar3').removeClass("animate-bar");
-            bars.children('#bar4').removeClass("animate-bar");
+          } else{
+            $('#two').removeClass('up');
+            $('#one').removeClass('down');
+            $('#two').css({display: 'none'});
           }
 
-  });
-  $('.pin').css('visibility', 'hidden');
-});
+////////////Bar Graph Animation//////////////
+            if ((barsPos + 150) < scrollBottom) {
+              var allbars = bars.children('bar');
+              bars.children('.barContainer').each(function(i, b) {
+                $(b).find('.bar').addClass('bar' + (i + 1));
+              });
+
+            } else {
+              bars.children('.barContainer').each(function(i, b) {
+                $(b).find('.bar').removeClass('bar' + (i + 1));
+              });
+            }
+
+          });
+
+        $('.pin').css('visibility', 'hidden');
+      });
