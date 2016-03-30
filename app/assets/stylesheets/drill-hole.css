@@ -145,13 +145,17 @@
 }
 
 #drill-hole h1, #drill-hole h2 {
-  background-color: #EEEEEE;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: black;
   clear: both;
   float: left;
   margin-top: 3px;
   margin-bottom: 3px;
   padding: 8px;
-  font-weight: 400;
+  font-weight: 800;
+}
+#drill-hole h2 a:hover {
+  border-bottom: none;
 }
 
 .heading#drill-hole{

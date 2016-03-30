@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  default from: 'notifications@syncline.com'
+  default from: 'notifications@syncline.ca'
    
   def welcome_email(user)
     @user = user

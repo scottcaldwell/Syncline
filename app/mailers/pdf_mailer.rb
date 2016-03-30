@@ -1,5 +1,5 @@
 class PdfMailer < ApplicationMailer
-  default from: 'notifications@syncline.com'
+  default from: 'notifications@syncline.ca'
 
   def email_pdf(pdf, drill_hole, user_id)
     @user = User.find(user_id)

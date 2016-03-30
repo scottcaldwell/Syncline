@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "notifications@syncline.com"
+  default from: "notifications@syncline.ca"
 end
