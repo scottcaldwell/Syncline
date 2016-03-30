@@ -53,6 +53,9 @@ $(function () {
   setTotalDepth();
 
   var chart = document.getElementById('layer-data');
+  var blue = '#32C5D2';
+  var red = '#E7505A';
+
 
   if (chart !== null) {
     var ctx = chart.getContext('2d');
@@ -63,23 +66,23 @@ $(function () {
 
     fieldTests.find('.field-test').each(function(el) {
       var _this = $(this);
-      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var spts = parseFloat(_this.data('spts'));
       var sptAdj = 300 * (spts / 120);
-      fData.push([ sptAdj, point * 100, spts])
+      fData.push([ sptAdj, point * 100, spts ])
     });
 
     labTests.find('.lab-test').each(function(el) {
       var _this = $(this);
-      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from')) / 2));
+      var point = parseFloat(_this.data('from') + (parseFloat(_this.data('to')) - parseFloat(_this.data('from'))) / 2);
       var size = parseFloat(_this.data('size')); 
       var sizeAdj = 300 * (size / 120);
-      lData.push([ sizeAdj, point * 100, size])
+      lData.push([ sizeAdj, point * 100, size ])
     });
 
     resizeChart();
-    draw(fData, 'blue', true, null);
-    draw(lData, 'green', false, null);
+    draw(fData, blue, true, null);
+    draw(lData, red, false, null);
     setGrid();
   }
 
@@ -115,7 +118,13 @@ $(function () {
     }
   }
 
-  function draw(data, color, clear, evt) {
+  function draw(tests, color, clear, evt) {
+    var data = tests.sort(function(a,b) {
+      if ( a[1] < b[1] ) return -1;
+      if ( a[1] > b[1] ) return 1;
+      return 0;
+    });
+
     // create an update function that calls the redraw and each individual draw event
     if (clear === true) {
       ctx.clearRect(0, 0, chart.width, chart.height);
@@ -131,6 +140,7 @@ $(function () {
       var x = parseInt(point[0]);
       var y = parseInt(point[1]);
       var hovered = false;
+      var lineWidth = 1;
 
       if (evt && pos.x - 5 <= (x + 20) && pos.x >= (x - 20) && pos.y <= (y + 20) && pos.y - 5 >= (y - 20)) {
         hovered = true;
@@ -141,12 +151,13 @@ $(function () {
       ctx.fillStyle = color;
 
       if (hovered) {
+        lineWidth = 2;
         ctx.fillRect(x - 7, y - 7, 14, 14);
         highlightAxis(x,y);
 
         ctx.font = "12px sans-serif";
         ctx.fillStyle = '#333';
-        if (color === 'blue') {
+        if (color === blue) {
           ctx.fillText('SPT: ' + point[2], x + 8, y - 12);
         } else {
           ctx.fillText('Fines: ' + point[2], x + 8, y - 12);
@@ -160,16 +171,16 @@ $(function () {
         ctx.beginPath();
         ctx.moveTo(lastPoint[0], lastPoint[1]);
         ctx.strokeStyle = color;
-        ctx.lineWidth = 0.3;
+        ctx.lineWidth = lineWidth;
         ctx.lineTo(point[0], point[1]);
         ctx.stroke();
       } else {
         ctx.beginPath();
         ctx.strokeStyle = color;
-        ctx.lineWidth = 0.3;        
-        ctx.moveTo(0, 0);
-        ctx.lineTo(x, y);
-        ctx.stroke();
+        // ctx.lineWidth = 0.3;        
+        // ctx.moveTo(0, 0);
+        // ctx.lineTo(x, y);
+        // ctx.stroke();
       }
 
       lastPoint = point;
@@ -189,7 +200,7 @@ $(function () {
     ctx.beginPath();
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 0.5;
-    ctx.moveTo(0, y);
+    ctx.moveTo(x, y);
     ctx.lineTo(300, y);
     ctx.stroke();    
   }
