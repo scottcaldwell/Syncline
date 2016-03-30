@@ -299,13 +299,14 @@ $(function() {
       //Generate url to generate static map
       var staticImageString =
         'https://api.mapbox.com/v4/mapbox.outdoors/' + //map style
-        'pin-l(' + longitude + ',' + latitude + ')/' + //Pin location
+        'pin-s(' + longitude + ',' + latitude + ')/' + //Pin location
         longitude + "," + latitude + //Map location
-        ",17/400x300@2x.png?access_token=" + //Zoom level, res
+        ",15/400x300@2x.png?access_token=" + //Zoom level, res
         privateToken; //api auth token
 
       //Add map to card
-      $(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
+      //$(this).find('.static-map').append("<img src = " + staticImageString + " width='400' alt='Map of Site'>");
+      $(this).find('.static-map').css("background", "url('" +staticImageString + "') center");
     });
   }
 
