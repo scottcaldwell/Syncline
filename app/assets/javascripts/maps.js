@@ -262,7 +262,7 @@ $(function() {
     divId = 'markers-map';
     initialLat = siteDetails.center_lat;
     initialLng = siteDetails.center_lng;
-    zoom = 5;
+    zoom = 15;
     markersMap = helpers.generateMap(divId, initialLat, initialLng, zoom);
     markersMap.scrollWheelZoom.disable();
     myLayer = L.mapbox.featureLayer().addTo(markersMap);

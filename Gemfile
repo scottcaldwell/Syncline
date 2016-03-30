@@ -12,11 +12,14 @@ gem 'dotenv-rails', :groups => [:development, :test]
 # Use Faker for seeding the database
 gem 'faker'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', :groups => [:development, :test]
 
 # Use postgres as the database for production
-gem 'pg'
+gem 'pg', group: :production
+
+gem 'rails_12factor', group: :production
+
+gem 'puma'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -59,6 +62,8 @@ end
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
+ruby "2.1.3"
 
 # Use unicorn as the app server
 # gem 'unicorn'
