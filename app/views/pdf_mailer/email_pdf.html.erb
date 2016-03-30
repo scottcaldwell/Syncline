@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p style="font-size: 20px;">Hi,</p>
+    <p style="font-size: 20px;"><%= @user.first_name %> <%= @user.last_name %></p>
+    <p style="font-size: 20px;">PFA logs for the Drill Hole <%= @drill_hole.name %> on the site <%= @drill_hole.site.site_name %>.</p>
+    <p style="font-size: 20px;">Syncline: A tool aimed at geotechnical engineers to streamline the process of collecting, reviewing and approving site investigation information.<br />
+    Link: <%= @url %></p>
+    <p style="font-size: 20px;">Thanks for being a part of this project and have a great day!</p>
+    <p style="font-size: 15px;">Please don't reply, this is an automated email.</p>
+  </body>
+</html>

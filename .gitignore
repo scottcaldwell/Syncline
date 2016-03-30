@@ -22,4 +22,4 @@
 .DS_Store
 
 #ignore Environment variables file
-.env.env
+.env
