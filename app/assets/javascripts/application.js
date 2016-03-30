@@ -26,6 +26,7 @@
 //= require layer_header
 //= require new_edit_layer
 //= require layer_order
+//= require layer_assets
 //= require depth_values
 //= require notification
 //= require review
