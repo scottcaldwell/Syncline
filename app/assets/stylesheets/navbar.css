@@ -11,3 +11,6 @@
 .navbar a:hover{
   color: #1fc8db;
 }
+.nav-icon{
+  padding-right: 10px;
+}

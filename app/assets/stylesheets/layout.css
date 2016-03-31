@@ -108,3 +108,13 @@ html, body {
   padding: 8px 18px;
   font-weight: 700;
 }
+
+.notification{
+  border-radius:0px;
+  right:200px;
+  height:40px;
+  padding: 10px;
+}
+.nav-icon{
+   padding 0px 10px 0px 10px;
+}
