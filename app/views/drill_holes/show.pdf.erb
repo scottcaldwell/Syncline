@@ -48,7 +48,7 @@
 
     <section id='layers-log' class='layers-log'>
       <!-- <div class="container"> -->
-      <div class="layer-rules layer-rules-left">
+      <div class="layer-rules layer-rules-left" style="width: 4%;">
         <ul></ul>
       </div>
       <% @depth = 0.0 %>
@@ -74,14 +74,13 @@
             </div>
           </div>
 
-          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>" style="width: 12%;">
+          <div class="log-column-glog column is-1 gl gl-<%= layer.material_type.name %>" style="width: 14%;">
             <p><%= layer.material_type.name %></p>
           </div>
 
-          <div class="log-column-desc column is-5" style="width: 42%;">
-            <p class="layer-date"><span class="underline"><strong><%= layer.date_drilled %></strong></span></p>
+          <div class="log-column-desc column is-6" style="width: 42%;">
+            <p class="layer-date"><span class="underline"><%= layer.date_drilled %></span> | Material Type: <%= layer.material_type.name %></p>
             <p class="layer-description"><%= layer.description %></p>
-            <p>Material Type: <strong><%= layer.material_type.name %></strong></p>
           </div>
 
           <div class="log-column-data column is-4" style="width: 34%;">
@@ -89,10 +88,9 @@
             </div>
           </div>
         </div>
-
       <% end %>
       <canvas id='layer-data' class='layer-data'></canvas>
-      <div class="layer-rules layer-rules-right">
+      <div class="layer-rules layer-rules-right" style="width: 4%;">
         <ul></ul>
       </div>
     <!-- </div> -->

@@ -183,4 +183,28 @@
       </div>
     </div>
   </section>
+
+  <section class='section site_user-table'>
+    <div class="container">
+      <div class="table-wrap">
+        <h1>Site Users</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @site_users.each do |site_user| %>
+              <tr>
+                <td><%= site_user.name %></td>
+                <td><%= site_user.email %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 </article>

@@ -17,9 +17,10 @@ class SitesController < ApplicationController
     @drill_holes = DrillHole.where(site_id: @site_id)
     @drill_hole = DrillHole.new
     @user_credentials = current_user.first_name[0] + current_user.last_name[0]
+    @site_users = User.site_users(@site_id)
     if @drill_holes.length > 0
       @latest_dh_name = @drill_holes.last.name
-      @new_dh_name = (@latest_dh_name.scan(/(\D+)/).flatten + (@latest_dh_name.scan(/(\d+$)/).flatten.map{ |ele| ele.to_i + 1})).join("")
+      @new_dh_name = (@latest_dh_name.scan(/(.+-)/).flatten + (@latest_dh_name.scan(/(\d+$)/).flatten.map{ |ele| ele.to_i + 1})).join("")
     else
       @new_dh_name = ''
     end
