@@ -1,10 +1,12 @@
 #fixedHeaderSpacer{
   display: none;
-  height:50px;
+  height:30px;
 }
+
 .layers-header{
-  height:60px;
+  height:40px;
 }
+
 .fixed{
   position: fixed;
   top: 0;
@@ -147,6 +149,6 @@
 
 .axis-fixed {
   position: fixed;
-  top: 60px;
+  top: 40px;
   right: 0;
 }

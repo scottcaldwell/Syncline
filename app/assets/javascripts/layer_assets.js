@@ -18,19 +18,22 @@
 
       self.labBtns.each(function() {
         $(this).on('click', layerAssets.openPDF)
-      })
+      });
     },
 
     openFieldModal: function() {
       var layerId = $(this).parents('.layer').data('id');
-      var photoUrl = (layerAssets.fData.data('photo')).replace(/app\/assets\/images\//, '/assets/');
+      var photoId = layerAssets.fData.attr('data-flid');
+      var photoEl = $("span[data-flid='" + layerId + "']");
+      var photoUrl = photoEl.data('photo').replace(/app\/assets\/images\//, '/assets/');
       layerAssets.photoModal.find('img').attr('src', photoUrl);
       layerAssets.photoModal.addClass('is-active');
     },
 
     openPDF: function() {
       var layerId = $(this).parents('.layer').data('id');
-      var pdfUrl = (layerAssets.lData.data('pdf')).replace(/app\/assets\/images\//, '/assets/');
+      var pdfEl = $("span[data-llid='" + layerId + "']");
+      var pdfUrl = pdfEl.data('pdf').replace(/app\/assets\/images\//, '/assets/');
       window.open(pdfUrl);
     },
 

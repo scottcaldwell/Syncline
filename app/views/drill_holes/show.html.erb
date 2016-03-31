@@ -98,11 +98,11 @@
     <div class="container">
       <header class='log-header columns'>
         <div class="log-column-title column is-1">
-          <p class='is-text-centered'>Depth</p>
+          <p class='is-text-centered'>Depth(m)</p>
         </div>
 
         <div class="log-column-title column is-1">
-          <p class='is-text-centered'>Graphic Log</p>
+          <p class='is-text-centered'>Graphic</p>
         </div>
 
         <div class="log-column-title column is-6">
@@ -410,7 +410,7 @@
 
 <script id="new-ft-template" type="text/x-handlebars-template">
   <h2>Field Test</h2>
-  <form id='new-ft' class='form new-ft' data-lid='' data-hole-id='<%= @drill_hole.id %>'>
+  <form id='new-ft' class='form new-ft' data-lid='' data-fid='{{ id }}' data-hole-id='<%= @drill_hole.id %>'>
     <div class="columns">
       <div class="column is-2">
         <p class="control">
@@ -467,14 +467,14 @@
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth From</label>
-          <input id='lt_depth_to' type='number' class='input'></input>
+          <input id='lt_depth_to' type='number' class='input' value='{{ from }}'></input>
         </p>
       </div>
 
       <div class="column is-2">
         <p class="control">
           <label class="label">Depth To</label>
-          <input id='lt_depth_from' type='number' class='input'></input>
+          <input id='lt_depth_from' type='number' class='input' value='{{ to }}'></input>
         </p>
       </div>
 
