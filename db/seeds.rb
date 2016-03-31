@@ -181,7 +181,7 @@ num_lab_tests = LabTest.all.count
   GrainSize.create(
   fines_content: rand(10..90),
   lab_test_id: n,
-  pdf_url: "app/assets/images/grain_size_pdf/grainsizepdf#{n}.pdf"
+  pdf_url: "app/assets/images/grain_size_pdf/grainsizepdf#{rand(1..45)}.pdf"
   )
 end
 
