@@ -115,13 +115,21 @@ html, body {
 
 .notification{
   border-radius:0px;
-  right:200px;
+  right:10px;
   height:40px;
   padding: 10px;
+  top:0px;
 }
 .nav-icon{
    padding-top:0px;
    padding-right:10px;
    padding-bottom:0px;
    padding-left:0px;
+}
+.flash{
+ position: fixed;
+ max-width:600px;
+ top:20px;
+ right:20px;
+ height:40px;
 }
