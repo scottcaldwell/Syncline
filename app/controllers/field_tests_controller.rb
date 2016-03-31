@@ -16,16 +16,19 @@ class FieldTestsController < ApplicationController
 
   def update
     @field_test = FieldTest.find(params[:id])
-    session[:field_test_id] = @field_test.id
-    @field_test.update_attributes(
-      test_type: "SPT",
-      depth_from: params[:depth_from],
-      depth_to: params[:depth_to],
-      layer_id: current_layer
-    )
+    # session[:field_test_id] = @field_test.id
+    # @field_test.update_attributes(
+    #   test_type: "SPT",
+    #   depth_from: params[:depth_from],
+    #   depth_to: params[:depth_to],
+    #   layer_id: current_layer
+    # )
+
+    @spt = Spt.where(field_test_id: params[:id]).first
+    @spt.update_attribute(blow_count: params[:blow_count])
 
     respond_to do |format|
-      format.json { render json: { data: @field_test } }
+      format.json { render json: { data: @spt } }
     end
   end
 

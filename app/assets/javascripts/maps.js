@@ -33,7 +33,7 @@ $(function() {
 
   var helpers = {
     generateMap: function(divId, lat, lng, zoom) {
-      // latitude, longitude, zoom level WHERE SHOULD THIS DEFULT TO??
+      // latitude, longitude, zoom level
       return L.mapbox.map(divId, 'mapbox.outdoors').setView([lat, lng], zoom);
     },
     addSearchBar: function () {
@@ -231,7 +231,7 @@ $(function() {
   }
   if ($('#drill-hole-geo-search-map').length > 0 || $('#geo-search-map').length > 0) {
     //When location is selected(via search or click), add marker and show button
-    //Not using helper function. 
+    //Not using helper function.
     geocoderControl.on('select', function (res) {
       var coordinates = res.feature.geometry.coordinates;
       helpers.addMarker(coordinates[1], coordinates[0]);
@@ -244,8 +244,8 @@ $(function() {
     //When user edits Site name field, sets flag so getLocation doesn't refill form when marker is moved
     siteName.on("input", helpers.nameHasBeenInputByUser);
     //When user changes lat/lng, move marker to this new location
-    siteLat.on("input", helpers.siteLatOrLngHasBeenInputByUser);
-    siteLng.on("input", helpers.siteLatOrLngHasBeenInputByUser);
+    siteLat.on("blur", helpers.siteLatOrLngHasBeenInputByUser);
+    siteLng.on("blur", helpers.siteLatOrLngHasBeenInputByUser);
 
     dhLat.on("input", helpers.dhLatOrLngHasBeenInputByUser);
     dhLng.on("input", helpers.dhLatOrLngHasBeenInputByUser);
