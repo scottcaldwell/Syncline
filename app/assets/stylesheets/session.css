@@ -61,6 +61,10 @@ h1 .title{
    box-shadow: 5px 5px 0px #ddd;
  }
 
+ #mapAnimation{
+   position:relative;
+ }
+
  @keyframes pinDrop1 {
      from {top:0px; opacity: 0;}
      to {top: 100px; opacity:1;}
