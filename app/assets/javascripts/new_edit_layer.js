@@ -187,14 +187,15 @@
 
     newFT: function() {
       var formData = new FormData();
-      var layerId = $();
-      var url = '';
-      var form = $();
+      // var layerId = $();
+      var form = $('#new-ft');
+      var url = '/field_tests/' + form.attr('data-fid');
+      console.log(url);
 
-      formData.append('depth_from', );
-      formData.append('depth_to', );
-      formData.append('fid', );
-      formData.append('blow_counts', );
+      // formData.append('depth_from', );
+      // formData.append('depth_to', );
+      // formData.append('fid', );
+      formData.append('blow_counts', form.find('#ft_blow_count').val());
 
       $.ajax(url, {
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -204,6 +205,7 @@
         processData: false,
         type: 'put'        
       }).done(function(res) {
+        console.log(res);
         // update the hidden data span
         // pub and event for the canvas graph to sub to for a redraw
       });
@@ -215,10 +217,10 @@
       var url = '';
       var form = $();
 
-      formData.append('depth_from', );
-      formData.append('depth_to', );
-      formData.append('fid', );
-      formData.append('blow_counts', );
+      // formData.append('depth_from', );
+      // formData.append('depth_to', );
+      // formData.append('fid', );
+      // formData.append('blow_counts', );
 
       $.ajax(url, {
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
@@ -308,6 +310,7 @@
       if (id) {
         var data = $('span[data-flid=' + id +']');
         context = {
+          id: data.data('id'),
           from: data.data('from'),
           to: data.data('to'),
           blow_count: data.data('spts')
