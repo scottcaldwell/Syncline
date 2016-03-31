@@ -9,7 +9,7 @@
 }
 
 #landing{
-  
+
 }
 
 #features{
@@ -39,13 +39,13 @@ h1 .title{
   align-items: center;
 }
 
- .flash{
-  position: fixed;
-  max-width:600px;
-  top:20px;
-  right:20px;
-  height:40px;
- }
+.flash{
+ position: fixed;
+ max-width:600px;
+ top:20px;
+ right:20px;
+ height:40px;
+}
 
  /**********ANIMATIONS**************/
  #map{
