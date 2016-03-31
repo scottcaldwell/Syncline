@@ -45,10 +45,11 @@ class DrillHolesController < ApplicationController
         File.open(save_path, 'wb') do |file|
           file << pdf
         end
-        @user_ids = SiteUser.where(site_id: current_site).pluck(:user_id)
-        @user_ids.each do |user_id|
-          # PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
-        end
+        send_file(Rails.root.join('pdfs',"#{@drill_hole.name}-logs.pdf"), { disposition: 'attachment'})
+        # @user_ids = SiteUser.where(site_id: current_site).pluck(:user_id)
+        # @user_ids.each do |user_id|
+        #   PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
+        # end
         # render :pdf => 'drill_hole',
         # :save_to_file => Rails.root.join('pdfs', "drill_hole.pdf"),
         # :template => 'drill_holes/show.pdf.erb',
