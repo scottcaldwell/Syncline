@@ -98,7 +98,6 @@
           glog: ($(parent).find('.log-column-glog').text())
 
         }
-
         editForm.attr('data-lid', $(parent).data('id'));
         helpers.removeActiveTab();
         formModal.addClass('is-active');
@@ -187,11 +186,51 @@
     },
 
     newFT: function() {
-      console.log('yeah ft');
+      var formData = new FormData();
+      var layerId = $();
+      var url = '';
+      var form = $();
+
+      formData.append('depth_from', );
+      formData.append('depth_to', );
+      formData.append('fid', );
+      formData.append('blow_counts', );
+
+      $.ajax(url, {
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'put'        
+      }).done(function(res) {
+        // update the hidden data span
+        // pub and event for the canvas graph to sub to for a redraw
+      });
     },
 
     newLT: function() {
-      console.log('yeah LT');
+      var formData = new FormData();
+      var layerId = $();
+      var url = '';
+      var form = $();
+
+      formData.append('depth_from', );
+      formData.append('depth_to', );
+      formData.append('fid', );
+      formData.append('blow_counts', );
+
+      $.ajax(url, {
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        type: 'put'        
+      }).done(function(res) {
+        // update the hidden data span
+        // pub and event for the canvas graph to sub to for a redraw
+      });
     }
   }
 
@@ -265,12 +304,13 @@
       var source = ftForm.html();
       var template = Handlebars.compile(source);
       var context = {};
+      var id = id;
       if (id) {
         var data = $('span[data-flid=' + id +']');
         context = {
-          from: data.data('to'),
-          to: data.data('from'),
-          blow_count: data.data('blow_count')
+          from: data.data('from'),
+          to: data.data('to'),
+          blow_count: data.data('spts')
         };
       }
       var html = template(context);
@@ -283,12 +323,13 @@
       var source = ltForm.html();
       var template = Handlebars.compile(source);
       var context = {};
+      var id = id;
       if (id) {
         var data = $('span[data-llid=' + id + ']');
         context = {
-          to: data.data['to'],
-          from: data.data['from'],
-          fines_content: data.data['size']
+          from: data.data('from'),          
+          to: data.data('to'),
+          fines_content: data.data('size')
         };
       }
       var html = template(context);
