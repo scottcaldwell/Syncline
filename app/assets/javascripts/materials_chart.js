@@ -125,6 +125,12 @@ $(function () {
         legend: {
           enabled: false
         },
+        colors: [
+          '#1F2B3D',
+          '#1AC3CE',
+          '#7D7D7D',
+          '#3D5D90'
+        ],
         plotOptions: {
           series: {
             borderWidth: 0,
@@ -214,6 +220,10 @@ $(function () {
                 text: 'Meters Drilled'
             },
           },
+          colors: [
+            '#7D7D7D',
+            '#3D5D90'
+          ],
           tooltip: {
             shared: true,
             valueSuffix: ' meters'
