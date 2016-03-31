@@ -208,4 +208,7 @@ end
 end
 
 site = Site.find(1)
-site.update_attributes(drill_to_depth: DrillHole.where(site_id: site.id).sum(:depth), drill_by_date: Layer.last.date_drilled + 3.days)
+site.update_attributes(drill_to_depth: DrillHole.where(site_id: site.id).sum(:depth), drill_by_date: Layer.where(drill_hole_id: DrillHole.where(site_id: site.id)).last.date_drilled + 3.days)
+
+site = Site.find(2)
+site.update_attributes(drill_to_depth: DrillHole.where(site_id: site.id).sum(:depth), drill_by_date: Layer.where(drill_hole_id: DrillHole.where(site_id: site.id)).last.date_drilled + 3.days)
