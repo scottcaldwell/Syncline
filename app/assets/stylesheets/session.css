@@ -44,10 +44,7 @@ h1 .title{
   max-width:600px;
   top:20px;
   right:20px;
- }
-
- .notification{
-   margin-right:10px;
+  height:40px;
  }
 
  /**********ANIMATIONS**************/
