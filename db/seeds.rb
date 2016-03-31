@@ -109,8 +109,8 @@ MaterialType.create(
 name: "Clay"
 )
 
-(0..9).each do |n|
-  num_layers = rand(2..5)
+(0..19).each do |n|
+  num_layers = rand(2..4)
   layer_thickness = (DrillHole.all[n].depth)/num_layers
   i = 0
   while i < num_layers
@@ -127,7 +127,7 @@ name: "Clay"
 end
 
 loop_num = 0
-(0..9).each do |n|
+(0..19).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
     layer_depth = (Layer.all[loop_num].thickness / 2) + (Layer.all[loop_num].thickness * i)
@@ -142,7 +142,7 @@ loop_num = 0
 end
 
 loop_num = 0
-(0..9).each do |n|
+(0..19).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
     LabTest.create(
@@ -156,7 +156,7 @@ loop_num = 0
 end
 
 loop_num = 0
-(0..9).each do |n|
+(0..19).each do |n|
   num_layers = Layer.where(drill_hole_id: DrillHole.all[n].id).count - 1
   (0..num_layers).each do |i|
     Photo.create(
