@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      UserMailer.welcome_email(@user).deliver
+      # UserMailer.welcome_email(@user).deliver
       session[:user_id] = @user.id # auto log in
       redirect_to sites_path
     else

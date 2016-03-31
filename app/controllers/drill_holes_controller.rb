@@ -45,7 +45,7 @@ class DrillHolesController < ApplicationController
         File.open(save_path, 'wb') do |file|
           file << pdf
         end
-        send_file(Rails.root.join('pdfs',"#{@drill_hole.name}-logs.pdf"), { disposition: 'attachment'})
+        send_file Rails.root.join('pdfs',"#{@drill_hole.name}-logs.pdf"), :type => "application/pdf", :x_sendfile => true
         # @user_ids = SiteUser.where(site_id: current_site).pluck(:user_id)
         # @user_ids.each do |user_id|
         #   PdfMailer.email_pdf(pdf, @drill_hole, user_id).deliver
