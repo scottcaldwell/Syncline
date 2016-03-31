@@ -9,19 +9,20 @@
 }
 
 #landing{
-  margin-bottom:100px;
+  
 }
 
 #features{
-  margin-bottom:130px;
+  padding-bottom: 130px;
+  background-color: #F9FAFC;
 }
 
 .message-body{
-  font-size:1.5em;
+  font-size: 1.5em;
 }
 
 h1 .title{
-  font-size:200px;
+  font-size: 200px;
 }
 
 .control{
@@ -32,7 +33,6 @@ h1 .title{
 .animation{
   height:300px;
   width:400px;
-  background:#FFF;
 }
 
 .column{
@@ -58,6 +58,7 @@ h1 .title{
    background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
    transform: perspective(10px) rotateX(1deg);
    margin: 50px;
+   box-shadow: 5px 5px 0px #ddd;
  }
 
  @keyframes pinDrop1 {
@@ -169,18 +170,18 @@ h1 .title{
   bottom:30px;
   margin:0 10px 0 10px;
   transition: all 1s ease-out;
-  box-shadow: 5px 5px 1px #555;
+  box-shadow: 5px 5px 0px #ddd;
 }
-.bar1{
+.bar4{
   height:50px;
 }
 .bar2{
   height:100px;
 }
-.bar3{
+.bar1{
   height:150px;
 }
-.bar4{
+.bar3{
   height:200px;
 }
 
@@ -189,7 +190,8 @@ h1 .title{
   height:100%;
   margin:0 30px 0 30px;
   padding:5px 30px 5px 30px;
-  border:1px solid black;
+  border:2px solid #eee;
+  background-color: white;
 }
 #two{
   display:none;
@@ -209,7 +211,7 @@ h1 .title{
   background-image: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 71%, #2cb5e8 100%);
   height:30px;
   margin-bottom:10px;
-  box-shadow: 3px 3px 1px #555;
+  box-shadow: 5px 5px 0px #ddd;
   position:relative;
   transition: transform 0.5s linear;
 }

@@ -32,3 +32,8 @@ h2 {
 strong {
   color: #333;
 }
+
+.feature-description {
+  font-size: 1.65em;
+  color: #3D5D90;;
+}

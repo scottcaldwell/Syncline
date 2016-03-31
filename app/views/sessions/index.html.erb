@@ -1,14 +1,11 @@
 <section class="hero is-medium is-primary is-bold is-fullheight" id="landing">
   <div class="hero-content">
     <div class="container">
-      <img class='site-logo' src="/assets/logo-grad.png">
-      <h1 class="title">
-        Syncline
-      </h1>
-      <h2 class="subtitle">
-        A tool aimed at geotechnical engineers to streamline the process of collecting and reviewing site investigation information.
+      <img class='site-logo' src="/assets/syncline-hero-logo.png">
+      <h2 class="subtitle is-3">
+        Join the Beta and start modernizing your data collection
       </h2>
-      <a class="button is-primary is-outlined is-inverted" href="/users/new">Join the beta</a>
+      <a class="button is-primary is-outlined is-inverted is-large" href="/users/new">Signup</a>
       <!-- LOGIN -->
       <div id="login">
         <%= form_tag session_path do %>
@@ -23,7 +20,7 @@
             <i class="fa fa-lock"></i>
           </p>
           <p class="control is-flex">
-            <button class="button is-primary is-outlined is-inverted">
+            <button class="button is-primary is-outlined is-inverted is-large">
               Log in
             </button>
           </p>
@@ -34,55 +31,66 @@
     </div>
   </div>
 </section>
-<section id="features">
+
+<section id='tagline'>
+  <div class="container">
+    <p class='tagline-msg is-centered'>A tool aimed at geotechnical engineers to streamline the process of collecting and reviewing site investigation information.</p>
+  </div>
+</section>
+
+<section id="features" class='page-body'>
   <div class="container">
     <div class="columns is-multiline">
+      <!-- start -->
+
       <div class="column is-4 animation" id="mapAnimation">
         <i class="pin" class="pin1"></i>
         <i class="pin" class="pin2"></i>
         <i class="pin" class="pin3"></i>
         <div id="map"></div>
       </div>
+      
       <div class="is-flex column is-8">
-        <div class="message is-info">
-          <div class="message-body">
+          <p class='feature-description'>
             Syncline makes managing site data simple. Project managers can easily create projects and collaborate with contractors and engineers.
-          </div>
+          </p>
+      </div>
+      
+      <div class="is-flex column is-8">
+          <p class='feature-description is-text-right'>
+            Instant analytics built from site data. Analyze and export graphical data and drill hole logs.
+          </p>
+      </div>
+
+      <div id="graphAnimation" class="column is-4 animation is-flex">
+        <div id="graph">
+            <div class="barContainer"><div class="bar"></div></div>
+            <div class="barContainer"><div class="bar"></div></div>
+            <div class="barContainer"><div class="bar"></div></div>
+            <div class="barContainer"><div class="bar"></div></div>
         </div>
       </div>
+
+      <div id="inputAnimation" class="column is-4 animation">
+        <div id="page">
+          <hr color="black">
+          <hr color="black">
+          <hr color="black">
+          <div class="row"></div>
+          <div class="row"></div>
+          <div class="row" id="one"></div>
+          <div class="row" id="two"></div>
+        </div>
+      </div>
+
       <div class="is-flex column is-8">
-        <div class="message is-info">
-          <div class="message-body">
+          <p class='feature-description'>
             Entering drill hole data has never been simpler. Drill hole reports can be created and edited with ease.
           </div>
         </div>
       </div>
-    <div id="inputAnimation" class="column is-4 animation">
-      <div id="page">
-        <hr color="black">
-        <hr color="black">
-        <hr color="black">
-        <div class="row"></div>
-        <div class="row"></div>
-        <div class="row" id="one"></div>
-        <div class="row" id="two"></div>
-      </div>
-    </div>
-    <div id="graphAnimation" class="column is-4 animation is-flex">
-      <div id="graph">
-          <div class="barContainer"><div class="bar"></div></div>
-          <div class="barContainer"><div class="bar"></div></div>
-          <div class="barContainer"><div class="bar"></div></div>
-          <div class="barContainer"><div class="bar"></div></div>
-      </div>
-    </div>
-    <div class="is-flex column is-8">
-      <div class="message is-info">
-        <div class="message-body">
-          Instant analytics built from site data. Analyze and export graphical data and drill hole logs.
-        </div>
-      </div>
-    </div>
+
+    <!-- end -->
     </div>
   </div>
 </div>
