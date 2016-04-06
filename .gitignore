@@ -23,6 +23,3 @@
 
 #ignore Environment variables file
 .env
-
-#ignore pdf folder
-/pdfs
