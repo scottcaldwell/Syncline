@@ -22,3 +22,8 @@ For demonstration purposes we have added mock data to the seed file: `rake db:se
 
 Start the server:
 `rails s`
+
+Technical Details
+-----------------
+
+Build on Rails and PostgreSQL. Heavy use of Javascript/jQuery and Handlebars for the frontend, as well as Mapbox, HighCharts and custom Canvas charts.
