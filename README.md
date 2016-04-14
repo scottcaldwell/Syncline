@@ -1,10 +1,22 @@
-== README
+Syncline
+========
+A tool aimed at geotechnical engineers to streamline the process of collecting, reviewing and approving site investigation information.
 
-To run this application, download into a folder and unzip. Open this folder
-in your terminal and run
+*Note:* This is an early proof of concept developed while at Lighthouse Labs.
 
-  rails s' to start the server. Optionally, you can run
+Get Started
+-----------
 
-  rake db:create db:migrate db:seed
+Clone the repo:
+'git clone git@github.com:joelkbennett/Syncline.git'
 
-to fill the database with mock data for demonstration.
+Run Bundler:
+'bundle install'
+
+Prep the database:
+'rake db:create db:migrate'
+
+For demonstration purposes we have added mock data to the seed file: 'rake db:seed'
+
+Start the server:
+'rails s'
