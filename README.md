@@ -8,15 +8,15 @@ Get Started
 -----------
 
 Clone the repo:
-'git clone git@github.com:joelkbennett/Syncline.git'
+`git clone git@github.com:joelkbennett/Syncline.git`
 
 Run Bundler:
-'bundle install'
+`bundle install`
 
 Prep the database:
-'rake db:create db:migrate'
+`rake db:create db:migrate`
 
-For demonstration purposes we have added mock data to the seed file: 'rake db:seed'
+For demonstration purposes we have added mock data to the seed file: `rake db:seed`
 
 Start the server:
-'rails s'
+`rails s`
