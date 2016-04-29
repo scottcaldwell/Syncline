@@ -25,3 +25,4 @@
 .env
 
 #ignore pdf folder
+/pdf
