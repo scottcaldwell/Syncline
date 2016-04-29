@@ -10,8 +10,23 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      # UserMailer.welcome_email(@user).deliver
       session[:user_id] = @user.id # auto log in
+      SiteUser.create(
+      site_id: Site.find_by(site_name: "Syncline Headquarters").id,
+      user_id: @user.id,
+      admin: true
+      )
+      SiteUser.create(
+      site_id: Site.find_by(site_name: "Lighthouse Labs").id,
+      user_id: @user.id,
+      admin: true
+      )
+      SiteUser.create(
+      site_id: Site.find_by(site_name: "Science World").id,
+      user_id: @user.id,
+      admin: true
+      )
+
       redirect_to sites_path
     else
       render :new
