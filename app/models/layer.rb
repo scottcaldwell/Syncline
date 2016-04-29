@@ -1,8 +1,7 @@
 class Layer < ActiveRecord::Base
   belongs_to :material_type
   belongs_to :drill_hole
-  has_many :field_tests
-  has_many :lab_tests
+  has_many :field_tests, dependent: :destroy
 
   default_scope { order('date_drilled') }
 
